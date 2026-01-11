@@ -1,24 +1,33 @@
 :root {
     --bg-color: oklch(20% 0.01 234);
     --text-color: oklch(95% 0.01 234);
-    --accent-color: oklch(70% 0.25 29);
-    --shadow-color: oklch(30% 0.25 29 / 50%);
+    --accent-color: oklch(65% 0.2 145);
+    --shadow-color: oklch(30% 0.2 145 / 50%);
+    --card-bg: oklch(25% 0.01 234);
+    --border-color: oklch(35% 0.01 234);
 }
 
 [data-theme="light"] {
     --bg-color: oklch(95% 0.01 234);
     --text-color: oklch(20% 0.01 234);
-    --accent-color: oklch(60% 0.25 29);
-    --shadow-color: oklch(50% 0.25 29 / 30%);
+    --accent-color: oklch(55% 0.2 145);
+    --shadow-color: oklch(50% 0.2 145 / 30%);
+    --card-bg: oklch(100% 0 0);
+    --border-color: oklch(85% 0.01 234);
+}
+
+* {
+    box-sizing: border-box;
 }
 
 body {
-    font-family: sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--bg-color);
     color: var(--text-color);
     display: grid;
     place-content: center;
     min-height: 100vh;
+    padding: 2rem;
     background-image: linear-gradient(rgba(128,128,128,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.1) 1px, transparent 1px);
     background-size: 20px 20px;
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -26,59 +35,229 @@ body {
 
 main {
     text-align: center;
+    max-width: 600px;
+    width: 100%;
 }
 
 h1 {
-    font-size: 3rem;
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--accent-color), oklch(65% 0.2 200));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    color: var(--text-color);
+    opacity: 0.7;
     margin-bottom: 2rem;
 }
 
-.lotto-numbers {
+.api-key-section {
     display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#api-key {
+    padding: 0.8rem 1rem;
+    font-size: 1rem;
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+}
+
+#api-key:focus {
+    outline: none;
+    border-color: var(--accent-color);
+}
+
+.api-link {
+    color: var(--accent-color);
+    font-size: 0.9rem;
+    text-decoration: none;
+}
+
+.api-link:hover {
+    text-decoration: underline;
+}
+
+.upload-area {
+    border: 3px dashed var(--border-color);
+    border-radius: 16px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    position: relative;
+    min-height: 200px;
+    display: flex;
+    align-items: center;
     justify-content: center;
-    gap: 1rem;
-    margin-bottom: 2rem;
 }
 
-.lotto-ball {
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    background-color: var(--accent-color);
-    display: grid;
-    place-content: center;
-    font-size: 1.5rem;
-    font-weight: bold;
-    box-shadow: 0 5px 10px var(--shadow-color);
-    animation: appear 0.5s ease-in-out forwards;
+.upload-area:hover {
+    border-color: var(--accent-color);
+    background-color: var(--border-color);
 }
 
-@keyframes appear {
-    from {
-        transform: scale(0);
-        opacity: 0;
-    }
-    to {
-        transform: scale(1);
-        opacity: 1;
-    }
+.upload-area.dragover {
+    border-color: var(--accent-color);
+    background-color: var(--border-color);
+    transform: scale(1.02);
 }
 
-#generate-btn {
+.upload-area.has-image {
+    padding: 1rem;
+}
+
+.upload-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.upload-icon {
+    font-size: 3rem;
+}
+
+.upload-area.has-image .upload-content {
+    display: none;
+}
+
+.preview-image {
+    display: none;
+    max-width: 100%;
+    max-height: 300px;
+    border-radius: 8px;
+    object-fit: contain;
+}
+
+.upload-area.has-image .preview-image {
+    display: block;
+}
+
+#analyze-btn {
     padding: 1rem 2rem;
     font-size: 1.2rem;
     background-color: var(--accent-color);
-    color: var(--text-color);
+    color: white;
     border: none;
     border-radius: 8px;
     cursor: pointer;
-    box-shadow: 0 0 10px var(--shadow-color), 0 0 20px var(--accent-color);
+    box-shadow: 0 4px 15px var(--shadow-color);
     transition: all 0.3s ease;
+    width: 100%;
+    font-weight: bold;
 }
 
-#generate-btn:hover {
+#analyze-btn:hover:not(:disabled) {
     transform: translateY(-2px);
-    box-shadow: 0 2px 15px var(--shadow-color), 0 0 30px var(--accent-color);
+    box-shadow: 0 6px 20px var(--shadow-color);
+}
+
+#analyze-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.result-section {
+    display: none;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    border: 2px solid var(--border-color);
+    text-align: left;
+}
+
+.result-section.visible {
+    display: block;
+    animation: fadeIn 0.5s ease;
+}
+
+.result-section h2 {
+    margin-bottom: 1rem;
+    color: var(--accent-color);
+    text-align: center;
+}
+
+#result-content {
+    line-height: 1.8;
+}
+
+.food-item {
+    padding: 1rem;
+    margin-bottom: 0.5rem;
+    background: linear-gradient(135deg, var(--border-color), transparent);
+    border-radius: 8px;
+    border-left: 4px solid var(--accent-color);
+}
+
+.food-name {
+    font-weight: bold;
+    font-size: 1.1rem;
+    margin-bottom: 0.5rem;
+}
+
+.food-details {
+    font-size: 0.95rem;
+    opacity: 0.9;
+}
+
+.total-calories {
+    margin-top: 1rem;
+    padding: 1rem;
+    background-color: var(--accent-color);
+    color: white;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+}
+
+.loading {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+}
+
+.loading.visible {
+    display: flex;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 4px solid var(--border-color);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 #theme-toggle {
@@ -98,4 +277,28 @@ h1 {
 
 #theme-toggle:hover {
     transform: scale(1.1);
+}
+
+.error-message {
+    color: oklch(65% 0.25 25);
+    padding: 1rem;
+    background-color: oklch(65% 0.1 25 / 20%);
+    border-radius: 8px;
+    margin-top: 1rem;
+}
+
+@media (max-width: 600px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    .upload-area {
+        padding: 1.5rem;
+        min-height: 150px;
+    }
+
+    #analyze-btn {
+        font-size: 1rem;
+        padding: 0.8rem 1.5rem;
+    }
 }

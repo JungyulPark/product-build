@@ -1,17 +1,42 @@
 <!doctype html>
-<html lang="en">
+<html lang="ko">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lotto Number Generator</title>
+  <title>AI 칼로리 계산기</title>
   <link href="/style.css" rel="stylesheet">
 </head>
 <body>
   <button id="theme-toggle">🌙</button>
   <main>
-    <h1>Lotto Number Generator</h1>
-    <div class="lotto-numbers"></div>
-    <button id="generate-btn">Generate Numbers</button>
+    <h1>AI 칼로리 계산기</h1>
+    <p class="subtitle">음식 사진을 올리면 AI가 칼로리를 분석해드립니다</p>
+
+    <div class="api-key-section">
+      <input type="password" id="api-key" placeholder="Google Gemini API 키 입력">
+      <a href="https://aistudio.google.com/app/apikey" target="_blank" class="api-link">API 키 발급받기</a>
+    </div>
+
+    <div class="upload-area" id="upload-area">
+      <input type="file" id="file-input" accept="image/*" hidden>
+      <div class="upload-content">
+        <span class="upload-icon">📷</span>
+        <p>클릭하거나 이미지를 드래그하세요</p>
+      </div>
+      <img id="preview" class="preview-image" alt="미리보기">
+    </div>
+
+    <button id="analyze-btn" disabled>칼로리 분석하기</button>
+
+    <div class="result-section" id="result-section">
+      <h2>분석 결과</h2>
+      <div id="result-content"></div>
+    </div>
+
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>AI가 음식을 분석 중입니다...</p>
+    </div>
   </main>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
