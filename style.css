@@ -1,9 +1,15 @@
-
 :root {
     --bg-color: oklch(20% 0.01 234);
     --text-color: oklch(95% 0.01 234);
     --accent-color: oklch(70% 0.25 29);
     --shadow-color: oklch(30% 0.25 29 / 50%);
+}
+
+[data-theme="light"] {
+    --bg-color: oklch(95% 0.01 234);
+    --text-color: oklch(20% 0.01 234);
+    --accent-color: oklch(60% 0.25 29);
+    --shadow-color: oklch(50% 0.25 29 / 30%);
 }
 
 body {
@@ -13,8 +19,9 @@ body {
     display: grid;
     place-content: center;
     min-height: 100vh;
-    background-image: linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px);
+    background-image: linear-gradient(rgba(128,128,128,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(128,128,128,0.1) 1px, transparent 1px);
     background-size: 20px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 main {
@@ -72,4 +79,23 @@ h1 {
 #generate-btn:hover {
     transform: translateY(-2px);
     box-shadow: 0 2px 15px var(--shadow-color), 0 0 30px var(--accent-color);
+}
+
+#theme-toggle {
+    position: fixed;
+    top: 1rem;
+    right: 1rem;
+    padding: 0.5rem 1rem;
+    font-size: 1.5rem;
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 2px 10px var(--shadow-color);
+    transition: all 0.3s ease;
+}
+
+#theme-toggle:hover {
+    transform: scale(1.1);
 }
