@@ -49,6 +49,20 @@
         <button type="submit">문의하기</button>
       </form>
     </section>
+
+    <section class="comments-section">
+      <h2>Comments</h2>
+      <div id="disqus_thread"></div>
+      <script>
+        (function() {
+          var d = document, s = d.createElement('script');
+          s.src = 'https://https-product-build-pages-dev.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+      <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    </section>
   </main>
   <script defer type="text/javascript" src="/main.js"></script>
 </body>
