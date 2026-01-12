@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dry Eye Test (OSDI) - Eye Health Tools</title>
+  <meta name="description" content="Take the OSDI (Ocular Surface Disease Index) questionnaire to assess your dry eye symptoms. Clinically validated test used worldwide.">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Dry Eye Test (OSDI)</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-link">&#8592; Back to Tools</a>
+
+    <div class="page-title">
+      <h2>&#128167; Dry Eye Symptom Checker</h2>
+      <p>OSDI (Ocular Surface Disease Index) - Clinically Validated Questionnaire</p>
+    </div>
+
+    <div class="calculator-container">
+      <div class="progress-bar">
+        <div class="progress-fill" id="question-progress" style="width: 0%"></div>
+      </div>
+      <p style="text-align: center; color: var(--text-secondary); margin-bottom: 2rem;">
+        Question <span id="current-q">1</span> of 12
+      </p>
+
+      <form id="osdi-form">
+        <!-- Section 1: Ocular Symptoms (Q1-5) -->
+        <div class="question-card" data-question="1">
+          <p class="question-text">1. Have you experienced any of the following during the <strong>last week</strong>: Eyes that are sensitive to light?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="2" style="display: none;">
+          <p class="question-text">2. Have you experienced: Eyes that feel gritty?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="3" style="display: none;">
+          <p class="question-text">3. Have you experienced: Painful or sore eyes?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="4" style="display: none;">
+          <p class="question-text">4. Have you experienced: Blurred vision?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="5" style="display: none;">
+          <p class="question-text">5. Have you experienced: Poor vision?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+          </div>
+        </div>
+
+        <!-- Section 2: Vision-Related Function (Q6-9) -->
+        <div class="question-card" data-question="6" style="display: none;">
+          <p class="question-text">6. Have problems with your eyes limited you in <strong>reading</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="7" style="display: none;">
+          <p class="question-text">7. Have problems with your eyes limited you in <strong>driving at night</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="8" style="display: none;">
+          <p class="question-text">8. Have problems with your eyes limited you in <strong>working with a computer or ATM</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="9" style="display: none;">
+          <p class="question-text">9. Have problems with your eyes limited you in <strong>watching TV</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <!-- Section 3: Environmental Triggers (Q10-12) -->
+        <div class="question-card" data-question="10" style="display: none;">
+          <p class="question-text">10. Have your eyes felt uncomfortable in <strong>windy conditions</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="11" style="display: none;">
+          <p class="question-text">11. Have your eyes felt uncomfortable in <strong>places with low humidity</strong> (very dry)?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+
+        <div class="question-card" data-question="12" style="display: none;">
+          <p class="question-text">12. Have your eyes felt uncomfortable in <strong>air conditioned areas</strong>?</p>
+          <div class="options-group">
+            <button type="button" class="option-btn" data-value="0">None</button>
+            <button type="button" class="option-btn" data-value="1">Some</button>
+            <button type="button" class="option-btn" data-value="2">Half</button>
+            <button type="button" class="option-btn" data-value="3">Most</button>
+            <button type="button" class="option-btn" data-value="4">All</button>
+            <button type="button" class="option-btn" data-value="na">N/A</button>
+          </div>
+        </div>
+      </form>
+
+      <div class="result-container" id="result">
+        <div class="score-display">
+          <span class="score-value" id="score-value">0</span>
+          <span class="score-label" id="score-label">OSDI Score</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="result-progress"></div>
+        </div>
+
+        <div class="result-details" id="result-details">
+          <h4 id="severity-title">Severity Level</h4>
+          <p id="severity-description"></p>
+          <h4 style="margin-top: 1.5rem;">Recommendations</h4>
+          <ul id="recommendations"></ul>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="resetTest()">Take Test Again</button>
+      </div>
+    </div>
+
+    <section class="disclaimer">
+      <p><strong>Medical Disclaimer:</strong> The OSDI is a screening tool, not a diagnosis. A score indicating dry eye symptoms should be followed up with a comprehensive eye examination by an ophthalmologist for proper diagnosis and treatment.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eye Health Tools. Created by a Korean Ophthalmologist.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+
+    // OSDI Test Logic
+    const answers = {};
+    let currentQuestion = 1;
+    const totalQuestions = 12;
+
+    document.querySelectorAll('.option-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        const questionCard = this.closest('.question-card');
+        const questionNum = parseInt(questionCard.dataset.question);
+
+        // Remove previous selection
+        questionCard.querySelectorAll('.option-btn').forEach(b => b.classList.remove('selected'));
+
+        // Add selection
+        this.classList.add('selected');
+
+        // Store answer
+        const value = this.dataset.value;
+        answers[questionNum] = value === 'na' ? 'na' : parseInt(value);
+
+        // Move to next question after delay
+        setTimeout(() => {
+          if (questionNum < totalQuestions) {
+            questionCard.style.display = 'none';
+            const nextCard = document.querySelector(`[data-question="${questionNum + 1}"]`);
+            nextCard.style.display = 'block';
+            currentQuestion = questionNum + 1;
+            updateProgress();
+          } else {
+            calculateResult();
+          }
+        }, 300);
+      });
+    });
+
+    function updateProgress() {
+      const progress = (currentQuestion / totalQuestions) * 100;
+      document.getElementById('question-progress').style.width = progress + '%';
+      document.getElementById('current-q').textContent = currentQuestion;
+    }
+
+    function calculateResult() {
+      // OSDI Score = (Sum of scores × 25) / Number of questions answered
+      let sum = 0;
+      let answeredCount = 0;
+
+      for (let i = 1; i <= 12; i++) {
+        if (answers[i] !== undefined && answers[i] !== 'na') {
+          sum += answers[i];
+          answeredCount++;
+        }
+      }
+
+      const osdiScore = answeredCount > 0 ? Math.round((sum * 25) / answeredCount) : 0;
+      displayResult(osdiScore);
+    }
+
+    function displayResult(score) {
+      const scoreValue = document.getElementById('score-value');
+      const scoreLabel = document.getElementById('score-label');
+      const resultProgress = document.getElementById('result-progress');
+      const severityTitle = document.getElementById('severity-title');
+      const severityDesc = document.getElementById('severity-description');
+      const recommendations = document.getElementById('recommendations');
+      const result = document.getElementById('result');
+
+      // Hide form
+      document.getElementById('osdi-form').style.display = 'none';
+      document.getElementById('question-progress').parentElement.style.display = 'none';
+
+      // Animate score
+      let current = 0;
+      const interval = setInterval(() => {
+        current += 2;
+        if (current >= score) {
+          current = score;
+          clearInterval(interval);
+        }
+        scoreValue.textContent = current;
+        resultProgress.style.width = Math.min(current, 100) + '%';
+      }, 20);
+
+      // Determine severity
+      scoreValue.className = 'score-value';
+      let severity, description, recs;
+
+      if (score <= 12) {
+        scoreValue.classList.add('score-low');
+        resultProgress.style.background = 'var(--success)';
+        severity = 'Normal';
+        description = 'Your eyes appear to be healthy with no significant dry eye symptoms. Continue your good eye care habits!';
+        recs = [
+          'Maintain regular eye check-ups every 1-2 years',
+          'Stay hydrated and maintain a balanced diet',
+          'Continue practicing the 20-20-20 rule during screen use'
+        ];
+      } else if (score <= 22) {
+        scoreValue.classList.add('score-medium');
+        resultProgress.style.background = 'var(--warning)';
+        severity = 'Mild Dry Eye';
+        description = 'You may have mild dry eye symptoms. Simple lifestyle changes and over-the-counter remedies may help.';
+        recs = [
+          'Use preservative-free artificial tears 2-4 times daily',
+          'Take regular breaks from screen use (20-20-20 rule)',
+          'Use a humidifier in dry environments',
+          'Consider omega-3 fatty acid supplements'
+        ];
+      } else if (score <= 32) {
+        scoreValue.classList.add('score-medium');
+        resultProgress.style.background = 'var(--warning)';
+        severity = 'Moderate Dry Eye';
+        description = 'You have moderate dry eye symptoms that may benefit from professional evaluation and treatment.';
+        recs = [
+          'Schedule an appointment with an ophthalmologist',
+          'Use artificial tears more frequently',
+          'Consider warm compresses for your eyelids',
+          'Avoid direct airflow from fans or AC on your face',
+          'Discuss prescription options with your doctor'
+        ];
+      } else {
+        scoreValue.classList.add('score-high');
+        resultProgress.style.background = 'var(--danger)';
+        severity = 'Severe Dry Eye';
+        description = 'Your symptoms suggest severe dry eye disease. Please consult an ophthalmologist promptly for proper diagnosis and treatment.';
+        recs = [
+          'See an ophthalmologist as soon as possible',
+          'Prescription medications may be necessary',
+          'Discuss advanced treatments (punctal plugs, etc.)',
+          'Avoid contact lens use until evaluated',
+          'Use artificial tears every 1-2 hours'
+        ];
+      }
+
+      severityTitle.textContent = severity;
+      severityDesc.textContent = description;
+      recommendations.innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+
+      result.classList.add('visible');
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetTest() {
+      // Reset answers
+      Object.keys(answers).forEach(key => delete answers[key]);
+      currentQuestion = 1;
+
+      // Reset UI
+      document.querySelectorAll('.question-card').forEach((card, i) => {
+        card.style.display = i === 0 ? 'block' : 'none';
+        card.querySelectorAll('.option-btn').forEach(btn => btn.classList.remove('selected'));
+      });
+
+      document.getElementById('osdi-form').style.display = 'block';
+      document.getElementById('question-progress').parentElement.style.display = 'block';
+      document.getElementById('result').classList.remove('visible');
+
+      updateProgress();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    updateProgress();
+  </script>
+</body>
+</html>

@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eye Strain Calculator - Eye Health Tools</title>
+  <meta name="description" content="Calculate your digital eye strain level based on screen time, break frequency, and work environment. Get personalized recommendations.">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Eye Strain Calculator</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-link">&#8592; Back to Tools</a>
+
+    <div class="page-title">
+      <h2>&#128065; Eye Strain Calculator</h2>
+      <p>Answer a few questions to assess your digital eye strain risk</p>
+    </div>
+
+    <div class="calculator-container">
+      <form id="strain-form">
+        <div class="form-group">
+          <label for="screen-time">Daily Screen Time (hours)</label>
+          <input type="number" id="screen-time" min="0" max="24" step="0.5" required placeholder="e.g., 8">
+          <small>Include all devices: computer, phone, tablet, TV</small>
+        </div>
+
+        <div class="form-group">
+          <label for="break-frequency">How often do you take breaks?</label>
+          <select id="break-frequency" required>
+            <option value="">Select an option</option>
+            <option value="0">Rarely or never</option>
+            <option value="1">Every 2+ hours</option>
+            <option value="2">Every 1-2 hours</option>
+            <option value="3">Every 30-60 minutes</option>
+            <option value="4">Every 20 minutes (20-20-20 rule)</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="screen-distance">Screen Distance (cm)</label>
+          <input type="number" id="screen-distance" min="10" max="200" required placeholder="e.g., 60">
+          <small>Distance from your eyes to the screen</small>
+        </div>
+
+        <div class="form-group">
+          <label for="lighting">Work Environment Lighting</label>
+          <select id="lighting" required>
+            <option value="">Select an option</option>
+            <option value="0">Screen brighter than surroundings</option>
+            <option value="1">Dim room with bright screen</option>
+            <option value="2">Overhead lighting only</option>
+            <option value="3">Balanced lighting (screen matches room)</option>
+            <option value="4">Natural light with proper positioning</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="blink-awareness">Do you consciously blink while working?</label>
+          <select id="blink-awareness" required>
+            <option value="">Select an option</option>
+            <option value="0">Never thought about it</option>
+            <option value="1">Sometimes remember</option>
+            <option value="2">Often conscious of blinking</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="glasses">Do you use computer glasses or blue light filter?</label>
+          <select id="glasses" required>
+            <option value="">Select an option</option>
+            <option value="0">No</option>
+            <option value="1">Software filter only (e.g., Night Shift)</option>
+            <option value="2">Yes, blue light glasses or screen filter</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Calculate Eye Strain Risk</button>
+      </form>
+
+      <div class="result-container" id="result">
+        <div class="score-display">
+          <span class="score-value" id="score-value">0</span>
+          <span class="score-label" id="score-label">Eye Strain Risk Score</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="result-details" id="result-details">
+          <h4>Recommendations</h4>
+          <ul id="recommendations"></ul>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="resetForm()">Calculate Again</button>
+      </div>
+    </div>
+
+    <section class="disclaimer">
+      <p><strong>Medical Disclaimer:</strong> This calculator provides general information and is not a substitute for professional medical advice. If you experience persistent eye strain, blurred vision, or headaches, please consult an ophthalmologist.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eye Health Tools. Created by a Korean Ophthalmologist.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      document.body.toggleAttribute('data-theme');
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+
+    // Calculator logic
+    const form = document.getElementById('strain-form');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const screenTime = parseFloat(document.getElementById('screen-time').value);
+      const breakFreq = parseInt(document.getElementById('break-frequency').value);
+      const distance = parseInt(document.getElementById('screen-distance').value);
+      const lighting = parseInt(document.getElementById('lighting').value);
+      const blinkAwareness = parseInt(document.getElementById('blink-awareness').value);
+      const glasses = parseInt(document.getElementById('glasses').value);
+
+      // Calculate score (0-100, higher = more strain risk)
+      let score = 0;
+
+      // Screen time scoring (0-30 points)
+      if (screenTime >= 12) score += 30;
+      else if (screenTime >= 10) score += 25;
+      else if (screenTime >= 8) score += 20;
+      else if (screenTime >= 6) score += 15;
+      else if (screenTime >= 4) score += 10;
+      else score += 5;
+
+      // Break frequency scoring (0-25 points, inverted)
+      score += (4 - breakFreq) * 6.25;
+
+      // Distance scoring (0-15 points)
+      if (distance < 40) score += 15;
+      else if (distance < 50) score += 10;
+      else if (distance < 60) score += 5;
+      else score += 0;
+
+      // Lighting scoring (0-15 points, inverted)
+      score += (4 - lighting) * 3.75;
+
+      // Blink awareness (0-10 points, inverted)
+      score += (2 - blinkAwareness) * 5;
+
+      // Glasses/filter (0-5 points, inverted)
+      score += (2 - glasses) * 2.5;
+
+      score = Math.round(Math.min(100, Math.max(0, score)));
+
+      // Display result
+      displayResult(score, { screenTime, breakFreq, distance, lighting, blinkAwareness, glasses });
+    });
+
+    function displayResult(score, factors) {
+      const scoreValue = document.getElementById('score-value');
+      const scoreLabel = document.getElementById('score-label');
+      const progressFill = document.getElementById('progress-fill');
+      const recommendations = document.getElementById('recommendations');
+
+      // Animate score
+      let currentScore = 0;
+      const interval = setInterval(() => {
+        currentScore += 2;
+        if (currentScore >= score) {
+          currentScore = score;
+          clearInterval(interval);
+        }
+        scoreValue.textContent = currentScore;
+        progressFill.style.width = currentScore + '%';
+      }, 20);
+
+      // Set color and label based on score
+      scoreValue.className = 'score-value';
+      if (score <= 30) {
+        scoreValue.classList.add('score-low');
+        scoreLabel.textContent = 'Low Risk - Good job!';
+        progressFill.style.background = 'var(--success)';
+      } else if (score <= 60) {
+        scoreValue.classList.add('score-medium');
+        scoreLabel.textContent = 'Moderate Risk - Room for improvement';
+        progressFill.style.background = 'var(--warning)';
+      } else {
+        scoreValue.classList.add('score-high');
+        scoreLabel.textContent = 'High Risk - Take action now';
+        progressFill.style.background = 'var(--danger)';
+      }
+
+      // Generate recommendations
+      const recs = [];
+
+      if (factors.screenTime >= 8) {
+        recs.push('Consider reducing screen time or taking more frequent breaks');
+      }
+      if (factors.breakFreq < 3) {
+        recs.push('Follow the 20-20-20 rule: Every 20 minutes, look at something 20 feet away for 20 seconds');
+      }
+      if (factors.distance < 50) {
+        recs.push('Increase your screen distance to at least 50-70cm (arm\'s length)');
+      }
+      if (factors.lighting < 3) {
+        recs.push('Adjust your lighting so the screen brightness matches your surroundings');
+      }
+      if (factors.blinkAwareness < 2) {
+        recs.push('Practice conscious blinking - we blink 66% less when using screens');
+      }
+      if (factors.glasses < 2) {
+        recs.push('Consider using blue light filtering glasses or screen settings');
+      }
+
+      if (recs.length === 0) {
+        recs.push('Keep up your excellent eye care habits!');
+        recs.push('Consider regular eye exams every 1-2 years');
+      }
+
+      recommendations.innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+
+      result.classList.add('visible');
+      result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function resetForm() {
+      form.reset();
+      result.classList.remove('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>

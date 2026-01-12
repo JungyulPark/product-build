@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blue Light Exposure Calculator - Eye Health Tools</title>
+  <meta name="description" content="Calculate your daily blue light exposure from digital devices. Understand your risk and get personalized recommendations.">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Blue Light Calculator</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <a href="index.html" class="back-link">&#8592; Back to Tools</a>
+
+    <div class="page-title">
+      <h2>&#128241; Blue Light Exposure Calculator</h2>
+      <p>Estimate your daily blue light exposure from digital devices</p>
+    </div>
+
+    <div class="calculator-container">
+      <form id="bluelight-form">
+        <div class="form-group">
+          <label for="computer">Computer/Laptop (hours/day)</label>
+          <input type="number" id="computer" min="0" max="24" step="0.5" value="0" required>
+          <small>Work or personal computer use</small>
+        </div>
+
+        <div class="form-group">
+          <label for="smartphone">Smartphone (hours/day)</label>
+          <input type="number" id="smartphone" min="0" max="24" step="0.5" value="0" required>
+          <small>Browsing, social media, messaging</small>
+        </div>
+
+        <div class="form-group">
+          <label for="tablet">Tablet/E-reader (hours/day)</label>
+          <input type="number" id="tablet" min="0" max="24" step="0.5" value="0" required>
+          <small>iPad, Kindle, etc.</small>
+        </div>
+
+        <div class="form-group">
+          <label for="tv">TV/Monitor (hours/day)</label>
+          <input type="number" id="tv" min="0" max="24" step="0.5" value="0" required>
+          <small>Entertainment, gaming, streaming</small>
+        </div>
+
+        <div class="form-group">
+          <label for="led-lighting">LED/Fluorescent Lighting (hours/day)</label>
+          <input type="number" id="led-lighting" min="0" max="24" step="0.5" value="0" required>
+          <small>Office or home LED lights exposure</small>
+        </div>
+
+        <div class="form-group">
+          <label for="night-mode">Do you use night mode/blue light filter?</label>
+          <select id="night-mode" required>
+            <option value="0">No filter used</option>
+            <option value="0.7">Software filter (Night Shift, f.lux)</option>
+            <option value="0.5">Blue light blocking glasses</option>
+            <option value="0.4">Both software + glasses</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="night-use">Do you use screens within 2 hours of bedtime?</label>
+          <select id="night-use" required>
+            <option value="1.3">Yes, frequently</option>
+            <option value="1.1">Sometimes</option>
+            <option value="1">Rarely or never</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn-primary">Calculate Exposure</button>
+      </form>
+
+      <div class="result-container" id="result">
+        <div class="score-display">
+          <span class="score-value" id="score-value">0</span>
+          <span class="score-label" id="score-label">Blue Light Units/Day</span>
+        </div>
+
+        <div class="progress-bar">
+          <div class="progress-fill" id="progress-fill"></div>
+        </div>
+
+        <div class="breakdown" style="background: var(--bg-secondary); border-radius: 12px; padding: 1.5rem; margin-bottom: 1.5rem;">
+          <h4 style="color: var(--accent); margin-bottom: 1rem;">Exposure Breakdown</h4>
+          <div id="breakdown-chart"></div>
+        </div>
+
+        <div class="result-details">
+          <h4>Understanding Your Results</h4>
+          <p id="risk-description" style="margin-bottom: 1rem; color: var(--text-secondary);"></p>
+          <h4 style="margin-top: 1.5rem;">Recommendations</h4>
+          <ul id="recommendations"></ul>
+        </div>
+
+        <button type="button" class="btn-secondary" onclick="resetForm()">Calculate Again</button>
+      </div>
+    </div>
+
+    <section class="about" style="margin-top: 3rem;">
+      <h2>About Blue Light</h2>
+      <div class="trust-points">
+        <div class="trust-item">
+          <span class="trust-icon">&#127774;</span>
+          <h4>Natural Source</h4>
+          <p>Sunlight is the largest source of blue light. Digital devices emit much smaller amounts.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">&#128564;</span>
+          <h4>Sleep Impact</h4>
+          <p>Blue light suppresses melatonin production, which can affect your sleep quality.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">&#128161;</span>
+          <h4>Research Status</h4>
+          <p>Long-term eye damage from screen blue light is not conclusively proven, but reducing exposure before bed is beneficial.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="disclaimer">
+      <p><strong>Medical Disclaimer:</strong> This calculator provides estimates for educational purposes. Blue light exposure levels are approximations. Consult an eye care professional for personalized advice.</p>
+    </section>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eye Health Tools. Created by a Korean Ophthalmologist.</p>
+  </footer>
+
+  <script>
+    // Theme toggle
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+
+    // Blue light emission rates (relative units)
+    const emissionRates = {
+      computer: 12,      // High blue light emission
+      smartphone: 15,    // Highest (close viewing distance)
+      tablet: 10,        // Moderate-high
+      tv: 6,             // Lower (farther viewing distance)
+      led: 4             // Indoor LED lighting
+    };
+
+    const form = document.getElementById('bluelight-form');
+    const result = document.getElementById('result');
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+
+      const computer = parseFloat(document.getElementById('computer').value) || 0;
+      const smartphone = parseFloat(document.getElementById('smartphone').value) || 0;
+      const tablet = parseFloat(document.getElementById('tablet').value) || 0;
+      const tv = parseFloat(document.getElementById('tv').value) || 0;
+      const led = parseFloat(document.getElementById('led-lighting').value) || 0;
+      const filterFactor = parseFloat(document.getElementById('night-mode').value);
+      const nightFactor = parseFloat(document.getElementById('night-use').value);
+
+      // Calculate individual exposures
+      const exposures = {
+        'Computer': computer * emissionRates.computer,
+        'Smartphone': smartphone * emissionRates.smartphone,
+        'Tablet': tablet * emissionRates.tablet,
+        'TV': tv * emissionRates.tv,
+        'LED Lighting': led * emissionRates.led
+      };
+
+      // Total raw exposure
+      let totalRaw = Object.values(exposures).reduce((a, b) => a + b, 0);
+
+      // Apply filter reduction
+      const filterReduction = filterFactor;
+      const totalWithFilter = totalRaw * filterReduction;
+
+      // Apply night use multiplier (affects circadian impact)
+      const finalScore = Math.round(totalWithFilter * nightFactor);
+
+      displayResult(finalScore, exposures, totalRaw);
+    });
+
+    function displayResult(score, exposures, rawTotal) {
+      const scoreValue = document.getElementById('score-value');
+      const scoreLabel = document.getElementById('score-label');
+      const progressFill = document.getElementById('progress-fill');
+      const breakdownChart = document.getElementById('breakdown-chart');
+      const riskDesc = document.getElementById('risk-description');
+      const recommendations = document.getElementById('recommendations');
+
+      // Animate score
+      let current = 0;
+      const maxDisplay = Math.min(score, 300);
+      const interval = setInterval(() => {
+        current += 5;
+        if (current >= score) {
+          current = score;
+          clearInterval(interval);
+        }
+        scoreValue.textContent = current;
+      }, 20);
+
+      // Progress bar (normalized to 200 as "high")
+      const progressPercent = Math.min((score / 200) * 100, 100);
+      progressFill.style.width = progressPercent + '%';
+
+      // Color based on level
+      scoreValue.className = 'score-value';
+      if (score <= 50) {
+        scoreValue.classList.add('score-low');
+        progressFill.style.background = 'var(--success)';
+      } else if (score <= 120) {
+        scoreValue.classList.add('score-medium');
+        progressFill.style.background = 'var(--warning)';
+      } else {
+        scoreValue.classList.add('score-high');
+        progressFill.style.background = 'var(--danger)';
+      }
+
+      // Create breakdown chart
+      const maxExposure = Math.max(...Object.values(exposures), 1);
+      breakdownChart.innerHTML = Object.entries(exposures)
+        .filter(([_, value]) => value > 0)
+        .map(([device, value]) => {
+          const percent = (value / rawTotal * 100).toFixed(0);
+          const barWidth = (value / maxExposure * 100);
+          return `
+            <div style="margin-bottom: 0.8rem;">
+              <div style="display: flex; justify-content: space-between; margin-bottom: 0.3rem;">
+                <span>${device}</span>
+                <span style="color: var(--text-secondary);">${percent}%</span>
+              </div>
+              <div style="height: 8px; background: var(--border); border-radius: 4px; overflow: hidden;">
+                <div style="height: 100%; width: ${barWidth}%; background: var(--accent); border-radius: 4px;"></div>
+              </div>
+            </div>
+          `;
+        }).join('') || '<p style="color: var(--text-secondary);">No device usage entered</p>';
+
+      // Risk description
+      if (score <= 50) {
+        riskDesc.textContent = 'Your blue light exposure is within a healthy range. Your current habits are good for maintaining eye health and sleep quality.';
+      } else if (score <= 120) {
+        riskDesc.textContent = 'Your blue light exposure is moderate. Consider implementing some protective measures, especially before bedtime.';
+      } else {
+        riskDesc.textContent = 'Your blue light exposure is high. This may affect your sleep quality and could cause digital eye strain. Consider reducing screen time or using protective measures.';
+      }
+
+      // Recommendations
+      const recs = [];
+
+      if (score > 100) {
+        recs.push('Reduce overall screen time where possible');
+      }
+
+      const smartphone = parseFloat(document.getElementById('smartphone').value) || 0;
+      if (smartphone > 4) {
+        recs.push('Limit smartphone use to essential tasks');
+      }
+
+      const nightMode = parseFloat(document.getElementById('night-mode').value);
+      if (nightMode > 0.7) {
+        recs.push('Enable Night Shift/Night Mode on all devices');
+        recs.push('Consider blue light blocking glasses for extended use');
+      }
+
+      const nightUse = parseFloat(document.getElementById('night-use').value);
+      if (nightUse > 1) {
+        recs.push('Avoid screens 1-2 hours before bedtime for better sleep');
+        recs.push('If you must use devices at night, use maximum blue light reduction');
+      }
+
+      if (score <= 50) {
+        recs.push('Keep up your healthy screen habits!');
+        recs.push('Remember to take regular breaks (20-20-20 rule)');
+      }
+
+      recs.push('Get natural sunlight exposure during the day for healthy circadian rhythm');
+
+      recommendations.innerHTML = recs.map(r => `<li>${r}</li>`).join('');
+
+      result.classList.add('visible');
+      result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function resetForm() {
+      form.reset();
+      result.classList.remove('visible');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  </script>
+</body>
+</html>
