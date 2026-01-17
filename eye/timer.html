@@ -112,8 +112,9 @@
   <!-- Break Time Fullscreen Overlay -->
   <div id="break-overlay" class="break-overlay">
     <video id="nature-video" autoplay muted loop playsinline>
-      <source src="https://cdn.pixabay.com/video/2024/06/04/215109_large.mp4" type="video/mp4">
+      <source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4">
     </video>
+    <div id="nature-fallback" class="nature-fallback"></div>
     <div class="break-content">
       <div class="break-icon">&#128065;</div>
       <h2>Rest Your Eyes</h2>
@@ -209,6 +210,44 @@
 
     #skip-break:hover {
       background: rgba(255,255,255,0.3);
+    }
+
+    /* Nature fallback - animated gradient */
+    .nature-fallback {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        135deg,
+        #1a472a 0%,
+        #2d5a3d 20%,
+        #3d7a5a 40%,
+        #4a9a6a 60%,
+        #2d5a3d 80%,
+        #1a472a 100%
+      );
+      background-size: 400% 400%;
+      animation: forestBreeze 8s ease infinite;
+    }
+
+    @keyframes forestBreeze {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    .break-overlay video {
+      display: none;
+    }
+
+    .break-overlay video.playing {
+      display: block;
+    }
+
+    .break-overlay video.playing + .nature-fallback {
+      display: none;
     }
   </style>
 
@@ -358,7 +397,13 @@
       const overlay = document.getElementById('break-overlay');
       const video = document.getElementById('nature-video');
       overlay.classList.add('active');
-      video.play();
+
+      // Try to play video, use CSS fallback if fails
+      video.play().then(() => {
+        video.classList.add('playing');
+      }).catch(() => {
+        video.classList.remove('playing');
+      });
 
       updateDisplay();
     }
