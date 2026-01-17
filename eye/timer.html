@@ -338,6 +338,7 @@
     }
 
     function startTimer() {
+      clearInterval(timerInterval); // 기존 interval 정리
       isRunning = true;
       startBtn.textContent = 'Pause';
 
