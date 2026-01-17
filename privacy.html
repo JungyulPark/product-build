@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy - Eye Health Tools</title>
+  <meta name="description" content="Privacy Policy for Eye Health Tools. Learn how we handle your data and protect your privacy.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8992259838992521" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-8992259838992521">
+  <link href="/eye/style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Privacy Policy</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <a href="/" class="back-link">&#8592; Back to Home</a>
+
+    <div class="page-title">
+      <h2>Privacy Policy</h2>
+      <p>Last updated: January 2026</p>
+    </div>
+
+    <div class="calculator-container" style="text-align: left;">
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Introduction</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Eye Health Tools ("we", "our", or "us") is committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you visit our website.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Information We Collect</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+          <strong>Local Storage Data:</strong> Our tools may store your preferences (such as theme settings and timer statistics) locally on your device. This data never leaves your device and is not transmitted to our servers.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+          <strong>Analytics:</strong> We may use third-party analytics services to understand how visitors use our website. These services collect anonymous usage data.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          <strong>Advertising:</strong> We use Google AdSense to display advertisements. Google may use cookies to serve ads based on your prior visits to our website or other websites.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">How We Use Your Information</h3>
+        <ul style="color: var(--text-secondary); line-height: 2; padding-left: 1.5rem;">
+          <li>To provide and maintain our eye health tools</li>
+          <li>To save your preferences for a better user experience</li>
+          <li>To analyze website usage and improve our services</li>
+          <li>To display relevant advertisements</li>
+        </ul>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Data Security</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          All calculations and assessments are performed locally in your browser. We do not collect, store, or transmit any personal health information you enter into our tools. Your data stays on your device.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Third-Party Services</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem;">
+          Our website may contain links to third-party websites or services. We are not responsible for the privacy practices of these external sites.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          <strong>Google AdSense:</strong> We use Google AdSense to display ads. You can learn more about Google's privacy practices at <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color: var(--accent);">Google Privacy Policy</a>.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Cookies</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          We use cookies and similar technologies to enhance your experience. These include essential cookies for site functionality and advertising cookies from Google AdSense. You can control cookie settings through your browser preferences.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Children's Privacy</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Our website is intended for general audiences and does not knowingly collect personal information from children under 13 years of age.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Changes to This Policy</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          We may update this Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.
+        </p>
+      </section>
+
+      <section>
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Contact Us</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          If you have any questions about this Privacy Policy, please contact us through our website.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+  </script>
+</body>
+</html>

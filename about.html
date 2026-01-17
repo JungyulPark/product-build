@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About Us - Eye Health Tools</title>
+  <meta name="description" content="About Eye Health Tools - Free eye care tools created by a board-certified Korean ophthalmologist. Learn about our mission and expertise.">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8992259838992521" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-8992259838992521">
+  <link href="/eye/style.css" rel="stylesheet">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">About Us</p>
+    </div>
+    <button id="theme-toggle" aria-label="Toggle theme"></button>
+  </header>
+
+  <main>
+    <a href="/" class="back-link">&#8592; Back to Home</a>
+
+    <div class="page-title">
+      <h2>About Eye Health Tools</h2>
+      <p>Our mission is to make eye care accessible to everyone</p>
+    </div>
+
+    <div class="calculator-container" style="text-align: left;">
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Our Mission</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          In today's digital age, eye health has become more important than ever. With increased screen time and constant exposure to digital devices, many people experience eye strain, dry eyes, and other vision-related issues without realizing the cause or solution.
+        </p>
+        <p style="color: var(--text-secondary); line-height: 1.8; margin-top: 1rem;">
+          Eye Health Tools was created to bridge this gap by providing free, accessible, and scientifically-backed tools that help people understand and improve their eye health.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Created by Experts</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          Our tools are developed by a board-certified Korean ophthalmologist with years of clinical experience. Each tool is based on peer-reviewed research and established clinical guidelines, ensuring you receive accurate and reliable information.
+        </p>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Our Tools</h3>
+        <div style="display: grid; gap: 1rem;">
+          <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Eye Strain Calculator</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Assess your digital eye strain risk based on your daily habits and get personalized recommendations.</p>
+          </div>
+          <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">OSDI Dry Eye Test</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">The Ocular Surface Disease Index is a clinically validated questionnaire used worldwide to assess dry eye symptoms.</p>
+          </div>
+          <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">Blue Light Calculator</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">Estimate your daily blue light exposure from various devices and understand its impact on your eyes and sleep.</p>
+          </div>
+          <div style="background: var(--bg-secondary); padding: 1rem; border-radius: 8px;">
+            <h4 style="color: var(--text-primary); margin-bottom: 0.5rem;">20-20-20 Timer</h4>
+            <p style="color: var(--text-secondary); font-size: 0.9rem;">A practical tool to help you follow the 20-20-20 rule and reduce eye strain during long work sessions.</p>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-bottom: 2rem;">
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Our Commitment</h3>
+        <ul style="color: var(--text-secondary); line-height: 2; padding-left: 1.5rem;">
+          <li><strong>Evidence-Based:</strong> All our tools are grounded in scientific research and clinical practice.</li>
+          <li><strong>Privacy-First:</strong> Your data stays on your device. We don't collect personal health information.</li>
+          <li><strong>Free Access:</strong> Our tools are completely free to use, with no registration required.</li>
+          <li><strong>Continuous Improvement:</strong> We regularly update our tools based on the latest research and user feedback.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3 style="color: var(--accent); margin-bottom: 1rem;">Important Disclaimer</h3>
+        <p style="color: var(--text-secondary); line-height: 1.8;">
+          While our tools provide valuable insights into your eye health, they are not a substitute for professional medical advice. These tools are designed for informational and educational purposes only. If you experience persistent eye problems or vision changes, please consult a qualified ophthalmologist or eye care professional.
+        </p>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+  </script>
+</body>
+</html>
