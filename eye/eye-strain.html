@@ -210,6 +210,67 @@
         </div>
 
         <button type="button" class="btn-secondary" onclick="resetForm()">Calculate Again</button>
+
+        <!-- Premium CTA (shown after result) -->
+        <div class="premium-cta" id="premium-cta" style="display: none;">
+          <div class="premium-badge">💎 PREMIUM</div>
+          <h4>Get Your Personalized Eye Care Plan</h4>
+          <p>AI-powered comprehensive analysis with GPT-5</p>
+
+          <div class="premium-features-mini">
+            <span>✓ 30-Day Eye Recovery Program</span>
+            <span>✓ Personalized Exercise Routine</span>
+            <span>✓ Ergonomic Setup Guide</span>
+            <span>✓ Weekly Progress Tracker</span>
+          </div>
+
+          <div class="premium-price-mini">
+            <span class="old">$9.99</span>
+            <span class="current">$4.99</span>
+          </div>
+
+          <button class="btn-premium" onclick="showEyePremiumModal()">
+            💎 Get Premium Plan - $4.99
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="premium-modal" onclick="if(event.target === this) closeEyePremiumModal()">
+      <div class="premium-modal-content">
+        <button class="modal-close" onclick="closeEyePremiumModal()">&times;</button>
+
+        <div class="modal-header">
+          <div class="premium-badge">💎 PREMIUM EYE CARE</div>
+          <h3>Comprehensive Eye Health Plan</h3>
+          <p>Powered by Advanced AI Analysis</p>
+        </div>
+
+        <div class="modal-features">
+          <div class="feature-item">📋 30-Day Recovery Program</div>
+          <div class="feature-item">👁️ Daily Eye Exercises</div>
+          <div class="feature-item">🖥️ Ergonomic Setup Guide</div>
+          <div class="feature-item">💡 Lighting Optimization</div>
+          <div class="feature-item">📊 Weekly Progress Reports</div>
+          <div class="feature-item">🥗 Eye-Health Diet Plan</div>
+          <div class="feature-item">💊 Supplement Guide</div>
+          <div class="feature-item">📱 PDF Download</div>
+        </div>
+
+        <div class="modal-pricing">
+          <span class="price-old">$9.99</span>
+          <span class="price-now">$4.99</span>
+          <span class="price-save">50% OFF</span>
+        </div>
+
+        <button class="btn-premium-full" onclick="handleEyePremiumPurchase()">
+          💳 Pay Securely with Stripe
+        </button>
+
+        <p class="modal-trust">
+          🔒 Secure Payment · Instant Delivery · 30-Day Guarantee
+        </p>
       </div>
     </div>
 
@@ -384,6 +445,11 @@
       result.classList.add('visible');
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
 
+      // Show premium CTA after result
+      setTimeout(() => {
+        document.getElementById('premium-cta').style.display = 'block';
+      }, 1500);
+
       // GA Event Tracking
       if (typeof gtag !== 'undefined') {
         gtag('event', 'eye_strain_calculated', {
@@ -397,8 +463,47 @@
     function resetForm() {
       form.reset();
       result.classList.remove('visible');
+      document.getElementById('premium-cta').style.display = 'none';
       clearFormError();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // Premium Modal Functions
+    // TODO: Replace with your Stripe Payment Link
+    const EYE_STRIPE_LINK = 'https://buy.stripe.com/YOUR_EYE_PAYMENT_LINK';
+
+    function showEyePremiumModal() {
+      document.getElementById('premium-modal').classList.add('show');
+      document.body.style.overflow = 'hidden';
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'premium_modal_opened', {
+          'event_category': 'Premium',
+          'event_label': 'Eye Strain Tool'
+        });
+      }
+    }
+
+    function closeEyePremiumModal() {
+      document.getElementById('premium-modal').classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    function handleEyePremiumPurchase() {
+      const btn = document.querySelector('.btn-premium-full');
+      btn.disabled = true;
+      btn.innerHTML = 'Redirecting...';
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          'event_category': 'Premium',
+          'event_label': 'Eye Care Plan',
+          'value': 4.99
+        });
+      }
+
+      // Redirect to Stripe
+      window.location.href = EYE_STRIPE_LINK;
     }
 
     function showFormError(errors) {

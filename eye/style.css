@@ -808,3 +808,214 @@ select:focus {
   color: var(--text-secondary);
   font-size: 0.9rem;
 }
+
+/* =============== Premium Features =============== */
+.premium-cta {
+  background: linear-gradient(135deg, rgba(0, 168, 138, 0.1), rgba(0, 133, 109, 0.1));
+  border: 2px solid var(--accent);
+  border-radius: 16px;
+  padding: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.premium-badge {
+  display: inline-block;
+  background: linear-gradient(135deg, var(--accent), #00856d);
+  color: white;
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  margin-bottom: 0.75rem;
+}
+
+.premium-cta h4 {
+  margin-bottom: 0.5rem;
+  color: var(--text-primary);
+}
+
+.premium-cta > p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.premium-features-mini {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.premium-features-mini span {
+  background: var(--bg-secondary);
+  padding: 0.25rem 0.5rem;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.premium-price-mini {
+  margin-bottom: 1rem;
+}
+
+.premium-price-mini .old {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+}
+
+.premium-price-mini .current {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.btn-premium {
+  background: linear-gradient(135deg, var(--accent), #00856d);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-premium:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 168, 138, 0.4);
+}
+
+/* Premium Modal */
+.premium-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(5px);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.premium-modal.show {
+  display: flex;
+}
+
+.premium-modal-content {
+  background: var(--bg-card);
+  border-radius: 20px;
+  padding: 2rem;
+  max-width: 420px;
+  width: 90%;
+  max-height: 85vh;
+  overflow-y: auto;
+  position: relative;
+  animation: modalSlide 0.3s ease;
+}
+
+@keyframes modalSlide {
+  from { transform: translateY(20px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+}
+
+.modal-close:hover {
+  color: var(--text-primary);
+}
+
+.modal-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-header h3 {
+  margin: 0.5rem 0;
+}
+
+.modal-header p {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+}
+
+.modal-features {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.modal-features .feature-item {
+  padding: 0.5rem;
+  background: var(--bg-secondary);
+  border-radius: 8px;
+  font-size: 0.85rem;
+  text-align: left;
+}
+
+.modal-pricing {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+.modal-pricing .price-old {
+  text-decoration: line-through;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  margin-right: 0.5rem;
+}
+
+.modal-pricing .price-now {
+  font-size: 2rem;
+  font-weight: bold;
+  color: var(--accent);
+}
+
+.modal-pricing .price-save {
+  display: block;
+  color: var(--success);
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
+}
+
+.btn-premium-full {
+  width: 100%;
+  background: linear-gradient(135deg, var(--accent), #00856d);
+  color: white;
+  border: none;
+  padding: 1rem;
+  border-radius: 25px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-premium-full:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(0, 168, 138, 0.4);
+}
+
+.modal-trust {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  margin-top: 1rem;
+}

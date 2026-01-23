@@ -210,6 +210,81 @@
         </div>
 
         <button type="button" class="btn-secondary" onclick="resetForm()">Calculate Again</button>
+
+        <!-- Premium CTA -->
+        <div class="premium-cta" id="premium-cta">
+          <div class="premium-badge">&#128142; Premium</div>
+          <h3>Get Your Personalized Blue Light Protection Plan</h3>
+          <p>Unlock a comprehensive analysis powered by AI:</p>
+          <ul class="premium-features">
+            <li>&#10003; Personalized device usage optimization schedule</li>
+            <li>&#10003; Custom blue light filter settings for each device</li>
+            <li>&#10003; Sleep quality improvement recommendations</li>
+            <li>&#10003; Best blue light blocking glasses for your needs</li>
+            <li>&#10003; Circadian rhythm restoration plan</li>
+            <li>&#10003; Weekly progress tracking template</li>
+          </ul>
+          <button class="btn-premium" onclick="showEyePremiumModal()">
+            Get Premium Report - $4.99
+          </button>
+          <p class="premium-guarantee">&#128274; One-time payment &bull; Instant PDF delivery</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Premium Modal -->
+    <div class="premium-modal" id="premium-modal" role="dialog" aria-modal="true" aria-labelledby="premium-modal-title">
+      <div class="premium-modal-content">
+        <button class="modal-close" onclick="closeEyePremiumModal()" aria-label="Close modal">&times;</button>
+        <div class="premium-badge" style="margin-bottom: 1rem;">&#128142; Premium Report</div>
+        <h2 id="premium-modal-title">Your Personalized Blue Light Protection Plan</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+          Get an AI-powered comprehensive analysis tailored to your specific blue light exposure patterns.
+        </p>
+
+        <div class="premium-modal-features">
+          <div class="premium-feature-item">
+            <span class="feature-icon">&#128197;</span>
+            <div>
+              <strong>Optimized Daily Schedule</strong>
+              <p>Custom screen time recommendations based on your lifestyle</p>
+            </div>
+          </div>
+          <div class="premium-feature-item">
+            <span class="feature-icon">&#128083;</span>
+            <div>
+              <strong>Glasses Recommendations</strong>
+              <p>Best blue light blocking glasses matched to your exposure level</p>
+            </div>
+          </div>
+          <div class="premium-feature-item">
+            <span class="feature-icon">&#127769;</span>
+            <div>
+              <strong>Sleep Optimization</strong>
+              <p>Circadian rhythm restoration and sleep quality improvement tips</p>
+            </div>
+          </div>
+          <div class="premium-feature-item">
+            <span class="feature-icon">&#128200;</span>
+            <div>
+              <strong>Progress Tracker</strong>
+              <p>Weekly template to monitor your improvement</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="premium-price-box">
+          <span class="price">$4.99</span>
+          <span class="price-note">One-time payment</span>
+        </div>
+
+        <button class="btn-premium btn-large" onclick="handleEyePremiumPurchase()">
+          &#128274; Unlock Premium Report
+        </button>
+
+        <p class="premium-trust" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
+          &#9989; Secure payment via Stripe &bull; Instant delivery &bull; Money-back guarantee
+        </p>
       </div>
     </div>
 
@@ -453,6 +528,67 @@
       errorDiv.textContent = '';
       errorDiv.classList.remove('visible');
     }
+
+    // Premium Modal Functions
+    const EYE_STRIPE_LINK = 'https://buy.stripe.com/YOUR_EYE_PAYMENT_LINK';
+
+    function showEyePremiumModal() {
+      const modal = document.getElementById('premium-modal');
+      if (modal) {
+        modal.classList.add('show');
+        document.body.style.overflow = 'hidden';
+        // GA tracking
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'premium_modal_opened', {
+            'event_category': 'Premium',
+            'event_label': 'Blue Light Tool'
+          });
+        }
+      }
+    }
+
+    function closeEyePremiumModal() {
+      const modal = document.getElementById('premium-modal');
+      if (modal) {
+        modal.classList.remove('show');
+        document.body.style.overflow = '';
+      }
+    }
+
+    function handleEyePremiumPurchase() {
+      // GA tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          'event_category': 'Premium',
+          'event_label': 'Blue Light Tool',
+          'value': 4.99,
+          'currency': 'USD'
+        });
+      }
+
+      // Create client reference with test data
+      const clientRef = btoa(JSON.stringify({
+        tool: 'blue-light',
+        score: document.getElementById('score-value')?.textContent || 'N/A',
+        timestamp: new Date().toISOString()
+      }));
+
+      window.location.href = `${EYE_STRIPE_LINK}?client_reference_id=${clientRef}`;
+    }
+
+    // Close modal on outside click
+    document.getElementById('premium-modal')?.addEventListener('click', function(e) {
+      if (e.target === this) {
+        closeEyePremiumModal();
+      }
+    });
+
+    // Close modal on Escape key
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape') {
+        closeEyePremiumModal();
+      }
+    });
   </script>
 </body>
 </html>
