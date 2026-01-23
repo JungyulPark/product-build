@@ -499,6 +499,15 @@
 
       result.classList.add('visible');
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // GA Event Tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'osdi_test_completed', {
+          'event_category': 'Tool Usage',
+          'event_label': severity,
+          'value': score
+        });
+      }
     }
 
     function resetTest() {

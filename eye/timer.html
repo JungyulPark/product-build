@@ -409,6 +409,9 @@
     let isBreakTime = false;
     let remainingTime = 20 * 60; // 20 minutes in seconds
 
+    // AudioContext 재사용을 위한 전역 변수
+    let audioContext = null;
+
     // Stats
     let breaksCount = parseInt(localStorage.getItem('eye-breaks-today') || '0');
     let focusMinutes = parseInt(localStorage.getItem('eye-focus-today') || '0');
@@ -462,6 +465,13 @@
       if (!isBreakTime && remainingTime === getWorkDuration() * 60) {
         sessionsCount++;
         saveStats();
+        // GA Event Tracking - Session started
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'timer_session_started', {
+            'event_category': 'Tool Usage',
+            'event_label': 'Work Duration: ' + getWorkDuration() + ' min'
+          });
+        }
       }
 
       timerInterval = setInterval(() => {
@@ -489,6 +499,13 @@
             showNotification('Take a Break!', 'Look at something 20 feet away for 20 seconds.');
             breaksCount++;
             saveStats();
+            // GA Event Tracking - Break taken
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'break_taken', {
+                'event_category': 'Tool Usage',
+                'event_label': 'Total Breaks: ' + breaksCount
+              });
+            }
             startBreakTime();
           }
         }
@@ -597,7 +614,16 @@
     function playSound(type) {
       if (!document.getElementById('sound-enabled').checked) return;
 
-      const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      // AudioContext 재사용 (한 번만 생성)
+      if (!audioContext) {
+        audioContext = new (window.AudioContext || window.webkitAudioContext)();
+      }
+
+      // suspended 상태일 경우 resume
+      if (audioContext.state === 'suspended') {
+        audioContext.resume();
+      }
+
       const oscillator = audioContext.createOscillator();
       const gainNode = audioContext.createGain();
 

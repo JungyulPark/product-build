@@ -133,6 +133,7 @@
     </div>
 
     <div class="calculator-container">
+      <div class="form-error-summary" id="form-error" role="alert" aria-live="polite"></div>
       <form id="bluelight-form">
         <div class="form-group">
           <label for="computer">Computer/Laptop (hours/day)</label>
@@ -290,6 +291,15 @@
       const filterFactor = parseFloat(document.getElementById('night-mode').value);
       const nightFactor = parseFloat(document.getElementById('night-use').value);
 
+      // Validation: At least one device should have usage > 0
+      const totalHours = computer + smartphone + tablet + tv + led;
+      if (totalHours === 0) {
+        showFormError('Please enter your screen time for at least one device.');
+        return;
+      }
+
+      clearFormError();
+
       // Calculate individual exposures
       const exposures = {
         'Computer': computer * emissionRates.computer,
@@ -413,12 +423,35 @@
 
       result.classList.add('visible');
       result.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+      // GA Event Tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'blue_light_calculated', {
+          'event_category': 'Tool Usage',
+          'event_label': score <= 50 ? 'Low Exposure' : score <= 120 ? 'Moderate Exposure' : 'High Exposure',
+          'value': score
+        });
+      }
     }
 
     function resetForm() {
       form.reset();
       result.classList.remove('visible');
+      clearFormError();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showFormError(message) {
+      const errorDiv = document.getElementById('form-error');
+      errorDiv.textContent = message;
+      errorDiv.classList.add('visible');
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function clearFormError() {
+      const errorDiv = document.getElementById('form-error');
+      errorDiv.textContent = '';
+      errorDiv.classList.remove('visible');
     }
   </script>
 </body>

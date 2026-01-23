@@ -18,9 +18,9 @@
   --bg-secondary: #ffffff;
   --bg-card: #ffffff;
   --text-primary: #1a2942;
-  --text-secondary: #5a6d87;
-  --accent: #00a88a;
-  --accent-hover: #00c4a0;
+  --text-secondary: #4a5568; /* WCAG AA compliant: 7:1 contrast ratio */
+  --accent: #00856d; /* Darker for better contrast */
+  --accent-hover: #00a88a;
   --border: #d0dae8;
   --shadow: rgba(0, 168, 138, 0.1);
 }
@@ -283,6 +283,41 @@ footer {
   margin-top: 0.3rem;
   color: var(--text-secondary);
   font-size: 0.85rem;
+}
+
+/* Form Validation Styles */
+.form-group.error input,
+.form-group.error select {
+  border-color: var(--danger);
+}
+
+.form-group .error-message {
+  display: none;
+  color: var(--danger);
+  font-size: 0.85rem;
+  margin-top: 0.3rem;
+}
+
+.form-group.error .error-message {
+  display: block;
+}
+
+.form-error-summary {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid var(--danger);
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  color: var(--danger);
+  display: none;
+}
+
+.form-error-summary.visible {
+  display: block;
+}
+
+.form-error-summary ul {
+  margin: 0.5rem 0 0 1.5rem;
 }
 
 .btn-primary {

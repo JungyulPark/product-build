@@ -133,6 +133,7 @@
     </div>
 
     <div class="calculator-container">
+      <div class="form-error-summary" id="form-error" role="alert" aria-live="polite"></div>
       <form id="strain-form">
         <div class="form-group">
           <label for="screen-time">Daily Screen Time (hours)</label>
@@ -237,7 +238,6 @@
     }
     themeToggle.addEventListener('click', () => {
       const isLight = document.body.getAttribute('data-theme') === 'light';
-      document.body.toggleAttribute('data-theme');
       if (isLight) {
         document.body.removeAttribute('data-theme');
         localStorage.setItem('eye-theme', 'dark');
@@ -255,11 +255,33 @@
       e.preventDefault();
 
       const screenTime = parseFloat(document.getElementById('screen-time').value);
-      const breakFreq = parseInt(document.getElementById('break-frequency').value);
+      const breakFreq = document.getElementById('break-frequency').value;
       const distance = parseInt(document.getElementById('screen-distance').value);
-      const lighting = parseInt(document.getElementById('lighting').value);
-      const blinkAwareness = parseInt(document.getElementById('blink-awareness').value);
-      const glasses = parseInt(document.getElementById('glasses').value);
+      const lighting = document.getElementById('lighting').value;
+      const blinkAwareness = document.getElementById('blink-awareness').value;
+      const glasses = document.getElementById('glasses').value;
+
+      // Validation
+      const errors = [];
+      if (isNaN(screenTime) || screenTime < 0) errors.push('Please enter your daily screen time');
+      if (breakFreq === '') errors.push('Please select how often you take breaks');
+      if (isNaN(distance) || distance < 10) errors.push('Please enter your screen distance (minimum 10cm)');
+      if (lighting === '') errors.push('Please select your lighting environment');
+      if (blinkAwareness === '') errors.push('Please select your blink awareness');
+      if (glasses === '') errors.push('Please select if you use computer glasses');
+
+      if (errors.length > 0) {
+        showFormError(errors);
+        return;
+      }
+
+      clearFormError();
+
+      // Convert to numbers after validation
+      const breakFreqNum = parseInt(breakFreq);
+      const lightingNum = parseInt(lighting);
+      const blinkNum = parseInt(blinkAwareness);
+      const glassesNum = parseInt(glasses);
 
       // Calculate score (0-100, higher = more strain risk)
       let score = 0;
@@ -273,7 +295,7 @@
       else score += 5;
 
       // Break frequency scoring (0-25 points, inverted)
-      score += (4 - breakFreq) * 6.25;
+      score += (4 - breakFreqNum) * 6.25;
 
       // Distance scoring (0-15 points)
       if (distance < 40) score += 15;
@@ -282,18 +304,18 @@
       else score += 0;
 
       // Lighting scoring (0-15 points, inverted)
-      score += (4 - lighting) * 3.75;
+      score += (4 - lightingNum) * 3.75;
 
       // Blink awareness (0-10 points, inverted)
-      score += (2 - blinkAwareness) * 5;
+      score += (2 - blinkNum) * 5;
 
       // Glasses/filter (0-5 points, inverted)
-      score += (2 - glasses) * 2.5;
+      score += (2 - glassesNum) * 2.5;
 
       score = Math.round(Math.min(100, Math.max(0, score)));
 
       // Display result
-      displayResult(score, { screenTime, breakFreq, distance, lighting, blinkAwareness, glasses });
+      displayResult(score, { screenTime, breakFreq: breakFreqNum, distance, lighting: lightingNum, blinkAwareness: blinkNum, glasses: glassesNum });
     });
 
     function displayResult(score, factors) {
@@ -361,12 +383,40 @@
 
       result.classList.add('visible');
       result.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // GA Event Tracking
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'eye_strain_calculated', {
+          'event_category': 'Tool Usage',
+          'event_label': score <= 30 ? 'Low Risk' : score <= 60 ? 'Moderate Risk' : 'High Risk',
+          'value': score
+        });
+      }
     }
 
     function resetForm() {
       form.reset();
       result.classList.remove('visible');
+      clearFormError();
       window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showFormError(errors) {
+      const errorDiv = document.getElementById('form-error');
+      if (Array.isArray(errors)) {
+        errorDiv.innerHTML = '<strong>Please fix the following:</strong><ul>' +
+          errors.map(e => '<li>' + e + '</li>').join('') + '</ul>';
+      } else {
+        errorDiv.textContent = errors;
+      }
+      errorDiv.classList.add('visible');
+      errorDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    }
+
+    function clearFormError() {
+      const errorDiv = document.getElementById('form-error');
+      errorDiv.innerHTML = '';
+      errorDiv.classList.remove('visible');
     }
   </script>
 </body>
