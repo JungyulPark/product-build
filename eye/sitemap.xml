@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+
+  <!-- Eye Health Tools Homepage -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Eye Strain Calculator -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/eye-strain.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Dry Eye Test (OSDI) -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/dry-eye.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Blue Light Calculator -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/blue-light.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- 20-20-20 Timer -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/timer.html</loc>
+    <lastmod>2026-01-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+</urlset>

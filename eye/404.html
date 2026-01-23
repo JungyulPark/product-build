@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Page Not Found - Eye Health Tools</title>
+  <meta name="description" content="The page you're looking for doesn't exist. Return to Eye Health Tools homepage.">
+  <meta name="robots" content="noindex, follow">
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="canonical" href="https://product-build.pages.dev/eye/">
+  <link href="style.css" rel="stylesheet">
+</head>
+<body>
+  <header role="banner">
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Page Not Found</p>
+    </div>
+    <nav aria-label="Main navigation" class="main-nav">
+      <a href="index.html" class="nav-link">Home</a>
+      <a href="eye-strain.html" class="nav-link">Eye Strain</a>
+      <a href="dry-eye.html" class="nav-link">Dry Eye</a>
+      <a href="blue-light.html" class="nav-link">Blue Light</a>
+      <a href="timer.html" class="nav-link">Timer</a>
+    </nav>
+    <button id="theme-toggle" aria-label="Toggle dark/light theme"></button>
+  </header>
+
+  <main id="main-content" role="main">
+    <div class="error-container" style="text-align: center; padding: 4rem 2rem;">
+      <div style="font-size: 6rem; margin-bottom: 1rem;">👁️</div>
+      <h2 style="font-size: 3rem; color: var(--accent); margin-bottom: 1rem;">404</h2>
+      <p style="font-size: 1.5rem; color: var(--text-primary); margin-bottom: 0.5rem;">Page Not Found</p>
+      <p style="color: var(--text-secondary); margin-bottom: 2rem;">Oops! The page you're looking for doesn't exist or has been moved.</p>
+
+      <a href="index.html" class="btn-primary" style="display: inline-block; padding: 1rem 2rem; text-decoration: none;">
+        Return to Homepage
+      </a>
+
+      <div style="margin-top: 3rem;">
+        <h3 style="color: var(--text-primary); margin-bottom: 1.5rem;">Or try one of our tools:</h3>
+        <div class="tools-grid" style="max-width: 800px; margin: 0 auto;">
+          <a href="eye-strain.html" class="tool-card">
+            <span class="tool-icon">&#128065;</span>
+            <h3>Eye Strain Calculator</h3>
+            <p>Calculate your digital eye strain level</p>
+          </a>
+          <a href="dry-eye.html" class="tool-card">
+            <span class="tool-icon">&#128167;</span>
+            <h3>Dry Eye Test</h3>
+            <p>OSDI questionnaire for dry eye</p>
+          </a>
+          <a href="blue-light.html" class="tool-card">
+            <span class="tool-icon">&#128241;</span>
+            <h3>Blue Light Calculator</h3>
+            <p>Estimate your blue light exposure</p>
+          </a>
+          <a href="timer.html" class="tool-card">
+            <span class="tool-icon">&#9202;</span>
+            <h3>20-20-20 Timer</h3>
+            <p>Reduce eye strain with breaks</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer role="contentinfo">
+    <nav aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="eye-strain.html">Eye Strain</a>
+      <a href="dry-eye.html">Dry Eye</a>
+      <a href="blue-light.html">Blue Light</a>
+      <a href="timer.html">Timer</a>
+    </nav>
+    <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
+  </footer>
+
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+  </script>
+</body>
+</html>
