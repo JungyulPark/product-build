@@ -106,7 +106,7 @@
       <a href="blue-light.html" class="nav-link">Blue Light</a>
       <a href="timer.html" class="nav-link">Timer</a>
     </nav>
-    <button id="theme-toggle" aria-label="Toggle dark/light theme"></button>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark/light theme"></button>
   </header>
 
   <main id="main-content" role="main">
@@ -336,11 +336,10 @@
             <span>✓ Follow-up Schedule</span>
           </div>
           <div class="premium-price-mini">
-            <span class="old">$9.99</span>
-            <span class="current">$4.99</span>
+            <span class="current" style="color: var(--text-secondary);">Coming Soon</span>
           </div>
-          <button class="btn-premium" onclick="showEyePremiumModal()">
-            💎 Get Premium Plan - $4.99
+          <button class="btn-premium" disabled style="opacity: 0.6; cursor: not-allowed;">
+            🚀 Premium Plan - Coming Soon
           </button>
         </div>
 
@@ -348,8 +347,8 @@
         <div class="affiliate-banner" style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; text-align: center;">
           <h4 style="color: var(--accent); margin-bottom: 0.5rem;">👁️ 눈 건강을 위한 추천 상품</h4>
           <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">건조한 눈을 위한 온찜질기</p>
-          <div style="display: flex; justify-content: center;">
-            <iframe src="https://coupa.ng/clpnwK" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+          <div id="coupang-container" style="display: flex; justify-content: center; min-height: 240px; align-items: center;">
+            <iframe id="coupang-iframe" src="https://coupa.ng/clpnwK" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.innerHTML='<a href=\'https://link.coupang.com/a/dyAx7o\' target=\'_blank\' style=\'color: var(--accent);\'>👁️ 쿠팡에서 상품 보기</a>';"></iframe>
           </div>
           <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">* 쿠팡 파트너스 활동의 일환으로 수수료를 제공받습니다</p>
         </div>
@@ -376,14 +375,12 @@
           <div class="feature-item">📱 PDF Download</div>
         </div>
         <div class="modal-pricing">
-          <span class="price-old">$9.99</span>
-          <span class="price-now">$4.99</span>
-          <span class="price-save">50% OFF</span>
+          <span class="price-now" style="font-size: 1.2rem;">Coming Soon</span>
         </div>
-        <button class="btn-premium-full" onclick="handleEyePremiumPurchase()">
-          💳 Pay Securely with Stripe
+        <button class="btn-premium-full" disabled style="opacity: 0.6; cursor: not-allowed;">
+          🚀 Premium Features Coming Soon
         </button>
-        <p class="modal-trust">🔒 Secure Payment · Instant Delivery · 30-Day Guarantee</p>
+        <p class="modal-trust">⏳ We're preparing something amazing for you!</p>
       </div>
     </div>
 
@@ -404,7 +401,7 @@
   </footer>
 
   <script>
-    // Theme toggle
+    // Theme toggle with feedback
     const themeToggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('eye-theme') || 'dark';
     if (savedTheme === 'light') {
@@ -415,11 +412,24 @@
       if (isLight) {
         document.body.removeAttribute('data-theme');
         localStorage.setItem('eye-theme', 'dark');
+        showThemeToast('🌙 Dark mode');
       } else {
         document.body.setAttribute('data-theme', 'light');
         localStorage.setItem('eye-theme', 'light');
+        showThemeToast('☀️ Light mode');
       }
     });
+
+    function showThemeToast(message) {
+      const existing = document.querySelector('.theme-toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'theme-toast';
+      toast.textContent = message;
+      toast.style.cssText = 'position:fixed;top:80px;right:20px;background:var(--bg-card);color:var(--text-primary);padding:0.75rem 1.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:9999;animation:fadeInOut 2s forwards;';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
 
     // OSDI Test Logic
     const answers = {};

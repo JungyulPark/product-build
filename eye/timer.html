@@ -106,7 +106,7 @@
       <a href="blue-light.html" class="nav-link">Blue Light</a>
       <a href="timer.html" class="nav-link active">Timer</a>
     </nav>
-    <button id="theme-toggle" aria-label="Toggle dark/light theme"></button>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark/light theme"></button>
   </header>
 
   <main id="main-content" role="main">
@@ -245,10 +245,7 @@
 
   <!-- Break Time Fullscreen Overlay -->
   <div id="break-overlay" class="break-overlay">
-    <video id="nature-video" autoplay muted loop playsinline>
-      <source src="https://static.pexels.com/lib/videos/free-videos.mp4" type="video/mp4">
-    </video>
-    <div id="nature-fallback" class="nature-fallback"></div>
+    <div class="nature-background"></div>
     <div class="break-content">
       <div class="break-icon">&#128065;</div>
       <h2>Rest Your Eyes</h2>
@@ -346,8 +343,8 @@
       background: rgba(255,255,255,0.3);
     }
 
-    /* Nature fallback - animated gradient */
-    .nature-fallback {
+    /* Nature background - animated forest gradient */
+    .nature-background {
       position: absolute;
       top: 0;
       left: 0;
@@ -371,22 +368,10 @@
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    .break-overlay video {
-      display: none;
-    }
-
-    .break-overlay video.playing {
-      display: block;
-    }
-
-    .break-overlay video.playing + .nature-fallback {
-      display: none;
-    }
   </style>
 
   <script>
-    // Theme toggle
+    // Theme toggle with feedback
     const themeToggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('eye-theme') || 'dark';
     if (savedTheme === 'light') {
@@ -397,11 +382,24 @@
       if (isLight) {
         document.body.removeAttribute('data-theme');
         localStorage.setItem('eye-theme', 'dark');
+        showThemeToast('🌙 Dark mode');
       } else {
         document.body.setAttribute('data-theme', 'light');
         localStorage.setItem('eye-theme', 'light');
+        showThemeToast('☀️ Light mode');
       }
     });
+
+    function showThemeToast(message) {
+      const existing = document.querySelector('.theme-toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'theme-toast';
+      toast.textContent = message;
+      toast.style.cssText = 'position:fixed;top:80px;right:20px;background:var(--bg-card);color:var(--text-primary);padding:0.75rem 1.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:9999;animation:fadeInOut 2s forwards;';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
 
     // Timer Logic
     let timerInterval = null;
@@ -547,24 +545,13 @@
 
       // Show fullscreen break overlay
       const overlay = document.getElementById('break-overlay');
-      const video = document.getElementById('nature-video');
       overlay.classList.add('active');
-
-      // Try to play video, use CSS fallback if fails
-      video.play().then(() => {
-        video.classList.add('playing');
-      }).catch(() => {
-        video.classList.remove('playing');
-      });
-
       updateDisplay();
     }
 
     function hideBreakOverlay() {
       const overlay = document.getElementById('break-overlay');
-      const video = document.getElementById('nature-video');
       overlay.classList.remove('active');
-      video.pause();
     }
 
     // Skip break button

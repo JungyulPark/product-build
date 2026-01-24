@@ -85,7 +85,7 @@
       <a href="blue-light.html" class="nav-link active">Blue Light</a>
       <a href="timer.html" class="nav-link">Timer</a>
     </nav>
-    <button id="theme-toggle" aria-label="Toggle dark/light theme"></button>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark/light theme"></button>
   </header>
 
   <main id="main-content" role="main">
@@ -224,18 +224,18 @@
             <li>&#10003; Circadian rhythm restoration plan</li>
             <li>&#10003; Weekly progress tracking template</li>
           </ul>
-          <button class="btn-premium" onclick="showEyePremiumModal()">
-            Get Premium Report - $4.99
+          <button class="btn-premium" disabled style="opacity: 0.6; cursor: not-allowed;">
+            🚀 Premium Report - Coming Soon
           </button>
-          <p class="premium-guarantee">&#128274; One-time payment &bull; Instant PDF delivery</p>
+          <p class="premium-guarantee">⏳ Premium features launching soon!</p>
         </div>
 
         <!-- 쿠팡 파트너스: 눈 건강 상품 -->
         <div class="affiliate-banner" style="margin-top: 2rem; padding: 1.5rem; background: var(--bg-secondary); border-radius: 12px; text-align: center;">
           <h4 style="color: var(--accent); margin-bottom: 0.5rem;">👁️ 눈 건강을 위한 추천 상품</h4>
           <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1rem;">블루라이트로 지친 눈을 위한 온찜질기</p>
-          <div style="display: flex; justify-content: center;">
-            <iframe src="https://coupa.ng/clpnwK" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics></iframe>
+          <div id="coupang-container" style="display: flex; justify-content: center; min-height: 240px; align-items: center;">
+            <iframe id="coupang-iframe" src="https://coupa.ng/clpnwK" width="120" height="240" frameborder="0" scrolling="no" referrerpolicy="unsafe-url" browsingtopics onload="this.parentElement.classList.add('loaded')" onerror="this.style.display='none'; this.parentElement.innerHTML='<a href=\'https://link.coupang.com/a/dyAx7o\' target=\'_blank\' style=\'color: var(--accent);\'>👁️ 쿠팡에서 상품 보기</a>';"></iframe>
           </div>
           <p style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.5rem;">* 쿠팡 파트너스 활동의 일환으로 수수료를 제공받습니다</p>
         </div>
@@ -284,16 +284,15 @@
         </div>
 
         <div class="premium-price-box">
-          <span class="price">$4.99</span>
-          <span class="price-note">One-time payment</span>
+          <span class="price" style="font-size: 1.2rem;">Coming Soon</span>
         </div>
 
-        <button class="btn-premium btn-large" onclick="handleEyePremiumPurchase()">
-          &#128274; Unlock Premium Report
+        <button class="btn-premium btn-large" disabled style="opacity: 0.6; cursor: not-allowed;">
+          🚀 Premium Features Coming Soon
         </button>
 
         <p class="premium-trust" style="margin-top: 1rem; font-size: 0.85rem; color: var(--text-secondary);">
-          &#9989; Secure payment via Stripe &bull; Instant delivery &bull; Money-back guarantee
+          ⏳ We're preparing something amazing for you!
         </p>
       </div>
     </div>
@@ -336,7 +335,7 @@
   </footer>
 
   <script>
-    // Theme toggle
+    // Theme toggle with feedback
     const themeToggle = document.getElementById('theme-toggle');
     const savedTheme = localStorage.getItem('eye-theme') || 'dark';
     if (savedTheme === 'light') {
@@ -347,11 +346,24 @@
       if (isLight) {
         document.body.removeAttribute('data-theme');
         localStorage.setItem('eye-theme', 'dark');
+        showThemeToast('🌙 Dark mode');
       } else {
         document.body.setAttribute('data-theme', 'light');
         localStorage.setItem('eye-theme', 'light');
+        showThemeToast('☀️ Light mode');
       }
     });
+
+    function showThemeToast(message) {
+      const existing = document.querySelector('.theme-toast');
+      if (existing) existing.remove();
+      const toast = document.createElement('div');
+      toast.className = 'theme-toast';
+      toast.textContent = message;
+      toast.style.cssText = 'position:fixed;top:80px;right:20px;background:var(--bg-card);color:var(--text-primary);padding:0.75rem 1.5rem;border-radius:8px;box-shadow:0 4px 12px rgba(0,0,0,0.3);z-index:9999;animation:fadeInOut 2s forwards;';
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 2000);
+    }
 
     // Blue light emission rates (relative units)
     const emissionRates = {
