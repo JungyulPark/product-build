@@ -5,9 +5,17 @@
   <!-- Eye Health Tools Homepage -->
   <url>
     <loc>https://product-build.pages.dev/eye/</loc>
-    <lastmod>2026-01-23</lastmod>
+    <lastmod>2026-01-24</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
+  </url>
+
+  <!-- Eye Age Test (눈 나이 테스트) - NEW -->
+  <url>
+    <loc>https://product-build.pages.dev/eye/eye-age.html</loc>
+    <lastmod>2026-01-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.95</priority>
   </url>
 
   <!-- Eye Strain Calculator -->
