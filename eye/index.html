@@ -74,7 +74,7 @@
       "audienceType": "General Public"
     },
     "specialty": "Ophthalmology",
-    "dateModified": "2026-01-23",
+    "dateModified": "2026-01-25",
     "datePublished": "2026-01-01"
   }
   </script>
@@ -144,7 +144,7 @@
   <header role="banner">
     <div class="header-content">
       <h1>Eye Health Tools</h1>
-      <p class="tagline">Free Eye Care Tools by Korean Ophthalmologist</p>
+      <p class="tagline">By Korean Ophthalmologist</p>
     </div>
     <nav aria-label="Main navigation" class="main-nav">
       <a href="index.html" class="nav-link active">Home</a>
@@ -158,135 +158,224 @@
   </header>
 
   <main id="main-content" role="main">
+    <!-- Hero Section -->
     <section class="hero">
-      <div class="badge">Created by Board-Certified Ophthalmologist</div>
-      <h2>Take Care of Your Eyes</h2>
-      <p>Science-based tools to help you maintain healthy vision in the digital age.</p>
+      <div class="hero-content">
+        <div class="badge">Board-Certified Ophthalmologist</div>
+        <h2>Take Care of Your <br>Digital Eye Health</h2>
+        <p>Science-based tools to help you maintain healthy vision in the digital age. Free, evidence-based, and privacy-focused.</p>
+        <div class="hero-buttons">
+          <a href="eye-age.html" class="btn-primary">Check Your Eye Age</a>
+          <a href="#screening" class="btn-secondary">View All Tools</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="iris-container">
+          <div class="iris-glow"></div>
+          <div class="iris-image">
+            <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+              <defs>
+                <radialGradient id="irisGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" style="stop-color:#111a21"/>
+                  <stop offset="30%" style="stop-color:#1f89e5"/>
+                  <stop offset="60%" style="stop-color:#00ACC1"/>
+                  <stop offset="100%" style="stop-color:#1c2226"/>
+                </radialGradient>
+                <radialGradient id="pupilGradient" cx="50%" cy="50%" r="50%">
+                  <stop offset="0%" style="stop-color:#000"/>
+                  <stop offset="100%" style="stop-color:#111a21"/>
+                </radialGradient>
+              </defs>
+              <circle cx="100" cy="100" r="95" fill="url(#irisGradient)"/>
+              <circle cx="100" cy="100" r="35" fill="url(#pupilGradient)"/>
+              <circle cx="75" cy="75" r="15" fill="rgba(255,255,255,0.3)"/>
+              <circle cx="120" cy="85" r="8" fill="rgba(255,255,255,0.15)"/>
+            </svg>
+          </div>
+        </div>
+      </div>
     </section>
 
-    <section class="tools-grid">
-      <a href="eye-age.html" class="tool-card" style="border: 2px solid var(--accent); position: relative;">
-        <span style="position: absolute; top: -10px; right: 10px; background: var(--accent); color: var(--bg-primary); padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: 600;">NEW</span>
-        <span class="tool-icon">&#128065;</span>
-        <h3>Eye Age Test (눈 나이)</h3>
-        <p>10가지 질문으로 당신의 눈 나이를 알아보세요. 실제 나이보다 눈이 늙었을까요?</p>
-        <span class="tool-cta">테스트 시작</span>
-      </a>
-
-      <a href="eye-strain.html" class="tool-card">
-        <span class="tool-icon">&#128187;</span>
-        <h3>Eye Strain Calculator</h3>
-        <p>Calculate your digital eye strain level based on screen time and habits.</p>
-        <span class="tool-cta">Try Now</span>
-      </a>
-
-      <a href="dry-eye.html" class="tool-card">
-        <span class="tool-icon">&#128167;</span>
-        <h3>Dry Eye Test (OSDI)</h3>
-        <p>Clinically validated questionnaire to assess dry eye severity.</p>
-        <span class="tool-cta">Take Test</span>
-      </a>
-
-      <a href="blue-light.html" class="tool-card">
-        <span class="tool-icon">&#128241;</span>
-        <h3>Blue Light Calculator</h3>
-        <p>Estimate your daily blue light exposure from digital devices.</p>
-        <span class="tool-cta">Calculate</span>
-      </a>
-
-      <a href="timer.html" class="tool-card">
-        <span class="tool-icon">&#9202;</span>
-        <h3>20-20-20 Timer</h3>
-        <p>Follow the 20-20-20 rule to reduce eye strain while working.</p>
-        <span class="tool-cta">Start Timer</span>
-      </a>
-    </section>
-
-    <section class="about">
-      <h2>Why Trust Our Tools?</h2>
-      <div class="trust-points">
-        <div class="trust-item">
-          <span class="trust-icon">&#127891;</span>
-          <h4>Expert-Created</h4>
-          <p>Developed by a board-certified Korean ophthalmologist with clinical experience.</p>
+    <!-- Features Section -->
+    <section class="features-section">
+      <div class="section-header">
+        <h2>Why Trust Our Tools?</h2>
+        <p>Built by medical professionals with your health in mind</p>
+      </div>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">&#127891;</div>
+          <h3>Expert-Created</h3>
+          <p>Developed by a board-certified Korean ophthalmologist with years of clinical experience.</p>
         </div>
-        <div class="trust-item">
-          <span class="trust-icon">&#128218;</span>
-          <h4>Evidence-Based</h4>
-          <p>All tools are based on peer-reviewed research and clinical guidelines.</p>
+        <div class="feature-card">
+          <div class="feature-icon">&#128218;</div>
+          <h3>Evidence-Based</h3>
+          <p>All tools are built on peer-reviewed research and clinical guidelines.</p>
         </div>
-        <div class="trust-item">
-          <span class="trust-icon">&#128274;</span>
-          <h4>Privacy-First</h4>
+        <div class="feature-card">
+          <div class="feature-icon">&#128274;</div>
+          <h3>Privacy-First</h3>
           <p>Your data stays on your device. We don't collect personal information.</p>
         </div>
       </div>
     </section>
 
-    <!-- GEO: FAQ Section with conversational content -->
-    <section class="faq-section" id="faq">
-      <h2>Frequently Asked Questions</h2>
-      <p class="section-subtitle">Updated January 2026 - Answers to common eye health questions</p>
+    <!-- Screening Hub -->
+    <section class="screening-section" id="screening">
+      <div class="screening-header">
+        <div>
+          <h2>Screening Hub</h2>
+          <p>Free tools to monitor your eye health</p>
+        </div>
+      </div>
 
-      <div class="faq-grid">
-        <details class="faq-item">
-          <summary>What is the best free tool to check if I have eye strain from computer use?</summary>
-          <div class="faq-answer">
-            <p>The <a href="eye-strain.html">Eye Strain Calculator</a> is a free online tool that assesses your digital eye strain risk based on screen time, break frequency, screen distance, and lighting conditions. It provides personalized recommendations to reduce eye fatigue.</p>
-            <p><strong>Who should use it:</strong> Office workers, students, gamers, and anyone who spends more than 4 hours daily on screens.</p>
+      <div class="tools-grid">
+        <a href="eye-age.html" class="tool-card">
+          <div class="tool-image">&#128065;</div>
+          <div class="tool-content">
+            <div class="tool-header">
+              <h3>Eye Age Test</h3>
+              <span class="tool-badge new">NEW</span>
+            </div>
+            <div class="tool-meta">
+              <span>10 questions</span>
+              <span>2 min</span>
+            </div>
+            <p>Discover your eye age with 10 simple questions. Is your vision aging faster than you?</p>
+            <span class="tool-cta">Start Test</span>
           </div>
-        </details>
+        </a>
 
-        <details class="faq-item">
-          <summary>How can I test if I have dry eyes at home?</summary>
-          <div class="faq-answer">
-            <p>You can take the <a href="dry-eye.html">OSDI (Ocular Surface Disease Index) test</a> online for free. This clinically validated 12-question questionnaire is used by eye doctors worldwide to assess dry eye severity.</p>
-            <p><strong>What you'll get:</strong> Instant results with severity levels (Normal, Mild, Moderate, or Severe) and personalized treatment recommendations.</p>
+        <a href="eye-strain.html" class="tool-card">
+          <div class="tool-image">&#128187;</div>
+          <div class="tool-content">
+            <div class="tool-header">
+              <h3>Eye Strain Calculator</h3>
+              <span class="tool-badge">Popular</span>
+            </div>
+            <div class="tool-meta">
+              <span>4 factors</span>
+              <span>1 min</span>
+            </div>
+            <p>Calculate your digital eye strain level based on screen time and habits.</p>
+            <span class="tool-cta">Calculate Now</span>
           </div>
-        </details>
+        </a>
 
-        <details class="faq-item">
-          <summary>What is the 20-20-20 rule and how does it help reduce eye strain?</summary>
-          <div class="faq-answer">
-            <p>The 20-20-20 rule is a simple technique recommended by eye doctors: <strong>Every 20 minutes, look at something 20 feet (about 6 meters) away for 20 seconds.</strong> This helps relax your eye muscles and reduce fatigue.</p>
-            <p>Our <a href="timer.html">20-20-20 Timer</a> helps you follow this rule with customizable intervals, sound notifications, and daily statistics.</p>
+        <a href="dry-eye.html" class="tool-card">
+          <div class="tool-image">&#128167;</div>
+          <div class="tool-content">
+            <div class="tool-header">
+              <h3>Dry Eye Test (OSDI)</h3>
+              <span class="tool-badge">Clinical</span>
+            </div>
+            <div class="tool-meta">
+              <span>12 questions</span>
+              <span>3 min</span>
+            </div>
+            <p>Clinically validated questionnaire to assess dry eye severity.</p>
+            <span class="tool-cta">Take Test</span>
           </div>
-        </details>
+        </a>
 
-        <details class="faq-item">
-          <summary>Is blue light from screens harmful to my eyes?</summary>
-          <div class="faq-answer">
-            <p>While long-term eye damage from screen blue light is not conclusively proven, blue light can suppress melatonin production and affect sleep quality, especially when used before bedtime.</p>
-            <p>Use our <a href="blue-light.html">Blue Light Calculator</a> to estimate your daily exposure and get personalized recommendations.</p>
+        <a href="blue-light.html" class="tool-card">
+          <div class="tool-image">&#128241;</div>
+          <div class="tool-content">
+            <div class="tool-header">
+              <h3>Blue Light Calculator</h3>
+              <span class="tool-badge">Essential</span>
+            </div>
+            <div class="tool-meta">
+              <span>Device analysis</span>
+              <span>2 min</span>
+            </div>
+            <p>Estimate your daily blue light exposure from digital devices.</p>
+            <span class="tool-cta">Calculate</span>
           </div>
-        </details>
+        </a>
 
-        <details class="faq-item">
-          <summary>Who created these eye health tools?</summary>
-          <div class="faq-answer">
-            <p>These tools were created by a <strong>board-certified Korean ophthalmologist</strong> with clinical experience. All tools are evidence-based, built on peer-reviewed research and clinical guidelines.</p>
-            <p><strong>Privacy:</strong> Your data stays on your device. We don't collect personal information.</p>
+        <a href="timer.html" class="tool-card">
+          <div class="tool-image">&#9202;</div>
+          <div class="tool-content">
+            <div class="tool-header">
+              <h3>20-20-20 Timer</h3>
+              <span class="tool-badge">Daily Use</span>
+            </div>
+            <div class="tool-meta">
+              <span>Customizable</span>
+              <span>All day</span>
+            </div>
+            <p>Follow the 20-20-20 rule to reduce eye strain while working.</p>
+            <span class="tool-cta">Start Timer</span>
           </div>
-        </details>
+        </a>
       </div>
     </section>
 
-    <section class="disclaimer">
-      <p><strong>Medical Disclaimer:</strong> These tools are for informational purposes only and are not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your ophthalmologist or other qualified health provider with any questions you may have regarding a medical condition.</p>
-      <p class="last-updated"><em>Last updated: January 2026</em></p>
+    <!-- Affiliate Section -->
+    <section class="affiliate-section">
+      <h3>Recommended Eye Care Products</h3>
+      <p>Products that may help improve your eye health</p>
+      <div class="affiliate-grid">
+        <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="affiliate-item">
+          <span class="icon">&#128293;</span>
+          <span class="name">Warm Compress</span>
+          <span class="price">View on Coupang</span>
+        </a>
+        <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="affiliate-item">
+          <span class="icon">&#128167;</span>
+          <span class="name">Eye Drops</span>
+          <span class="price">View on Coupang</span>
+        </a>
+        <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="affiliate-item">
+          <span class="icon">&#128083;</span>
+          <span class="name">Blue Light Glasses</span>
+          <span class="price">View on Coupang</span>
+        </a>
+      </div>
+      <p class="affiliate-disclaimer">As a Coupang Partners affiliate, we may earn a commission from qualifying purchases.</p>
     </section>
+
+    <!-- Medical Disclaimer -->
+    <div class="medical-disclaimer">
+      <p><strong>Medical Disclaimer:</strong> These tools are for informational purposes only and are not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your ophthalmologist or other qualified health provider with any questions you may have regarding a medical condition.</p>
+    </div>
   </main>
 
   <footer role="contentinfo">
-    <nav aria-label="Footer navigation">
-      <a href="index.html">Home</a>
-      <a href="eye-age.html">Eye Age</a>
-      <a href="eye-strain.html">Eye Strain</a>
-      <a href="dry-eye.html">Dry Eye</a>
-      <a href="blue-light.html">Blue Light</a>
-      <a href="timer.html">Timer</a>
-    </nav>
-    <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3>Eye Health Tools</h3>
+        <p>Free, evidence-based eye health tools created by a Korean ophthalmologist. Helping you protect your vision in the digital age.</p>
+        <div class="trust-badges">
+          <span>&#127891;</span>
+          <span>Expert-Created</span>
+          <span>&#128274;</span>
+          <span>Privacy-First</span>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Tools</h4>
+        <a href="eye-age.html">Eye Age Test</a>
+        <a href="eye-strain.html">Eye Strain Calculator</a>
+        <a href="dry-eye.html">Dry Eye Test</a>
+        <a href="blue-light.html">Blue Light Calculator</a>
+        <a href="timer.html">20-20-20 Timer</a>
+      </div>
+      <div class="footer-col">
+        <h4>Resources</h4>
+        <a href="consultation.html">Get Consultation</a>
+        <a href="#faq">FAQ</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
+      <div class="footer-links">
+        <a href="#">Privacy Policy</a>
+        <a href="#">Terms of Service</a>
+      </div>
+    </div>
   </footer>
 
   <script>
