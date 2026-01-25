@@ -1,20 +1,15 @@
-<!DOCTYPE html>
-<html class="dark" lang="ko">
+<!doctype html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Eye Health Tools - 눈 건강 도구 by 안과 전문의</title>
-  <meta name="description" content="안과 전문의가 만든 무료 눈 건강 도구. 눈 피로도, 안구건조증, 블루라이트 노출량을 체크하세요.">
-
-  <!-- Google Analytics -->
+  <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-31S31HGWZ0"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
+
     gtag('config', 'G-31S31HGWZ0');
   </script>
-
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
     (function(c,l,a,r,i,t,y){
@@ -23,397 +18,297 @@
         y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
     })(window, document, "clarity", "script", "v2q4i24zi7");
   </script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eye Health Tools - Free Eye Care Tools by Korean Ophthalmologist</title>
+  <meta name="description" content="Free eye health tools created by a Korean ophthalmologist. Check eye strain, dry eye symptoms, blue light exposure and more.">
+  <meta name="keywords" content="eye health, eye strain calculator, dry eye test, OSDI, blue light exposure, 20-20-20 rule, digital eye strain, ophthalmologist tools">
+  <meta name="author" content="Korean Ophthalmologist">
+  <link rel="canonical" href="https://product-build.pages.dev/eye/">
 
-  <script src="https://cdn.tailwindcss.com"></script>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@400&display=swap" rel="stylesheet">
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://product-build.pages.dev/eye/">
+  <meta property="og:title" content="Eye Health Tools - Free Eye Care Tools by Korean Ophthalmologist">
+  <meta property="og:description" content="Free eye health tools created by a Korean ophthalmologist. Check eye strain, dry eye symptoms, blue light exposure and more.">
+  <meta property="og:site_name" content="Eye Health Tools">
+  <meta property="og:locale" content="en_US">
 
-  <script>
-    tailwind.config = {
-      darkMode: 'class',
-      theme: {
-        extend: {
-          colors: {
-            'primary': '#1f89e5',
-            'primary-dark': '#1a75c4',
-            'trust': '#00ACC1',
-            'bg-dark': '#111a21',
-            'card-dark': '#1c2226',
-          },
-          fontFamily: {
-            'sans': ['Inter', 'sans-serif'],
-          }
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="https://product-build.pages.dev/eye/">
+  <meta name="twitter:title" content="Eye Health Tools - Free Eye Care Tools by Korean Ophthalmologist">
+  <meta name="twitter:description" content="Free eye health tools created by a Korean ophthalmologist. Check eye strain, dry eye symptoms, blue light exposure and more.">
+
+  <!-- Schema.org structured data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "Eye Health Tools",
+    "url": "https://product-build.pages.dev/eye/",
+    "description": "Free eye health tools created by a Korean ophthalmologist",
+    "author": {
+      "@type": "Person",
+      "name": "Korean Ophthalmologist",
+      "jobTitle": "Board-Certified Ophthalmologist"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://product-build.pages.dev/eye/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    "name": "Eye Health Tools",
+    "about": {
+      "@type": "MedicalCondition",
+      "name": "Digital Eye Strain"
+    },
+    "audience": {
+      "@type": "PeopleAudience",
+      "audienceType": "General Public"
+    },
+    "specialty": "Ophthalmology",
+    "dateModified": "2026-01-23",
+    "datePublished": "2026-01-01"
+  }
+  </script>
+  <!-- GEO: FAQ Schema for AI search engines -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "What is the best free tool to check if I have eye strain from computer use?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The Eye Strain Calculator is a free online tool that assesses your digital eye strain risk based on screen time, break frequency, screen distance, and lighting conditions. It provides personalized recommendations to reduce eye fatigue. This tool was created by a board-certified Korean ophthalmologist and is completely free to use."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How can I test if I have dry eyes at home?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "You can take the OSDI (Ocular Surface Disease Index) test online for free. The OSDI is a clinically validated 12-question questionnaire used by eye doctors worldwide to assess dry eye severity. It takes about 2-3 minutes to complete and provides instant results with severity levels (Normal, Mild, Moderate, or Severe) and personalized recommendations."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "What is the 20-20-20 rule and how does it help reduce eye strain?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "The 20-20-20 rule is a simple technique recommended by eye doctors to prevent digital eye strain: Every 20 minutes, look at something 20 feet (about 6 meters) away for 20 seconds. This helps relax your eye muscles and reduce fatigue from prolonged screen use. Our free 20-20-20 Timer tool helps you follow this rule with customizable work/break intervals, sound notifications, and daily statistics tracking."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is blue light from screens harmful to my eyes?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "While long-term eye damage from screen blue light is not conclusively proven, blue light exposure can suppress melatonin production and affect sleep quality. Using the Blue Light Calculator, you can estimate your daily exposure from computers, smartphones, tablets, and other devices. The tool provides personalized recommendations such as using night mode, blue light glasses, and avoiding screens before bedtime."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Who created these eye health tools?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "These eye health tools were created by a board-certified Korean ophthalmologist with clinical experience. All tools are evidence-based, built on peer-reviewed research and clinical guidelines. The tools are free to use and privacy-focused - your data stays on your device and no personal information is collected."
         }
       }
-    }
+    ]
+  }
   </script>
 
-  <style>
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400;
-    }
-    .glass {
-      background: rgba(17, 26, 33, 0.85);
-      backdrop-filter: blur(12px);
-    }
-  </style>
-
-  <link rel="icon" type="image/svg+xml" href="favicon.svg">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8992259838992521" crossorigin="anonymous"></script>
+  <meta name="google-adsense-account" content="ca-pub-8992259838992521">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="favicon.svg">
+  <link rel="apple-touch-icon" href="favicon.svg">
+
+  <!-- Preload critical resources -->
+  <link rel="preload" href="style.css" as="style">
+  <link href="style.css" rel="stylesheet">
 </head>
-<body class="bg-bg-dark text-slate-100 font-sans">
-
-  <!-- Header -->
-  <header class="sticky top-0 z-50 glass border-b border-white/10">
-    <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-primary flex items-center justify-center">
-          <span class="material-symbols-outlined text-white">visibility</span>
-        </div>
-        <div>
-          <h1 class="text-lg font-black text-white">Eye Health</h1>
-          <p class="text-xs text-slate-400 hidden sm:block">by 안과 전문의</p>
-        </div>
-      </div>
-
-      <nav class="hidden md:flex items-center gap-6">
-        <a href="eye-age.html" class="text-sm text-slate-300 hover:text-primary transition">눈 나이</a>
-        <a href="eye-strain.html" class="text-sm text-slate-300 hover:text-primary transition">눈 피로도</a>
-        <a href="dry-eye.html" class="text-sm text-slate-300 hover:text-primary transition">안구건조</a>
-        <a href="timer.html" class="text-sm text-slate-300 hover:text-primary transition">타이머</a>
-      </nav>
-
-      <a href="eye-age.html" class="px-5 py-2.5 bg-primary hover:bg-primary-dark text-white text-sm font-bold rounded-lg transition shadow-lg shadow-primary/20">
-        시작하기
-      </a>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+  <header role="banner">
+    <div class="header-content">
+      <h1>Eye Health Tools</h1>
+      <p class="tagline">Free Eye Care Tools by Korean Ophthalmologist</p>
     </div>
+    <nav aria-label="Main navigation" class="main-nav">
+      <a href="index.html" class="nav-link active">Home</a>
+      <a href="eye-age.html" class="nav-link">Eye Age</a>
+      <a href="eye-strain.html" class="nav-link">Eye Strain</a>
+      <a href="dry-eye.html" class="nav-link">Dry Eye</a>
+      <a href="blue-light.html" class="nav-link">Blue Light</a>
+      <a href="timer.html" class="nav-link">Timer</a>
+    </nav>
+    <button type="button" id="theme-toggle" aria-label="Toggle dark/light theme"></button>
   </header>
 
-  <main>
-    <!-- Hero Section -->
-    <section class="max-w-6xl mx-auto px-4 py-16 md:py-24">
-      <div class="text-center max-w-3xl mx-auto">
-        <span class="inline-block px-4 py-1.5 bg-primary/10 text-primary text-xs font-bold rounded-full uppercase tracking-wider mb-6">
-          Board-Certified Ophthalmologist
-        </span>
+  <main id="main-content" role="main">
+    <section class="hero">
+      <div class="badge">Created by Board-Certified Ophthalmologist</div>
+      <h2>Take Care of Your Eyes</h2>
+      <p>Science-based tools to help you maintain healthy vision in the digital age.</p>
+    </section>
 
-        <h2 class="text-4xl md:text-5xl lg:text-6xl font-black text-white leading-tight mb-6">
-          당신의 눈 건강,<br>지금 확인하세요
-        </h2>
+    <section class="tools-grid">
+      <a href="eye-age.html" class="tool-card" style="border: 2px solid var(--accent); position: relative;">
+        <span style="position: absolute; top: -10px; right: 10px; background: var(--accent); color: var(--bg-primary); padding: 0.2rem 0.6rem; border-radius: 10px; font-size: 0.75rem; font-weight: 600;">NEW</span>
+        <span class="tool-icon">&#128065;</span>
+        <h3>Eye Age Test (눈 나이)</h3>
+        <p>10가지 질문으로 당신의 눈 나이를 알아보세요. 실제 나이보다 눈이 늙었을까요?</p>
+        <span class="tool-cta">테스트 시작</span>
+      </a>
 
-        <p class="text-lg text-slate-400 mb-10 max-w-xl mx-auto leading-relaxed">
-          안과 전문의가 만든 무료 눈 건강 도구로 디지털 시대의 눈 건강을 지키세요.
-        </p>
+      <a href="eye-strain.html" class="tool-card">
+        <span class="tool-icon">&#128187;</span>
+        <h3>Eye Strain Calculator</h3>
+        <p>Calculate your digital eye strain level based on screen time and habits.</p>
+        <span class="tool-cta">Try Now</span>
+      </a>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <a href="eye-age.html" class="px-8 py-4 bg-primary hover:bg-primary-dark text-white font-bold rounded-xl transition flex items-center justify-center gap-2 shadow-lg shadow-primary/30">
-            <span class="material-symbols-outlined">play_circle</span>
-            눈 나이 테스트
-          </a>
-          <a href="#tools" class="px-8 py-4 border border-slate-600 hover:border-slate-400 text-white font-bold rounded-xl transition">
-            모든 도구 보기
-          </a>
+      <a href="dry-eye.html" class="tool-card">
+        <span class="tool-icon">&#128167;</span>
+        <h3>Dry Eye Test (OSDI)</h3>
+        <p>Clinically validated questionnaire to assess dry eye severity.</p>
+        <span class="tool-cta">Take Test</span>
+      </a>
+
+      <a href="blue-light.html" class="tool-card">
+        <span class="tool-icon">&#128241;</span>
+        <h3>Blue Light Calculator</h3>
+        <p>Estimate your daily blue light exposure from digital devices.</p>
+        <span class="tool-cta">Calculate</span>
+      </a>
+
+      <a href="timer.html" class="tool-card">
+        <span class="tool-icon">&#9202;</span>
+        <h3>20-20-20 Timer</h3>
+        <p>Follow the 20-20-20 rule to reduce eye strain while working.</p>
+        <span class="tool-cta">Start Timer</span>
+      </a>
+    </section>
+
+    <section class="about">
+      <h2>Why Trust Our Tools?</h2>
+      <div class="trust-points">
+        <div class="trust-item">
+          <span class="trust-icon">&#127891;</span>
+          <h4>Expert-Created</h4>
+          <p>Developed by a board-certified Korean ophthalmologist with clinical experience.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">&#128218;</span>
+          <h4>Evidence-Based</h4>
+          <p>All tools are based on peer-reviewed research and clinical guidelines.</p>
+        </div>
+        <div class="trust-item">
+          <span class="trust-icon">&#128274;</span>
+          <h4>Privacy-First</h4>
+          <p>Your data stays on your device. We don't collect personal information.</p>
         </div>
       </div>
     </section>
 
-    <!-- Trust Section -->
-    <section class="bg-slate-900/50 py-16">
-      <div class="max-w-6xl mx-auto px-4">
-        <div class="text-center mb-12">
-          <h3 class="text-2xl font-bold text-white mb-3">왜 Eye Health를 신뢰할 수 있나요?</h3>
-          <p class="text-slate-400">전문성과 신뢰를 바탕으로 개발되었습니다</p>
-        </div>
+    <!-- GEO: FAQ Section with conversational content -->
+    <section class="faq-section" id="faq">
+      <h2>Frequently Asked Questions</h2>
+      <p class="section-subtitle">Updated January 2026 - Answers to common eye health questions</p>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-          <div class="p-6 bg-card-dark rounded-2xl border border-slate-800 hover:border-primary/50 transition">
-            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-              <span class="material-symbols-outlined text-primary text-3xl">school</span>
-            </div>
-            <h4 class="text-lg font-bold text-white mb-2">전문의 개발</h4>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              안과 전문의가 직접 설계하고 검증한 과학적 도구입니다.
-            </p>
+      <div class="faq-grid">
+        <details class="faq-item">
+          <summary>What is the best free tool to check if I have eye strain from computer use?</summary>
+          <div class="faq-answer">
+            <p>The <a href="eye-strain.html">Eye Strain Calculator</a> is a free online tool that assesses your digital eye strain risk based on screen time, break frequency, screen distance, and lighting conditions. It provides personalized recommendations to reduce eye fatigue.</p>
+            <p><strong>Who should use it:</strong> Office workers, students, gamers, and anyone who spends more than 4 hours daily on screens.</p>
           </div>
+        </details>
 
-          <div class="p-6 bg-card-dark rounded-2xl border border-slate-800 hover:border-trust/50 transition">
-            <div class="w-14 h-14 rounded-xl bg-trust/10 flex items-center justify-center mb-5">
-              <span class="material-symbols-outlined text-trust text-3xl">science</span>
-            </div>
-            <h4 class="text-lg font-bold text-white mb-2">근거 기반</h4>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              임상 연구와 가이드라인을 기반으로 만들어졌습니다.
-            </p>
+        <details class="faq-item">
+          <summary>How can I test if I have dry eyes at home?</summary>
+          <div class="faq-answer">
+            <p>You can take the <a href="dry-eye.html">OSDI (Ocular Surface Disease Index) test</a> online for free. This clinically validated 12-question questionnaire is used by eye doctors worldwide to assess dry eye severity.</p>
+            <p><strong>What you'll get:</strong> Instant results with severity levels (Normal, Mild, Moderate, or Severe) and personalized treatment recommendations.</p>
           </div>
+        </details>
 
-          <div class="p-6 bg-card-dark rounded-2xl border border-slate-800 hover:border-primary/50 transition">
-            <div class="w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center mb-5">
-              <span class="material-symbols-outlined text-primary text-3xl">lock</span>
-            </div>
-            <h4 class="text-lg font-bold text-white mb-2">개인정보 보호</h4>
-            <p class="text-slate-400 text-sm leading-relaxed">
-              모든 데이터는 기기에만 저장됩니다. 수집하지 않습니다.
-            </p>
+        <details class="faq-item">
+          <summary>What is the 20-20-20 rule and how does it help reduce eye strain?</summary>
+          <div class="faq-answer">
+            <p>The 20-20-20 rule is a simple technique recommended by eye doctors: <strong>Every 20 minutes, look at something 20 feet (about 6 meters) away for 20 seconds.</strong> This helps relax your eye muscles and reduce fatigue.</p>
+            <p>Our <a href="timer.html">20-20-20 Timer</a> helps you follow this rule with customizable intervals, sound notifications, and daily statistics.</p>
           </div>
-        </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Is blue light from screens harmful to my eyes?</summary>
+          <div class="faq-answer">
+            <p>While long-term eye damage from screen blue light is not conclusively proven, blue light can suppress melatonin production and affect sleep quality, especially when used before bedtime.</p>
+            <p>Use our <a href="blue-light.html">Blue Light Calculator</a> to estimate your daily exposure and get personalized recommendations.</p>
+          </div>
+        </details>
+
+        <details class="faq-item">
+          <summary>Who created these eye health tools?</summary>
+          <div class="faq-answer">
+            <p>These tools were created by a <strong>board-certified Korean ophthalmologist</strong> with clinical experience. All tools are evidence-based, built on peer-reviewed research and clinical guidelines.</p>
+            <p><strong>Privacy:</strong> Your data stays on your device. We don't collect personal information.</p>
+          </div>
+        </details>
       </div>
     </section>
 
-    <!-- Tools Section -->
-    <section id="tools" class="max-w-6xl mx-auto px-4 py-20">
-      <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-10">
-        <div>
-          <h3 class="text-3xl font-black text-white mb-2">검사 도구</h3>
-          <p class="text-slate-400">필요한 검사를 선택하여 시작하세요</p>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-
-        <!-- Eye Age -->
-        <a href="eye-age.html" class="group block bg-card-dark rounded-2xl border border-slate-800 overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all">
-          <div class="h-36 bg-gradient-to-br from-primary/20 to-trust/20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-primary/60">visibility</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">눈 나이 테스트</h4>
-              <span class="px-2 py-1 bg-primary text-white text-[10px] font-bold rounded uppercase">NEW</span>
-            </div>
-            <div class="flex gap-4 text-sm text-slate-500 mb-3">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">schedule</span> 2분
-              </span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">quiz</span> 10문항
-              </span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">당신의 눈 나이는 몇 살? 간단한 테스트로 확인하세요.</p>
-            <div class="w-full py-2.5 bg-slate-800 group-hover:bg-primary text-center text-sm font-bold rounded-lg transition">
-              테스트 시작
-            </div>
-          </div>
-        </a>
-
-        <!-- Eye Strain -->
-        <a href="eye-strain.html" class="group block bg-card-dark rounded-2xl border border-slate-800 overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all">
-          <div class="h-36 bg-gradient-to-br from-orange-500/20 to-red-500/20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-orange-400/60">monitor_heart</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">눈 피로도 계산기</h4>
-              <span class="px-2 py-1 bg-slate-700 text-slate-300 text-[10px] font-bold rounded uppercase">Popular</span>
-            </div>
-            <div class="flex gap-4 text-sm text-slate-500 mb-3">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">schedule</span> 1분
-              </span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">tune</span> 4요소
-              </span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">스크린 사용 습관을 분석해 피로도를 측정합니다.</p>
-            <div class="w-full py-2.5 bg-slate-800 group-hover:bg-primary text-center text-sm font-bold rounded-lg transition">
-              측정하기
-            </div>
-          </div>
-        </a>
-
-        <!-- Dry Eye -->
-        <a href="dry-eye.html" class="group block bg-card-dark rounded-2xl border border-slate-800 overflow-hidden hover:border-trust/50 hover:shadow-xl hover:shadow-trust/5 transition-all">
-          <div class="h-36 bg-gradient-to-br from-trust/20 to-blue-500/20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-trust/60">water_drop</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">안구건조증 검사</h4>
-              <span class="px-2 py-1 bg-slate-700 text-slate-300 text-[10px] font-bold rounded uppercase">OSDI</span>
-            </div>
-            <div class="flex gap-4 text-sm text-slate-500 mb-3">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">schedule</span> 3분
-              </span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">quiz</span> 12문항
-              </span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">임상에서 사용하는 OSDI 검사로 건조증 심각도를 평가합니다.</p>
-            <div class="w-full py-2.5 bg-slate-800 group-hover:bg-trust text-center text-sm font-bold rounded-lg transition">
-              검사하기
-            </div>
-          </div>
-        </a>
-
-        <!-- Blue Light -->
-        <a href="blue-light.html" class="group block bg-card-dark rounded-2xl border border-slate-800 overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all">
-          <div class="h-36 bg-gradient-to-br from-blue-500/20 to-purple-500/20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-blue-400/60">smartphone</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">블루라이트 계산기</h4>
-              <span class="px-2 py-1 bg-slate-700 text-slate-300 text-[10px] font-bold rounded uppercase">Essential</span>
-            </div>
-            <div class="flex gap-4 text-sm text-slate-500 mb-3">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">schedule</span> 2분
-              </span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">devices</span> 기기분석
-              </span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">디지털 기기에서 받는 블루라이트 노출량을 계산합니다.</p>
-            <div class="w-full py-2.5 bg-slate-800 group-hover:bg-primary text-center text-sm font-bold rounded-lg transition">
-              계산하기
-            </div>
-          </div>
-        </a>
-
-        <!-- Timer -->
-        <a href="timer.html" class="group block bg-card-dark rounded-2xl border border-slate-800 overflow-hidden hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5 transition-all">
-          <div class="h-36 bg-gradient-to-br from-green-500/20 to-emerald-500/20 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-green-400/60">timer</span>
-          </div>
-          <div class="p-5">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">20-20-20 타이머</h4>
-              <span class="px-2 py-1 bg-slate-700 text-slate-300 text-[10px] font-bold rounded uppercase">Daily</span>
-            </div>
-            <div class="flex gap-4 text-sm text-slate-500 mb-3">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">all_day</span> 하루종일
-              </span>
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-base">notifications</span> 알림
-              </span>
-            </div>
-            <p class="text-slate-400 text-sm mb-4">20분마다 휴식을 알려주는 눈 보호 타이머입니다.</p>
-            <div class="w-full py-2.5 bg-slate-800 group-hover:bg-primary text-center text-sm font-bold rounded-lg transition">
-              시작하기
-            </div>
-          </div>
-        </a>
-
-        <!-- Consultation -->
-        <a href="consultation.html" class="group block bg-gradient-to-br from-primary to-trust rounded-2xl overflow-hidden hover:shadow-xl hover:shadow-primary/20 transition-all">
-          <div class="h-36 flex items-center justify-center">
-            <span class="material-symbols-outlined text-6xl text-white/80">medical_services</span>
-          </div>
-          <div class="p-5 bg-black/20">
-            <div class="flex justify-between items-start mb-3">
-              <h4 class="text-lg font-bold text-white">전문 상담</h4>
-              <span class="px-2 py-1 bg-white/20 text-white text-[10px] font-bold rounded uppercase">Pro</span>
-            </div>
-            <p class="text-white/80 text-sm mb-4">AI 분석 결과를 바탕으로 맞춤 상담을 받으세요.</p>
-            <div class="w-full py-2.5 bg-white/20 hover:bg-white/30 text-center text-sm font-bold rounded-lg transition text-white">
-              상담 신청
-            </div>
-          </div>
-        </a>
-
-      </div>
-    </section>
-
-    <!-- Affiliate Section -->
-    <section class="max-w-6xl mx-auto px-4 pb-16">
-      <div class="bg-card-dark rounded-2xl border border-slate-800 p-8 text-center">
-        <h4 class="text-xl font-bold text-white mb-2">눈 건강 추천 제품</h4>
-        <p class="text-slate-400 text-sm mb-6">피로한 눈을 위한 제품들</p>
-
-        <div class="flex flex-wrap gap-4 justify-center">
-          <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
-            <span class="text-2xl">🔥</span>
-            <div class="text-left">
-              <p class="text-sm font-bold text-white">온찜질기</p>
-              <p class="text-xs text-primary">쿠팡에서 보기</p>
-            </div>
-          </a>
-          <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
-            <span class="text-2xl">💧</span>
-            <div class="text-left">
-              <p class="text-sm font-bold text-white">인공눈물</p>
-              <p class="text-xs text-primary">쿠팡에서 보기</p>
-            </div>
-          </a>
-          <a href="https://link.coupang.com/a/cbKPSn" target="_blank" rel="noopener" class="flex items-center gap-3 px-5 py-3 bg-slate-800 hover:bg-slate-700 rounded-xl transition">
-            <span class="text-2xl">🕶️</span>
-            <div class="text-left">
-              <p class="text-sm font-bold text-white">블루라이트 안경</p>
-              <p class="text-xs text-primary">쿠팡에서 보기</p>
-            </div>
-          </a>
-        </div>
-
-        <p class="text-xs text-slate-500 mt-4">쿠팡 파트너스 활동의 일환으로 수수료를 제공받습니다</p>
-      </div>
-    </section>
-
-    <!-- Disclaimer -->
-    <section class="max-w-6xl mx-auto px-4 pb-16">
-      <div class="bg-slate-900/50 rounded-xl p-6 border border-slate-800">
-        <p class="text-sm text-slate-400 leading-relaxed">
-          <strong class="text-slate-300">의료 면책조항:</strong> 이 도구들은 정보 제공 목적으로만 사용되며, 전문적인 의료 조언, 진단 또는 치료를 대체하지 않습니다. 눈 건강에 대한 질문이 있으시면 안과 전문의와 상담하세요.
-        </p>
-      </div>
+    <section class="disclaimer">
+      <p><strong>Medical Disclaimer:</strong> These tools are for informational purposes only and are not intended to be a substitute for professional medical advice, diagnosis, or treatment. Always seek the advice of your ophthalmologist or other qualified health provider with any questions you may have regarding a medical condition.</p>
+      <p class="last-updated"><em>Last updated: January 2026</em></p>
     </section>
   </main>
 
-  <!-- Footer -->
-  <footer class="bg-slate-900 border-t border-slate-800">
-    <div class="max-w-6xl mx-auto px-4 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-        <div class="md:col-span-2">
-          <div class="flex items-center gap-3 mb-4">
-            <div class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <span class="material-symbols-outlined text-white text-lg">visibility</span>
-            </div>
-            <h2 class="text-lg font-black text-white">Eye Health Tools</h2>
-          </div>
-          <p class="text-slate-400 text-sm max-w-sm leading-relaxed mb-4">
-            안과 전문의가 만든 무료 눈 건강 도구. 디지털 시대에 당신의 소중한 눈을 지켜드립니다.
-          </p>
-          <div class="flex items-center gap-2 text-slate-500 text-xs">
-            <span class="material-symbols-outlined text-sm">verified</span>
-            <span>전문의 검증</span>
-            <span class="material-symbols-outlined text-sm ml-2">lock</span>
-            <span>개인정보 보호</span>
-          </div>
-        </div>
-
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">도구</h4>
-          <ul class="space-y-2 text-sm text-slate-400">
-            <li><a href="eye-age.html" class="hover:text-primary transition">눈 나이 테스트</a></li>
-            <li><a href="eye-strain.html" class="hover:text-primary transition">눈 피로도 계산기</a></li>
-            <li><a href="dry-eye.html" class="hover:text-primary transition">안구건조증 검사</a></li>
-            <li><a href="blue-light.html" class="hover:text-primary transition">블루라이트 계산기</a></li>
-            <li><a href="timer.html" class="hover:text-primary transition">20-20-20 타이머</a></li>
-          </ul>
-        </div>
-
-        <div>
-          <h4 class="text-sm font-bold uppercase tracking-wider text-white mb-4">정보</h4>
-          <ul class="space-y-2 text-sm text-slate-400">
-            <li><a href="consultation.html" class="hover:text-primary transition">전문 상담</a></li>
-            <li><a href="#" class="hover:text-primary transition">자주 묻는 질문</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="pt-8 border-t border-slate-800 flex flex-col md:flex-row justify-between items-center gap-4">
-        <p class="text-xs text-slate-500">
-          &copy; 2026 Eye Health Tools. All rights reserved.
-        </p>
-        <div class="flex gap-6 text-xs text-slate-500">
-          <a href="#" class="hover:text-slate-300 transition">개인정보처리방침</a>
-          <a href="#" class="hover:text-slate-300 transition">이용약관</a>
-        </div>
-      </div>
-    </div>
+  <footer role="contentinfo">
+    <nav aria-label="Footer navigation">
+      <a href="index.html">Home</a>
+      <a href="eye-age.html">Eye Age</a>
+      <a href="eye-strain.html">Eye Strain</a>
+      <a href="dry-eye.html">Dry Eye</a>
+      <a href="blue-light.html">Blue Light</a>
+      <a href="timer.html">Timer</a>
+    </nav>
+    <p>&copy; 2026 Eye Health Tools. Created with care for your vision.</p>
   </footer>
 
-  <!-- Userback -->
+  <script>
+    const themeToggle = document.getElementById('theme-toggle');
+    const savedTheme = localStorage.getItem('eye-theme') || 'dark';
+
+    if (savedTheme === 'light') {
+      document.body.setAttribute('data-theme', 'light');
+    }
+
+    themeToggle.addEventListener('click', () => {
+      const isLight = document.body.getAttribute('data-theme') === 'light';
+      if (isLight) {
+        document.body.removeAttribute('data-theme');
+        localStorage.setItem('eye-theme', 'dark');
+      } else {
+        document.body.setAttribute('data-theme', 'light');
+        localStorage.setItem('eye-theme', 'light');
+      }
+    });
+  </script>
+  <!-- Userback Feedback Widget -->
   <script>
     window.Userback = window.Userback || {};
     Userback.access_token = "A-dCd3pYRpaT8J3VbfGJYZcGVY9";
@@ -421,5 +316,6 @@
       var s = d.createElement("script");s.async = true;s.src = "https://static.userback.io/widget/v1.js";(d.head || d.body).appendChild(s);
     })(document);
   </script>
+
 </body>
 </html>
