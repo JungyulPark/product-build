@@ -1,4 +1,4 @@
-// K-Fortunes GPT Fortune Integration
+// KStar Match GPT Fortune Integration
 // GPT API를 통한 상세 운세 분석
 
 const GPTFortune = {

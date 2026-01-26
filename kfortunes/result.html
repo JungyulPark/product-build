@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Saju Personality Analysis Result | K-Fortunes</title>
+  <title>Your Saju Personality Analysis Result | KStar Match</title>
   <meta name="description" content="Your personalized Korean Saju personality analysis results. Discover your Four Pillars profile, personality insights, career paths, and compatibility.">
   <meta name="keywords" content="Saju result, personality analysis result, 사주 결과, Four Pillars reading">
-  <meta name="author" content="K-Fortunes">
+  <meta name="author" content="KStar Match">
   <meta name="robots" content="noindex, follow">
 
   <!-- Canonical URL -->
@@ -14,9 +14,9 @@
 
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:site_name" content="K-Fortunes">
-  <meta property="og:title" content="My K-Fortunes Saju Reading">
-  <meta property="og:description" content="Discover your personality with K-Fortunes - Korean Four Pillars personality analysis">
+  <meta property="og:site_name" content="KStar Match">
+  <meta property="og:title" content="My KStar Match Saju Reading">
+  <meta property="og:description" content="Discover your personality with KStar Match - Korean Four Pillars personality analysis">
   <meta property="og:image" content="https://kfortunes.com/sajucharacter.webp">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -24,12 +24,12 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="My K-Fortunes Reading">
+  <meta name="twitter:title" content="My KStar Match Reading">
   <meta name="twitter:description" content="Check out my Korean Saju personality reading!">
   <meta name="twitter:image" content="https://kfortunes.com/sajucharacter.webp">
 
   <meta name="google-adsense-account" content="ca-pub-8992259838992521">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⭐</text></svg>">
   <link href="style.css" rel="stylesheet">
 
   <!-- Google Analytics -->
@@ -189,7 +189,7 @@
 
   <header>
     <div class="header-content">
-      <a href="/" class="logo">K-Fortunes</a>
+      <a href="/" class="logo">KStar Match</a>
       <nav>
         <a href="index.html">New Reading</a>
         <a href="compatibility.html">Compatibility</a>
@@ -428,7 +428,7 @@
         💕 Check Compatibility
       </a>
       <a href="index.html" class="btn-secondary">
-        🔮 New Reading
+        ⭐ New Reading
       </a>
     </div>
   </main>
@@ -582,7 +582,7 @@
   </div>
 
   <footer>
-    <p>© 2026 K-Fortunes. All rights reserved.</p>
+    <p>© 2026 KStar Match. All rights reserved.</p>
     <p style="margin-top: 0.5rem;">
       <a href="privacy.html" style="color: var(--text-secondary);">Privacy Policy</a> ·
       <a href="terms.html" style="color: var(--text-secondary);">Terms of Service</a> ·
@@ -713,7 +713,7 @@
               <p style="color: var(--danger); font-size: 1.2rem;">Oops! Something went wrong.</p>
               <p style="color: var(--text-secondary); margin-top: 1rem;">Please try again with valid birth information.</p>
               <a href="index.html" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">
-                🔮 Try Again
+                ⭐ Try Again
               </a>
             </div>
           `;
@@ -946,7 +946,7 @@
         default:
           if (navigator.share) {
             navigator.share({
-              title: 'K-Fortunes 사주 쌍둥이 스타',
+              title: 'KStar Match 사주 쌍둥이 스타',
               text: shareText,
               url: url
             }).catch(console.error);
@@ -1763,14 +1763,14 @@
       if (!selectedCelebrity || !sajuResult) return;
 
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
-      const text = `💘 My K-Fortunes Celebrity Compatibility!\n\n` +
+      const text = `💘 My KStar Match Celebrity Compatibility!\n\n` +
         `${selectedCelebrity.image} ${selectedCelebrity.name}: ${compatibility.overall}% match!\n` +
         `${compatibility.matchType.emoji} ${compatibility.relationDesc}\n\n` +
-        `Check your celebrity compatibility at K-Fortunes! 🔮`;
+        `Check your celebrity compatibility at KStar Match! 🔮`;
 
       if (navigator.share) {
         navigator.share({
-          title: 'K-Fortunes Celebrity Compatibility',
+          title: 'KStar Match Celebrity Compatibility',
           text: text,
           url: window.location.href
         }).catch(console.error);

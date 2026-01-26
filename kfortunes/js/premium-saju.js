@@ -1,4 +1,4 @@
-// K-Fortunes Premium Saju Readings
+// KStar Match Premium Saju Readings
 // 프리미엄 사주 해석 시스템
 
 const PremiumSaju = {

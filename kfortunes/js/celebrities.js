@@ -1,4 +1,4 @@
-// K-Fortunes Celebrity Saju Database
+// KStar Match Celebrity Saju Database
 // 유명인 사주 데이터베이스 (확장판 + 일주 매칭)
 
 const Celebrities = {

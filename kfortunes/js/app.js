@@ -1,4 +1,4 @@
-// K-Fortunes - Main Application Logic
+// KStar Match - Main Application Logic
 
 document.addEventListener('DOMContentLoaded', function() {
   initializeTheme();
@@ -152,7 +152,7 @@ function handleFormSubmit() {
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = true;
     submitBtn.classList.add('btn-loading');
-    submitBtn.innerHTML = '🔮 Analyzing your personality...';
+    submitBtn.innerHTML = '⭐ Finding your K-Star match...';
 
     // GA Event Tracking
     if (typeof gtag !== 'undefined') {
@@ -168,7 +168,7 @@ function handleFormSubmit() {
     const progressInterval = setInterval(() => {
       progress += 20;
       if (progress <= 100) {
-        submitBtn.innerHTML = `🔮 Reading... ${progress}%`;
+        submitBtn.innerHTML = `⭐ Matching... ${progress}%`;
       }
     }, 250);
 
@@ -664,7 +664,7 @@ function shareToSNS(platform) {
     case 'native':
       if (navigator.share) {
         navigator.share({
-          title: 'K-Fortunes - My Saju Reading',
+          title: 'KStar Match - My Saju Reading',
           text: decodeURIComponent(shareText),
           url: siteUrl
         });

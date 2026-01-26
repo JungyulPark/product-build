@@ -1,4 +1,4 @@
-// K-Fortunes Internationalization (i18n) System
+// KStar Match Internationalization (i18n) System
 // 다국어 지원 시스템
 
 const i18n = {
@@ -24,7 +24,7 @@ const i18n = {
 
       // Hero Section
       hero_badge: '✨ Free Saju Reading · Find Your K-Star Match!',
-      hero_title: 'K-Fortunes',
+      hero_title: 'KStar Match',
       hero_tagline: 'Which K-Star Matches Your Personality?',
       hero_subtitle: 'Check if you share similar personality traits with your favorite K-Pop idols & K-Drama stars! BTS, BLACKPINK, IU, Park Seo-joon... Who\'s your Saju Twin?',
 
@@ -39,7 +39,7 @@ const i18n = {
       form_gender: 'Gender',
       form_male: 'Male',
       form_female: 'Female',
-      form_submit: '🔮 Discover My Personality',
+      form_submit: '⭐ Discover My K-Star Match',
       form_analyzing: 'Analyzing...',
 
       // Features
@@ -70,7 +70,7 @@ const i18n = {
       result_lucky: 'Lucky Elements',
       result_share: '📤 Share Result',
       result_compatibility: '💕 Check Compatibility',
-      result_new: '🔮 New Reading',
+      result_new: '⭐ New Reading',
 
       // Loading
       loading_text: 'Analyzing your personality patterns...',
@@ -101,13 +101,13 @@ const i18n = {
 
       // About Page
       about_badge: '📚 Learn About Saju',
-      about_title: 'The Art of K-Fortunes',
+      about_title: 'The Art of KStar Match',
       about_subtitle: "Discover the wisdom of Saju (四柱), Korea's traditional system of personality analysis.",
-      about_cta_fortune: '🔮 Get Your Free Reading',
+      about_cta_fortune: '⭐ Get Your Free Reading',
       about_cta_compat: '💕 Check Compatibility',
 
       // Footer
-      footer_copyright: '© 2026 K-Fortunes. All rights reserved.',
+      footer_copyright: '© 2026 KStar Match. All rights reserved.',
       footer_disclaimer: 'This is for entertainment purposes only. Not a substitute for professional advice.',
       footer_privacy: 'Privacy Policy',
       footer_terms: 'Terms of Service',
@@ -145,7 +145,7 @@ const i18n = {
 
       // Hero Section
       hero_badge: '✨ 무료 사주 · 나의 K-Star 성격 매칭!',
-      hero_title: 'K-Fortunes',
+      hero_title: 'KStar Match',
       hero_tagline: '나와 닮은 K-Star는 누구일까?',
       hero_subtitle: 'BTS, BLACKPINK, IU, 박서준... 내가 좋아하는 K-Pop 아이돌, K-Drama 스타와 비슷한 성격인지 확인해보세요!',
 
@@ -160,7 +160,7 @@ const i18n = {
       form_gender: '성별',
       form_male: '남성',
       form_female: '여성',
-      form_submit: '🔮 내 성격 알아보기',
+      form_submit: '⭐ 내 K-Star 찾기',
       form_analyzing: '분석 중...',
 
       // Features
@@ -191,7 +191,7 @@ const i18n = {
       result_lucky: '행운 요소',
       result_share: '📤 결과 공유',
       result_compatibility: '💕 궁합 보기',
-      result_new: '🔮 다시 보기',
+      result_new: '⭐ 다시 보기',
 
       // Loading
       loading_text: '성격 패턴을 분석하고 있습니다...',
@@ -222,13 +222,13 @@ const i18n = {
 
       // About Page
       about_badge: '📚 사주에 대해 알아보기',
-      about_title: 'K-Fortunes 소개',
+      about_title: 'KStar Match 소개',
       about_subtitle: '사주(四柱)의 지혜를 발견하세요. 한국의 전통적인 성격 분석 시스템입니다.',
-      about_cta_fortune: '🔮 무료로 성격 분석 보기',
+      about_cta_fortune: '⭐ 무료로 성격 분석 보기',
       about_cta_compat: '💕 궁합 보기',
 
       // Footer
-      footer_copyright: '© 2026 K-Fortunes. All rights reserved.',
+      footer_copyright: '© 2026 KStar Match. All rights reserved.',
       footer_disclaimer: '이것은 오락 목적으로만 제공됩니다. 전문적인 조언을 대체하지 않습니다.',
       footer_privacy: '개인정보처리방침',
       footer_terms: '이용약관',
@@ -266,7 +266,7 @@ const i18n = {
 
       // Hero Section
       hero_badge: '✨ 無料四柱推命 · K-Starソウルメイトを見つけよう！',
-      hero_title: 'K-Fortunes',
+      hero_title: 'KStar Match',
       hero_tagline: '私はK-Starの運命を持っている？',
       hero_subtitle: 'BTS、BLACKPINK、IU、パク・ソジュン...好きなK-Popアイドルやドラマスターと同じ四柱か確認しよう！',
 
@@ -281,7 +281,7 @@ const i18n = {
       form_gender: '性別',
       form_male: '男性',
       form_female: '女性',
-      form_submit: '🔮 運勢を見る',
+      form_submit: '⭐ K-Starを見つける',
       form_analyzing: '分析中...',
 
       // Features
@@ -312,7 +312,7 @@ const i18n = {
       result_lucky: 'ラッキー要素',
       result_share: '📤 結果をシェア',
       result_compatibility: '💕 相性を見る',
-      result_new: '🔮 もう一度',
+      result_new: '⭐ もう一度',
 
       // Loading
       loading_text: '宇宙のエネルギーを分析中...',
@@ -343,13 +343,13 @@ const i18n = {
 
       // About Page
       about_badge: '📚 四柱推命について',
-      about_title: 'K-Fortunesの芸術',
+      about_title: 'KStar Matchの芸術',
       about_subtitle: '四柱（サジュ）の古代の知恵を発見してください。韓国の伝統的な運命分析システムです。',
-      about_cta_fortune: '🔮 無料で運勢を見る',
+      about_cta_fortune: '⭐ 無料で診断する',
       about_cta_compat: '💕 相性を見る',
 
       // Footer
-      footer_copyright: '© 2026 K-Fortunes. All rights reserved.',
+      footer_copyright: '© 2026 KStar Match. All rights reserved.',
       footer_disclaimer: 'これは娯楽目的のみです。専門的なアドバイスの代わりにはなりません。',
       footer_privacy: 'プライバシーポリシー',
       footer_terms: '利用規約',
@@ -387,7 +387,7 @@ const i18n = {
 
       // Hero Section
       hero_badge: '✨ 免费四柱 · 找到你的K-Star灵魂伴侣！',
-      hero_title: 'K-Fortunes',
+      hero_title: 'KStar Match',
       hero_tagline: '我天生就是K-Star的命运吗？',
       hero_subtitle: 'BTS、BLACKPINK、IU、朴叙俊...看看你和喜欢的K-Pop偶像、韩剧明星是否有相同的四柱！',
 
@@ -402,7 +402,7 @@ const i18n = {
       form_gender: '性别',
       form_male: '男',
       form_female: '女',
-      form_submit: '🔮 查看运势',
+      form_submit: '⭐ 找到我的K-Star',
       form_analyzing: '分析中...',
 
       // Features
@@ -433,7 +433,7 @@ const i18n = {
       result_lucky: '幸运元素',
       result_share: '📤 分享结果',
       result_compatibility: '💕 查看合婚',
-      result_new: '🔮 重新测算',
+      result_new: '⭐ 重新测算',
 
       // Loading
       loading_text: '正在分析宇宙能量...',
@@ -464,13 +464,13 @@ const i18n = {
 
       // About Page
       about_badge: '📚 了解四柱',
-      about_title: 'K-Fortunes的艺术',
+      about_title: 'KStar Match的艺术',
       about_subtitle: '探索四柱（사주）的古老智慧，韩国传统的命运分析系统。',
-      about_cta_fortune: '🔮 免费测运势',
+      about_cta_fortune: '⭐ 免费测试',
       about_cta_compat: '💕 查看合婚',
 
       // Footer
-      footer_copyright: '© 2026 K-Fortunes. 保留所有权利。',
+      footer_copyright: '© 2026 KStar Match. 保留所有权利。',
       footer_disclaimer: '仅供娱乐目的。不能替代专业建议。',
       footer_privacy: '隐私政策',
       footer_terms: '服务条款',
@@ -508,7 +508,7 @@ const i18n = {
 
       // Hero Section
       hero_badge: '✨ Tứ Trụ miễn phí · Tìm K-Star tri kỷ của bạn!',
-      hero_title: 'K-Fortunes',
+      hero_title: 'KStar Match',
       hero_tagline: 'Tôi sinh ra với vận mệnh K-Star?',
       hero_subtitle: 'BTS, BLACKPINK, IU, Park Seo-joon... Xem bạn có cùng Tứ Trụ với thần tượng K-Pop và sao K-Drama yêu thích không!',
 
@@ -523,7 +523,7 @@ const i18n = {
       form_gender: 'Giới tính',
       form_male: 'Nam',
       form_female: 'Nữ',
-      form_submit: '🔮 Xem Vận Mệnh',
+      form_submit: '⭐ Tìm K-Star của tôi',
       form_analyzing: 'Đang phân tích...',
 
       // Features
@@ -554,7 +554,7 @@ const i18n = {
       result_lucky: 'Yếu tố may mắn',
       result_share: '📤 Chia sẻ kết quả',
       result_compatibility: '💕 Xem hợp tuổi',
-      result_new: '🔮 Xem lại',
+      result_new: '⭐ Xem lại',
 
       // Loading
       loading_text: 'Đang phân tích năng lượng vũ trụ...',
@@ -585,13 +585,13 @@ const i18n = {
 
       // About Page
       about_badge: '📚 Tìm hiểu về Tứ Trụ',
-      about_title: 'Nghệ thuật K-Fortunes',
+      about_title: 'Nghệ thuật KStar Match',
       about_subtitle: 'Khám phá trí tuệ cổ đại của Tứ Trụ (四柱), hệ thống phân tích vận mệnh truyền thống của Hàn Quốc.',
-      about_cta_fortune: '🔮 Xem vận mệnh miễn phí',
+      about_cta_fortune: '⭐ Xem miễn phí',
       about_cta_compat: '💕 Xem hợp tuổi',
 
       // Footer
-      footer_copyright: '© 2026 K-Fortunes. Đã đăng ký bản quyền.',
+      footer_copyright: '© 2026 KStar Match. Đã đăng ký bản quyền.',
       footer_disclaimer: 'Chỉ mang tính giải trí. Không thay thế lời khuyên chuyên nghiệp.',
       footer_privacy: 'Chính sách bảo mật',
       footer_terms: 'Điều khoản dịch vụ',
