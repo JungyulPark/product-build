@@ -1,0 +1,23 @@
+{
+  "name": "kfortunes",
+  "version": "1.0.0",
+  "description": "Korean Fortune Telling - 사주팔자",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "dev": "npx wrangler pages dev . --port 8787 --compatibility-date=2024-01-01",
+    "preview": "npx wrangler pages dev . --port 8787 --compatibility-date=2024-01-01",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "sharp": "^0.34.5"
+  },
+  "devDependencies": {
+    "wrangler": "^3.114.17"
+  }
+}

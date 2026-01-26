@@ -1,0 +1,30 @@
+# robots.txt for K-Fortunes
+# https://kfortunes.com
+
+# Allow all search engines
+User-agent: *
+Allow: /
+
+# Specifically allow Naver search bot (Yeti)
+User-agent: Yeti
+Allow: /
+
+# Specifically allow Google bot
+User-agent: Googlebot
+Allow: /
+
+# Specifically allow Bing bot
+User-agent: Bingbot
+Allow: /
+
+# Disallow result pages from indexing (dynamic content)
+Disallow: /result.html?
+
+# Sitemap location
+Sitemap: https://kfortunes.com/sitemap.xml
+
+# Crawl-delay (optional, be polite to crawlers)
+Crawl-delay: 1
+
+# Host directive for Yandex
+Host: https://kfortunes.com

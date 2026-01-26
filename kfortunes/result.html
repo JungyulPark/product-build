@@ -1,0 +1,1901 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Saju Fortune Reading Result | K-Fortunes</title>
+  <meta name="description" content="Your personalized Korean Saju fortune reading results. Discover your Four Pillars of Destiny, personality analysis, career paths, and love compatibility.">
+  <meta name="keywords" content="Saju result, fortune reading result, 사주 결과, Four Pillars reading">
+  <meta name="author" content="K-Fortunes">
+  <meta name="robots" content="noindex, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://kfortunes.com/result.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="K-Fortunes">
+  <meta property="og:title" content="My K-Fortunes Saju Reading">
+  <meta property="og:description" content="Discover your destiny with K-Fortunes - Korean Four Pillars of Destiny reading">
+  <meta property="og:image" content="https://kfortunes.com/sajucharacter.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://kfortunes.com/result.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="My K-Fortunes Reading">
+  <meta name="twitter:description" content="Check out my Korean Saju fortune reading!">
+  <meta name="twitter:image" content="https://kfortunes.com/sajucharacter.webp">
+
+  <meta name="google-adsense-account" content="ca-pub-8992259838992521">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🔮</text></svg>">
+  <link href="style.css" rel="stylesheet">
+
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y36C26EGSG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y36C26EGSG');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8992259838992521" crossorigin="anonymous"></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "v2s96lo21z");
+  </script>
+
+  <style>
+    /* Loading Overlay */
+    .loading-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: var(--bg-primary);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      transition: opacity 0.5s, visibility 0.5s;
+    }
+
+    .loading-overlay.hidden {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .loading-spinner {
+      width: 80px;
+      height: 80px;
+      border: 4px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+
+    .loading-text {
+      margin-top: 2rem;
+      font-size: 1.2rem;
+      color: var(--text-secondary);
+      text-align: center;
+    }
+
+    .loading-text .highlight {
+      color: var(--accent-light);
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 1rem;
+    }
+
+    .loading-progress {
+      width: 200px;
+      height: 4px;
+      background: var(--border);
+      border-radius: 2px;
+      margin-top: 1.5rem;
+      overflow: hidden;
+    }
+
+    .loading-progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent), var(--accent-pink));
+      animation: progress 2s ease-in-out;
+    }
+
+    @keyframes progress {
+      0% { width: 0%; }
+      50% { width: 70%; }
+      100% { width: 100%; }
+    }
+
+    /* Celebrity Match Card */
+    .celebrity-match {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      margin-bottom: 1rem;
+    }
+
+    .celebrity-icon {
+      font-size: 2.5rem;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+      border-radius: 50%;
+    }
+
+    .celebrity-info {
+      flex: 1;
+    }
+
+    .celebrity-name {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+
+    .celebrity-korean {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+
+    .celebrity-category {
+      display: inline-block;
+      padding: 0.25rem 0.5rem;
+      background: rgba(139, 92, 246, 0.2);
+      border-radius: 4px;
+      font-size: 0.75rem;
+      color: var(--accent-light);
+      margin-top: 0.25rem;
+    }
+
+    .match-message {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      margin-top: 1rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      border-radius: 8px;
+      border-left: 3px solid var(--accent);
+    }
+  </style>
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loading-overlay" id="loading-overlay">
+    <div class="loading-spinner"></div>
+    <div class="loading-text">
+      Analyzing the cosmic energies...
+      <span class="highlight">우주의 기운을 분석하고 있습니다</span>
+    </div>
+    <div class="loading-progress">
+      <div class="loading-progress-bar"></div>
+    </div>
+  </div>
+
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">K-Fortunes</a>
+      <nav>
+        <a href="index.html">New Reading</a>
+        <a href="compatibility.html">Compatibility</a>
+        <a href="about.html">About</a>
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="result-header">
+      <div class="badge">✨ Your Saju Reading</div>
+      <h1>Your <span class="gradient-text">Four Pillars</span> Revealed</h1>
+      <p class="subtitle">Birth Date: <span id="birth-info">Loading...</span></p>
+      <p style="margin-top: 0.5rem; color: var(--accent-light);">
+        Day Master: <span id="day-master">Loading...</span>
+      </p>
+    </section>
+
+    <!-- 사주팔자 차트 -->
+    <div class="card" style="margin-bottom: 1.5rem;">
+      <h3 style="text-align: center; margin-bottom: 1.5rem;">🏛️ Four Pillars (四柱)</h3>
+      <div class="pillars-chart" id="pillars-chart">
+        <div class="pillar"><div class="pillar-label">Loading...</div></div>
+      </div>
+    </div>
+
+    <!-- 오행 분석 -->
+    <div class="section-card">
+      <h3>☯️ Five Elements Balance</h3>
+      <div id="element-chart">
+        <p style="color: var(--text-secondary);">Analyzing elements...</p>
+      </div>
+    </div>
+
+    <!-- 🌟 사주 쌍둥이 스타 (바이럴 핵심 섹션) -->
+    <div class="kstar-twin-section" id="kstar-twin-section">
+      <div class="kstar-twin-badge">🌟 나의 사주 쌍둥이 스타</div>
+      <h2 class="kstar-twin-title">나와 사주가 같은 스타는?</h2>
+
+      <div class="kstar-twin-card" id="kstar-twin-card">
+        <div class="twin-loading">
+          <div class="twin-spinner"></div>
+          <p>사주 쌍둥이 스타 찾는 중...</p>
+        </div>
+      </div>
+
+      <!-- 공유 버튼 -->
+      <div class="kstar-share-buttons" id="kstar-share-buttons" style="display: none;">
+        <p class="share-prompt">🔥 친구들에게 자랑하기!</p>
+        <div class="share-btn-grid">
+          <button class="kstar-share-btn twitter" onclick="shareKStarTwin('twitter')">
+            <span class="btn-icon">𝕏</span>
+            <span>Twitter</span>
+          </button>
+          <button class="kstar-share-btn facebook" onclick="shareKStarTwin('facebook')">
+            <span class="btn-icon">📘</span>
+            <span>Facebook</span>
+          </button>
+          <button class="kstar-share-btn whatsapp" onclick="shareKStarTwin('whatsapp')">
+            <span class="btn-icon">💬</span>
+            <span>WhatsApp</span>
+          </button>
+          <button class="kstar-share-btn telegram" onclick="shareKStarTwin('telegram')">
+            <span class="btn-icon">✈️</span>
+            <span>Telegram</span>
+          </button>
+          <button class="kstar-share-btn line" onclick="shareKStarTwin('line')">
+            <span class="btn-icon">💚</span>
+            <span>LINE</span>
+          </button>
+          <button class="kstar-share-btn copy" onclick="shareKStarTwin('copy')">
+            <span class="btn-icon">📋</span>
+            <span>링크복사</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- 더 많은 매칭 보기 -->
+      <div class="more-twins" id="more-twins" style="display: none;">
+        <button class="btn-secondary" onclick="showMoreTwins()">
+          ✨ 다른 스타 보기
+        </button>
+      </div>
+    </div>
+
+    <!-- 연예인 궁합 체크 -->
+    <div class="section-card">
+      <h3>💕 연예인과 나의 궁합</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">좋아하는 연예인과의 사주 궁합을 확인해보세요!</p>
+      <div class="celebrity-compatibility-cta">
+        <button class="btn-compatibility" onclick="openCelebritySelector()">
+          💘 궁합 확인하기
+        </button>
+      </div>
+    </div>
+
+    <!-- 성격 분석 -->
+    <div class="section-card">
+      <h3>🎯 Personality</h3>
+      <p id="personality-text">Analyzing your personality...</p>
+    </div>
+
+    <!-- 직업 & 연애 -->
+    <div class="grid-2">
+      <div class="section-card">
+        <h3>💼 Career Paths</h3>
+        <ul id="career-list">
+          <li>Analyzing career potential...</li>
+        </ul>
+      </div>
+      <div class="section-card">
+        <h3>💕 Love & Relationships</h3>
+        <p id="love-text">Analyzing love life...</p>
+      </div>
+    </div>
+
+    <!-- 강점 & 약점 -->
+    <div class="grid-2">
+      <div class="section-card">
+        <h3>💪 Your Strength</h3>
+        <p id="strength-text">Analyzing strengths...</p>
+      </div>
+      <div class="section-card">
+        <h3>🌱 Growth Area</h3>
+        <p id="weakness-text">Analyzing growth areas...</p>
+      </div>
+    </div>
+
+    <!-- 행운 요소 -->
+    <div class="section-card">
+      <h3>🍀 Lucky Elements</h3>
+      <div id="lucky-info">
+        <p style="color: var(--text-secondary);">Calculating lucky elements...</p>
+      </div>
+    </div>
+
+    <!-- 확장된 일간 해석 (무료) -->
+    <div class="section-card" id="extended-personality">
+      <h3>🌟 나의 일간 성격 (Day Master)</h3>
+      <div id="day-master-details">
+        <p style="color: var(--text-secondary);">일간 분석 중...</p>
+      </div>
+    </div>
+
+    <!-- 프리미엄 미리보기 및 CTA -->
+    <div class="premium-preview-card">
+      <div class="premium-badge">💎 PREMIUM</div>
+      <h3>Unlock Your Complete Destiny Report</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+        Get AI-powered deep analysis with GPT-5 technology
+      </p>
+
+      <div class="premium-features">
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>10-Year Fortune Forecast</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Monthly Luck Calendar 2026</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Detailed Career Analysis</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Love & Marriage Timing</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Health & Wellness Guide</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Lucky Days & Activities</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>Personalized Life Advice</span>
+        </div>
+        <div class="premium-feature">
+          <span class="check">✓</span>
+          <span>PDF Download Included</span>
+        </div>
+      </div>
+
+      <div class="premium-price">
+        <span class="price-old">$19.99</span>
+        <span class="price-current">$4.99</span>
+        <span class="price-note">Limited Time Offer</span>
+      </div>
+
+      <button class="btn-premium" disabled style="opacity: 0.6; cursor: not-allowed;">
+        🚀 Coming Soon - Premium Report
+      </button>
+
+      <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem;">
+        ⏳ Premium features launching soon!
+      </p>
+    </div>
+
+    <!-- 프리미엄 샘플 (블러 처리) -->
+    <div class="section-card premium-locked">
+      <div class="locked-overlay">
+        <span class="lock-icon">🚀</span>
+        <p>Premium Content</p>
+        <button class="btn-small" disabled style="opacity: 0.7; cursor: not-allowed;">Coming Soon</button>
+      </div>
+      <h3>📅 2026 Year Forecast Preview</h3>
+      <div class="blurred-content">
+        <p>January: Excellent month for career advancement...</p>
+        <p>February: Focus on relationships and communication...</p>
+        <p>March: Financial opportunities arise, consider investments...</p>
+      </div>
+    </div>
+
+    <!-- 제휴 상품 배너 (쿠팡 파트너스 - 한국어만) -->
+    <div class="affiliate-banner" id="affiliate-banner" style="display: none;">
+      <h4 id="affiliate-title"></h4>
+      <p id="affiliate-desc"></p>
+      <div class="affiliate-products" id="affiliate-products"></div>
+      <p class="affiliate-disclaimer" id="affiliate-disclaimer"></p>
+    </div>
+
+    <!-- 액션 버튼 -->
+    <div class="action-buttons">
+      <button class="btn-primary" onclick="shareResult()" style="width: auto;">
+        📤 Share Result
+      </button>
+      <a href="compatibility.html" class="btn-secondary">
+        💕 Check Compatibility
+      </a>
+      <a href="index.html" class="btn-secondary">
+        🔮 New Reading
+      </a>
+    </div>
+  </main>
+
+  <!-- 프리미엄 결제 모달 -->
+  <div class="share-modal" id="premium-modal" onclick="if(event.target === this) PremiumPayment.closePurchaseModal()">
+    <div class="share-modal-content" style="max-width: 450px;">
+      <button class="share-modal-close" onclick="PremiumPayment.closePurchaseModal()" aria-label="Close">&times;</button>
+
+      <div style="text-align: center;">
+        <div class="premium-badge" style="display: inline-block; margin-bottom: 1rem;">💎 PREMIUM REPORT</div>
+        <h3 style="margin-bottom: 0.5rem;">Complete Destiny Analysis</h3>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Powered by Advanced AI (GPT-5 Technology)</p>
+      </div>
+
+      <div class="premium-modal-features">
+        <div class="feature-item">📅 10-Year Fortune Forecast</div>
+        <div class="feature-item">📊 Monthly Luck Calendar</div>
+        <div class="feature-item">💼 Career Path Analysis</div>
+        <div class="feature-item">💕 Love & Marriage Guide</div>
+        <div class="feature-item">🏥 Health Recommendations</div>
+        <div class="feature-item">🍀 Lucky Elements & Timing</div>
+        <div class="feature-item">📱 Downloadable PDF Report</div>
+        <div class="feature-item">🔄 Lifetime Access</div>
+      </div>
+
+      <div style="text-align: center; margin: 1.5rem 0;">
+        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-light);">
+          <span style="text-decoration: line-through; color: var(--text-secondary); font-size: 1.2rem;">$19.99</span>
+          $4.99
+        </div>
+        <p style="color: var(--success); font-size: 0.9rem;">🎉 75% OFF - Limited Time!</p>
+      </div>
+
+      <button class="btn-premium" id="purchase-btn" disabled style="width: 100%; opacity: 0.6; cursor: not-allowed;">
+        🚀 Coming Soon
+      </button>
+
+      <p style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-top: 1rem;">
+        ⏳ Premium features are being prepared.<br>
+        Stay tuned for the launch!
+      </p>
+    </div>
+  </div>
+
+  <!-- SNS 공유 모달 -->
+  <div class="share-modal" id="share-modal" onclick="if(event.target === this) closeShareModal()">
+    <div class="share-modal-content">
+      <button class="share-modal-close" onclick="closeShareModal()" aria-label="Close">&times;</button>
+      <h3>📤 Share Your Fortune</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Share your Saju reading with friends!</p>
+
+      <div class="share-grid">
+        <!-- Twitter/X -->
+        <button class="share-btn share-twitter" onclick="shareToSNS('twitter')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+          </svg>
+          <span>X / Twitter</span>
+        </button>
+
+        <!-- Facebook -->
+        <button class="share-btn share-facebook" onclick="shareToSNS('facebook')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+          </svg>
+          <span>Facebook</span>
+        </button>
+
+        <!-- WhatsApp -->
+        <button class="share-btn share-whatsapp" onclick="shareToSNS('whatsapp')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+          </svg>
+          <span>WhatsApp</span>
+        </button>
+
+        <!-- Telegram -->
+        <button class="share-btn share-telegram" onclick="shareToSNS('telegram')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+          </svg>
+          <span>Telegram</span>
+        </button>
+
+        <!-- Reddit -->
+        <button class="share-btn share-reddit" onclick="shareToSNS('reddit')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701zM9.25 12C8.561 12 8 12.562 8 13.25c0 .687.561 1.248 1.25 1.248.687 0 1.248-.561 1.248-1.249 0-.688-.561-1.249-1.249-1.249zm5.5 0c-.687 0-1.248.561-1.248 1.25 0 .687.561 1.248 1.249 1.248.688 0 1.249-.561 1.249-1.249 0-.687-.562-1.249-1.25-1.249zm-5.466 3.99a.327.327 0 0 0-.231.094.33.33 0 0 0 0 .463c.842.842 2.484.913 2.961.913.477 0 2.105-.056 2.961-.913a.361.361 0 0 0 .029-.463.33.33 0 0 0-.464 0c-.547.533-1.684.73-2.512.73-.828 0-1.979-.196-2.512-.73a.326.326 0 0 0-.232-.095z"/>
+          </svg>
+          <span>Reddit</span>
+        </button>
+
+        <!-- LinkedIn -->
+        <button class="share-btn share-linkedin" onclick="shareToSNS('linkedin')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+          </svg>
+          <span>LinkedIn</span>
+        </button>
+
+        <!-- Threads -->
+        <button class="share-btn share-threads" onclick="shareToSNS('threads')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12.186 24h-.007c-3.581-.024-6.334-1.205-8.184-3.509C2.35 18.44 1.5 15.586 1.472 12.01v-.017c.03-3.579.879-6.43 2.525-8.482C5.845 1.205 8.6.024 12.18 0h.014c2.746.02 5.043.725 6.826 2.098 1.677 1.29 2.858 3.13 3.509 5.467l-2.04.569c-1.104-3.96-3.898-5.984-8.304-6.015-2.91.022-5.11.936-6.54 2.717C4.307 6.504 3.616 8.914 3.589 12c.027 3.086.718 5.496 2.057 7.164 1.43 1.783 3.631 2.698 6.54 2.717 2.623-.02 4.358-.631 5.8-2.045 1.647-1.613 1.618-3.593 1.09-4.798-.31-.71-.873-1.3-1.634-1.75-.192 1.352-.622 2.446-1.284 3.272-.886 1.102-2.14 1.704-3.73 1.79-1.202.065-2.361-.218-3.259-.801-1.063-.689-1.685-1.74-1.752-2.96-.065-1.182.408-2.256 1.33-3.022.88-.73 2.108-1.146 3.456-1.17 1.005-.018 1.96.14 2.836.468-.034-1.248-.293-2.186-.773-2.8-.545-.7-1.39-1.058-2.512-1.066h-.026c-.907 0-1.68.265-2.3.788l-1.32-1.57c.92-.773 2.122-1.18 3.594-1.213h.041c1.704.02 3.052.593 4.01 1.703.909 1.053 1.386 2.578 1.42 4.536.263.128.513.268.748.42 1.153.747 2.014 1.738 2.491 2.87.706 1.676.763 4.418-1.426 6.563-1.878 1.842-4.232 2.639-7.403 2.665z"/>
+          </svg>
+          <span>Threads</span>
+        </button>
+
+        <!-- KakaoTalk -->
+        <button class="share-btn share-kakao" onclick="shareToSNS('kakaotalk')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 0 1-1.727-.11l-4.408 2.883c-.501.265-.678.236-.472-.413l.892-3.678c-2.88-1.46-4.785-3.99-4.785-6.866C1.5 6.665 6.201 3 12 3zm5.907 8.06l1.47-1.424a.472.472 0 0 0-.656-.678l-1.928 1.866V9.282a.472.472 0 0 0-.944 0v2.557a.471.471 0 0 0 0 .222V13.5a.472.472 0 0 0 .944 0v-1.363l.427-.413 1.428 2.033a.472.472 0 1 0 .773-.543l-1.514-2.155zm-2.958 1.924h-1.46V9.297a.472.472 0 0 0-.943 0v4.159c0 .26.21.472.471.472h1.932a.472.472 0 1 0 0-.944zm-5.857-1.092l.696-1.707.638 1.707H9.092zm2.523.488l.002-.016a.469.469 0 0 0-.127-.32l-1.618-4.019a.472.472 0 0 0-.882.009l-1.54 3.994a.472.472 0 0 0 .874.358l.334-.866h1.893l.334.866a.472.472 0 0 0 .882-.089l-.152.083zm-4.968-.576h-.473V9.297a.472.472 0 0 0-.944 0v4.159c0 .26.21.472.472.472h.944a.472.472 0 1 0 0-.944z"/>
+          </svg>
+          <span>KakaoTalk</span>
+        </button>
+
+        <!-- LINE -->
+        <button class="share-btn share-line" onclick="shareToSNS('line')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63.346 0 .628.285.628.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.282.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+          </svg>
+          <span>LINE</span>
+        </button>
+
+        <!-- Pinterest -->
+        <button class="share-btn share-pinterest" onclick="shareToSNS('pinterest')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M12.017 0C5.396 0 .029 5.367.029 11.987c0 5.079 3.158 9.417 7.618 11.162-.105-.949-.199-2.403.041-3.439.219-.937 1.406-5.957 1.406-5.957s-.359-.72-.359-1.781c0-1.663.967-2.911 2.168-2.911 1.024 0 1.518.769 1.518 1.688 0 1.029-.653 2.567-.992 3.992-.285 1.193.6 2.165 1.775 2.165 2.128 0 3.768-2.245 3.768-5.487 0-2.861-2.063-4.869-5.008-4.869-3.41 0-5.409 2.562-5.409 5.199 0 1.033.394 2.143.889 2.741.099.12.112.225.085.345-.09.375-.293 1.199-.334 1.363-.053.225-.172.271-.401.165-1.495-.69-2.433-2.878-2.433-4.646 0-3.776 2.748-7.252 7.92-7.252 4.158 0 7.392 2.967 7.392 6.923 0 4.135-2.607 7.462-6.233 7.462-1.214 0-2.354-.629-2.758-1.379l-.749 2.848c-.269 1.045-1.004 2.352-1.498 3.146 1.123.345 2.306.535 3.55.535 6.607 0 11.985-5.365 11.985-11.987C23.97 5.39 18.592.026 11.985.026L12.017 0z"/>
+          </svg>
+          <span>Pinterest</span>
+        </button>
+
+        <!-- Copy Link -->
+        <button class="share-btn share-copy" onclick="shareToSNS('copy')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/>
+          </svg>
+          <span>Copy Link</span>
+        </button>
+
+        <!-- Native Share (모바일) -->
+        <button class="share-btn share-native" onclick="shareToSNS('native')" id="native-share-btn" style="display: none;">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
+            <path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92s2.92-1.31 2.92-2.92-1.31-2.92-2.92-2.92z"/>
+          </svg>
+          <span>More...</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p>© 2026 K-Fortunes. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="privacy.html" style="color: var(--text-secondary);">Privacy Policy</a> ·
+      <a href="terms.html" style="color: var(--text-secondary);">Terms of Service</a> ·
+      <a href="contact.html" style="color: var(--text-secondary);">Contact</a> ·
+      <a href="faq.html" style="color: var(--text-secondary);">FAQ</a>
+    </p>
+    <p class="disclaimer">This is for entertainment purposes only. Not a substitute for professional advice.</p>
+  </footer>
+
+  <!-- Celebrity Selector Modal -->
+  <div class="share-modal" id="celebrity-selector-modal" onclick="if(event.target === this) closeCelebritySelector()">
+    <div class="share-modal-content" style="max-width: 600px; max-height: 80vh; overflow-y: auto;">
+      <button class="share-modal-close" onclick="closeCelebritySelector()" aria-label="Close">&times;</button>
+      <h3>💘 Select Your Celebrity Crush</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">Choose a celebrity to check your romantic compatibility!</p>
+
+      <div class="celebrity-search">
+        <input type="text" id="celebrity-search-input" placeholder="🔍 Search by name..." oninput="filterCelebrities()">
+      </div>
+
+      <div class="celebrity-category-tabs">
+        <button class="cat-tab active" onclick="filterByCategory('all')">All</button>
+        <button class="cat-tab" onclick="filterByCategory('K-Pop')">K-Pop</button>
+        <button class="cat-tab" onclick="filterByCategory('Actor')">Actor</button>
+        <button class="cat-tab" onclick="filterByCategory('Singer')">Singer</button>
+        <button class="cat-tab" onclick="filterByCategory('Athlete')">Athlete</button>
+      </div>
+
+      <div class="celebrity-grid" id="celebrity-grid">
+        <!-- Celebrities will be populated by JavaScript -->
+      </div>
+    </div>
+  </div>
+
+  <!-- Celebrity Compatibility Result Modal -->
+  <div class="share-modal" id="compatibility-result-modal" onclick="if(event.target === this) closeCompatibilityResult()">
+    <div class="share-modal-content" style="max-width: 500px;">
+      <button class="share-modal-close" onclick="closeCompatibilityResult()" aria-label="Close">&times;</button>
+
+      <div class="compatibility-header" id="compatibility-header">
+        <!-- Header will be populated by JavaScript -->
+      </div>
+
+      <div class="compatibility-score-main" id="compatibility-score-main">
+        <!-- Main score will be populated -->
+      </div>
+
+      <div class="compatibility-details" id="compatibility-details">
+        <!-- Score details -->
+      </div>
+
+      <div class="compatibility-premium-section" id="compatibility-premium">
+        <!-- Premium content with blur -->
+      </div>
+
+      <div class="compatibility-actions">
+        <button class="btn-secondary" onclick="openCelebritySelector()">
+          💕 Try Another Celebrity
+        </button>
+        <button class="btn-primary" onclick="shareCompatibility()">
+          📤 Share Result
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/saju.js"></script>
+  <script src="js/celebrities.js"></script>
+  <script src="js/gpt-fortune.js"></script>
+  <script src="js/premium-saju.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    let sajuResult = null;
+
+    // Stripe Payment Handler
+    // TODO: Replace with your Stripe Payment Link
+    const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/YOUR_PAYMENT_LINK_HERE';
+
+    function handleStripePurchase() {
+      const btn = document.getElementById('purchase-btn');
+      btn.disabled = true;
+      btn.innerHTML = '<span class="spinner"></span> Redirecting...';
+
+      // GA 이벤트
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          'event_category': 'Premium',
+          'event_label': 'Saju Premium Report',
+          'value': 4.99
+        });
+      }
+
+      // 사주 데이터를 URL 파라미터로 전달
+      const params = new URLSearchParams(window.location.search);
+      const clientRef = btoa(JSON.stringify({
+        year: params.get('year'),
+        month: params.get('month'),
+        day: params.get('day'),
+        hour: params.get('hour'),
+        gender: params.get('gender')
+      }));
+
+      // Stripe Payment Link로 이동 (client_reference_id 포함)
+      window.location.href = `${STRIPE_PAYMENT_LINK}?client_reference_id=${clientRef}`;
+    }
+
+    // 결과 페이지 초기화 with error handling
+    document.addEventListener('DOMContentLoaded', function() {
+      initializeTheme();
+
+      // 2초 후 로딩 완료 (애니메이션 시간)
+      setTimeout(function() {
+        try {
+          initializeResultPage();
+          // 로딩 오버레이 숨기기
+          document.getElementById('loading-overlay').classList.add('hidden');
+
+          // GPT 상세 운세 요청 (백그라운드)
+          loadGPTFortune();
+        } catch (error) {
+          console.error('Error initializing result page:', error);
+          document.getElementById('loading-overlay').innerHTML = `
+            <div style="text-align: center; padding: 2rem;">
+              <p style="color: var(--danger); font-size: 1.2rem;">Oops! Something went wrong.</p>
+              <p style="color: var(--text-secondary); margin-top: 1rem;">Please try again with valid birth information.</p>
+              <a href="index.html" class="btn-primary" style="display: inline-block; margin-top: 1.5rem; text-decoration: none;">
+                🔮 Try Again
+              </a>
+            </div>
+          `;
+        }
+      }, 2000);
+    });
+
+    // 확장된 결과 페이지 초기화
+    function initializeResultPage() {
+      const params = new URLSearchParams(window.location.search);
+      const year = parseInt(params.get('year'));
+      const month = parseInt(params.get('month'));
+      const day = parseInt(params.get('day'));
+      const hour = params.get('hour') || null;
+      const gender = params.get('gender');
+
+      if (!year || !month || !day || !gender) {
+        throw new Error('Missing required parameters');
+      }
+
+      // 사주 계산
+      sajuResult = Saju.calculate(year, month, day, hour, gender);
+
+      // 결과 표시
+      displayResult(sajuResult, { year, month, day, hour, gender });
+
+      // 🌟 사주 쌍둥이 스타 표시 (바이럴 핵심)
+      displayKStarTwin(sajuResult);
+
+      // 확장된 일간 해석 표시
+      displayExtendedDayMaster(sajuResult);
+    }
+
+    // 확장된 일간 해석 표시
+    function displayExtendedDayMaster(result) {
+      if (typeof PremiumSaju === 'undefined') return;
+
+      const element = result.dayMaster.element;
+      const isYin = result.dayMaster.yin;
+      const details = PremiumSaju.dayMasterDetails[element][isYin];
+
+      if (!details) return;
+
+      const container = document.getElementById('day-master-details');
+      container.innerHTML = `
+        <div class="nature-title">${details.nature}</div>
+        <p class="nature-description">${details.description}</p>
+
+        <div class="traits-grid">
+          ${details.coreTraits.map(trait => `<span class="trait-tag">${trait}</span>`).join('')}
+        </div>
+
+        <div class="life-theme">
+          <strong>🌟 Life Theme:</strong> ${details.lifeTheme}
+        </div>
+
+        <p class="karma-lesson">
+          <strong>💫 Karma Lesson:</strong> ${details.karmaLesson}
+        </p>
+      `;
+    }
+
+    // GPT 상세 운세 로드
+    async function loadGPTFortune() {
+      if (!sajuResult) return;
+
+      try {
+        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+        const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
+
+        if (fortune) {
+          GPTFortune.displayFortune(fortune);
+        }
+      } catch (error) {
+        console.log('GPT Fortune not available:', error);
+        // 실패해도 기본 운세는 이미 표시됨
+      }
+    }
+
+    // ============================================
+    // 🌟 K-Star Saju Twin Functions
+    // ============================================
+    let currentTwinMatch = null;
+    let allTwinMatches = [];
+
+    function displayKStarTwin(sajuResult) {
+      const card = document.getElementById('kstar-twin-card');
+      const shareButtons = document.getElementById('kstar-share-buttons');
+      const moreTwins = document.getElementById('more-twins');
+
+      // Find best twins
+      allTwinMatches = Celebrities.findBestTwin({
+        dayMaster: sajuResult.dayMaster,
+        birthYear: parseInt(new URLSearchParams(window.location.search).get('year'))
+      }, 5);
+
+      if (allTwinMatches.length === 0) {
+        card.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">No K-Star Twin found.</p>';
+        return;
+      }
+
+      currentTwinMatch = allTwinMatches[0];
+      renderTwinCard(currentTwinMatch);
+
+      // Show share buttons and more twins
+      shareButtons.style.display = 'block';
+      if (allTwinMatches.length > 1) {
+        moreTwins.style.display = 'block';
+      }
+
+      // GA Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'kstar_twin_found', {
+          'event_category': 'Engagement',
+          'event_label': currentTwinMatch.celebrity.name,
+          'value': currentTwinMatch.score
+        });
+      }
+    }
+
+    function renderTwinCard(match) {
+      const card = document.getElementById('kstar-twin-card');
+      const celeb = match.celebrity;
+      const stars = '⭐'.repeat(match.grade.stars);
+      const message = Celebrities.getTwinMessage(celeb.stem, match.score);
+
+      // 카테고리 한글화
+      const categoryKo = {
+        'K-Pop': 'K-Pop 아이돌',
+        'Actor': '배우',
+        'Singer': '가수',
+        'Athlete': '운동선수',
+        'Tech': 'IT 기업가',
+        'President': '정치인',
+        'Media': '미디어'
+      };
+
+      // 상세 정보 한글화
+      const detailsKo = match.details.map(d => {
+        let msg = d.message;
+        msg = msg.replace('Same Day Master:', '같은 일간:');
+        msg = msg.replace('Same Element:', '같은 오행:');
+        msg = msg.replace('Same Zodiac:', '같은 띠:');
+        msg = msg.replace('Zodiac Harmony', '띠 조화');
+        msg = msg.replace('Both Yin Energy', '둘 다 음(陰) 에너지');
+        msg = msg.replace('Both Yang Energy', '둘 다 양(陽) 에너지');
+        return msg;
+      });
+
+      card.innerHTML = `
+        <div class="twin-result">
+          <span class="twin-celebrity-icon">${celeb.image}</span>
+          <div class="twin-celebrity-name">${celeb.korean || celeb.name}</div>
+          <div class="twin-celebrity-korean">${celeb.name}</div>
+          <span class="twin-celebrity-group">${categoryKo[celeb.category] || celeb.category}</span>
+
+          <div class="twin-score-container">
+            <span class="twin-score">${match.score}%</span>
+            <span class="twin-stars">${stars}</span>
+          </div>
+
+          <div class="twin-grade">${match.grade.emoji} ${match.grade.label}</div>
+
+          <div class="twin-details">
+            ${detailsKo.map(d => `<span class="twin-detail-tag">${d}</span>`).join('')}
+          </div>
+
+          <div class="twin-message">
+            "${message}"
+          </div>
+        </div>
+      `;
+    }
+
+    let currentTwinIndex = 0;
+    function showMoreTwins() {
+      currentTwinIndex = (currentTwinIndex + 1) % allTwinMatches.length;
+      currentTwinMatch = allTwinMatches[currentTwinIndex];
+      renderTwinCard(currentTwinMatch);
+
+      // Scroll to section
+      document.getElementById('kstar-twin-section').scrollIntoView({ behavior: 'smooth' });
+
+      // GA Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'show_more_twins', {
+          'event_category': 'Engagement',
+          'event_label': currentTwinMatch.celebrity.name
+        });
+      }
+    }
+
+    function shareKStarTwin(platform) {
+      if (!currentTwinMatch) return;
+
+      const celeb = currentTwinMatch.celebrity;
+      const score = currentTwinMatch.score;
+      const grade = currentTwinMatch.grade;
+      const url = window.location.href;
+
+      const shareText = `🔮 나와 사주가 같은 K-스타는 ${celeb.korean} (${celeb.name})!\n\n⭐ 매칭 점수: ${score}%\n${grade.emoji} ${grade.label}\n\n나도 확인하기 👉 ${url}\n\n#KFortunes #사주 #K스타 #${celeb.name.replace(/\s/g, '')}`;
+
+      const shareTextEn = `🔮 My K-Star Saju Twin is ${celeb.name}!\n\n⭐ Match Score: ${score}%\n${grade.emoji} ${grade.labelEn}\n\nFind yours 👉 ${url}\n\n#KFortunes #Saju #KStar`;
+
+      switch(platform) {
+        case 'twitter':
+          window.open(`https://twitter.com/intent/tweet?text=${encodeURIComponent(shareText)}&url=${encodeURIComponent(url)}`, '_blank', 'width=550,height=420');
+          break;
+
+        case 'facebook':
+          window.open(`https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(shareText)}`, '_blank', 'width=550,height=420');
+          break;
+
+        case 'whatsapp':
+          window.open(`https://wa.me/?text=${encodeURIComponent(shareText)}`, '_blank');
+          break;
+
+        case 'telegram':
+          window.open(`https://t.me/share/url?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`, '_blank');
+          break;
+
+        case 'line':
+          window.open(`https://social-plugins.line.me/lineit/share?url=${encodeURIComponent(url)}&text=${encodeURIComponent(shareText)}`, '_blank');
+          break;
+
+        case 'copy':
+          copyToClipboard(shareText);
+          break;
+
+        default:
+          if (navigator.share) {
+            navigator.share({
+              title: 'K-Fortunes 사주 쌍둥이 스타',
+              text: shareText,
+              url: url
+            }).catch(console.error);
+          }
+      }
+
+      // GA Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'share_kstar_twin', {
+          'event_category': 'Sharing',
+          'event_label': `${platform}_${celeb.name}`,
+          'value': score
+        });
+      }
+    }
+
+    function copyToClipboard(text) {
+      navigator.clipboard.writeText(text).then(() => {
+        // Show toast
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--success); color: white; padding: 1rem 2rem; border-radius: 10px; z-index: 10000; font-weight: 600;';
+        toast.textContent = '📋 Copied to clipboard!';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      }).catch(console.error);
+    }
+
+    // 유명인 매치 표시 (개선된 버전)
+    function displayCelebrityMatches(dayMaster) {
+      const container = document.getElementById('celebrity-matches');
+      const matches = Celebrities.getRandomMatch(dayMaster, 2);
+
+      if (matches.length === 0) {
+        container.innerHTML = '<p style="color: var(--text-secondary);">No celebrity matches found.</p>';
+        return;
+      }
+
+      container.innerHTML = matches.map(celeb => {
+        const matchType = Celebrities.getMatchType(celeb, dayMaster);
+        return `
+          <div class="celebrity-match">
+            <div class="celebrity-icon">${celeb.image}</div>
+            <div class="celebrity-info">
+              <div class="celebrity-name">${celeb.name}</div>
+              <div class="celebrity-korean">${celeb.korean}</div>
+              <span class="celebrity-category">${celeb.category}</span>
+              <span class="match-type-badge" title="${matchType.label}">${matchType.emoji}</span>
+            </div>
+          </div>
+        `;
+      }).join('');
+
+      // 매치 메시지 추가
+      const message = Celebrities.getMatchMessage(matches[0], dayMaster);
+      container.innerHTML += `<div class="match-message">${message}</div>`;
+    }
+  </script>
+  <style>
+    .match-type-badge {
+      margin-left: 0.5rem;
+      font-size: 1rem;
+    }
+
+    /* ============================================ */
+    /* 🌟 K-Star Saju Twin Styles (바이럴 핵심) */
+    /* ============================================ */
+    .kstar-twin-section {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
+      border-radius: 20px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      border: 2px solid rgba(139, 92, 246, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .kstar-twin-section::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 50%);
+      animation: shimmer 3s infinite;
+    }
+
+    @keyframes shimmer {
+      0%, 100% { transform: rotate(0deg); }
+      50% { transform: rotate(180deg); }
+    }
+
+    .kstar-twin-badge {
+      display: inline-block;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin-bottom: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kstar-twin-title {
+      font-size: 1.5rem;
+      margin-bottom: 1.5rem;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .kstar-twin-card {
+      background: var(--bg-primary);
+      border-radius: 16px;
+      padding: 1.5rem;
+      position: relative;
+      z-index: 1;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+    }
+
+    .twin-loading {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .twin-spinner {
+      width: 50px;
+      height: 50px;
+      border: 3px solid var(--border);
+      border-top-color: var(--accent);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+
+    .twin-result {
+      text-align: center;
+    }
+
+    .twin-celebrity-icon {
+      font-size: 5rem;
+      display: block;
+      margin-bottom: 1rem;
+      animation: bounce 2s ease-in-out infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .twin-celebrity-name {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 0.25rem;
+    }
+
+    .twin-celebrity-korean {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .twin-celebrity-group {
+      display: inline-block;
+      background: rgba(139, 92, 246, 0.2);
+      padding: 0.25rem 0.75rem;
+      border-radius: 15px;
+      font-size: 0.85rem;
+      color: var(--accent-light);
+      margin-bottom: 1rem;
+    }
+
+    .twin-score-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.5rem 0;
+    }
+
+    .twin-score {
+      font-size: 3rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .twin-stars {
+      font-size: 1.5rem;
+      letter-spacing: 2px;
+    }
+
+    .twin-grade {
+      display: inline-block;
+      background: linear-gradient(135deg, #fbbf24, #f59e0b);
+      color: #1a1a2e;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      margin-bottom: 1rem;
+    }
+
+    .twin-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      justify-content: center;
+      margin: 1rem 0;
+    }
+
+    .twin-detail-tag {
+      background: var(--bg-secondary);
+      padding: 0.4rem 0.8rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      color: var(--accent-light);
+      border: 1px solid var(--border);
+    }
+
+    .twin-message {
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      padding: 1rem;
+      border-radius: 12px;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      color: var(--text-secondary);
+      border-left: 3px solid var(--accent);
+      margin-top: 1rem;
+    }
+
+    /* Share Buttons */
+    .kstar-share-buttons {
+      margin-top: 1.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    .share-prompt {
+      text-align: center;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+    }
+
+    .share-btn-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+    }
+
+    .kstar-share-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.3rem;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      transition: all 0.2s;
+    }
+
+    .kstar-share-btn .btn-icon {
+      font-size: 1.5rem;
+    }
+
+    .kstar-share-btn.twitter {
+      background: #000;
+      color: white;
+    }
+
+    .kstar-share-btn.facebook {
+      background: #1877F2;
+      color: white;
+    }
+
+    .kstar-share-btn.whatsapp {
+      background: #25D366;
+      color: white;
+    }
+
+    .kstar-share-btn.telegram {
+      background: #0088cc;
+      color: white;
+    }
+
+    .kstar-share-btn.line {
+      background: #00B900;
+      color: white;
+    }
+
+    .kstar-share-btn.copy {
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+
+    .kstar-share-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+
+    .more-twins {
+      text-align: center;
+      margin-top: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .kstar-twin-section {
+        padding: 1.5rem;
+      }
+
+      .twin-celebrity-icon {
+        font-size: 4rem;
+      }
+
+      .twin-celebrity-name {
+        font-size: 1.4rem;
+      }
+
+      .twin-score {
+        font-size: 2.5rem;
+      }
+
+      .share-btn-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .kstar-share-btn {
+        flex-direction: row;
+        gap: 0.5rem;
+      }
+    }
+
+    /* Celebrity Compatibility Styles */
+    .celebrity-compatibility-cta {
+      margin-top: 1.5rem;
+      padding: 1rem;
+      background: linear-gradient(135deg, rgba(236, 72, 153, 0.1), rgba(139, 92, 246, 0.1));
+      border-radius: 12px;
+      text-align: center;
+      border: 1px dashed var(--accent-pink);
+    }
+
+    .btn-compatibility {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: white;
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 25px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+
+    .btn-compatibility:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
+    }
+
+    .celebrity-search {
+      margin-bottom: 1rem;
+    }
+
+    .celebrity-search input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      border: 2px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-secondary);
+      color: var(--text-primary);
+      font-size: 1rem;
+    }
+
+    .celebrity-search input:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .celebrity-category-tabs {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .cat-tab {
+      padding: 0.4rem 0.8rem;
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      cursor: pointer;
+      font-size: 0.85rem;
+      transition: all 0.2s;
+    }
+
+    .cat-tab.active, .cat-tab:hover {
+      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+      color: white;
+      border-color: transparent;
+    }
+
+    .celebrity-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 0.75rem;
+      max-height: 400px;
+      overflow-y: auto;
+      padding: 0.5rem;
+    }
+
+    .celebrity-select-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .celebrity-select-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--accent);
+      box-shadow: 0 5px 15px rgba(139, 92, 246, 0.2);
+    }
+
+    .celebrity-select-card .celeb-icon {
+      font-size: 2.5rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .celebrity-select-card .celeb-name {
+      font-weight: 600;
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    .celebrity-select-card .celeb-korean {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+    }
+
+    /* Compatibility Result Styles */
+    .compatibility-header {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .compatibility-header .celeb-large-icon {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+
+    .compatibility-header h3 {
+      margin: 0.5rem 0 0.25rem;
+    }
+
+    .compatibility-score-main {
+      text-align: center;
+      margin-bottom: 1.5rem;
+    }
+
+    .score-circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: conic-gradient(
+        var(--accent) calc(var(--score) * 1%),
+        var(--bg-secondary) 0
+      );
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1rem;
+      position: relative;
+    }
+
+    .score-circle::before {
+      content: '';
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      background: var(--bg-primary);
+      position: absolute;
+    }
+
+    .score-number {
+      position: relative;
+      font-size: 2.5rem;
+      font-weight: bold;
+      background: linear-gradient(135deg, var(--accent), var(--accent-pink));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .score-label {
+      font-size: 1.1rem;
+      color: var(--text-secondary);
+    }
+
+    .compatibility-details {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .detail-item {
+      text-align: center;
+      padding: 0.75rem;
+      background: var(--bg-secondary);
+      border-radius: 12px;
+    }
+
+    .detail-item .detail-label {
+      font-size: 0.75rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.25rem;
+    }
+
+    .detail-item .detail-value {
+      font-size: 1.25rem;
+      font-weight: bold;
+      color: var(--accent-light);
+    }
+
+    /* Premium Section with Blur */
+    .compatibility-premium-section {
+      position: relative;
+      margin-bottom: 1.5rem;
+    }
+
+    .premium-content-blur {
+      filter: blur(4px);
+      user-select: none;
+      pointer-events: none;
+    }
+
+    .premium-unlock-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.3);
+      border-radius: 12px;
+      z-index: 10;
+    }
+
+    .premium-unlock-overlay .lock-icon {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .premium-unlock-overlay p {
+      color: white;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+    }
+
+    .premium-unlock-overlay .btn-small {
+      background: linear-gradient(135deg, #ec4899, #8b5cf6);
+      color: white;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      cursor: not-allowed;
+      opacity: 0.7;
+    }
+
+    .blurred-analysis {
+      background: var(--bg-secondary);
+      padding: 1rem;
+      border-radius: 12px;
+    }
+
+    .blurred-analysis h4 {
+      margin-bottom: 0.5rem;
+    }
+
+    .blurred-analysis ul {
+      padding-left: 1.5rem;
+      margin: 0.5rem 0;
+    }
+
+    .blurred-analysis li {
+      margin-bottom: 0.25rem;
+    }
+
+    .compatibility-actions {
+      display: flex;
+      gap: 0.75rem;
+      justify-content: center;
+    }
+
+    .compatibility-actions button {
+      flex: 1;
+    }
+
+    @media (max-width: 768px) {
+      .celebrity-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .compatibility-details {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 0.5rem;
+      }
+
+      .detail-item {
+        padding: 0.5rem;
+      }
+
+      .detail-item .detail-value {
+        font-size: 1rem;
+      }
+
+      .compatibility-actions {
+        flex-direction: column;
+      }
+    }
+  </style>
+  <script>
+    // Native share button visibility
+    if (navigator.share) {
+      document.getElementById('native-share-btn').style.display = 'flex';
+    }
+
+    // ============================================
+    // Celebrity Compatibility Functions
+    // ============================================
+    let currentCategory = 'all';
+    let selectedCelebrity = null;
+
+    function openCelebritySelector() {
+      const modal = document.getElementById('celebrity-selector-modal');
+      modal.classList.add('show');
+      populateCelebrityGrid();
+
+      // GA event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'open_celebrity_selector', {
+          'event_category': 'Engagement',
+          'event_label': 'Celebrity Compatibility'
+        });
+      }
+    }
+
+    function closeCelebritySelector() {
+      document.getElementById('celebrity-selector-modal').classList.remove('show');
+    }
+
+    function populateCelebrityGrid() {
+      const grid = document.getElementById('celebrity-grid');
+      const searchTerm = document.getElementById('celebrity-search-input').value.toLowerCase();
+
+      let filtered = Celebrities.data;
+
+      // Filter by category
+      if (currentCategory !== 'all') {
+        filtered = filtered.filter(c => c.category === currentCategory);
+      }
+
+      // Filter by search
+      if (searchTerm) {
+        filtered = filtered.filter(c =>
+          c.name.toLowerCase().includes(searchTerm) ||
+          c.korean.includes(searchTerm)
+        );
+      }
+
+      grid.innerHTML = filtered.map(celeb => `
+        <div class="celebrity-select-card" onclick="selectCelebrity('${celeb.name}')">
+          <span class="celeb-icon">${celeb.image}</span>
+          <span class="celeb-name">${celeb.name}</span>
+          <span class="celeb-korean">${celeb.korean}</span>
+        </div>
+      `).join('');
+    }
+
+    function filterCelebrities() {
+      populateCelebrityGrid();
+    }
+
+    function filterByCategory(category) {
+      currentCategory = category;
+
+      // Update active tab
+      document.querySelectorAll('.cat-tab').forEach(tab => {
+        tab.classList.remove('active');
+        if (tab.textContent === category || (category === 'all' && tab.textContent === 'All')) {
+          tab.classList.add('active');
+        }
+      });
+
+      populateCelebrityGrid();
+    }
+
+    function selectCelebrity(celebName) {
+      if (!sajuResult) return;
+
+      const celebrity = Celebrities.data.find(c => c.name === celebName);
+      if (!celebrity) return;
+
+      selectedCelebrity = celebrity;
+      closeCelebritySelector();
+
+      // Calculate compatibility
+      const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
+      showCompatibilityResult(celebrity, compatibility);
+
+      // GA event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'check_celebrity_compatibility', {
+          'event_category': 'Engagement',
+          'event_label': celebName,
+          'value': compatibility.overall
+        });
+      }
+    }
+
+    function showCompatibilityResult(celebrity, compatibility) {
+      const modal = document.getElementById('compatibility-result-modal');
+
+      // Header
+      document.getElementById('compatibility-header').innerHTML = `
+        <span class="celeb-large-icon">${celebrity.image}</span>
+        <h3>${celebrity.name}</h3>
+        <p style="color: var(--text-secondary);">${celebrity.korean} · ${celebrity.category}</p>
+        <p style="margin-top: 0.5rem; color: var(--accent-light);">${compatibility.matchType.emoji} ${compatibility.matchType.label}</p>
+      `;
+
+      // Main score
+      document.getElementById('compatibility-score-main').innerHTML = `
+        <div class="score-circle" style="--score: ${compatibility.overall}">
+          <span class="score-number">${compatibility.overall}%</span>
+        </div>
+        <div class="score-label">${compatibility.relationDesc}</div>
+      `;
+
+      // Detail scores
+      document.getElementById('compatibility-details').innerHTML = `
+        <div class="detail-item">
+          <div class="detail-label">🧠 Personality</div>
+          <div class="detail-value">${compatibility.personality}%</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">💕 Emotional</div>
+          <div class="detail-value">${compatibility.emotional}%</div>
+        </div>
+        <div class="detail-item">
+          <div class="detail-label">🔮 Long-term</div>
+          <div class="detail-value">${compatibility.longTerm}%</div>
+        </div>
+      `;
+
+      // Premium section with blur
+      const premium = compatibility.premiumAnalysis;
+      document.getElementById('compatibility-premium').innerHTML = `
+        <div class="premium-unlock-overlay">
+          <span class="lock-icon">🔒</span>
+          <p>Premium Analysis</p>
+          <button class="btn-small" disabled>🚀 Coming Soon</button>
+        </div>
+        <div class="blurred-analysis premium-content-blur">
+          <h4>💫 Detailed Analysis</h4>
+          <p>${premium.intro}</p>
+          <h4 style="margin-top: 1rem;">✨ Strengths</h4>
+          <ul>
+            ${premium.strengths.map(s => `<li>${s}</li>`).join('')}
+          </ul>
+          <h4 style="margin-top: 1rem;">🌱 Challenges</h4>
+          <ul>
+            ${premium.challenges.map(c => `<li>${c}</li>`).join('')}
+          </ul>
+          <h4 style="margin-top: 1rem;">🍀 Lucky Meeting Time</h4>
+          <p>${premium.luckyDate}</p>
+          <h4 style="margin-top: 1rem;">💝 Advice</h4>
+          <p>${premium.advice}</p>
+        </div>
+      `;
+
+      modal.classList.add('show');
+    }
+
+    function closeCompatibilityResult() {
+      document.getElementById('compatibility-result-modal').classList.remove('show');
+    }
+
+    function shareCompatibility() {
+      if (!selectedCelebrity || !sajuResult) return;
+
+      const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
+      const text = `💘 My K-Fortunes Celebrity Compatibility!\n\n` +
+        `${selectedCelebrity.image} ${selectedCelebrity.name}: ${compatibility.overall}% match!\n` +
+        `${compatibility.matchType.emoji} ${compatibility.relationDesc}\n\n` +
+        `Check your celebrity compatibility at K-Fortunes! 🔮`;
+
+      if (navigator.share) {
+        navigator.share({
+          title: 'K-Fortunes Celebrity Compatibility',
+          text: text,
+          url: window.location.href
+        }).catch(console.error);
+      } else {
+        // Fallback to copy
+        navigator.clipboard.writeText(text + '\n' + window.location.href)
+          .then(() => {
+            alert('Copied to clipboard! 📋');
+          })
+          .catch(console.error);
+      }
+
+      // GA event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'share_celebrity_compatibility', {
+          'event_category': 'Sharing',
+          'event_label': selectedCelebrity.name
+        });
+      }
+    }
+
+    // Affiliate products based on language
+    function loadAffiliateProducts() {
+      const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+      const container = document.getElementById('affiliate-products');
+      const title = document.getElementById('affiliate-title');
+      const desc = document.getElementById('affiliate-desc');
+      const disclaimer = document.getElementById('affiliate-disclaimer');
+
+      // 언어별 제휴 상품 데이터 (한국어만 쿠팡 파트너스 사용)
+      const affiliateData = {
+        ko: {
+          title: '🎁 행운을 더하는 추천 아이템',
+          desc: '당신의 사주에 어울리는 행운 아이템을 만나보세요',
+          disclaimer: '* 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다',
+          products: [
+            { name: '묵주', icon: '📿', price: '', url: 'https://link.coupang.com/a/dAed1k', desc: '마음의 평화' },
+            { name: '십자가', icon: '✝️', price: '', url: 'https://coupa.ng/clqW7J', desc: '믿음과 보호' },
+            { name: '행운 도자기', icon: '🏺', price: '', url: 'https://link.coupang.com/a/dAeh10', desc: '복을 부르는 인테리어' },
+            { name: '행운금', icon: '🪙', price: '', url: 'https://link.coupang.com/a/dAek6j', desc: '재물운 상승' }
+          ]
+        },
+        en: {
+          title: '🎁 Lucky Items for You',
+          desc: 'Discover items that match your cosmic energy',
+          disclaimer: '* As an Amazon Associate, we earn from qualifying purchases',
+          products: [
+            { name: 'Rosary Beads', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: 'Handmade Wooden' },
+            { name: 'Owl Statue', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: 'Wisdom Symbol' },
+            { name: 'Feng Shui Bracelet', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: 'Wealth & Luck' },
+            { name: 'Tarot Cards', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: 'Beginner Set' }
+          ]
+        },
+        ja: {
+          title: '🎁 あなたへの開運アイテム',
+          desc: 'あなたの四柱に合う開運アイテム',
+          disclaimer: '* Amazonアソシエイトとして適格販売により収入を得ています',
+          products: [
+            { name: 'ロザリオ', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: '手作り木製' },
+            { name: 'フクロウ置物', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: '知恵の象徴' },
+            { name: '風水ブレスレット', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: '金運・幸運' },
+            { name: 'タロットカード', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: '初心者向け' }
+          ]
+        },
+        zh: {
+          title: '🎁 适合您的幸运物品',
+          desc: '发现与您八字相合的幸运物品',
+          disclaimer: '* 作为Amazon联盟会员，我们从符合条件的购买中获得佣金',
+          products: [
+            { name: '念珠', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: '手工木制' },
+            { name: '猫头鹰摆件', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: '智慧象征' },
+            { name: '风水手链', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: '招财纳福' },
+            { name: '塔罗牌', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: '入门套装' }
+          ]
+        },
+        vi: {
+          title: '🎁 Vật phẩm may mắn cho bạn',
+          desc: 'Khám phá vật phẩm phù hợp với tử vi của bạn',
+          disclaimer: '* Là đối tác Amazon, chúng tôi kiếm được từ các giao dịch đủ điều kiện',
+          products: [
+            { name: 'Chuỗi hạt', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: 'Gỗ thủ công' },
+            { name: 'Tượng cú', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: 'Biểu tượng trí tuệ' },
+            { name: 'Vòng phong thủy', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: 'May mắn & Tài lộc' },
+            { name: 'Bài Tarot', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: 'Bộ cho người mới' }
+          ]
+        }
+      };
+
+      const data = affiliateData[lang] || affiliateData.en;
+      const banner = document.getElementById('affiliate-banner');
+
+      // 상품이 없으면 배너 숨김
+      if (!data.products || data.products.length === 0) {
+        banner.style.display = 'none';
+        return;
+      }
+
+      banner.style.display = 'block';
+      title.textContent = data.title;
+      desc.textContent = data.desc;
+      disclaimer.textContent = data.disclaimer;
+
+      container.innerHTML = data.products.map(product => `
+        <a href="${product.url}" class="affiliate-product" target="_blank" rel="noopener sponsored"
+           onclick="if(typeof gtag !== 'undefined') gtag('event', 'affiliate_click', {'event_category': 'Monetization', 'event_label': '${product.name}'});">
+          <span class="icon">${product.icon}</span>
+          <span class="name">${product.name}</span>
+          <span class="price">${product.price}</span>
+        </a>
+      `).join('');
+    }
+
+    // 페이지 로드 시 제휴 상품 로드
+    document.addEventListener('DOMContentLoaded', function() {
+      setTimeout(loadAffiliateProducts, 2500); // 결과 로딩 후 표시
+    });
+  </script>
+
+  <!-- Userback Feedback Widget -->
+  <script>
+    window.Userback = window.Userback || {};
+    Userback.access_token = "A-dCd3pYRpaT8J3VbfGJYZcGVY9";
+    (function(d) {
+      var s = d.createElement('script');s.async = true;s.src = 'https://static.userback.io/widget/v1.js';(d.head || d.body).appendChild(s);
+    })(document);
+  </script>
+</body>
+</html>

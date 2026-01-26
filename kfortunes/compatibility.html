@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Love Compatibility Test - Korean Saju Gunghap | K-Fortunes</title>
+  <meta name="description" content="Check your love compatibility with Korean Saju Gunghap (궁합). Find out if you and your partner are destined to be together based on Four Pillars of Destiny analysis.">
+  <meta name="keywords" content="Love compatibility, Saju compatibility, 궁합, Korean astrology match, relationship compatibility, couple match test">
+  <meta name="author" content="K-Fortunes">
+  <meta name="robots" content="index, follow">
+
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://kfortunes.com/compatibility.html">
+
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="en" href="https://kfortunes.com/compatibility.html">
+  <link rel="alternate" hreflang="ko" href="https://kfortunes.com/compatibility.html?lang=ko">
+  <link rel="alternate" hreflang="x-default" href="https://kfortunes.com/compatibility.html">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="K-Fortunes">
+  <meta property="og:title" content="Love Compatibility Test - Korean Saju Gunghap">
+  <meta property="og:description" content="Are you destined together? Check your Saju compatibility based on Korean astrology.">
+  <meta property="og:image" content="https://kfortunes.com/sajucharacter.webp">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://kfortunes.com/compatibility.html">
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Love Compatibility Test - K-Fortunes">
+  <meta name="twitter:description" content="Are you destined together? Check your Saju compatibility!">
+  <meta name="twitter:image" content="https://kfortunes.com/sajucharacter.webp">
+
+  <!-- Naver Verification -->
+  <meta name="naver-site-verification" content="naver-site-verification-code">
+
+  <meta name="google-adsense-account" content="ca-pub-8992259838992521">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💕</text></svg>">
+  <link href="style.css" rel="stylesheet">
+
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "K-Fortunes Love Compatibility Test",
+    "description": "Check your love compatibility with Korean Saju Gunghap",
+    "url": "https://kfortunes.com/compatibility.html",
+    "applicationCategory": "LifestyleApplication",
+    "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}
+  }
+  </script>
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Y36C26EGSG"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Y36C26EGSG');
+  </script>
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8992259838992521" crossorigin="anonymous"></script>
+  <!-- Microsoft Clarity -->
+  <script type="text/javascript">
+    (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+    })(window, document, "clarity", "script", "v2s96lo21z");
+  </script>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <a href="/" class="logo">🔮 K-Fortunes</a>
+      <nav>
+        <a href="index.html" data-i18n="nav_fortune">Fortune</a>
+        <a href="about.html" data-i18n="nav_about">About</a>
+
+        <!-- Language Selector -->
+        <div class="lang-selector">
+          <button class="lang-btn" onclick="toggleLangMenu()" aria-label="Select language">
+            <span id="current-lang">🇺🇸 EN</span>
+            <span class="lang-arrow">▼</span>
+          </button>
+          <div class="lang-dropdown" id="lang-dropdown">
+            <button onclick="changeLang('en')">🇺🇸 English</button>
+            <button onclick="changeLang('ko')">🇰🇷 한국어</button>
+            <button onclick="changeLang('ja')">🇯🇵 日本語</button>
+            <button onclick="changeLang('zh')">🇨🇳 中文</button>
+            <button onclick="changeLang('vi')">🇻🇳 Tiếng Việt</button>
+          </div>
+        </div>
+
+        <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
+          <span class="icon-sun">☀️</span>
+          <span class="icon-moon">🌙</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="badge" data-i18n="compat_badge">💕 Love Compatibility Test</div>
+      <h1 data-i18n="compat_title">Are You <span class="gradient-text">Destined Together?</span></h1>
+      <p class="subtitle" data-i18n="compat_subtitle">Discover your compatibility based on K-Fortunes.<br>Enter both birth dates to reveal your cosmic connection.</p>
+    </section>
+
+    <form id="compatibility-form">
+      <div class="form-error" id="compatibility-form-error" role="alert" aria-live="polite" style="display: none; background: rgba(239, 68, 68, 0.1); border: 1px solid #ef4444; border-radius: 8px; padding: 1rem; margin-bottom: 1rem; color: #ef4444;"></div>
+      <div class="grid-2">
+        <!-- Person 1 -->
+        <div class="card" id="person1-form">
+          <h2 style="text-align: center; margin-bottom: 1.5rem;" data-i18n="compat_person1">👤 Person 1</h2>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="person1-year" data-i18n="form_year">Year</label>
+              <select id="person1-year" required>
+                <option value="" data-i18n="form_year">Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="person1-month" data-i18n="form_month">Month</label>
+              <select id="person1-month" required>
+                <option value="" data-i18n="form_month">Month</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="person1-day" data-i18n="form_day">Day</label>
+              <select id="person1-day" required>
+                <option value="" data-i18n="form_day">Day</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="form_gender">Gender</label>
+            <div class="gender-buttons">
+              <button type="button" class="gender-btn" data-gender="male">
+                <span class="icon">♂</span>
+                <span data-i18n="form_male">Male</span>
+              </button>
+              <button type="button" class="gender-btn" data-gender="female">
+                <span class="icon">♀</span>
+                <span data-i18n="form_female">Female</span>
+              </button>
+            </div>
+            <input type="hidden" id="person1-gender" required>
+          </div>
+        </div>
+
+        <!-- Person 2 -->
+        <div class="card" id="person2-form">
+          <h2 style="text-align: center; margin-bottom: 1.5rem;" data-i18n="compat_person2">👤 Person 2</h2>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="person2-year" data-i18n="form_year">Year</label>
+              <select id="person2-year" required>
+                <option value="" data-i18n="form_year">Year</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="person2-month" data-i18n="form_month">Month</label>
+              <select id="person2-month" required>
+                <option value="" data-i18n="form_month">Month</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="person2-day" data-i18n="form_day">Day</label>
+              <select id="person2-day" required>
+                <option value="" data-i18n="form_day">Day</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label data-i18n="form_gender">Gender</label>
+            <div class="gender-buttons">
+              <button type="button" class="gender-btn" data-gender="male">
+                <span class="icon">♂</span>
+                <span data-i18n="form_male">Male</span>
+              </button>
+              <button type="button" class="gender-btn" data-gender="female">
+                <span class="icon">♀</span>
+                <span data-i18n="form_female">Female</span>
+              </button>
+            </div>
+            <input type="hidden" id="person2-gender" required>
+          </div>
+        </div>
+      </div>
+
+      <div style="text-align: center; margin-top: 2rem; display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+        <button type="submit" class="btn-primary" id="compatibility-submit-btn" style="width: auto; padding: 1rem 3rem;" data-i18n="compat_submit">
+          💕 Calculate Compatibility
+        </button>
+        <button type="button" class="btn-secondary" onclick="clearCompatibilityForm()" style="width: auto; padding: 1rem 2rem; background: transparent; border: 2px solid var(--accent); color: var(--accent);" data-i18n="compat_clear">
+          🔄 Clear Form
+        </button>
+      </div>
+    </form>
+
+    <!-- 결과 섹션 -->
+    <section id="compatibility-result" style="display: none; margin-top: 3rem;">
+      <div class="card">
+        <h2 style="text-align: center; margin-bottom: 1.5rem;" data-i18n="compat_result">💕 Your Compatibility</h2>
+
+        <div id="score-circle-container">
+          <!-- 동적으로 생성됨 -->
+        </div>
+
+        <div style="text-align: center; margin-bottom: 2rem;">
+          <h3 id="compatibility-rating" style="font-size: 1.5rem; margin-bottom: 0.5rem;"></h3>
+          <p id="compatibility-description" style="color: var(--text-secondary);"></p>
+        </div>
+
+        <div class="grid-2">
+          <div class="section-card" style="margin-bottom: 0;">
+            <h3 data-i18n="compat_strengths">💪 Strengths</h3>
+            <ul id="strengths-list">
+              <!-- 동적으로 생성됨 -->
+            </ul>
+          </div>
+          <div class="section-card" style="margin-bottom: 0;">
+            <h3 data-i18n="compat_challenges">🌱 Challenges</h3>
+            <ul id="challenges-list">
+              <!-- 동적으로 생성됨 -->
+            </ul>
+          </div>
+        </div>
+
+        <!-- 공유 버튼 -->
+        <div style="text-align: center; margin-top: 2rem;">
+          <button class="btn-primary" onclick="shareCompatibilityResult()" style="width: auto;" data-i18n="compat_share">
+            📤 Share Result
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 설명 카드 -->
+    <section class="features" style="margin-top: 3rem;">
+      <div class="feature-card">
+        <div class="feature-icon">☯️</div>
+        <h3 data-i18n="compat_yinyang">Yin-Yang Balance</h3>
+        <p data-i18n="compat_yinyang_desc">Complementary energies create harmony and attraction</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🔥</div>
+        <h3 data-i18n="compat_elements">Five Elements</h3>
+        <p data-i18n="compat_elements_desc">Element interactions reveal relationship dynamics</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">🐉</div>
+        <h3 data-i18n="compat_zodiac">Zodiac Harmony</h3>
+        <p data-i18n="compat_zodiac_desc">Chinese zodiac compatibility adds another layer</p>
+      </div>
+    </section>
+  </main>
+
+  <!-- SNS 공유 모달 -->
+  <div class="share-modal" id="share-modal" onclick="if(event.target === this) closeShareModal()">
+    <div class="share-modal-content">
+      <button class="share-modal-close" onclick="closeShareModal()" aria-label="Close">&times;</button>
+      <h3 data-i18n="share_title">📤 Share Your Compatibility</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;" data-i18n="share_desc">Share your love compatibility result!</p>
+      <div class="share-grid">
+        <button class="share-btn share-twitter" onclick="shareToSNSCompatibility('twitter')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          <span>X / Twitter</span>
+        </button>
+        <button class="share-btn share-facebook" onclick="shareToSNSCompatibility('facebook')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          <span>Facebook</span>
+        </button>
+        <button class="share-btn share-whatsapp" onclick="shareToSNSCompatibility('whatsapp')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          <span>WhatsApp</span>
+        </button>
+        <button class="share-btn share-telegram" onclick="shareToSNSCompatibility('telegram')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+          <span>Telegram</span>
+        </button>
+        <button class="share-btn share-reddit" onclick="shareToSNSCompatibility('reddit')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0zm5.01 4.744c.688 0 1.25.561 1.25 1.249a1.25 1.25 0 0 1-2.498.056l-2.597-.547-.8 3.747c1.824.07 3.48.632 4.674 1.488.308-.309.73-.491 1.207-.491.968 0 1.754.786 1.754 1.754 0 .716-.435 1.333-1.01 1.614a3.111 3.111 0 0 1 .042.52c0 2.694-3.13 4.87-7.004 4.87-3.874 0-7.004-2.176-7.004-4.87 0-.183.015-.366.043-.534A1.748 1.748 0 0 1 4.028 12c0-.968.786-1.754 1.754-1.754.463 0 .898.196 1.207.49 1.207-.883 2.878-1.43 4.744-1.487l.885-4.182a.342.342 0 0 1 .14-.197.35.35 0 0 1 .238-.042l2.906.617a1.214 1.214 0 0 1 1.108-.701z"/></svg>
+          <span>Reddit</span>
+        </button>
+        <button class="share-btn share-kakao" onclick="shareToSNSCompatibility('kakaotalk')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M12 3c5.799 0 10.5 3.664 10.5 8.185 0 4.52-4.701 8.184-10.5 8.184a13.5 13.5 0 0 1-1.727-.11l-4.408 2.883c-.501.265-.678.236-.472-.413l.892-3.678c-2.88-1.46-4.785-3.99-4.785-6.866C1.5 6.665 6.201 3 12 3z"/></svg>
+          <span>KakaoTalk</span>
+        </button>
+        <button class="share-btn share-line" onclick="shareToSNSCompatibility('line')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.63-.63h2.386c.346 0 .627.285.627.63 0 .349-.281.63-.63.63H17.61v1.125h1.755z"/></svg>
+          <span>LINE</span>
+        </button>
+        <button class="share-btn share-copy" onclick="shareToSNSCompatibility('copy')">
+          <svg viewBox="0 0 24 24" width="24" height="24" fill="currentColor"><path d="M16 1H4c-1.1 0-2 .9-2 2v14h2V3h12V1zm3 4H8c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h11c1.1 0 2-.9 2-2V7c0-1.1-.9-2-2-2zm0 16H8V7h11v14z"/></svg>
+          <span>Copy Link</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    <p data-i18n="footer_copyright">© 2026 K-Fortunes. All rights reserved.</p>
+    <p style="margin-top: 0.5rem;">
+      <a href="privacy.html" style="color: var(--text-secondary);" data-i18n="footer_privacy">Privacy Policy</a> ·
+      <a href="terms.html" style="color: var(--text-secondary);" data-i18n="footer_terms">Terms of Service</a> ·
+      <a href="contact.html" style="color: var(--text-secondary);" data-i18n="footer_contact">Contact</a> ·
+      <a href="faq.html" style="color: var(--text-secondary);" data-i18n="footer_faq">FAQ</a>
+    </p>
+    <p class="disclaimer" data-i18n="footer_disclaimer">This is for entertainment purposes only. Not a substitute for professional advice.</p>
+  </footer>
+
+  <script src="js/i18n.js"></script>
+  <script src="js/saju.js"></script>
+  <script src="js/app.js"></script>
+  <script>
+    // Language selector functions
+    function toggleLangMenu() {
+      const dropdown = document.getElementById('lang-dropdown');
+      dropdown.classList.toggle('show');
+    }
+
+    function changeLang(lang) {
+      i18n.setLanguage(lang);
+      document.getElementById('lang-dropdown').classList.remove('show');
+
+      // Update current language display
+      const langInfo = i18n.languages[lang];
+      document.getElementById('current-lang').textContent = langInfo.flag + ' ' + lang.toUpperCase();
+    }
+
+    // Close dropdown when clicking outside
+    document.addEventListener('click', function(e) {
+      if (!e.target.closest('.lang-selector')) {
+        document.getElementById('lang-dropdown').classList.remove('show');
+      }
+    });
+
+    // 궁합 페이지 직접 초기화
+    document.addEventListener('DOMContentLoaded', function() {
+      // Initialize language display
+      const langInfo = i18n.languages[i18n.currentLang];
+      document.getElementById('current-lang').textContent = langInfo.flag + ' ' + i18n.currentLang.toUpperCase();
+
+      initializeCompatibilityPage();
+    });
+  </script>
+  <!-- Userback Feedback Widget -->
+  <script>
+    window.Userback = window.Userback || {};
+    Userback.access_token = "A-dCd3pYRpaT8J3VbfGJYZcGVY9";
+    (function(d) {
+      var s = d.createElement("script");s.async = true;s.src = "https://static.userback.io/widget/v1.js";(d.head || d.body).appendChild(s);
+    })(document);
+  </script>
+
+</body>
+</html>
