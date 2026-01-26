@@ -152,7 +152,7 @@ function handleFormSubmit() {
     const submitBtn = document.getElementById('submit-btn');
     submitBtn.disabled = true;
     submitBtn.classList.add('btn-loading');
-    submitBtn.innerHTML = '🔮 Revealing your destiny...';
+    submitBtn.innerHTML = '🔮 Analyzing your personality...';
 
     // GA Event Tracking
     if (typeof gtag !== 'undefined') {
@@ -613,11 +613,11 @@ function closeShareModal() {
 function shareToSNS(platform) {
   const siteUrl = 'https://kfortunes.com';
   const dayMasterEl = document.getElementById('day-master');
-  const dayMaster = dayMasterEl ? dayMasterEl.textContent : 'my destiny';
+  const dayMaster = dayMasterEl ? dayMasterEl.textContent : 'my personality';
 
-  const shareText = encodeURIComponent(`🔮 I just discovered my Korean Saju destiny!\n\nMy Day Master: ${dayMaster}\n\nDiscover your fortune too!`);
+  const shareText = encodeURIComponent(`🔮 I just discovered my Korean Saju personality profile!\n\nMy Day Master: ${dayMaster}\n\nDiscover yours too!`);
   const shareUrl = encodeURIComponent(siteUrl);
-  const hashtags = encodeURIComponent('KFortunes,Saju,사주,KoreanFortune');
+  const hashtags = encodeURIComponent('KFortunes,Saju,사주,PersonalityTest');
 
   let shareLink = '';
 
@@ -635,7 +635,7 @@ function shareToSNS(platform) {
       shareLink = `https://t.me/share/url?url=${shareUrl}&text=${shareText}`;
       break;
     case 'reddit':
-      shareLink = `https://www.reddit.com/submit?url=${shareUrl}&title=${encodeURIComponent('I discovered my Korean Saju destiny! 🔮')}`;
+      shareLink = `https://www.reddit.com/submit?url=${shareUrl}&title=${encodeURIComponent('I discovered my Korean Saju personality! 🔮')}`;
       break;
     case 'linkedin':
       shareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;

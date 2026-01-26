@@ -18,15 +18,15 @@ const i18n = {
     // ============================================
     en: {
       // Header & Navigation
-      nav_fortune: 'Fortune',
+      nav_fortune: 'Personality',
       nav_compatibility: 'Compatibility',
       nav_about: 'About',
 
       // Hero Section
-      hero_badge: '✨ Free Saju Reading · Find Your K-Star Soulmate!',
+      hero_badge: '✨ Free Saju Reading · Find Your K-Star Match!',
       hero_title: 'K-Fortunes',
-      hero_tagline: 'Am I Born with a K-Star\'s Destiny?',
-      hero_subtitle: 'Check if you share the same fate as your favorite K-Pop idols & K-Drama stars! BTS, BLACKPINK, IU, Park Seo-joon... Who\'s your Saju Twin?',
+      hero_tagline: 'Which K-Star Matches Your Personality?',
+      hero_subtitle: 'Check if you share similar personality traits with your favorite K-Pop idols & K-Drama stars! BTS, BLACKPINK, IU, Park Seo-joon... Who\'s your Saju Twin?',
 
       // Form
       form_title: 'Enter Your Birth Information',
@@ -39,7 +39,7 @@ const i18n = {
       form_gender: 'Gender',
       form_male: 'Male',
       form_female: 'Female',
-      form_submit: '🔮 Reveal My Fortune',
+      form_submit: '🔮 Discover My Personality',
       form_analyzing: 'Analyzing...',
 
       // Features
@@ -48,7 +48,7 @@ const i18n = {
       feature_career: 'Career & Wealth',
       feature_career_desc: 'Find your path to success and prosperity',
       feature_love: 'Love & Relationships',
-      feature_love_desc: 'Understand your romantic destiny',
+      feature_love_desc: 'Explore relationship compatibility insights',
 
       // Result Page
       result_title: 'Your Four Pillars Revealed',
@@ -61,7 +61,7 @@ const i18n = {
       result_hour_pillar: 'Hour',
       result_elements: 'Five Elements Balance',
       result_celebrity: 'Celebrity Saju Match',
-      result_celebrity_desc: 'You share similar cosmic energy with:',
+      result_celebrity_desc: 'You share similar personality traits with:',
       result_personality: 'Personality',
       result_career: 'Career Paths',
       result_love: 'Love & Relationships',
@@ -73,13 +73,13 @@ const i18n = {
       result_new: '🔮 New Reading',
 
       // Loading
-      loading_text: 'Analyzing the cosmic energies...',
-      loading_subtext: 'Reading your Four Pillars of Destiny',
+      loading_text: 'Analyzing your personality patterns...',
+      loading_subtext: 'Reading your Four Pillars profile',
 
       // Compatibility
-      compat_badge: '💕 Love Compatibility Test',
-      compat_title: 'Are You Destined Together?',
-      compat_subtitle: 'Discover your compatibility based on Korean Saju. Enter both birth dates to reveal your cosmic connection.',
+      compat_badge: '💕 Compatibility Test',
+      compat_title: 'Check Your Compatibility',
+      compat_subtitle: 'Discover your compatibility based on Korean Saju. Enter both birth dates to reveal your personality match.',
       compat_person1: '👤 Person 1',
       compat_person2: '👤 Person 2',
       compat_submit: '💕 Calculate Compatibility',
@@ -102,7 +102,7 @@ const i18n = {
       // About Page
       about_badge: '📚 Learn About Saju',
       about_title: 'The Art of K-Fortunes',
-      about_subtitle: "Discover the ancient wisdom of Saju (四柱), Korea's traditional system of destiny analysis.",
+      about_subtitle: "Discover the wisdom of Saju (四柱), Korea's traditional system of personality analysis.",
       about_cta_fortune: '🔮 Get Your Free Reading',
       about_cta_compat: '💕 Check Compatibility',
 
@@ -139,15 +139,15 @@ const i18n = {
     // ============================================
     ko: {
       // Header & Navigation
-      nav_fortune: '운세',
+      nav_fortune: '성격분석',
       nav_compatibility: '궁합',
       nav_about: '소개',
 
       // Hero Section
-      hero_badge: '✨ 무료 사주 · 나의 K-Star 소울메이트 찾기!',
+      hero_badge: '✨ 무료 사주 · 나의 K-Star 성격 매칭!',
       hero_title: 'K-Fortunes',
-      hero_tagline: '나는 K-Star의 운명을 타고났을까?',
-      hero_subtitle: 'BTS, BLACKPINK, IU, 박서준... 내가 좋아하는 K-Pop 아이돌, K-Drama 스타와 같은 사주인지 확인해보세요!',
+      hero_tagline: '나와 닮은 K-Star는 누구일까?',
+      hero_subtitle: 'BTS, BLACKPINK, IU, 박서준... 내가 좋아하는 K-Pop 아이돌, K-Drama 스타와 비슷한 성격인지 확인해보세요!',
 
       // Form
       form_title: '생년월일을 입력하세요',
@@ -160,7 +160,7 @@ const i18n = {
       form_gender: '성별',
       form_male: '남성',
       form_female: '여성',
-      form_submit: '🔮 내 운세 보기',
+      form_submit: '🔮 내 성격 알아보기',
       form_analyzing: '분석 중...',
 
       // Features
@@ -194,12 +194,12 @@ const i18n = {
       result_new: '🔮 다시 보기',
 
       // Loading
-      loading_text: '우주의 기운을 분석하고 있습니다...',
+      loading_text: '성격 패턴을 분석하고 있습니다...',
       loading_subtext: '사주팔자를 읽고 있습니다',
 
       // Compatibility
       compat_badge: '💕 궁합 테스트',
-      compat_title: '우리는 천생연분일까요?',
+      compat_title: '우리의 궁합은?',
       compat_subtitle: '한국 사주로 알아보는 궁합. 두 사람의 생년월일을 입력하세요.',
       compat_person1: '👤 첫 번째 사람',
       compat_person2: '👤 두 번째 사람',
@@ -222,9 +222,9 @@ const i18n = {
 
       // About Page
       about_badge: '📚 사주에 대해 알아보기',
-      about_title: 'K-Fortunes의 예술',
-      about_subtitle: '사주(四柱)의 고대 지혜를 발견하세요. 한국의 전통적인 운명 분석 시스템입니다.',
-      about_cta_fortune: '🔮 무료로 운세 보기',
+      about_title: 'K-Fortunes 소개',
+      about_subtitle: '사주(四柱)의 지혜를 발견하세요. 한국의 전통적인 성격 분석 시스템입니다.',
+      about_cta_fortune: '🔮 무료로 성격 분석 보기',
       about_cta_compat: '💕 궁합 보기',
 
       // Footer
@@ -260,7 +260,7 @@ const i18n = {
     // ============================================
     ja: {
       // Header & Navigation
-      nav_fortune: '運勢',
+      nav_fortune: '性格分析',
       nav_compatibility: '相性',
       nav_about: '紹介',
 
@@ -381,7 +381,7 @@ const i18n = {
     // ============================================
     zh: {
       // Header & Navigation
-      nav_fortune: '运势',
+      nav_fortune: '性格分析',
       nav_compatibility: '合婚',
       nav_about: '关于',
 
@@ -502,7 +502,7 @@ const i18n = {
     // ============================================
     vi: {
       // Header & Navigation
-      nav_fortune: 'Vận mệnh',
+      nav_fortune: 'Tính cách',
       nav_compatibility: 'Hợp tuổi',
       nav_about: 'Giới thiệu',
 
