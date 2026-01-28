@@ -1,4 +1,4 @@
-// Cloudflare Pages Function - Create Polar Checkout Session
+// Cloudflare Pages Function - Create Polar Checkout Session (v2)
 
 const PRODUCTS = {
   basic: '066396ed-5c5e-46f7-8d71-8d0ca7863b9c',
