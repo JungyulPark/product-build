@@ -51,7 +51,7 @@ const i18n = {
       feature_love_desc: 'Explore relationship compatibility insights',
 
       // Result Page
-      result_title: 'Your Four Pillars Revealed',
+      result_title: 'Your Cosmic Profile',
       result_birth_date: 'Birth Date',
       result_day_master: 'Day Master',
       result_four_pillars: 'Four Pillars (四柱)',

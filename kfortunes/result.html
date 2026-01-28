@@ -341,11 +341,10 @@
       </div>
     </div>
 
-    <!-- GPT AI Analysis Teaser (shown when GPT is not yet enabled) -->
+    <!-- GPT AI Analysis - Purchase CTA -->
     <div class="section-card gpt-teaser" id="gpt-teaser-section">
       <div class="gpt-teaser-badge">AI Powered</div>
       <h3>🤖 AI Deep Analysis</h3>
-      <p class="gpt-teaser-subtitle">Coming Soon</p>
       <p class="gpt-teaser-desc">Unlock personalized AI-powered insights based on your Four Pillars:</p>
       <ul class="gpt-teaser-list">
         <li>🎯 In-depth Personality Profile</li>
@@ -356,7 +355,10 @@
         <li>📅 2025-2026 Year Forecast</li>
       </ul>
       <div class="gpt-teaser-cta">
-        <span class="gpt-teaser-cta-text">Powered by GPT-4o &middot; Available Soon</span>
+        <button class="btn-purchase" onclick="purchaseBasicAnalysis()">
+          🔓 Unlock AI Analysis — $2.99
+        </button>
+        <span class="gpt-teaser-cta-text">One-time purchase &middot; Powered by GPT-4o</span>
       </div>
     </div>
 
@@ -557,6 +559,9 @@
     </div>
   </div>
 
+  <!-- Polar Checkout Embed -->
+  <script defer src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+
   <script src="js/i18n.js"></script>
   <script src="js/saju.js"></script>
   <script src="js/celebrities.js"></script>
@@ -593,8 +598,10 @@
             }
           }
 
-          // GPT 분석: 가용 여부 체크 후 로드 (mock 자동 호출 비활성화)
-          checkGPTAvailability();
+          // GPT: 결제 완료된 경우에만 자동 로드
+          if (KStarConfig.hasPurchased('basic')) {
+            loadPurchasedGPTFortune();
+          }
         } catch (error) {
           console.error('Error initializing result page:', error);
           document.getElementById('loading-overlay').innerHTML = `
@@ -665,29 +672,89 @@
       `;
     }
 
-    // GPT 가용 여부 체크 → 활성화 시 로드, 미활성화 시 티저 유지
-    async function checkGPTAvailability() {
+    // Purchase Basic AI Analysis via Polar
+    function purchaseBasicAnalysis() {
+      const checkoutLink = KStarConfig.tiers.basic.polarCheckoutLink;
+      if (!checkoutLink) {
+        alert('Payment system is being set up. Please try again soon!');
+        return;
+      }
+
+      if (typeof PolarEmbedCheckout !== 'undefined') {
+        PolarEmbedCheckout.create(checkoutLink, {
+          theme: KStarConfig.polar.theme,
+          onLoaded: () => console.log('Checkout loaded'),
+        }).then(checkout => {
+          checkout.addEventListener('confirmed', () => {
+            KStarConfig.storePurchase('basic');
+            loadPurchasedGPTFortune();
+          });
+        }).catch(err => console.error('Checkout error:', err));
+      } else {
+        window.open(checkoutLink, '_blank');
+      }
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          'event_category': 'Purchase',
+          'event_label': 'basic_ai_analysis',
+          'value': 2.99
+        });
+      }
+    }
+
+    // Purchase Compatibility AI via Polar
+    function purchaseCompatibilityAnalysis() {
+      const checkoutLink = KStarConfig.tiers.compatibility.polarCheckoutLink;
+      if (!checkoutLink) {
+        alert('Payment system is being set up. Please try again soon!');
+        return;
+      }
+
+      if (typeof PolarEmbedCheckout !== 'undefined') {
+        PolarEmbedCheckout.create(checkoutLink, {
+          theme: KStarConfig.polar.theme,
+          onLoaded: () => console.log('Checkout loaded'),
+        }).then(checkout => {
+          checkout.addEventListener('confirmed', () => {
+            KStarConfig.storePurchase('compatibility');
+            // Reload compatibility for selected celebrity
+            if (selectedCelebrity && sajuResult) {
+              const compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
+              loadGPTCompatibility(selectedCelebrity, compat);
+            }
+          });
+        }).catch(err => console.error('Checkout error:', err));
+      } else {
+        window.open(checkoutLink, '_blank');
+      }
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'begin_checkout', {
+          'event_category': 'Purchase',
+          'event_label': 'compatibility_ai',
+          'value': 0.99
+        });
+      }
+    }
+
+    // Load GPT fortune after purchase confirmed
+    async function loadPurchasedGPTFortune() {
       if (!sajuResult) return;
 
+      const teaser = document.getElementById('gpt-teaser-section');
+      if (teaser) teaser.style.display = 'none';
+
+      GPTFortune.showLoading();
+
       try {
-        const res = await fetch('/api/status');
-        const status = await res.json();
-
-        if (status.gptEnabled) {
-          // GPT 활성화: 티저 숨기고 실제 분석 로드
-          const teaser = document.getElementById('gpt-teaser-section');
-          if (teaser) teaser.style.display = 'none';
-
-          const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
-          const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
-          if (fortune) {
-            GPTFortune.displayFortune(fortune);
-          }
+        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+        const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
+        if (fortune) {
+          GPTFortune.displayFortune(fortune);
         }
-        // GPT 미활성화: 티저 섹션 그대로 유지
       } catch (error) {
-        console.log('GPT status check skipped:', error.message);
-        // /api/status 없거나 실패 → 티저 유지
+        console.error('GPT fortune load error:', error);
       }
     }
 
@@ -1460,6 +1527,25 @@
       box-shadow: 0 5px 20px rgba(236, 72, 153, 0.4);
     }
 
+    .btn-purchase {
+      display: inline-block;
+      padding: 0.9rem 2rem;
+      background: linear-gradient(135deg, #8B5CF6, #EC4899);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      letter-spacing: 0.02em;
+    }
+
+    .btn-purchase:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(139, 92, 246, 0.4);
+    }
+
     .celebrity-search {
       margin-bottom: 1rem;
     }
@@ -1777,8 +1863,12 @@
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
       showCompatibilityResult(celebrity, compatibility);
 
-      // Then request GPT AI analysis
-      loadGPTCompatibility(celebrity, compatibility);
+      // GPT AI analysis: only if purchased
+      if (KStarConfig.hasPurchased('compatibility')) {
+        loadGPTCompatibility(celebrity, compatibility);
+      } else {
+        showCompatibilityPaywall();
+      }
 
       // GA event
       if (typeof gtag !== 'undefined') {
@@ -1876,6 +1966,22 @@
         console.log('GPT compatibility skipped:', error.message);
         aiSection.style.display = 'none';
       }
+    }
+
+    function showCompatibilityPaywall() {
+      const aiSection = document.getElementById('compatibility-ai-analysis');
+      if (!aiSection) return;
+      aiSection.style.display = 'block';
+      aiSection.innerHTML = `
+        <div style="border-top: 1px solid var(--border); margin-top: 1rem; padding-top: 1rem; text-align: center;">
+          <h4 style="margin-bottom: 0.5rem; color: var(--accent-light);">🔮 Want AI-Powered Deep Analysis?</h4>
+          <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Get detailed compatibility insights: romantic chemistry, strengths, challenges, and personalized advice.</p>
+          <button class="btn-purchase" onclick="purchaseCompatibilityAnalysis()" style="margin-bottom: 0.5rem;">
+            🔓 Unlock AI Compatibility — $0.99
+          </button>
+          <p style="color: var(--text-secondary); font-size: 0.75rem;">One-time purchase</p>
+        </div>
+      `;
     }
 
     function displayGPTCompatibility(analysis, celebrity) {
