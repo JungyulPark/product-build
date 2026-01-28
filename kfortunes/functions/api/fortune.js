@@ -1,5 +1,13 @@
 // Cloudflare Pages Function - GPT Fortune API
-// 사주 운세 분석 API
+// 사주 운세 분석 API (Basic tier: $2.99)
+
+// --- CONFIG ---
+const FORTUNE_CONFIG = {
+  model: 'gpt-4o',           // Basic tier model
+  maxTokens: 2000,
+  temperature: 0.7,
+  timeoutMs: 15000,           // 15 second API timeout
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -35,41 +43,75 @@ export async function onRequestPost(context) {
       const apiKey = env.OPENAI_API_KEY;
       const prompt = buildFortunePrompt(sajuData, language);
 
-      const response = await fetch('https://api.openai.com/v1/chat/completions', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${apiKey}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          model: 'gpt-5-mini',
-          messages: [
-            {
-              role: 'system',
-              content: getSystemPrompt(language)
-            },
-            {
-              role: 'user',
-              content: prompt
-            }
-          ],
-          temperature: 0.7,
-          max_tokens: 2000
-        })
-      });
+      // API call with timeout and error handling
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), FORTUNE_CONFIG.timeoutMs);
 
-      if (!response.ok) {
-        const error = await response.text();
-        console.error('OpenAI API Error:', error);
-        return new Response(JSON.stringify({ error: 'Failed to get fortune reading' }), {
-          status: 500,
-          headers: corsHeaders
+      try {
+        const response = await fetch('https://api.openai.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${apiKey}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            model: FORTUNE_CONFIG.model,
+            messages: [
+              {
+                role: 'system',
+                content: getSystemPrompt(language)
+              },
+              {
+                role: 'user',
+                content: prompt
+              }
+            ],
+            temperature: FORTUNE_CONFIG.temperature,
+            max_tokens: FORTUNE_CONFIG.maxTokens
+          }),
+          signal: controller.signal
         });
-      }
 
-      const data = await response.json();
-      const fortuneText = data.choices[0]?.message?.content;
-      fortune = parseFortuneResponse(fortuneText);
+        clearTimeout(timeout);
+
+        // Handle rate limiting
+        if (response.status === 429) {
+          console.error('OpenAI rate limit hit');
+          fortune = getMockFortuneData(sajuData, language);
+          fortune._source = 'fallback';
+          return new Response(JSON.stringify({ success: true, fortune }), {
+            status: 200,
+            headers: corsHeaders
+          });
+        }
+
+        if (!response.ok) {
+          const error = await response.text();
+          console.error('OpenAI API Error:', response.status, error);
+          // Fallback to mock data instead of returning error
+          fortune = getMockFortuneData(sajuData, language);
+          fortune._source = 'fallback';
+          return new Response(JSON.stringify({ success: true, fortune }), {
+            status: 200,
+            headers: corsHeaders
+          });
+        }
+
+        const data = await response.json();
+        const fortuneText = data.choices[0]?.message?.content;
+        fortune = parseFortuneResponse(fortuneText);
+        fortune._source = 'gpt';
+      } catch (fetchError) {
+        clearTimeout(timeout);
+        if (fetchError.name === 'AbortError') {
+          console.error('OpenAI API timeout after', FORTUNE_CONFIG.timeoutMs, 'ms');
+        } else {
+          console.error('OpenAI fetch error:', fetchError.message);
+        }
+        // Fallback to mock data on any fetch failure
+        fortune = getMockFortuneData(sajuData, language);
+        fortune._source = 'fallback';
+      }
     }
 
     return new Response(JSON.stringify({ success: true, fortune }), {

@@ -76,32 +76,41 @@ const GPTFortune = {
     };
   },
 
+  // Determine badge based on fortune source
+  getSourceBadge(fortune) {
+    if (fortune._source === 'gpt') return '<span class="gpt-badge">🤖 AI</span>';
+    if (fortune._source === 'fallback') return '<span class="gpt-badge">🔮 Cached</span>';
+    return '<span class="gpt-badge">🔮</span>';
+  },
+
   // UI에 GPT 운세 표시
   displayFortune(fortune) {
     if (!fortune) return;
 
+    const badge = this.getSourceBadge(fortune);
+
     // 성격
     const personalityEl = document.getElementById('personality-text');
     if (personalityEl && fortune.personality) {
-      personalityEl.innerHTML = `<span class="gpt-badge">🔮</span> ${fortune.personality}`;
+      personalityEl.innerHTML = `${badge} ${fortune.personality}`;
     }
 
     // 직업
     const careerEl = document.getElementById('career-list');
     if (careerEl && fortune.career) {
-      careerEl.innerHTML = `<li><span class="gpt-badge">🔮</span> ${fortune.career}</li>`;
+      careerEl.innerHTML = `<li>${badge} ${fortune.career}</li>`;
     }
 
     // 연애
     const loveEl = document.getElementById('love-text');
     if (loveEl && fortune.love) {
-      loveEl.innerHTML = `<span class="gpt-badge">🔮</span> ${fortune.love}`;
+      loveEl.innerHTML = `${badge} ${fortune.love}`;
     }
 
     // 강점
     const strengthEl = document.getElementById('strength-text');
     if (strengthEl && fortune.wealth) {
-      strengthEl.innerHTML = `<span class="gpt-badge">🔮</span> ${fortune.wealth}`;
+      strengthEl.innerHTML = `${badge} ${fortune.wealth}`;
     }
 
     // 약점/주의
@@ -112,6 +121,10 @@ const GPTFortune = {
 
     // GPT 전용 섹션 추가
     this.addGPTSections(fortune);
+
+    // GPT 티저 숨기기 (GPT 데이터가 표시되면)
+    const teaser = document.getElementById('gpt-teaser-section');
+    if (teaser) teaser.style.display = 'none';
   },
 
   // GPT 전용 섹션 추가

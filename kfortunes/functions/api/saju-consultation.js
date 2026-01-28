@@ -1,5 +1,17 @@
 // Cloudflare Pages Function - Saju Consultation Report API
 // 사주 상담 컨설팅 보고서 API (상세 분석)
+//
+// STATUS: INACTIVE - Not yet connected to frontend.
+// This endpoint is reserved for the PREMIUM tier ($9.99).
+// Will be activated when Polar payment integration is complete.
+// Frontend integration: js/saju-consultation-api.js (deleted - will recreate when needed)
+
+// --- CONFIG ---
+const CONSULTATION_CONFIG = {
+  model: 'gpt-4o',           // Premium tier model (upgrade to gpt-5.2 when available)
+  maxTokens: 3000,
+  temperature: 0.7,
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
@@ -60,7 +72,7 @@ export async function onRequestPost(context) {
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        model: 'gpt-5-mini',
+        model: CONSULTATION_CONFIG.model,
         messages: [
           {
             role: 'system',
@@ -71,8 +83,8 @@ export async function onRequestPost(context) {
             content: prompt
           }
         ],
-        temperature: 0.7,
-        max_tokens: 3000
+        temperature: CONSULTATION_CONFIG.temperature,
+        max_tokens: CONSULTATION_CONFIG.maxTokens
       })
     });
 

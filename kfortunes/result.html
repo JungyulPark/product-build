@@ -180,7 +180,7 @@
     <div class="loading-spinner"></div>
     <div class="loading-text">
       Analyzing the cosmic energies...
-      <span class="highlight">우주의 기운을 분석하고 있습니다</span>
+      <span class="highlight">Reading the stars for your destiny</span>
     </div>
     <div class="loading-progress">
       <div class="loading-progress-bar"></div>
@@ -228,21 +228,24 @@
       </div>
     </div>
 
-    <!-- 🌟 사주 쌍둥이 스타 (바이럴 핵심 섹션) -->
+    <!-- K-Star Saju Twin Section -->
     <div class="kstar-twin-section" id="kstar-twin-section">
-      <div class="kstar-twin-badge">🌟 나의 사주 쌍둥이 스타</div>
-      <h2 class="kstar-twin-title">나와 사주가 같은 스타는?</h2>
+      <div class="kstar-twin-badge">🌟 My K-Star Saju Twin</div>
+      <h2 class="kstar-twin-title">Which K-Star Shares Your Saju?</h2>
 
       <div class="kstar-twin-card" id="kstar-twin-card">
         <div class="twin-loading">
           <div class="twin-spinner"></div>
-          <p>사주 쌍둥이 스타 찾는 중...</p>
+          <p>Finding your K-Star Twin...</p>
         </div>
       </div>
 
-      <!-- 공유 버튼 -->
+      <!-- Share Buttons -->
       <div class="kstar-share-buttons" id="kstar-share-buttons" style="display: none;">
-        <p class="share-prompt">🔥 친구들에게 자랑하기!</p>
+        <button class="btn-save-image" onclick="saveKStarTwinAsImage()">
+          📸 Save as Image
+        </button>
+        <p class="share-prompt">🔥 Share with your friends!</p>
         <div class="share-btn-grid">
           <button class="kstar-share-btn twitter" onclick="shareKStarTwin('twitter')">
             <span class="btn-icon">𝕏</span>
@@ -266,45 +269,45 @@
           </button>
           <button class="kstar-share-btn copy" onclick="shareKStarTwin('copy')">
             <span class="btn-icon">📋</span>
-            <span>링크복사</span>
+            <span>Copy Link</span>
           </button>
         </div>
       </div>
 
-      <!-- 더 많은 매칭 보기 -->
+      <!-- See More Matches -->
       <div class="more-twins" id="more-twins" style="display: none;">
         <button class="btn-secondary" onclick="showMoreTwins()">
-          ✨ 다른 스타 보기
+          ✨ See Another K-Star
         </button>
       </div>
     </div>
 
-    <!-- 연예인 궁합 체크 -->
+    <!-- Celebrity Compatibility Check -->
     <div class="section-card">
-      <h3>💕 연예인과 나의 궁합</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1rem;">좋아하는 연예인과의 사주 궁합을 확인해보세요!</p>
+      <h3>💕 Celebrity Compatibility</h3>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">Check your Saju compatibility with your favorite celebrity!</p>
       <div class="celebrity-compatibility-cta">
         <button class="btn-compatibility" onclick="openCelebritySelector()">
-          💘 궁합 확인하기
+          💘 Check Compatibility
         </button>
       </div>
     </div>
 
     <!-- 성격 분석 -->
-    <div class="section-card">
+    <div class="section-card" id="section-personality">
       <h3>🎯 Personality</h3>
       <p id="personality-text">Analyzing your personality...</p>
     </div>
 
     <!-- 직업 & 연애 -->
     <div class="grid-2">
-      <div class="section-card">
+      <div class="section-card" id="section-career">
         <h3>💼 Career Paths</h3>
         <ul id="career-list">
           <li>Analyzing career potential...</li>
         </ul>
       </div>
-      <div class="section-card">
+      <div class="section-card" id="section-love">
         <h3>💕 Love & Relationships</h3>
         <p id="love-text">Analyzing love life...</p>
       </div>
@@ -330,88 +333,34 @@
       </div>
     </div>
 
-    <!-- 확장된 일간 해석 (무료) -->
+    <!-- Extended Day Master Interpretation -->
     <div class="section-card" id="extended-personality">
-      <h3>🌟 나의 일간 성격 (Day Master)</h3>
+      <h3>🌟 My Day Master Personality</h3>
       <div id="day-master-details">
-        <p style="color: var(--text-secondary);">일간 분석 중...</p>
+        <p style="color: var(--text-secondary);">Analyzing Day Master...</p>
       </div>
     </div>
 
-    <!-- 프리미엄 미리보기 및 CTA -->
-    <div class="premium-preview-card">
-      <div class="premium-badge">💎 PREMIUM</div>
-      <h3>Unlock Your Complete Destiny Report</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
-        Get AI-powered deep analysis with GPT-5 technology
-      </p>
-
-      <div class="premium-features">
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>10-Year Fortune Forecast</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Monthly Luck Calendar 2026</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Detailed Career Analysis</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Love & Marriage Timing</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Health & Wellness Guide</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Lucky Days & Activities</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>Personalized Life Advice</span>
-        </div>
-        <div class="premium-feature">
-          <span class="check">✓</span>
-          <span>PDF Download Included</span>
-        </div>
-      </div>
-
-      <div class="premium-price">
-        <span class="price-old">$19.99</span>
-        <span class="price-current">$4.99</span>
-        <span class="price-note">Limited Time Offer</span>
-      </div>
-
-      <button class="btn-premium" disabled style="opacity: 0.6; cursor: not-allowed;">
-        🚀 Coming Soon - Premium Report
-      </button>
-
-      <p style="font-size: 0.8rem; color: var(--text-secondary); margin-top: 1rem;">
-        ⏳ Premium features launching soon!
-      </p>
-    </div>
-
-    <!-- 프리미엄 샘플 (블러 처리) -->
-    <div class="section-card premium-locked">
-      <div class="locked-overlay">
-        <span class="lock-icon">🚀</span>
-        <p>Premium Content</p>
-        <button class="btn-small" disabled style="opacity: 0.7; cursor: not-allowed;">Coming Soon</button>
-      </div>
-      <h3>📅 2026 Year Forecast Preview</h3>
-      <div class="blurred-content">
-        <p>January: Excellent month for career advancement...</p>
-        <p>February: Focus on relationships and communication...</p>
-        <p>March: Financial opportunities arise, consider investments...</p>
+    <!-- GPT AI Analysis Teaser (shown when GPT is not yet enabled) -->
+    <div class="section-card gpt-teaser" id="gpt-teaser-section">
+      <div class="gpt-teaser-badge">AI Powered</div>
+      <h3>🤖 AI Deep Analysis</h3>
+      <p class="gpt-teaser-subtitle">Coming Soon</p>
+      <p class="gpt-teaser-desc">Unlock personalized AI-powered insights based on your Four Pillars:</p>
+      <ul class="gpt-teaser-list">
+        <li>🎯 In-depth Personality Profile</li>
+        <li>💼 Career & Business Guidance</li>
+        <li>💕 Love & Relationship Forecast</li>
+        <li>🏥 Health & Wellness Tips</li>
+        <li>💰 Wealth & Financial Outlook</li>
+        <li>📅 2025-2026 Year Forecast</li>
+      </ul>
+      <div class="gpt-teaser-cta">
+        <span class="gpt-teaser-cta-text">Powered by GPT-4o &middot; Available Soon</span>
       </div>
     </div>
 
-    <!-- 제휴 상품 배너 (쿠팡 파트너스 - 한국어만) -->
+    <!-- K-Star Curated Items -->
     <div class="affiliate-banner" id="affiliate-banner" style="display: none;">
       <h4 id="affiliate-title"></h4>
       <p id="affiliate-desc"></p>
@@ -432,47 +381,6 @@
       </a>
     </div>
   </main>
-
-  <!-- 프리미엄 결제 모달 -->
-  <div class="share-modal" id="premium-modal" onclick="if(event.target === this) PremiumPayment.closePurchaseModal()">
-    <div class="share-modal-content" style="max-width: 450px;">
-      <button class="share-modal-close" onclick="PremiumPayment.closePurchaseModal()" aria-label="Close">&times;</button>
-
-      <div style="text-align: center;">
-        <div class="premium-badge" style="display: inline-block; margin-bottom: 1rem;">💎 PREMIUM REPORT</div>
-        <h3 style="margin-bottom: 0.5rem;">Complete Destiny Analysis</h3>
-        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Powered by Advanced AI (GPT-5 Technology)</p>
-      </div>
-
-      <div class="premium-modal-features">
-        <div class="feature-item">📅 10-Year Fortune Forecast</div>
-        <div class="feature-item">📊 Monthly Luck Calendar</div>
-        <div class="feature-item">💼 Career Path Analysis</div>
-        <div class="feature-item">💕 Love & Marriage Guide</div>
-        <div class="feature-item">🏥 Health Recommendations</div>
-        <div class="feature-item">🍀 Lucky Elements & Timing</div>
-        <div class="feature-item">📱 Downloadable PDF Report</div>
-        <div class="feature-item">🔄 Lifetime Access</div>
-      </div>
-
-      <div style="text-align: center; margin: 1.5rem 0;">
-        <div style="font-size: 2rem; font-weight: bold; color: var(--accent-light);">
-          <span style="text-decoration: line-through; color: var(--text-secondary); font-size: 1.2rem;">$19.99</span>
-          $4.99
-        </div>
-        <p style="color: var(--success); font-size: 0.9rem;">🎉 75% OFF - Limited Time!</p>
-      </div>
-
-      <button class="btn-premium" id="purchase-btn" disabled style="width: 100%; opacity: 0.6; cursor: not-allowed;">
-        🚀 Coming Soon
-      </button>
-
-      <p style="font-size: 0.75rem; color: var(--text-secondary); text-align: center; margin-top: 1rem;">
-        ⏳ Premium features are being prepared.<br>
-        Stay tuned for the launch!
-      </p>
-    </div>
-  </div>
 
   <!-- SNS 공유 모달 -->
   <div class="share-modal" id="share-modal" onclick="if(event.target === this) closeShareModal()">
@@ -634,10 +542,6 @@
         <!-- Score details -->
       </div>
 
-      <div class="compatibility-premium-section" id="compatibility-premium">
-        <!-- Premium content with blur -->
-      </div>
-
       <div class="compatibility-actions">
         <button class="btn-secondary" onclick="openCelebritySelector()">
           💕 Try Another Celebrity
@@ -649,49 +553,15 @@
     </div>
   </div>
 
-  <!-- Stripe.js -->
-  <script src="https://js.stripe.com/v3/"></script>
-
   <script src="js/i18n.js"></script>
   <script src="js/saju.js"></script>
   <script src="js/celebrities.js"></script>
+  <script src="js/day-master-details.js"></script>
+  <script src="js/config.js"></script>
   <script src="js/gpt-fortune.js"></script>
-  <script src="js/premium-saju.js"></script>
   <script src="js/app.js"></script>
   <script>
     let sajuResult = null;
-
-    // Stripe Payment Handler
-    // TODO: Replace with your Stripe Payment Link
-    const STRIPE_PAYMENT_LINK = 'https://buy.stripe.com/YOUR_PAYMENT_LINK_HERE';
-
-    function handleStripePurchase() {
-      const btn = document.getElementById('purchase-btn');
-      btn.disabled = true;
-      btn.innerHTML = '<span class="spinner"></span> Redirecting...';
-
-      // GA 이벤트
-      if (typeof gtag !== 'undefined') {
-        gtag('event', 'begin_checkout', {
-          'event_category': 'Premium',
-          'event_label': 'Saju Premium Report',
-          'value': 4.99
-        });
-      }
-
-      // 사주 데이터를 URL 파라미터로 전달
-      const params = new URLSearchParams(window.location.search);
-      const clientRef = btoa(JSON.stringify({
-        year: params.get('year'),
-        month: params.get('month'),
-        day: params.get('day'),
-        hour: params.get('hour'),
-        gender: params.get('gender')
-      }));
-
-      // Stripe Payment Link로 이동 (client_reference_id 포함)
-      window.location.href = `${STRIPE_PAYMENT_LINK}?client_reference_id=${clientRef}`;
-    }
 
     // 결과 페이지 초기화 with error handling
     document.addEventListener('DOMContentLoaded', function() {
@@ -704,8 +574,23 @@
           // 로딩 오버레이 숨기기
           document.getElementById('loading-overlay').classList.add('hidden');
 
-          // GPT 상세 운세 요청 (백그라운드)
-          loadGPTFortune();
+          // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
+          const focusParam = new URLSearchParams(window.location.search).get('focus');
+          if (focusParam) {
+            const focusSection = document.getElementById('section-' + focusParam);
+            if (focusSection) {
+              setTimeout(function() {
+                focusSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                focusSection.classList.add('section-highlight');
+                setTimeout(function() {
+                  focusSection.classList.remove('section-highlight');
+                }, 2000);
+              }, 300);
+            }
+          }
+
+          // GPT 분석: 가용 여부 체크 후 로드 (mock 자동 호출 비활성화)
+          checkGPTAvailability();
         } catch (error) {
           console.error('Error initializing result page:', error);
           document.getElementById('loading-overlay').innerHTML = `
@@ -749,11 +634,11 @@
 
     // 확장된 일간 해석 표시
     function displayExtendedDayMaster(result) {
-      if (typeof PremiumSaju === 'undefined') return;
+      if (typeof DayMasterDetails === 'undefined') return;
 
       const element = result.dayMaster.element;
       const isYin = result.dayMaster.yin;
-      const details = PremiumSaju.dayMasterDetails[element][isYin];
+      const details = DayMasterDetails.dayMasterDetails[element][isYin];
 
       if (!details) return;
 
@@ -776,20 +661,29 @@
       `;
     }
 
-    // GPT 상세 운세 로드
-    async function loadGPTFortune() {
+    // GPT 가용 여부 체크 → 활성화 시 로드, 미활성화 시 티저 유지
+    async function checkGPTAvailability() {
       if (!sajuResult) return;
 
       try {
-        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
-        const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
+        const res = await fetch('/api/status');
+        const status = await res.json();
 
-        if (fortune) {
-          GPTFortune.displayFortune(fortune);
+        if (status.gptEnabled) {
+          // GPT 활성화: 티저 숨기고 실제 분석 로드
+          const teaser = document.getElementById('gpt-teaser-section');
+          if (teaser) teaser.style.display = 'none';
+
+          const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+          const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
+          if (fortune) {
+            GPTFortune.displayFortune(fortune);
+          }
         }
+        // GPT 미활성화: 티저 섹션 그대로 유지
       } catch (error) {
-        console.log('GPT Fortune not available:', error);
-        // 실패해도 기본 운세는 이미 표시됨
+        console.log('GPT status check skipped:', error.message);
+        // /api/status 없거나 실패 → 티저 유지
       }
     }
 
@@ -840,50 +734,81 @@
       const stars = '⭐'.repeat(match.grade.stars);
       const message = Celebrities.getTwinMessage(celeb.stem, match.score);
 
-      // 카테고리 한글화
-      const categoryKo = {
-        'K-Pop': 'K-Pop 아이돌',
-        'Actor': '배우',
-        'Singer': '가수',
-        'Athlete': '운동선수',
-        'Tech': 'IT 기업가',
-        'President': '정치인',
-        'Media': '미디어'
+      // Category labels
+      const categoryLabel = {
+        'K-Pop': 'K-Pop Idol',
+        'Actor': 'Actor',
+        'Singer': 'Singer',
+        'Athlete': 'Athlete',
+        'Tech': 'Tech Entrepreneur',
+        'President': 'Politician',
+        'Media': 'Media',
+        'Investor': 'Investor',
+        'Scientist': 'Scientist'
       };
 
-      // 상세 정보 한글화
-      const detailsKo = match.details.map(d => {
-        let msg = d.message;
-        msg = msg.replace('Same Day Master:', '같은 일간:');
-        msg = msg.replace('Same Element:', '같은 오행:');
-        msg = msg.replace('Same Zodiac:', '같은 띠:');
-        msg = msg.replace('Zodiac Harmony', '띠 조화');
-        msg = msg.replace('Both Yin Energy', '둘 다 음(陰) 에너지');
-        msg = msg.replace('Both Yang Energy', '둘 다 양(陽) 에너지');
-        return msg;
-      });
+      // Detail messages
+      const detailMessages = match.details.map(d => d.message);
+
+      // Avatar colors
+      const avatarColors = Celebrities.avatarColors || {};
+      const catColor = avatarColors[celeb.category] || { bg: '8B5CF6', color: 'fff' };
+      const initials = celeb.initials || celeb.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+      // Score ring gradient
+      const scoreGradient = match.score >= 80 ? '#8b5cf6, #ec4899' : match.score >= 60 ? '#f59e0b, #22c55e' : '#ef4444, #f59e0b';
 
       card.innerHTML = `
-        <div class="twin-result">
-          <span class="twin-celebrity-icon">${celeb.image}</span>
-          <div class="twin-celebrity-name">${celeb.korean || celeb.name}</div>
-          <div class="twin-celebrity-korean">${celeb.name}</div>
-          <span class="twin-celebrity-group">${categoryKo[celeb.category] || celeb.category}</span>
-
-          <div class="twin-score-container">
-            <span class="twin-score">${match.score}%</span>
-            <span class="twin-stars">${stars}</span>
+        <div class="twin-result" id="twin-result-capture">
+          <div class="twin-avatar-wrapper">
+            <div class="twin-avatar-ring" style="background: conic-gradient(#8b5cf6, #ec4899, #8b5cf6);">
+              <div class="twin-avatar" style="background: #${catColor.bg}; color: #${catColor.color};">
+                ${initials}
+              </div>
+            </div>
+            <div class="twin-avatar-glow" style="background: #${catColor.bg};"></div>
           </div>
 
-          <div class="twin-grade">${match.grade.emoji} ${match.grade.label}</div>
+          <div class="twin-celebrity-name">${celeb.name}</div>
+          <div class="twin-celebrity-korean">${celeb.korean || ''}</div>
+          <span class="twin-celebrity-group">
+            <span class="twin-cat-dot" style="background: #${catColor.bg};"></span>
+            ${categoryLabel[celeb.category] || celeb.category}
+          </span>
+
+          <div class="twin-score-ring-container">
+            <svg class="twin-score-ring" viewBox="0 0 120 120">
+              <circle cx="60" cy="60" r="52" fill="none" stroke="var(--border)" stroke-width="8" opacity="0.3"/>
+              <circle cx="60" cy="60" r="52" fill="none"
+                stroke="url(#twin-score-grad)" stroke-width="8" stroke-linecap="round"
+                stroke-dasharray="${(match.score / 100) * 327} 327"
+                transform="rotate(-90 60 60)"
+                style="transition: stroke-dasharray 1s ease;"/>
+              <defs>
+                <linearGradient id="twin-score-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color: ${scoreGradient.split(',')[0]}"/>
+                  <stop offset="100%" style="stop-color: ${scoreGradient.split(',')[1] || '#ec4899'}"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="twin-score-inner">
+              <span class="twin-score-number">${match.score}</span>
+              <span class="twin-score-pct">%</span>
+            </div>
+          </div>
+
+          <div class="twin-stars">${stars}</div>
+          <div class="twin-grade">${match.grade.emoji} ${match.grade.labelEn || match.grade.label}</div>
 
           <div class="twin-details">
-            ${detailsKo.map(d => `<span class="twin-detail-tag">${d}</span>`).join('')}
+            ${detailMessages.map(d => `<span class="twin-detail-tag">${d}</span>`).join('')}
           </div>
 
           <div class="twin-message">
             "${message}"
           </div>
+
+          <div class="twin-watermark">kfortunes.com</div>
         </div>
       `;
     }
@@ -914,9 +839,7 @@
       const grade = currentTwinMatch.grade;
       const url = window.location.href;
 
-      const shareText = `🔮 나와 사주가 같은 K-스타는 ${celeb.korean} (${celeb.name})!\n\n⭐ 매칭 점수: ${score}%\n${grade.emoji} ${grade.label}\n\n나도 확인하기 👉 ${url}\n\n#KFortunes #사주 #K스타 #${celeb.name.replace(/\s/g, '')}`;
-
-      const shareTextEn = `🔮 My K-Star Saju Twin is ${celeb.name}!\n\n⭐ Match Score: ${score}%\n${grade.emoji} ${grade.labelEn}\n\nFind yours 👉 ${url}\n\n#KFortunes #Saju #KStar`;
+      const shareText = `🔮 My K-Star Saju Twin is ${celeb.name}!\n\n⭐ Match Score: ${score}%\n${grade.emoji} ${grade.labelEn || grade.label}\n\nFind yours 👉 ${url}\n\n#KStarMatch #Saju #KStar #${celeb.name.replace(/\s/g, '')}`;
 
       switch(platform) {
         case 'twitter':
@@ -946,7 +869,7 @@
         default:
           if (navigator.share) {
             navigator.share({
-              title: 'KStar Match 사주 쌍둥이 스타',
+              title: 'KStar Match - My K-Star Saju Twin',
               text: shareText,
               url: url
             }).catch(console.error);
@@ -960,6 +883,69 @@
           'event_label': `${platform}_${celeb.name}`,
           'value': score
         });
+      }
+    }
+
+    // Save twin card as image using html2canvas
+    async function saveKStarTwinAsImage() {
+      const captureEl = document.getElementById('twin-result-capture');
+      if (!captureEl) return;
+
+      // Show loading
+      const btn = document.querySelector('.btn-save-image');
+      const originalText = btn.textContent;
+      btn.textContent = 'Generating...';
+      btn.disabled = true;
+
+      try {
+        // Dynamically load html2canvas if not already loaded
+        if (typeof html2canvas === 'undefined') {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+          });
+        }
+
+        const canvas = await html2canvas(captureEl, {
+          backgroundColor: '#1a1a2e',
+          scale: 2,
+          useCORS: true,
+          logging: false
+        });
+
+        // Download
+        const link = document.createElement('a');
+        link.download = `kstar-match-${currentTwinMatch.celebrity.name.replace(/\s/g, '-')}.png`;
+        link.href = canvas.toDataURL('image/png');
+        link.click();
+
+        // GA Event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'save_twin_image', {
+            'event_category': 'Sharing',
+            'event_label': currentTwinMatch.celebrity.name
+          });
+        }
+
+        // Toast
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--success); color: white; padding: 1rem 2rem; border-radius: 10px; z-index: 10000; font-weight: 600;';
+        toast.textContent = 'Image saved!';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 2000);
+      } catch (err) {
+        console.error('Failed to save image:', err);
+        const toast = document.createElement('div');
+        toast.style.cssText = 'position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--fire); color: white; padding: 1rem 2rem; border-radius: 10px; z-index: 10000; font-weight: 600;';
+        toast.textContent = 'Failed to save image. Try a screenshot instead.';
+        document.body.appendChild(toast);
+        setTimeout(() => toast.remove(), 3000);
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
       }
     }
 
@@ -986,9 +972,11 @@
 
       container.innerHTML = matches.map(celeb => {
         const matchType = Celebrities.getMatchType(celeb, dayMaster);
+        const catColor = (Celebrities.avatarColors || {})[celeb.category] || { bg: '8B5CF6', color: 'fff' };
+        const initials = celeb.initials || celeb.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
         return `
           <div class="celebrity-match">
-            <div class="celebrity-icon">${celeb.image}</div>
+            <div class="celebrity-avatar" style="background: #${catColor.bg}; color: #${catColor.color};">${initials}</div>
             <div class="celebrity-info">
               <div class="celebrity-name">${celeb.name}</div>
               <div class="celebrity-korean">${celeb.korean}</div>
@@ -1008,6 +996,19 @@
     .match-type-badge {
       margin-left: 0.5rem;
       font-size: 1rem;
+    }
+
+    .celebrity-avatar {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: 1px;
+      flex-shrink: 0;
     }
 
     /* ============================================ */
@@ -1063,11 +1064,12 @@
 
     .kstar-twin-card {
       background: var(--bg-primary);
-      border-radius: 16px;
+      border-radius: 20px;
       padding: 1.5rem;
       position: relative;
       z-index: 1;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2), 0 0 60px rgba(139, 92, 246, 0.1);
+      border: 1px solid rgba(139, 92, 246, 0.2);
     }
 
     .twin-loading {
@@ -1087,73 +1089,153 @@
 
     .twin-result {
       text-align: center;
+      padding: 1rem 0;
     }
 
-    .twin-celebrity-icon {
-      font-size: 5rem;
-      display: block;
-      margin-bottom: 1rem;
-      animation: bounce 2s ease-in-out infinite;
+    /* Avatar System */
+    .twin-avatar-wrapper {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.25rem;
     }
 
-    @keyframes bounce {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
+    .twin-avatar-ring {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4px;
+      animation: avatarPulse 2.5s ease-in-out infinite;
+    }
+
+    .twin-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      border: 3px solid var(--bg-primary);
+    }
+
+    .twin-avatar-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 130px;
+      height: 130px;
+      border-radius: 50%;
+      opacity: 0.25;
+      filter: blur(25px);
+      z-index: -1;
+      animation: glowPulse 3s ease-in-out infinite;
+    }
+
+    @keyframes avatarPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.04); }
+    }
+
+    @keyframes glowPulse {
+      0%, 100% { opacity: 0.2; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 0.4; transform: translate(-50%, -50%) scale(1.15); }
     }
 
     .twin-celebrity-name {
       font-size: 1.8rem;
-      font-weight: 700;
-      margin-bottom: 0.25rem;
-    }
-
-    .twin-celebrity-korean {
-      font-size: 1.1rem;
-      color: var(--text-secondary);
-      margin-bottom: 0.5rem;
-    }
-
-    .twin-celebrity-group {
-      display: inline-block;
-      background: rgba(139, 92, 246, 0.2);
-      padding: 0.25rem 0.75rem;
-      border-radius: 15px;
-      font-size: 0.85rem;
-      color: var(--accent-light);
-      margin-bottom: 1rem;
-    }
-
-    .twin-score-container {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 1rem;
-      margin: 1.5rem 0;
-    }
-
-    .twin-score {
-      font-size: 3rem;
       font-weight: 800;
-      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      margin-bottom: 0.2rem;
+      background: linear-gradient(135deg, var(--text-primary), var(--accent-light));
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       background-clip: text;
     }
 
+    .twin-celebrity-korean {
+      font-size: 1rem;
+      color: var(--text-secondary);
+      margin-bottom: 0.5rem;
+    }
+
+    .twin-celebrity-group {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: rgba(139, 92, 246, 0.15);
+      padding: 0.3rem 0.85rem;
+      border-radius: 15px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--accent-light);
+      margin-bottom: 1.25rem;
+    }
+
+    .twin-cat-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Score Ring */
+    .twin-score-ring-container {
+      position: relative;
+      width: 130px;
+      height: 130px;
+      margin: 0.5rem auto 0.75rem;
+    }
+
+    .twin-score-ring {
+      width: 100%;
+      height: 100%;
+    }
+
+    .twin-score-inner {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .twin-score-number {
+      font-size: 2.4rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      line-height: 1;
+    }
+
+    .twin-score-pct {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+    }
+
     .twin-stars {
-      font-size: 1.5rem;
+      font-size: 1.3rem;
       letter-spacing: 2px;
+      margin-bottom: 0.5rem;
     }
 
     .twin-grade {
       display: inline-block;
       background: linear-gradient(135deg, #fbbf24, #f59e0b);
       color: #1a1a2e;
-      padding: 0.5rem 1rem;
+      padding: 0.4rem 1rem;
       border-radius: 20px;
       font-weight: 700;
-      font-size: 0.9rem;
+      font-size: 0.85rem;
       margin-bottom: 1rem;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
     }
 
     .twin-details {
@@ -1161,27 +1243,65 @@
       flex-wrap: wrap;
       gap: 0.5rem;
       justify-content: center;
-      margin: 1rem 0;
+      margin: 0.75rem 0;
     }
 
     .twin-detail-tag {
       background: var(--bg-secondary);
-      padding: 0.4rem 0.8rem;
+      padding: 0.35rem 0.75rem;
       border-radius: 20px;
-      font-size: 0.8rem;
+      font-size: 0.78rem;
       color: var(--accent-light);
       border: 1px solid var(--border);
     }
 
     .twin-message {
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(236, 72, 153, 0.1));
+      background: linear-gradient(135deg, rgba(139, 92, 246, 0.08), rgba(236, 72, 153, 0.08));
       padding: 1rem;
       border-radius: 12px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       line-height: 1.6;
       color: var(--text-secondary);
       border-left: 3px solid var(--accent);
       margin-top: 1rem;
+      font-style: italic;
+    }
+
+    .twin-watermark {
+      margin-top: 1rem;
+      font-size: 0.7rem;
+      color: var(--text-secondary);
+      opacity: 0.5;
+      letter-spacing: 1px;
+    }
+
+    /* Save as Image Button */
+    .btn-save-image {
+      display: block;
+      width: 100%;
+      padding: 0.85rem;
+      margin-bottom: 1rem;
+      background: linear-gradient(135deg, #8b5cf6, #6366f1);
+      color: white;
+      border: none;
+      border-radius: 12px;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.3s;
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn-save-image:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(139, 92, 246, 0.4);
+    }
+
+    .btn-save-image:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+      transform: none;
     }
 
     /* Share Buttons */
@@ -1270,16 +1390,33 @@
         padding: 1.5rem;
       }
 
-      .twin-celebrity-icon {
-        font-size: 4rem;
+      .twin-avatar-ring {
+        width: 90px;
+        height: 90px;
+      }
+
+      .twin-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 1.8rem;
+      }
+
+      .twin-avatar-glow {
+        width: 110px;
+        height: 110px;
       }
 
       .twin-celebrity-name {
         font-size: 1.4rem;
       }
 
-      .twin-score {
-        font-size: 2.5rem;
+      .twin-score-ring-container {
+        width: 110px;
+        height: 110px;
+      }
+
+      .twin-score-number {
+        font-size: 2rem;
       }
 
       .share-btn-grid {
@@ -1491,54 +1628,6 @@
       color: var(--accent-light);
     }
 
-    /* Premium Section with Blur */
-    .compatibility-premium-section {
-      position: relative;
-      margin-bottom: 1.5rem;
-    }
-
-    .premium-content-blur {
-      filter: blur(4px);
-      user-select: none;
-      pointer-events: none;
-    }
-
-    .premium-unlock-overlay {
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: rgba(0, 0, 0, 0.3);
-      border-radius: 12px;
-      z-index: 10;
-    }
-
-    .premium-unlock-overlay .lock-icon {
-      font-size: 2rem;
-      margin-bottom: 0.5rem;
-    }
-
-    .premium-unlock-overlay p {
-      color: white;
-      font-weight: 600;
-      margin-bottom: 0.5rem;
-    }
-
-    .premium-unlock-overlay .btn-small {
-      background: linear-gradient(135deg, #ec4899, #8b5cf6);
-      color: white;
-      border: none;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      font-size: 0.85rem;
-      cursor: not-allowed;
-      opacity: 0.7;
-    }
 
     .blurred-analysis {
       background: var(--bg-secondary);
@@ -1726,32 +1815,6 @@
         </div>
       `;
 
-      // Premium section with blur
-      const premium = compatibility.premiumAnalysis;
-      document.getElementById('compatibility-premium').innerHTML = `
-        <div class="premium-unlock-overlay">
-          <span class="lock-icon">🔒</span>
-          <p>Premium Analysis</p>
-          <button class="btn-small" disabled>🚀 Coming Soon</button>
-        </div>
-        <div class="blurred-analysis premium-content-blur">
-          <h4>💫 Detailed Analysis</h4>
-          <p>${premium.intro}</p>
-          <h4 style="margin-top: 1rem;">✨ Strengths</h4>
-          <ul>
-            ${premium.strengths.map(s => `<li>${s}</li>`).join('')}
-          </ul>
-          <h4 style="margin-top: 1rem;">🌱 Challenges</h4>
-          <ul>
-            ${premium.challenges.map(c => `<li>${c}</li>`).join('')}
-          </ul>
-          <h4 style="margin-top: 1rem;">🍀 Lucky Meeting Time</h4>
-          <p>${premium.luckyDate}</p>
-          <h4 style="margin-top: 1rem;">💝 Advice</h4>
-          <p>${premium.advice}</p>
-        </div>
-      `;
-
       modal.classList.add('show');
     }
 
@@ -1764,7 +1827,7 @@
 
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
       const text = `💘 My KStar Match Celebrity Compatibility!\n\n` +
-        `${selectedCelebrity.image} ${selectedCelebrity.name}: ${compatibility.overall}% match!\n` +
+        `${selectedCelebrity.name}: ${compatibility.overall}% match!\n` +
         `${compatibility.matchType.emoji} ${compatibility.relationDesc}\n\n` +
         `Check your celebrity compatibility at KStar Match! 🔮`;
 
@@ -1800,61 +1863,61 @@
       const desc = document.getElementById('affiliate-desc');
       const disclaimer = document.getElementById('affiliate-disclaimer');
 
-      // 언어별 제휴 상품 데이터 (한국어만 쿠팡 파트너스 사용)
+      // K-Star themed affiliate products by language
       const affiliateData = {
         ko: {
-          title: '🎁 행운을 더하는 추천 아이템',
-          desc: '당신의 사주에 어울리는 행운 아이템을 만나보세요',
+          title: '🌟 K-Star 추천 아이템',
+          desc: '내 사주 스타일에 어울리는 K-Culture 아이템',
           disclaimer: '* 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다',
           products: [
-            { name: '묵주', icon: '📿', price: '', url: 'https://link.coupang.com/a/dAed1k', desc: '마음의 평화' },
-            { name: '십자가', icon: '✝️', price: '', url: 'https://coupa.ng/clqW7J', desc: '믿음과 보호' },
-            { name: '행운 도자기', icon: '🏺', price: '', url: 'https://link.coupang.com/a/dAeh10', desc: '복을 부르는 인테리어' },
-            { name: '행운금', icon: '🪙', price: '', url: 'https://link.coupang.com/a/dAek6j', desc: '재물운 상승' }
+            { name: '포토카드 바인더', icon: '💜', price: '', url: 'https://link.coupang.com/a/dAed1k', desc: 'K-Pop 콜렉션' },
+            { name: '한국 뷰티세트', icon: '✨', price: '', url: 'https://link.coupang.com/a/dAeh10', desc: '스타의 피부 비결' },
+            { name: 'K-Pop 앨범', icon: '💿', price: '', url: 'https://link.coupang.com/a/dAek6j', desc: '최신 앨범 모음' },
+            { name: '한복 인형', icon: '🎎', price: '', url: 'https://coupa.ng/clqW7J', desc: '프리미엄 한국 인형' }
           ]
         },
         en: {
-          title: '🎁 Lucky Items for You',
-          desc: 'Discover items that match your cosmic energy',
+          title: '🌟 K-Star Picks for You',
+          desc: 'Curated K-Culture items that match your star energy',
           disclaimer: '* As an Amazon Associate, we earn from qualifying purchases',
           products: [
-            { name: 'Rosary Beads', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: 'Handmade Wooden' },
-            { name: 'Owl Statue', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: 'Wisdom Symbol' },
-            { name: 'Feng Shui Bracelet', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: 'Wealth & Luck' },
-            { name: 'Tarot Cards', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: 'Beginner Set' }
+            { name: 'K-Pop Photo Binder', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'Photocard Collection' },
+            { name: 'Korean Skincare Set', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty Glow' },
+            { name: 'BTS Photo Book', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'Special Edition' },
+            { name: 'Hanbok Doll', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: 'Korean Traditional' }
           ]
         },
         ja: {
-          title: '🎁 あなたへの開運アイテム',
-          desc: 'あなたの四柱に合う開運アイテム',
+          title: '🌟 K-Star おすすめアイテム',
+          desc: 'あなたの星のエネルギーに合うK-Cultureアイテム',
           disclaimer: '* Amazonアソシエイトとして適格販売により収入を得ています',
           products: [
-            { name: 'ロザリオ', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: '手作り木製' },
-            { name: 'フクロウ置物', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: '知恵の象徴' },
-            { name: '風水ブレスレット', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: '金運・幸運' },
-            { name: 'タロットカード', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: '初心者向け' }
+            { name: 'フォトカードバインダー', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'K-Popコレクション' },
+            { name: '韓国スキンケアセット', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-ビューティー' },
+            { name: 'BTS フォトブック', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'スペシャルエディション' },
+            { name: '韓服人形', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: '韓国伝統人形' }
           ]
         },
         zh: {
-          title: '🎁 适合您的幸运物品',
-          desc: '发现与您八字相合的幸运物品',
+          title: '🌟 K-Star 精选好物',
+          desc: '与你星座能量匹配的韩流文化精品',
           disclaimer: '* 作为Amazon联盟会员，我们从符合条件的购买中获得佣金',
           products: [
-            { name: '念珠', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: '手工木制' },
-            { name: '猫头鹰摆件', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: '智慧象征' },
-            { name: '风水手链', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: '招财纳福' },
-            { name: '塔罗牌', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: '入门套装' }
+            { name: '小卡收纳册', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'K-Pop收藏' },
+            { name: '韩国护肤套装', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty' },
+            { name: 'BTS 写真集', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: '限量版' },
+            { name: '韩服娃娃', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: '韩国传统' }
           ]
         },
         vi: {
-          title: '🎁 Vật phẩm may mắn cho bạn',
-          desc: 'Khám phá vật phẩm phù hợp với tử vi của bạn',
+          title: '🌟 K-Star gợi ý cho bạn',
+          desc: 'Sản phẩm K-Culture phù hợp năng lượng sao của bạn',
           disclaimer: '* Là đối tác Amazon, chúng tôi kiếm được từ các giao dịch đủ điều kiện',
           products: [
-            { name: 'Chuỗi hạt', icon: '📿', price: '$12.99~', url: 'https://www.amazon.com/dp/B0BXKD92FD?tag=kfortunes-20', desc: 'Gỗ thủ công' },
-            { name: 'Tượng cú', icon: '🦉', price: '$15.99~', url: 'https://www.amazon.com/dp/B08NTNR8H3?tag=kfortunes-20', desc: 'Biểu tượng trí tuệ' },
-            { name: 'Vòng phong thủy', icon: '🧿', price: '$9.99~', url: 'https://www.amazon.com/dp/B07VD3XZMN?tag=kfortunes-20', desc: 'May mắn & Tài lộc' },
-            { name: 'Bài Tarot', icon: '🃏', price: '$19.99~', url: 'https://www.amazon.com/dp/B0B1J4KGQ6?tag=kfortunes-20', desc: 'Bộ cho người mới' }
+            { name: 'Album ảnh K-Pop', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'Bộ sưu tập' },
+            { name: 'Skincare Hàn Quốc', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty' },
+            { name: 'BTS Photo Book', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'Phiên bản đặc biệt' },
+            { name: 'Búp bê Hanbok', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: 'Truyền thống Hàn' }
           ]
         }
       };
