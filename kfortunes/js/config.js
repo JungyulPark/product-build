@@ -18,7 +18,7 @@ const KStarConfig = {
     },
     basic: {
       name: 'AI Analysis',
-      price: 2.99,
+      price: 3.99,
       currency: 'USD',
       features: [
         'AI personality deep dive',
@@ -30,11 +30,11 @@ const KStarConfig = {
       ],
       endpoint: '/api/fortune',
       model: 'gpt-4o',
-      polarProductId: '066396ed-5c5e-46f7-8d71-8d0ca7863b9c'
+      polarProductId: '890a8668-83bc-472e-885b-30947705856e'
     },
     compatibility: {
       name: 'Celebrity Compatibility AI',
-      price: 0.99,
+      price: 1.99,
       currency: 'USD',
       features: [
         'AI-powered compatibility analysis',
@@ -44,7 +44,7 @@ const KStarConfig = {
       ],
       endpoint: '/api/compatibility',
       model: 'gpt-4o',
-      polarProductId: 'adc1562e-875f-4ea9-816f-12780a3305e8'
+      polarProductId: '1d44431d-b9e5-4073-aa5c-837debe7bb9d'
     }
   },
 

@@ -1,8 +1,8 @@
 // Cloudflare Pages Function - Create Polar Checkout Session (v2)
 
 const PRODUCTS = {
-  basic: '066396ed-5c5e-46f7-8d71-8d0ca7863b9c',
-  compatibility: 'adc1562e-875f-4ea9-816f-12780a3305e8'
+  basic: '890a8668-83bc-472e-885b-30947705856e',
+  compatibility: '1d44431d-b9e5-4073-aa5c-837debe7bb9d'
 };
 
 export async function onRequestPost(context) {

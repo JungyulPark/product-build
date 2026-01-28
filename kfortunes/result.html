@@ -553,7 +553,7 @@
         <li>✅ Celebrity Compatibility check</li>
       </ul>
       <button class="btn-primary" onclick="processDiscoverCheckout()" id="discover-checkout-btn" style="width: 100%; margin-bottom: 0.5rem;">
-        ⭐ Unlock — $2.99 One-time
+        ⭐ Unlock — $3.99 One-time
       </button>
       <button class="btn-secondary" onclick="window.location.href='index.html'" style="width: 100%; background: transparent; border: 1px solid var(--border);">
         Back to Home
@@ -778,13 +778,13 @@
       }
 
       btn.disabled = false;
-      btn.textContent = '⭐ Unlock — $2.99 One-time';
+      btn.textContent = '⭐ Unlock — $3.99 One-time';
 
       if (typeof gtag !== 'undefined') {
         gtag('event', 'begin_checkout', {
           'event_category': 'Purchase',
           'event_label': 'discover_analysis',
-          'value': 2.99
+          'value': 3.99
         });
       }
     }
@@ -808,7 +808,7 @@
         gtag('event', 'begin_checkout', {
           'event_category': 'Purchase',
           'event_label': 'compatibility_ai',
-          'value': 0.99
+          'value': 1.99
         });
       }
     }
@@ -2065,7 +2065,7 @@
               <li>✅ Personalized compatibility advice</li>
             </ul>
             <button class="btn-primary" onclick="purchaseCompatibilityAnalysis()" id="celeb-compat-checkout-btn" style="width:100%;margin-bottom:0.5rem;">
-              💘 Unlock — $0.99 One-time
+              💘 Unlock — $1.99 One-time
             </button>
             <button class="btn-secondary" onclick="closeCompatibilityPaywallOverlay()" style="width:100%;background:transparent;border:1px solid var(--border);">
               Cancel
