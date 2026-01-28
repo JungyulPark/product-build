@@ -1873,10 +1873,10 @@
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
       showCompatibilityResult(celebrity, compatibility);
 
-      // GPT AI analysis: only if purchased
+      // GPT AI analysis: only if purchased (paywall gated by polar.enabled)
       if (KStarConfig.hasPurchased('compatibility')) {
         loadGPTCompatibility(celebrity, compatibility);
-      } else {
+      } else if (KStarConfig.polar.enabled) {
         showCompatibilityPaywall();
       }
 
