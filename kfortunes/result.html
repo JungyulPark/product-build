@@ -587,7 +587,7 @@
           document.getElementById('loading-overlay').classList.add('hidden');
 
           // Payment gate: check if discover is purchased
-          if (typeof KStarConfig !== 'undefined' && !KStarConfig.hasPurchased('basic')) {
+          if (typeof KStarConfig !== 'undefined' && KStarConfig.polar.enabled && !KStarConfig.hasPurchased('basic')) {
             document.getElementById('discover-paywall').style.display = 'flex';
           } else {
             // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트

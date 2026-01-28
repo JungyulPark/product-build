@@ -49,7 +49,7 @@ const KStarConfig = {
   },
 
   polar: {
-    enabled: true,
+    enabled: false,  // false = paywall 비활성화, true = 결제 활성화
     theme: 'dark'
   },
 

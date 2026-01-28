@@ -461,7 +461,7 @@ function handleCompatibilitySubmit() {
     errorDiv.innerHTML = '';
 
     // Payment gate: check if compatibility is purchased
-    if (typeof KStarConfig !== 'undefined' && !KStarConfig.hasPurchased('compatibility')) {
+    if (typeof KStarConfig !== 'undefined' && KStarConfig.polar.enabled && !KStarConfig.hasPurchased('compatibility')) {
       if (typeof showCompatibilityPaywall === 'function') {
         showCompatibilityPaywall();
       }
