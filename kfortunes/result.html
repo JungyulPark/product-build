@@ -542,6 +542,10 @@
         <!-- Score details -->
       </div>
 
+      <div class="compatibility-ai-analysis" id="compatibility-ai-analysis" style="display:none;">
+        <!-- GPT AI analysis will be populated -->
+      </div>
+
       <div class="compatibility-actions">
         <button class="btn-secondary" onclick="openCelebritySelector()">
           💕 Try Another Celebrity
@@ -1730,13 +1734,16 @@
         );
       }
 
-      grid.innerHTML = filtered.map(celeb => `
-        <div class="celebrity-select-card" onclick="selectCelebrity('${celeb.name}')">
-          <span class="celeb-icon">${celeb.image}</span>
+      grid.innerHTML = filtered.map(celeb => {
+        const colors = Celebrities.avatarColors[celeb.category] || { bg: '8B5CF6', color: 'fff' };
+        const initials = celeb.initials || celeb.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        return `
+        <div class="celebrity-select-card" onclick="selectCelebrity('${celeb.name.replace(/'/g, "\\'")}')">
+          <span class="celeb-icon" style="background:#${colors.bg};color:#${colors.color};display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-weight:700;font-size:0.85rem;">${initials}</span>
           <span class="celeb-name">${celeb.name}</span>
           <span class="celeb-korean">${celeb.korean}</span>
-        </div>
-      `).join('');
+        </div>`;
+      }).join('');
     }
 
     function filterCelebrities() {
@@ -1766,9 +1773,12 @@
       selectedCelebrity = celebrity;
       closeCelebritySelector();
 
-      // Calculate compatibility
+      // Calculate local compatibility first (instant)
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
       showCompatibilityResult(celebrity, compatibility);
+
+      // Then request GPT AI analysis
+      loadGPTCompatibility(celebrity, compatibility);
 
       // GA event
       if (typeof gtag !== 'undefined') {
@@ -1780,12 +1790,160 @@
       }
     }
 
+    async function loadGPTCompatibility(celebrity, localCompatibility) {
+      const aiSection = document.getElementById('compatibility-ai-analysis');
+      if (!aiSection) return;
+
+      // Show loading state
+      aiSection.style.display = 'block';
+      aiSection.innerHTML = `
+        <div class="ai-loading" style="text-align:center;padding:1rem;">
+          <span class="loading-dots">Analyzing compatibility<span>.</span><span>.</span><span>.</span></span>
+        </div>
+      `;
+
+      try {
+        const params = new URLSearchParams(window.location.search);
+        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+
+        const formatPillar = (pillar) => {
+          if (!pillar) return { stem: '?', branch: '?', korean: '??' };
+          return {
+            stem: pillar.stem.hanja,
+            branch: pillar.branch.hanja,
+            korean: pillar.stem.korean + pillar.branch.korean
+          };
+        };
+
+        const userSajuData = {
+          birthDate: {
+            year: parseInt(params.get('year')),
+            month: parseInt(params.get('month')),
+            day: parseInt(params.get('day')),
+            hour: params.get('hour')
+          },
+          gender: params.get('gender'),
+          dayMaster: {
+            stem: sajuResult.dayMaster.hanja,
+            korean: sajuResult.dayMaster.korean,
+            element: sajuResult.dayMaster.element,
+            yin: sajuResult.dayMaster.yin
+          },
+          fourPillars: {
+            year: formatPillar(sajuResult.fourPillars.year),
+            month: formatPillar(sajuResult.fourPillars.month),
+            day: formatPillar(sajuResult.fourPillars.day),
+            hour: formatPillar(sajuResult.fourPillars.hour)
+          },
+          elementBalance: sajuResult.elementCount
+        };
+
+        const celebrityData = {
+          name: celebrity.name,
+          korean: celebrity.korean,
+          category: celebrity.category,
+          dayMaster: celebrity.dayMaster,
+          yin: celebrity.yin,
+          stem: celebrity.stem,
+          birthYear: celebrity.birthYear
+        };
+
+        const response = await fetch('/api/compatibility', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ userSajuData, celebrityData, language: lang })
+        });
+
+        if (!response.ok) throw new Error('API request failed');
+
+        const data = await response.json();
+
+        if (data.success && data.analysis) {
+          displayGPTCompatibility(data.analysis, celebrity);
+          // Update the overall score from GPT if available
+          if (data.analysis.overallScore) {
+            document.getElementById('compatibility-score-main').innerHTML = `
+              <div class="score-circle" style="--score: ${data.analysis.overallScore}">
+                <span class="score-number">${data.analysis.overallScore}%</span>
+              </div>
+              <div class="score-label">${localCompatibility.relationDesc}</div>
+            `;
+          }
+        } else {
+          aiSection.style.display = 'none';
+        }
+      } catch (error) {
+        console.log('GPT compatibility skipped:', error.message);
+        aiSection.style.display = 'none';
+      }
+    }
+
+    function displayGPTCompatibility(analysis, celebrity) {
+      const aiSection = document.getElementById('compatibility-ai-analysis');
+      if (!aiSection || !analysis) return;
+
+      const toText = (val) => {
+        if (!val) return '';
+        if (typeof val === 'string') return val;
+        if (Array.isArray(val)) return val.join(', ');
+        if (typeof val === 'object') return Object.values(val).filter(v => typeof v === 'string').join(' ');
+        return String(val);
+      };
+
+      const strengthsHtml = Array.isArray(analysis.strengths)
+        ? analysis.strengths.map(s => `<li>✨ ${toText(s)}</li>`).join('')
+        : `<li>✨ ${toText(analysis.strengths)}</li>`;
+
+      const challengesHtml = Array.isArray(analysis.challenges)
+        ? analysis.challenges.map(c => `<li>⚡ ${toText(c)}</li>`).join('')
+        : `<li>⚡ ${toText(analysis.challenges)}</li>`;
+
+      aiSection.style.display = 'block';
+      aiSection.innerHTML = `
+        <div style="border-top: 1px solid var(--border); margin-top: 1rem; padding-top: 1rem;">
+          <h4 style="margin-bottom: 0.75rem; color: var(--accent-light);">AI Compatibility Analysis</h4>
+
+          ${analysis.dynamics ? `<p style="margin-bottom: 1rem; line-height: 1.6;">${toText(analysis.dynamics)}</p>` : ''}
+
+          <div style="margin-bottom: 1rem;">
+            <h5 style="margin-bottom: 0.5rem;">Strengths</h5>
+            <ul style="list-style: none; padding: 0; margin: 0;">${strengthsHtml}</ul>
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <h5 style="margin-bottom: 0.5rem;">Challenges</h5>
+            <ul style="list-style: none; padding: 0; margin: 0;">${challengesHtml}</ul>
+          </div>
+
+          ${analysis.romanticChemistry ? `
+          <div style="margin-bottom: 1rem;">
+            <h5 style="margin-bottom: 0.5rem;">💕 Romantic Chemistry</h5>
+            <p style="line-height: 1.6;">${toText(analysis.romanticChemistry)}</p>
+          </div>` : ''}
+
+          ${analysis.advice ? `
+          <div style="margin-bottom: 1rem;">
+            <h5 style="margin-bottom: 0.5rem;">💡 Advice</h5>
+            <p style="line-height: 1.6;">${toText(analysis.advice)}</p>
+          </div>` : ''}
+
+          ${analysis.luckyDateTip ? `
+          <div style="margin-bottom: 0.5rem;">
+            <h5 style="margin-bottom: 0.5rem;">🍀 Lucky Timing</h5>
+            <p style="line-height: 1.6;">${toText(analysis.luckyDateTip)}</p>
+          </div>` : ''}
+        </div>
+      `;
+    }
+
     function showCompatibilityResult(celebrity, compatibility) {
       const modal = document.getElementById('compatibility-result-modal');
 
       // Header
+      const colors = Celebrities.avatarColors[celebrity.category] || { bg: '8B5CF6', color: 'fff' };
+      const initials = celebrity.initials || celebrity.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
       document.getElementById('compatibility-header').innerHTML = `
-        <span class="celeb-large-icon">${celebrity.image}</span>
+        <span class="celeb-large-icon" style="background:#${colors.bg};color:#${colors.color};display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;font-weight:700;font-size:1.2rem;margin:0 auto 0.5rem;">${initials}</span>
         <h3>${celebrity.name}</h3>
         <p style="color: var(--text-secondary);">${celebrity.korean} · ${celebrity.category}</p>
         <p style="margin-top: 0.5rem; color: var(--accent-light);">${compatibility.matchType.emoji} ${compatibility.matchType.label}</p>

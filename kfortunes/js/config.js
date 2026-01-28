@@ -17,19 +17,19 @@ const KStarConfig = {
       model: null
     },
     basic: {
-      name: 'Basic AI Analysis',
+      name: 'AI Analysis',
       price: 2.99,
       currency: 'USD',
       features: [
-        'GPT personality deep dive',
+        'AI personality deep dive',
         'Career & business guidance',
         'Love & relationship forecast',
         'Health & wellness tips',
         'Wealth & financial outlook',
-        '2025-2026 year forecast'
+        'Year forecast'
       ],
       endpoint: '/api/fortune',
-      model: 'gpt-4o',
+      model: 'gpt-4o',  // Current: gpt-4o → Target: gpt-5.0
       polarProductId: null  // TODO: Set after Polar product creation
     },
     premium: {
@@ -42,12 +42,33 @@ const KStarConfig = {
         'Feng Shui recommendations',
         'Ten Gods analysis',
         'Timing & lucky dates',
-        'Relationship compatibility deep dive'
+        'Celebrity compatibility AI analysis'
       ],
       endpoint: '/api/saju-consultation',
-      model: 'gpt-4o',  // Upgrade to gpt-5.2 when available
+      model: 'gpt-4o',  // Current: gpt-4o → Target: gpt-5.2
+      polarProductId: null  // TODO: Set after Polar product creation
+    },
+    compatibility: {
+      name: 'Celebrity Compatibility AI',
+      price: 0.99,
+      currency: 'USD',
+      features: [
+        'AI-powered compatibility analysis',
+        'Relationship dynamics breakdown',
+        'Best match areas',
+        'Advice for connection'
+      ],
+      endpoint: '/api/compatibility',  // TODO: Create endpoint
+      model: 'gpt-4o',  // Current: gpt-4o → Target: gpt-5.0
       polarProductId: null  // TODO: Set after Polar product creation
     }
+  },
+
+  // Model upgrade plan
+  models: {
+    current: 'gpt-4o',
+    next: 'gpt-5.0',        // Basic + Compatibility tier upgrade
+    premium: 'gpt-5.2'      // Premium tier upgrade
   },
 
   api: {

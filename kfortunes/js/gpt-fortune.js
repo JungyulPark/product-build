@@ -86,11 +86,9 @@ const GPTFortune = {
     return String(val);
   },
 
-  // Determine badge based on fortune source
+  // No badge - clean display without source indicators
   getSourceBadge(fortune) {
-    if (fortune._source === 'gpt') return '<span class="gpt-badge">🤖 AI</span>';
-    if (fortune._source === 'fallback') return '<span class="gpt-badge">🔮 Cached</span>';
-    return '<span class="gpt-badge">🔮</span>';
+    return '';
   },
 
   // UI에 GPT 운세 표시
@@ -147,7 +145,7 @@ const GPTFortune = {
       const healthSection = document.createElement('div');
       healthSection.className = 'section-card gpt-section';
       healthSection.innerHTML = `
-        <h3>🏥 Health Fortune <span class="gpt-badge">🔮</span></h3>
+        <h3>🏥 Health Fortune</h3>
         <p>${this.toText(fortune.health)}</p>
       `;
       container.parentNode.insertBefore(healthSection, container);
@@ -158,7 +156,7 @@ const GPTFortune = {
       const yearSection = document.createElement('div');
       yearSection.className = 'section-card gpt-section';
       yearSection.innerHTML = `
-        <h3>📅 2025-2026 Outlook <span class="gpt-badge">🔮</span></h3>
+        <h3>📅 2025-2026 Outlook</h3>
         <p>${this.toText(fortune.yearFortune)}</p>
       `;
       container.parentNode.insertBefore(yearSection, container);

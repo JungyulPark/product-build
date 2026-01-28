@@ -18,6 +18,7 @@ export async function onRequestGet(context) {
     tiers: {
       free: true,
       basic: gptEnabled,
+      compatibility: gptEnabled,  // Celebrity compatibility AI
       premium: false  // Not yet connected to frontend
     }
   }), {
