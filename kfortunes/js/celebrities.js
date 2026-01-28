@@ -223,11 +223,11 @@ const Celebrities = {
   // 매치 타입 반환 (UI에서 표시용)
   getMatchType(celebrity, dayMaster) {
     if (celebrity.stem === dayMaster.hanja) {
-      return { type: 'exact', label: '완벽 일치', emoji: '🎯' };
+      return { type: 'exact', label: 'Perfect Match', emoji: '🎯' };
     } else if (celebrity.yin === dayMaster.yin) {
-      return { type: 'similar', label: '같은 음양', emoji: '✨' };
+      return { type: 'similar', label: 'Same Energy', emoji: '✨' };
     } else {
-      return { type: 'related', label: '같은 오행', emoji: '🔮' };
+      return { type: 'related', label: 'Same Element', emoji: '🔮' };
     }
   },
 

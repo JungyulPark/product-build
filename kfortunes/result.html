@@ -896,7 +896,7 @@
           </div>
 
           <div class="twin-celebrity-name">${celeb.name}</div>
-          <div class="twin-celebrity-korean">${celeb.korean || ''}</div>
+          <div class="twin-celebrity-korean"></div>
           <span class="twin-celebrity-group">
             <span class="twin-cat-dot" style="background: #${catColor.bg};"></span>
             ${categoryLabel[celeb.category] || celeb.category}
@@ -1105,7 +1105,6 @@
             <div class="celebrity-avatar" style="background: #${catColor.bg}; color: #${catColor.color};">${initials}</div>
             <div class="celebrity-info">
               <div class="celebrity-name">${celeb.name}</div>
-              <div class="celebrity-korean">${celeb.korean}</div>
               <span class="celebrity-category">${celeb.category}</span>
               <span class="match-type-badge" title="${matchType.label}">${matchType.emoji}</span>
             </div>
@@ -1888,7 +1887,7 @@
         <div class="celebrity-select-card" onclick="selectCelebrity('${celeb.name.replace(/'/g, "\\'")}')">
           <span class="celeb-icon" style="background:#${colors.bg};color:#${colors.color};display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;font-weight:700;font-size:0.85rem;">${initials}</span>
           <span class="celeb-name">${celeb.name}</span>
-          <span class="celeb-korean">${celeb.korean}</span>
+          <span class="celeb-korean">${celeb.category}</span>
         </div>`;
       }).join('');
     }
@@ -2150,7 +2149,7 @@
       document.getElementById('compatibility-header').innerHTML = `
         <span class="celeb-large-icon" style="background:#${colors.bg};color:#${colors.color};display:inline-flex;align-items:center;justify-content:center;width:60px;height:60px;border-radius:50%;font-weight:700;font-size:1.2rem;margin:0 auto 0.5rem;">${initials}</span>
         <h3>${celebrity.name}</h3>
-        <p style="color: var(--text-secondary);">${celebrity.korean} · ${celebrity.category}</p>
+        <p style="color: var(--text-secondary);">${celebrity.category}</p>
         <p style="margin-top: 0.5rem; color: var(--accent-light);">${compatibility.matchType.emoji} ${compatibility.matchType.label}</p>
       `;
 
