@@ -1,5 +1,4 @@
 // Cloudflare Pages Function - Create Polar Checkout Session
-// Creates a checkout session for AI Analysis or Compatibility products
 
 const PRODUCTS = {
   basic: '066396ed-5c5e-46f7-8d71-8d0ca7863b9c',
@@ -22,20 +21,20 @@ export async function onRequestPost(context) {
 
     const productId = PRODUCTS[tier];
     if (!productId) {
-      return new Response(JSON.stringify({ error: 'Invalid tier' }), {
+      return new Response(JSON.stringify({ error: 'Invalid tier', detail: `tier=${tier}` }), {
         status: 400, headers: corsHeaders
       });
     }
 
     const polarToken = env.POLAR_ACCESS_TOKEN;
     if (!polarToken) {
-      return new Response(JSON.stringify({ error: 'Payment system not configured' }), {
+      return new Response(JSON.stringify({ error: 'POLAR_ACCESS_TOKEN not set' }), {
         status: 503, headers: corsHeaders
       });
     }
 
-    // Determine API base (sandbox vs production)
-    const apiBase = env.POLAR_SANDBOX === 'true'
+    const isSandbox = env.POLAR_SANDBOX === 'true';
+    const apiBase = isSandbox
       ? 'https://sandbox-api.polar.sh'
       : 'https://api.polar.sh';
 
@@ -58,10 +57,17 @@ export async function onRequestPost(context) {
     });
 
     if (!response.ok) {
-      const error = await response.text();
-      console.error('Polar API Error:', response.status, error);
-      return new Response(JSON.stringify({ error: 'Failed to create checkout' }), {
-        status: 500, headers: corsHeaders
+      const errorText = await response.text();
+      console.error('Polar API Error:', response.status, errorText);
+      return new Response(JSON.stringify({
+        error: 'Polar API error',
+        status: response.status,
+        detail: errorText,
+        sandbox: isSandbox,
+        endpoint: `${apiBase}/v1/checkouts/`,
+        body: checkoutBody
+      }), {
+        status: 502, headers: corsHeaders
       });
     }
 
@@ -77,7 +83,7 @@ export async function onRequestPost(context) {
 
   } catch (error) {
     console.error('Checkout Error:', error.message);
-    return new Response(JSON.stringify({ error: 'Internal server error' }), {
+    return new Response(JSON.stringify({ error: error.message }), {
       status: 500, headers: corsHeaders
     });
   }

@@ -687,7 +687,11 @@
           embedOrigin: window.location.origin
         })
       });
-      if (!res.ok) throw new Error('Failed to create checkout');
+      if (!res.ok) {
+        const errData = await res.json().catch(() => ({}));
+        console.error('Checkout API error:', res.status, errData);
+        throw new Error(JSON.stringify(errData));
+      }
       return res.json();
     }
 
@@ -724,7 +728,7 @@
         });
       } catch (err) {
         console.error('Checkout error:', err);
-        alert('Payment system is being set up. Please try again soon!');
+        alert('Checkout error: ' + err.message);
       }
 
       btn.disabled = false;
