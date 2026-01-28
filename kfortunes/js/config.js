@@ -65,16 +65,16 @@ const KStarConfig = {
 
   hasPurchased(tier) {
     try {
-      const purchases = JSON.parse(localStorage.getItem('kstar_purchases') || '{}');
+      const purchases = JSON.parse(localStorage.getItem('kstar_purchases_v2') || '{}');
       return !!purchases[tier];
     } catch { return false; }
   },
 
   storePurchase(tier) {
     try {
-      const purchases = JSON.parse(localStorage.getItem('kstar_purchases') || '{}');
+      const purchases = JSON.parse(localStorage.getItem('kstar_purchases_v2') || '{}');
       purchases[tier] = Date.now();
-      localStorage.setItem('kstar_purchases', JSON.stringify(purchases));
+      localStorage.setItem('kstar_purchases_v2', JSON.stringify(purchases));
     } catch { /* ignore */ }
   }
 };
