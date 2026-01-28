@@ -615,7 +615,7 @@ function closeShareModal() {
 
 // SNS 공유 함수
 function shareToSNS(platform) {
-  const siteUrl = 'https://kfortunes.com';
+  const siteUrl = 'https://kstarmatch.com';
   const dayMasterEl = document.getElementById('day-master');
   const dayMaster = dayMasterEl ? dayMasterEl.textContent : 'my personality';
 
@@ -645,7 +645,7 @@ function shareToSNS(platform) {
       shareLink = `https://www.linkedin.com/sharing/share-offsite/?url=${shareUrl}`;
       break;
     case 'pinterest':
-      shareLink = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${shareText}&media=${encodeURIComponent('https://kfortunes.com/sajucharacter.webp')}`;
+      shareLink = `https://pinterest.com/pin/create/button/?url=${shareUrl}&description=${shareText}&media=${encodeURIComponent('https://kstarmatch.com/sajucharacter.webp')}`;
       break;
     case 'threads':
       // Threads는 웹 공유 API 사용
@@ -722,7 +722,7 @@ function shareCompatibilityResult() {
 const originalShareToSNS = typeof shareToSNS === 'function' ? shareToSNS : null;
 
 function shareToSNSCompatibility(platform) {
-  const siteUrl = 'https://kfortunes.com/compatibility.html';
+  const siteUrl = 'https://kstarmatch.com/compatibility.html';
   const scoreEl = document.querySelector('.score-value .number');
   const score = scoreEl ? scoreEl.textContent : '';
 

@@ -1,5 +1,5 @@
 # robots.txt for K-Fortunes
-# https://kfortunes.com
+# https://kstarmatch.com
 
 # Allow all search engines
 User-agent: *
@@ -21,10 +21,10 @@ Allow: /
 Disallow: /result.html?
 
 # Sitemap location
-Sitemap: https://kfortunes.com/sitemap.xml
+Sitemap: https://kstarmatch.com/sitemap.xml
 
 # Crawl-delay (optional, be polite to crawlers)
 Crawl-delay: 1
 
 # Host directive for Yandex
-Host: https://kfortunes.com
+Host: https://kstarmatch.com
