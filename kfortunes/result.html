@@ -579,6 +579,17 @@
     document.addEventListener('DOMContentLoaded', function() {
       initializeTheme();
 
+      // Handle post-checkout redirect: detect purchased tier from URL
+      const urlParams = new URLSearchParams(window.location.search);
+      const purchasedTier = urlParams.get('purchased');
+      if (purchasedTier && typeof KStarConfig !== 'undefined') {
+        KStarConfig.storePurchase(purchasedTier);
+        // Clean URL: remove purchased param
+        urlParams.delete('purchased');
+        const cleanUrl = window.location.pathname + (urlParams.toString() ? '?' + urlParams.toString() : '');
+        window.history.replaceState({}, '', cleanUrl);
+      }
+
       // 2초 후 로딩 완료 (애니메이션 시간)
       setTimeout(function() {
         try {
@@ -678,12 +689,15 @@
 
     // Create Polar checkout session via backend API
     async function createCheckout(tier) {
+      const successUrl = new URL(window.location.href);
+      successUrl.searchParams.set('purchased', tier);
+
       const res = await fetch(KStarConfig.api.checkoutEndpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           tier,
-          successUrl: window.location.href,
+          successUrl: successUrl.toString(),
           embedOrigin: window.location.origin
         })
       });
