@@ -1,4 +1,0 @@
-User-agent: *
-Allow: /
-
-Sitemap: https://product-build.pages.dev/sitemap.xml
