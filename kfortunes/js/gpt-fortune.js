@@ -191,7 +191,6 @@ const GPTFortune = {
               <span class="lucky-value">${day}</span>
             </div>
           </div>
-          <p class="gpt-note">Based on Korean Four Pillars of Destiny (Saju)</p>
         `;
       }
     }
