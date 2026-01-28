@@ -1,9 +1,9 @@
 // Cloudflare Pages Function - GPT Fortune API
-// 사주 운세 분석 API (Basic tier: $2.99)
+// 사주 운세 분석 API (Free tier)
 
 // --- CONFIG ---
 const FORTUNE_CONFIG = {
-  model: 'gpt-4o',           // Basic tier model
+  model: 'gpt-4o-mini',     // Free tier — cost-efficient model
   maxTokens: 2000,
   temperature: 0.7,
   timeoutMs: 15000,           // 15 second API timeout

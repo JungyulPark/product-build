@@ -538,32 +538,7 @@
     </div>
   </div>
 
-  <!-- Discover Paywall Overlay -->
-  <div id="discover-paywall" style="display: none;">
-    <div class="card" style="max-width: 480px; margin: 1rem; text-align: center;">
-      <div style="font-size: 3rem; margin-bottom: 0.5rem;">⭐</div>
-      <h2>Unlock Your Full Personality Profile</h2>
-      <p style="color: var(--text-secondary); margin: 1rem 0;">Your analysis is ready! Unlock your complete personality profile with K-Star match.</p>
-      <ul style="text-align: left; margin: 1.5rem 0; list-style: none; padding: 0;">
-        <li style="margin-bottom: 0.5rem;">✅ Four Pillars & Five Elements analysis</li>
-        <li style="margin-bottom: 0.5rem;">✅ Your K-Star Personality Twin</li>
-        <li style="margin-bottom: 0.5rem;">✅ Career, Love & Relationship insights</li>
-        <li style="margin-bottom: 0.5rem;">✅ Strengths & Growth areas</li>
-        <li style="margin-bottom: 0.5rem;">✅ Lucky Elements & Day Master details</li>
-        <li>✅ Celebrity Compatibility check</li>
-      </ul>
-      <button class="btn-primary" onclick="processDiscoverCheckout()" id="discover-checkout-btn" style="width: 100%; margin-bottom: 0.5rem;">
-        ⭐ Unlock — $3.99 One-time
-      </button>
-      <button class="btn-secondary" onclick="window.location.href='index.html'" style="width: 100%; background: transparent; border: 1px solid var(--border);">
-        Back to Home
-      </button>
-      <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 1rem;">One-time payment. No subscription.</p>
-    </div>
-  </div>
-
-  <!-- Polar Checkout Embed -->
-  <script defer src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
+  <!-- All features are free -->
 
   <script src="js/i18n.js"></script>
   <script src="js/saju.js"></script>
@@ -2226,28 +2201,29 @@
       const disclaimer = document.getElementById('affiliate-disclaimer');
 
       // K-Star themed affiliate products by language
-      // TODO: Replace with valid affiliate links
+      // Amazon Associates tag: kfortunes-20
+      // Coupang Partners ID: AF7577743
       const affiliateData = {
         ko: {
           title: '🌟 K-Star 추천 아이템',
           desc: '내 성격 스타일에 어울리는 K-Culture 아이템',
-          disclaimer: '',
+          disclaimer: '이 포스팅은 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다.',
           products: [
-            { name: '포토카드 바인더', icon: '💜', price: '', url: '#', desc: 'K-Pop 콜렉션' },
-            { name: '한국 뷰티세트', icon: '✨', price: '', url: '#', desc: '스타의 피부 비결' },
-            { name: 'K-Pop 앨범', icon: '💿', price: '', url: '#', desc: '최신 앨범 모음' },
-            { name: '한복 인형', icon: '🎎', price: '', url: '#', desc: '프리미엄 한국 인형' }
+            { name: '포토카드 바인더', icon: '💜', price: '', url: 'https://www.coupang.com/vp/products/8089938792?lptag=AF7577743&subid=kstarmatch', desc: 'K-Pop 콜렉션 필수템' },
+            { name: 'K-뷰티 스킨케어', icon: '✨', price: '', url: 'https://www.coupang.com/np/search?q=%ED%95%9C%EA%B5%AD+%EC%8A%A4%ED%82%A8%EC%BC%80%EC%96%B4+%EC%84%A0%EB%AC%BC%EC%84%B8%ED%8A%B8&lptag=AF7577743&subid=kstarmatch', desc: '스타의 피부 비결' },
+            { name: 'K-Pop 앨범', icon: '💿', price: '', url: 'https://www.coupang.com/np/search?q=kpop+%EC%95%A8%EB%B2%94+%EC%B5%9C%EC%8B%A0&lptag=AF7577743&subid=kstarmatch', desc: '최신 앨범 모음' },
+            { name: '한복 인형', icon: '🎎', price: '', url: 'https://www.coupang.com/np/search?q=%ED%95%9C%EB%B3%B5+%EC%9D%B8%ED%98%95+%EC%A0%84%ED%86%B5&lptag=AF7577743&subid=kstarmatch', desc: '프리미엄 한국 인형' }
           ]
         },
         en: {
           title: '🌟 K-Star Picks for You',
           desc: 'Curated K-Culture items that match your star energy',
-          disclaimer: '',
+          disclaimer: 'As an Amazon Associate, we may earn from qualifying purchases.',
           products: [
-            { name: 'K-Pop Photo Binder', icon: '💜', price: '', url: '#', desc: 'Photocard Collection' },
-            { name: 'Korean Skincare Set', icon: '✨', price: '', url: '#', desc: 'K-Beauty Glow' },
-            { name: 'BTS Photo Book', icon: '📖', price: '', url: '#', desc: 'Special Edition' },
-            { name: 'Hanbok Doll', icon: '🎎', price: '', url: '#', desc: 'Korean Traditional' }
+            { name: 'K-Pop Photo Binder', icon: '💜', price: '', url: 'https://www.amazon.com/Photocard-Binder-A5-Pockets-Capacity/dp/B0CBTJYR3L?tag=kfortunes-20', desc: '160 Pocket Collection' },
+            { name: 'Korean Skincare Set', icon: '✨', price: '', url: 'https://www.amazon.com/Korean-Skin-Care-Set-Simplified/dp/B0CCDL8FPR?tag=kfortunes-20', desc: 'K-Beauty Glow Kit' },
+            { name: 'BTS Photo Book', icon: '📖', price: '', url: 'https://www.amazon.com/K-Pop-BTS-Fanbook-Photo-Book/dp/B0FR2LKGT8?tag=kfortunes-20', desc: 'Glossy Collectible' },
+            { name: 'Hanbok Doll', icon: '🎎', price: '', url: 'https://www.amazon.com/Korean-Traditional-Handicraft-Acrylic-Version1/dp/B0776BPPXF?tag=kfortunes-20', desc: 'Traditional Figurine' }
           ]
         },
         ja: {
@@ -2255,32 +2231,32 @@
           desc: 'あなたの星のエネルギーに合うK-Cultureアイテム',
           disclaimer: '',
           products: [
-            { name: 'フォトカードバインダー', icon: '💜', price: '', url: '#', desc: 'K-Popコレクション' },
-            { name: '韓国スキンケアセット', icon: '✨', price: '', url: '#', desc: 'K-ビューティー' },
-            { name: 'BTS フォトブック', icon: '📖', price: '', url: '#', desc: 'スペシャルエディション' },
-            { name: '韓服人形', icon: '🎎', price: '', url: '#', desc: '韓国伝統人形' }
+            { name: 'フォトカードバインダー', icon: '💜', price: '', url: 'https://www.amazon.co.jp/s?k=kpop+%E3%83%95%E3%82%A9%E3%83%88%E3%82%AB%E3%83%BC%E3%83%89+%E3%83%90%E3%82%A4%E3%83%B3%E3%83%80%E3%83%BC&tag=kfortunes-20', desc: 'K-Popコレクション' },
+            { name: '韓国スキンケアセット', icon: '✨', price: '', url: 'https://www.amazon.co.jp/s?k=%E9%9F%93%E5%9B%BD+%E3%82%B9%E3%82%AD%E3%83%B3%E3%82%B1%E3%82%A2+%E3%82%BB%E3%83%83%E3%83%88&tag=kfortunes-20', desc: 'K-ビューティー' },
+            { name: 'BTS フォトブック', icon: '📖', price: '', url: 'https://www.amazon.co.jp/s?k=BTS+%E3%83%95%E3%82%A9%E3%83%88%E3%83%96%E3%83%83%E3%82%AF&tag=kfortunes-20', desc: 'スペシャルエディション' },
+            { name: '韓服人形', icon: '🎎', price: '', url: 'https://www.amazon.co.jp/s?k=%E9%9F%93%E6%9C%8D+%E4%BA%BA%E5%BD%A2&tag=kfortunes-20', desc: '韓国伝統人形' }
           ]
         },
         zh: {
           title: '🌟 K-Star 精选好物',
           desc: '与你星座能量匹配的韩流文化精品',
-          disclaimer: '',
+          disclaimer: 'As an Amazon Associate, we may earn from qualifying purchases.',
           products: [
-            { name: '小卡收纳册', icon: '💜', price: '', url: '#', desc: 'K-Pop收藏' },
-            { name: '韩国护肤套装', icon: '✨', price: '', url: '#', desc: 'K-Beauty' },
-            { name: 'BTS 写真集', icon: '📖', price: '', url: '#', desc: '限量版' },
-            { name: '韩服娃娃', icon: '🎎', price: '', url: '#', desc: '韩国传统' }
+            { name: '小卡收纳册', icon: '💜', price: '', url: 'https://www.amazon.com/s?k=kpop+photocard+binder&tag=kfortunes-20', desc: 'K-Pop收藏必备' },
+            { name: '韩国护肤套装', icon: '✨', price: '', url: 'https://www.amazon.com/s?k=korean+skincare+set&tag=kfortunes-20', desc: 'K-Beauty护肤' },
+            { name: 'BTS 写真集', icon: '📖', price: '', url: 'https://www.amazon.com/s?k=BTS+photo+book&tag=kfortunes-20', desc: '珍藏版' },
+            { name: '韩服娃娃', icon: '🎎', price: '', url: 'https://www.amazon.com/s?k=korean+hanbok+doll&tag=kfortunes-20', desc: '韩国传统' }
           ]
         },
         vi: {
           title: '🌟 K-Star gợi ý cho bạn',
           desc: 'Sản phẩm K-Culture phù hợp năng lượng sao của bạn',
-          disclaimer: '',
+          disclaimer: 'As an Amazon Associate, we may earn from qualifying purchases.',
           products: [
-            { name: 'Album ảnh K-Pop', icon: '💜', price: '', url: '#', desc: 'Bộ sưu tập' },
-            { name: 'Skincare Hàn Quốc', icon: '✨', price: '', url: '#', desc: 'K-Beauty' },
-            { name: 'BTS Photo Book', icon: '📖', price: '', url: '#', desc: 'Phiên bản đặc biệt' },
-            { name: 'Búp bê Hanbok', icon: '🎎', price: '', url: '#', desc: 'Truyền thống Hàn' }
+            { name: 'Album ảnh K-Pop', icon: '💜', price: '', url: 'https://www.amazon.com/Photocard-Binder-A5-Pockets-Capacity/dp/B0CBTJYR3L?tag=kfortunes-20', desc: 'Bộ sưu tập Photocard' },
+            { name: 'Skincare Hàn Quốc', icon: '✨', price: '', url: 'https://www.amazon.com/Korean-Skin-Care-Set-Simplified/dp/B0CCDL8FPR?tag=kfortunes-20', desc: 'K-Beauty Set' },
+            { name: 'BTS Photo Book', icon: '📖', price: '', url: 'https://www.amazon.com/K-Pop-BTS-Fanbook-Photo-Book/dp/B0FR2LKGT8?tag=kfortunes-20', desc: 'Phiên bản đặc biệt' },
+            { name: 'Búp bê Hanbok', icon: '🎎', price: '', url: 'https://www.amazon.com/Korean-Traditional-Handicraft-Acrylic-Version1/dp/B0776BPPXF?tag=kfortunes-20', desc: 'Truyền thống Hàn' }
           ]
         }
       };

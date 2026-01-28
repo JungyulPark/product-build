@@ -1,9 +1,9 @@
 // Cloudflare Pages Function - Celebrity Compatibility AI Analysis
-// GPT를 통한 셀럽 궁합 분석 API (Compatibility tier: $0.99)
+// GPT를 통한 셀럽 궁합 분석 API (Free tier)
 
 // --- CONFIG ---
 const COMPATIBILITY_CONFIG = {
-  model: 'gpt-4o',           // Compatibility tier model (upgrade to gpt-5.0 when available)
+  model: 'gpt-4o-mini',     // Free tier — cost-efficient model
   maxTokens: 1500,
   temperature: 0.8,
   timeoutMs: 15000,           // 15 second API timeout

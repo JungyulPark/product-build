@@ -18,7 +18,7 @@ const KStarConfig = {
     },
     basic: {
       name: 'AI Analysis',
-      price: 3.99,
+      price: 0,
       currency: 'USD',
       features: [
         'AI personality deep dive',
@@ -29,12 +29,12 @@ const KStarConfig = {
         'Year outlook'
       ],
       endpoint: '/api/fortune',
-      model: 'gpt-4o',
-      polarProductId: 'ee9f5667-ab30-4932-8c40-f4fe8e2b2eb8'
+      model: 'gpt-4o-mini',
+      polarProductId: null
     },
     compatibility: {
       name: 'Celebrity Compatibility AI',
-      price: 1.99,
+      price: 0,
       currency: 'USD',
       features: [
         'AI-powered compatibility analysis',
@@ -43,19 +43,19 @@ const KStarConfig = {
         'Advice for connection'
       ],
       endpoint: '/api/compatibility',
-      model: 'gpt-4o',
-      polarProductId: '4586f3f8-02da-4e42-b81c-aa127bdf65cf'
+      model: 'gpt-4o-mini',
+      polarProductId: null
     }
   },
 
   polar: {
-    enabled: true,  // false = paywall 비활성화, true = 결제 활성화
+    enabled: false,  // Polar 결제 비활성화 — 무료 서비스 전환
     theme: 'dark'
   },
 
   models: {
-    current: 'gpt-4o',
-    next: 'gpt-5.0'
+    current: 'gpt-4o-mini',
+    next: 'gpt-4o'
   },
 
   api: {
