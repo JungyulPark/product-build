@@ -76,6 +76,16 @@ const GPTFortune = {
     };
   },
 
+  // Extract text from a value that may be a string or nested object
+  toText(val) {
+    if (!val) return '';
+    if (typeof val === 'string') return val;
+    if (typeof val === 'object') {
+      return Object.values(val).filter(v => typeof v === 'string').join(' ');
+    }
+    return String(val);
+  },
+
   // Determine badge based on fortune source
   getSourceBadge(fortune) {
     if (fortune._source === 'gpt') return '<span class="gpt-badge">🤖 AI</span>';
@@ -92,31 +102,31 @@ const GPTFortune = {
     // 성격
     const personalityEl = document.getElementById('personality-text');
     if (personalityEl && fortune.personality) {
-      personalityEl.innerHTML = `${badge} ${fortune.personality}`;
+      personalityEl.innerHTML = `${badge} ${this.toText(fortune.personality)}`;
     }
 
     // 직업
     const careerEl = document.getElementById('career-list');
     if (careerEl && fortune.career) {
-      careerEl.innerHTML = `<li>${badge} ${fortune.career}</li>`;
+      careerEl.innerHTML = `<li>${badge} ${this.toText(fortune.career)}</li>`;
     }
 
     // 연애
     const loveEl = document.getElementById('love-text');
     if (loveEl && fortune.love) {
-      loveEl.innerHTML = `${badge} ${fortune.love}`;
+      loveEl.innerHTML = `${badge} ${this.toText(fortune.love)}`;
     }
 
-    // 강점
+    // 강점/재물
     const strengthEl = document.getElementById('strength-text');
     if (strengthEl && fortune.wealth) {
-      strengthEl.innerHTML = `${badge} ${fortune.wealth}`;
+      strengthEl.innerHTML = `${badge} ${this.toText(fortune.wealth)}`;
     }
 
     // 약점/주의
     const weaknessEl = document.getElementById('weakness-text');
     if (weaknessEl && fortune.caution) {
-      weaknessEl.innerHTML = `<span class="gpt-badge">⚠️</span> ${fortune.caution}`;
+      weaknessEl.innerHTML = `<span class="gpt-badge">⚠️</span> ${this.toText(fortune.caution)}`;
     }
 
     // GPT 전용 섹션 추가
@@ -138,7 +148,7 @@ const GPTFortune = {
       healthSection.className = 'section-card gpt-section';
       healthSection.innerHTML = `
         <h3>🏥 Health Fortune <span class="gpt-badge">🔮</span></h3>
-        <p>${fortune.health}</p>
+        <p>${this.toText(fortune.health)}</p>
       `;
       container.parentNode.insertBefore(healthSection, container);
     }
@@ -149,32 +159,38 @@ const GPTFortune = {
       yearSection.className = 'section-card gpt-section';
       yearSection.innerHTML = `
         <h3>📅 2025-2026 Outlook <span class="gpt-badge">🔮</span></h3>
-        <p>${fortune.yearFortune}</p>
+        <p>${this.toText(fortune.yearFortune)}</p>
       `;
       container.parentNode.insertBefore(yearSection, container);
     }
 
     // 행운 팁 업데이트
     if (fortune.luckyTips) {
+      const tips = fortune.luckyTips;
+      const color = Array.isArray(tips.colors) ? tips.colors[0] : (tips.color || tips.colors || '');
+      const direction = tips.direction || '';
+      const number = Array.isArray(tips.numbers) ? tips.numbers[0] : (tips.number || tips.numbers || '');
+      const day = tips.day || '';
+
       const luckyEl = document.getElementById('lucky-info');
       if (luckyEl) {
         luckyEl.innerHTML = `
           <div class="lucky-grid">
             <div class="lucky-item">
               <span class="lucky-label">Lucky Color</span>
-              <span class="lucky-value">${fortune.luckyTips.color}</span>
+              <span class="lucky-value">${color}</span>
             </div>
             <div class="lucky-item">
               <span class="lucky-label">Lucky Direction</span>
-              <span class="lucky-value">${fortune.luckyTips.direction}</span>
+              <span class="lucky-value">${direction}</span>
             </div>
             <div class="lucky-item">
               <span class="lucky-label">Lucky Number</span>
-              <span class="lucky-value">${fortune.luckyTips.number}</span>
+              <span class="lucky-value">${number}</span>
             </div>
             <div class="lucky-item">
               <span class="lucky-label">Lucky Day</span>
-              <span class="lucky-value">${fortune.luckyTips.day}</span>
+              <span class="lucky-value">${day}</span>
             </div>
           </div>
           <p class="gpt-note">Based on Korean Four Pillars of Destiny (Saju)</p>

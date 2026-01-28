@@ -1864,60 +1864,61 @@
       const disclaimer = document.getElementById('affiliate-disclaimer');
 
       // K-Star themed affiliate products by language
+      // TODO: Replace with valid affiliate links
       const affiliateData = {
         ko: {
           title: '🌟 K-Star 추천 아이템',
           desc: '내 사주 스타일에 어울리는 K-Culture 아이템',
-          disclaimer: '* 쿠팡 파트너스 활동의 일환으로, 이에 따른 일정액의 수수료를 제공받습니다',
+          disclaimer: '',
           products: [
-            { name: '포토카드 바인더', icon: '💜', price: '', url: 'https://link.coupang.com/a/dAed1k', desc: 'K-Pop 콜렉션' },
-            { name: '한국 뷰티세트', icon: '✨', price: '', url: 'https://link.coupang.com/a/dAeh10', desc: '스타의 피부 비결' },
-            { name: 'K-Pop 앨범', icon: '💿', price: '', url: 'https://link.coupang.com/a/dAek6j', desc: '최신 앨범 모음' },
-            { name: '한복 인형', icon: '🎎', price: '', url: 'https://coupa.ng/clqW7J', desc: '프리미엄 한국 인형' }
+            { name: '포토카드 바인더', icon: '💜', price: '', url: '#', desc: 'K-Pop 콜렉션' },
+            { name: '한국 뷰티세트', icon: '✨', price: '', url: '#', desc: '스타의 피부 비결' },
+            { name: 'K-Pop 앨범', icon: '💿', price: '', url: '#', desc: '최신 앨범 모음' },
+            { name: '한복 인형', icon: '🎎', price: '', url: '#', desc: '프리미엄 한국 인형' }
           ]
         },
         en: {
           title: '🌟 K-Star Picks for You',
           desc: 'Curated K-Culture items that match your star energy',
-          disclaimer: '* As an Amazon Associate, we earn from qualifying purchases',
+          disclaimer: '',
           products: [
-            { name: 'K-Pop Photo Binder', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'Photocard Collection' },
-            { name: 'Korean Skincare Set', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty Glow' },
-            { name: 'BTS Photo Book', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'Special Edition' },
-            { name: 'Hanbok Doll', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: 'Korean Traditional' }
+            { name: 'K-Pop Photo Binder', icon: '💜', price: '', url: '#', desc: 'Photocard Collection' },
+            { name: 'Korean Skincare Set', icon: '✨', price: '', url: '#', desc: 'K-Beauty Glow' },
+            { name: 'BTS Photo Book', icon: '📖', price: '', url: '#', desc: 'Special Edition' },
+            { name: 'Hanbok Doll', icon: '🎎', price: '', url: '#', desc: 'Korean Traditional' }
           ]
         },
         ja: {
           title: '🌟 K-Star おすすめアイテム',
           desc: 'あなたの星のエネルギーに合うK-Cultureアイテム',
-          disclaimer: '* Amazonアソシエイトとして適格販売により収入を得ています',
+          disclaimer: '',
           products: [
-            { name: 'フォトカードバインダー', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'K-Popコレクション' },
-            { name: '韓国スキンケアセット', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-ビューティー' },
-            { name: 'BTS フォトブック', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'スペシャルエディション' },
-            { name: '韓服人形', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: '韓国伝統人形' }
+            { name: 'フォトカードバインダー', icon: '💜', price: '', url: '#', desc: 'K-Popコレクション' },
+            { name: '韓国スキンケアセット', icon: '✨', price: '', url: '#', desc: 'K-ビューティー' },
+            { name: 'BTS フォトブック', icon: '📖', price: '', url: '#', desc: 'スペシャルエディション' },
+            { name: '韓服人形', icon: '🎎', price: '', url: '#', desc: '韓国伝統人形' }
           ]
         },
         zh: {
           title: '🌟 K-Star 精选好物',
           desc: '与你星座能量匹配的韩流文化精品',
-          disclaimer: '* 作为Amazon联盟会员，我们从符合条件的购买中获得佣金',
+          disclaimer: '',
           products: [
-            { name: '小卡收纳册', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'K-Pop收藏' },
-            { name: '韩国护肤套装', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty' },
-            { name: 'BTS 写真集', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: '限量版' },
-            { name: '韩服娃娃', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: '韩国传统' }
+            { name: '小卡收纳册', icon: '💜', price: '', url: '#', desc: 'K-Pop收藏' },
+            { name: '韩国护肤套装', icon: '✨', price: '', url: '#', desc: 'K-Beauty' },
+            { name: 'BTS 写真集', icon: '📖', price: '', url: '#', desc: '限量版' },
+            { name: '韩服娃娃', icon: '🎎', price: '', url: '#', desc: '韩国传统' }
           ]
         },
         vi: {
           title: '🌟 K-Star gợi ý cho bạn',
           desc: 'Sản phẩm K-Culture phù hợp năng lượng sao của bạn',
-          disclaimer: '* Là đối tác Amazon, chúng tôi kiếm được từ các giao dịch đủ điều kiện',
+          disclaimer: '',
           products: [
-            { name: 'Album ảnh K-Pop', icon: '💜', price: '$24.99~', url: 'https://www.amazon.com/dp/B0CG8KKNQ4?tag=kfortunes-20', desc: 'Bộ sưu tập' },
-            { name: 'Skincare Hàn Quốc', icon: '✨', price: '$39.99~', url: 'https://www.amazon.com/dp/B0BFMLY5KZ?tag=kfortunes-20', desc: 'K-Beauty' },
-            { name: 'BTS Photo Book', icon: '📖', price: '$34.99~', url: 'https://www.amazon.com/dp/B0C1J4QKQT?tag=kfortunes-20', desc: 'Phiên bản đặc biệt' },
-            { name: 'Búp bê Hanbok', icon: '🎎', price: '$29.99~', url: 'https://www.amazon.com/dp/B09NQDWGQF?tag=kfortunes-20', desc: 'Truyền thống Hàn' }
+            { name: 'Album ảnh K-Pop', icon: '💜', price: '', url: '#', desc: 'Bộ sưu tập' },
+            { name: 'Skincare Hàn Quốc', icon: '✨', price: '', url: '#', desc: 'K-Beauty' },
+            { name: 'BTS Photo Book', icon: '📖', price: '', url: '#', desc: 'Phiên bản đặc biệt' },
+            { name: 'Búp bê Hanbok', icon: '🎎', price: '', url: '#', desc: 'Truyền thống Hàn' }
           ]
         }
       };
