@@ -636,18 +636,14 @@ const i18n = {
     return false;
   },
 
-  // Initialize language from storage or browser
+  // Initialize language from storage (English default)
   init() {
     const saved = localStorage.getItem('kfortunes-lang');
     if (saved && this.translations[saved]) {
       this.currentLang = saved;
-    } else {
-      // Detect browser language
-      const browserLang = navigator.language.slice(0, 2);
-      if (this.translations[browserLang]) {
-        this.currentLang = browserLang;
-      }
     }
+    // English is the default (currentLang: 'en')
+    // Users can select their preferred language from the dropdown
     this.updatePage();
   },
 

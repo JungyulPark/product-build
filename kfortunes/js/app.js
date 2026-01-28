@@ -173,12 +173,16 @@ function handleFormSubmit() {
     }, 250);
 
     // 사주 계산 및 결과 페이지로 이동
+    const focusInput = document.getElementById('focus');
+    const focusValue = focusInput ? focusInput.value : '';
+
     setTimeout(() => {
       clearInterval(progressInterval);
       submitBtn.innerHTML = '✨ Redirecting...';
       const params = new URLSearchParams({
         year, month, day, gender,
-        ...(hour && { hour })
+        ...(hour && { hour }),
+        ...(focusValue && { focus: focusValue })
       });
       window.location.href = `result.html?${params.toString()}`;
     }, 1500);

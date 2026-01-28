@@ -214,6 +214,8 @@
             <input type="hidden" id="gender" required>
           </div>
 
+          <input type="hidden" id="focus" name="focus" value="">
+
           <button type="submit" class="btn-primary" id="submit-btn" data-i18n="form_submit">
             ⭐ Discover My K-Star Match
           </button>
@@ -222,17 +224,17 @@
     </section>
 
     <section class="features">
-      <div class="feature-card" onclick="document.getElementById('saju-form').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+      <div class="feature-card" data-focus="personality" onclick="setFocusAndScroll('personality')" style="cursor: pointer;">
         <div class="feature-icon">🎯</div>
         <h3 data-i18n="feature_personality">Personality Analysis</h3>
         <p data-i18n="feature_personality_desc">Discover your true nature based on your Four Pillars</p>
       </div>
-      <div class="feature-card" onclick="document.getElementById('saju-form').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+      <div class="feature-card" data-focus="career" onclick="setFocusAndScroll('career')" style="cursor: pointer;">
         <div class="feature-icon">💼</div>
         <h3 data-i18n="feature_career">Career & Wealth</h3>
         <p data-i18n="feature_career_desc">Find your path to success and prosperity</p>
       </div>
-      <div class="feature-card" onclick="document.getElementById('saju-form').scrollIntoView({behavior: 'smooth'})" style="cursor: pointer;">
+      <div class="feature-card" data-focus="love" onclick="setFocusAndScroll('love')" style="cursor: pointer;">
         <div class="feature-icon">💕</div>
         <h3 data-i18n="feature_love">Love & Relationships</h3>
         <p data-i18n="feature_love_desc">Understand your romantic compatibility</p>
@@ -254,6 +256,12 @@
   <script src="js/i18n.js"></script>
   <script src="js/saju.js"></script>
   <script src="js/app.js"></script>
+  <script>
+    function setFocusAndScroll(focusValue) {
+      document.getElementById('focus').value = focusValue;
+      document.getElementById('saju-form').scrollIntoView({behavior: 'smooth'});
+    }
+  </script>
   <script>
     // Language selector functions
     function toggleLangMenu() {
