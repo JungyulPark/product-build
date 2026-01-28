@@ -1,5 +1,5 @@
-// KStar Match GPT Fortune Integration
-// GPT API를 통한 상세 운세 분석
+// KStar Match GPT AI Analysis Integration
+// GPT API를 통한 상세 성격 분석
 
 const GPTFortune = {
   // API 엔드포인트 (Cloudflare Pages Function)
@@ -145,7 +145,7 @@ const GPTFortune = {
       const healthSection = document.createElement('div');
       healthSection.className = 'section-card gpt-section';
       healthSection.innerHTML = `
-        <h3>🏥 Health Fortune</h3>
+        <h3>🏥 Health & Wellness</h3>
         <p>${this.toText(fortune.health)}</p>
       `;
       container.parentNode.insertBefore(healthSection, container);

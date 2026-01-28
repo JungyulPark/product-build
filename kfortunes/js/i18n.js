@@ -23,10 +23,10 @@ const i18n = {
       nav_about: 'About',
 
       // Hero Section
-      hero_badge: '✨ Free Saju Reading · Find Your K-Star Match!',
+      hero_badge: '✨ Free Personality Analysis · Find Your K-Star Match!',
       hero_title: 'KStar Match',
       hero_tagline: 'Which K-Star Matches Your Personality?',
-      hero_subtitle: 'Check if you share similar personality traits with your favorite K-Pop idols & K-Drama stars! BTS, BLACKPINK, IU, Park Seo-joon... Who\'s your Saju Twin?',
+      hero_subtitle: 'Check if you share similar personality traits with your favorite K-Pop idols & K-Drama stars! BTS, BLACKPINK, IU, Park Seo-joon... Who\'s your Personality Twin?',
 
       // Form
       form_title: 'Enter Your Birth Information',
@@ -44,7 +44,7 @@ const i18n = {
 
       // Features
       feature_personality: 'Personality Analysis',
-      feature_personality_desc: 'Discover your true nature based on your Four Pillars',
+      feature_personality_desc: 'Discover your true nature based on your birth profile',
       feature_career: 'Career & Wealth',
       feature_career_desc: 'Find your path to success and prosperity',
       feature_love: 'Love & Relationships',
@@ -60,7 +60,7 @@ const i18n = {
       result_day_pillar: 'Day',
       result_hour_pillar: 'Hour',
       result_elements: 'Five Elements Balance',
-      result_celebrity: 'Celebrity Saju Match',
+      result_celebrity: 'Celebrity Personality Match',
       result_celebrity_desc: 'You share similar personality traits with:',
       result_personality: 'Personality',
       result_career: 'Career Paths',
@@ -70,16 +70,16 @@ const i18n = {
       result_lucky: 'Lucky Elements',
       result_share: '📤 Share Result',
       result_compatibility: '💕 Check Compatibility',
-      result_new: '⭐ New Reading',
+      result_new: '⭐ New Analysis',
 
       // Loading
       loading_text: 'Analyzing your personality patterns...',
-      loading_subtext: 'Reading your Four Pillars profile',
+      loading_subtext: 'Building your personality profile',
 
       // Compatibility
       compat_badge: '💕 Compatibility Test',
       compat_title: 'Check Your Compatibility',
-      compat_subtitle: 'Discover your compatibility based on Korean Saju. Enter both birth dates to reveal your personality match.',
+      compat_subtitle: 'Discover your compatibility based on Korean traditions. Enter both birth dates to reveal your personality match.',
       compat_person1: '👤 Person 1',
       compat_person2: '👤 Person 2',
       compat_submit: '💕 Calculate Compatibility',
@@ -100,10 +100,10 @@ const i18n = {
       share_desc: 'Share your love compatibility result!',
 
       // About Page
-      about_badge: '📚 Learn About Saju',
+      about_badge: '📚 About Four Pillars',
       about_title: 'The Art of KStar Match',
-      about_subtitle: "Discover the wisdom of Saju (四柱), Korea's traditional system of personality analysis.",
-      about_cta_fortune: '⭐ Get Your Free Reading',
+      about_subtitle: "Discover the wisdom of Four Pillars (四柱), Korea's traditional system of personality analysis.",
+      about_cta_fortune: '⭐ Get Your Free Analysis',
       about_cta_compat: '💕 Check Compatibility',
 
       // Footer
@@ -144,7 +144,7 @@ const i18n = {
       nav_about: '소개',
 
       // Hero Section
-      hero_badge: '✨ 무료 사주 · 나의 K-Star 성격 매칭!',
+      hero_badge: '✨ 무료 성격 분석 · 나의 K-Star 매칭!',
       hero_title: 'KStar Match',
       hero_tagline: '나와 닮은 K-Star는 누구일까?',
       hero_subtitle: 'BTS, BLACKPINK, IU, 박서준... 내가 좋아하는 K-Pop 아이돌, K-Drama 스타와 비슷한 성격인지 확인해보세요!',
@@ -165,24 +165,24 @@ const i18n = {
 
       // Features
       feature_personality: '성격 분석',
-      feature_personality_desc: '사주팔자로 알아보는 당신의 진정한 성격',
+      feature_personality_desc: '생년월일로 알아보는 당신의 진정한 성격',
       feature_career: '직업 & 재물',
       feature_career_desc: '성공과 번영으로 가는 길을 찾으세요',
       feature_love: '연애 & 인간관계',
-      feature_love_desc: '당신의 연애운을 알아보세요',
+      feature_love_desc: '연애 성향을 알아보세요',
 
       // Result Page
-      result_title: '당신의 사주팔자',
+      result_title: '나의 성격 프로필',
       result_birth_date: '생년월일',
       result_day_master: '일간',
-      result_four_pillars: '사주 (四柱)',
+      result_four_pillars: '네 기둥 (四柱)',
       result_year_pillar: '년주',
       result_month_pillar: '월주',
       result_day_pillar: '일주',
       result_hour_pillar: '시주',
       result_elements: '오행 균형',
-      result_celebrity: '유명인 사주 매치',
-      result_celebrity_desc: '당신과 비슷한 기운을 가진 유명인:',
+      result_celebrity: '유명인 성격 매치',
+      result_celebrity_desc: '당신과 비슷한 성격의 유명인:',
       result_personality: '성격',
       result_career: '적합한 직업',
       result_love: '연애 & 인간관계',
@@ -195,12 +195,12 @@ const i18n = {
 
       // Loading
       loading_text: '성격 패턴을 분석하고 있습니다...',
-      loading_subtext: '사주팔자를 읽고 있습니다',
+      loading_subtext: '성격 패턴을 분석 중입니다',
 
       // Compatibility
       compat_badge: '💕 궁합 테스트',
       compat_title: '우리의 궁합은?',
-      compat_subtitle: '한국 사주로 알아보는 궁합. 두 사람의 생년월일을 입력하세요.',
+      compat_subtitle: '두 사람의 생년월일을 입력하여 성격 궁합을 알아보세요.',
       compat_person1: '👤 첫 번째 사람',
       compat_person2: '👤 두 번째 사람',
       compat_submit: '💕 궁합 보기',
@@ -221,9 +221,9 @@ const i18n = {
       share_desc: '사랑 궁합 결과를 공유해보세요!',
 
       // About Page
-      about_badge: '📚 사주에 대해 알아보기',
+      about_badge: '📚 서비스 소개',
       about_title: 'KStar Match 소개',
-      about_subtitle: '사주(四柱)의 지혜를 발견하세요. 한국의 전통적인 성격 분석 시스템입니다.',
+      about_subtitle: '한국의 전통적인 성격 분석 시스템을 발견하세요.',
       about_cta_fortune: '⭐ 무료로 성격 분석 보기',
       about_cta_compat: '💕 궁합 보기',
 
@@ -265,10 +265,10 @@ const i18n = {
       nav_about: '紹介',
 
       // Hero Section
-      hero_badge: '✨ 無料四柱推命 · K-Starソウルメイトを見つけよう！',
+      hero_badge: '✨ 無料性格分析 · K-Starソウルメイトを見つけよう！',
       hero_title: 'KStar Match',
-      hero_tagline: '私はK-Starの運命を持っている？',
-      hero_subtitle: 'BTS、BLACKPINK、IU、パク・ソジュン...好きなK-Popアイドルやドラマスターと同じ四柱か確認しよう！',
+      hero_tagline: '私に似たK-Starは誰？',
+      hero_subtitle: 'BTS、BLACKPINK、IU、パク・ソジュン...好きなK-Popアイドルやドラマスターと性格が似ているか確認しよう！',
 
       // Form
       form_title: '生年月日を入力してください',
@@ -286,14 +286,14 @@ const i18n = {
 
       // Features
       feature_personality: '性格分析',
-      feature_personality_desc: '四柱推命であなたの本当の性格を発見',
+      feature_personality_desc: '生年月日であなたの本当の性格を発見',
       feature_career: 'キャリア＆財運',
       feature_career_desc: '成功と繁栄への道を見つけましょう',
       feature_love: '恋愛＆人間関係',
-      feature_love_desc: 'あなたの恋愛運を理解しましょう',
+      feature_love_desc: 'あなたの恋愛傾向を理解しましょう',
 
       // Result Page
-      result_title: 'あなたの四柱推命',
+      result_title: 'あなたの性格プロフィール',
       result_birth_date: '生年月日',
       result_day_master: '日干',
       result_four_pillars: '四柱',
@@ -302,7 +302,7 @@ const i18n = {
       result_day_pillar: '日柱',
       result_hour_pillar: '時柱',
       result_elements: '五行バランス',
-      result_celebrity: '有名人の四柱マッチ',
+      result_celebrity: '有名人性格マッチ',
       result_celebrity_desc: 'あなたと似たエネルギーを持つ有名人:',
       result_personality: '性格',
       result_career: '適職',
@@ -316,12 +316,12 @@ const i18n = {
 
       // Loading
       loading_text: '宇宙のエネルギーを分析中...',
-      loading_subtext: '四柱推命を読んでいます',
+      loading_subtext: '性格パターンを分析中',
 
       // Compatibility
       compat_badge: '💕 相性診断',
       compat_title: '運命の相手ですか？',
-      compat_subtitle: '韓国の四柱推命で相性を見る。二人の生年月日を入力してください。',
+      compat_subtitle: '二人の生年月日を入力して性格相性を見る。',
       compat_person1: '👤 1人目',
       compat_person2: '👤 2人目',
       compat_submit: '💕 相性を見る',
@@ -342,9 +342,9 @@ const i18n = {
       share_desc: '恋愛相性の結果をシェアしましょう！',
 
       // About Page
-      about_badge: '📚 四柱推命について',
+      about_badge: '📚 サービス紹介',
       about_title: 'KStar Matchの芸術',
-      about_subtitle: '四柱（サジュ）の古代の知恵を発見してください。韓国の伝統的な運命分析システムです。',
+      about_subtitle: '韓国の伝統的な性格分析システムを発見してください。',
       about_cta_fortune: '⭐ 無料で診断する',
       about_cta_compat: '💕 相性を見る',
 
@@ -386,10 +386,10 @@ const i18n = {
       nav_about: '关于',
 
       // Hero Section
-      hero_badge: '✨ 免费四柱 · 找到你的K-Star灵魂伴侣！',
+      hero_badge: '✨ 免费性格分析 · 找到你的K-Star灵魂伴侣！',
       hero_title: 'KStar Match',
-      hero_tagline: '我天生就是K-Star的命运吗？',
-      hero_subtitle: 'BTS、BLACKPINK、IU、朴叙俊...看看你和喜欢的K-Pop偶像、韩剧明星是否有相同的四柱！',
+      hero_tagline: '跟我性格相似的K-Star是谁？',
+      hero_subtitle: 'BTS、BLACKPINK、IU、朴叙俊...看看你和喜欢的K-Pop偶像、韩剧明星性格是否相似！',
 
       // Form
       form_title: '输入您的出生信息',
@@ -407,14 +407,14 @@ const i18n = {
 
       // Features
       feature_personality: '性格分析',
-      feature_personality_desc: '通过四柱发现你真正的性格',
+      feature_personality_desc: '通过出生日期发现你真正的性格',
       feature_career: '事业与财运',
       feature_career_desc: '找到通往成功和繁荣的道路',
       feature_love: '爱情与人际关系',
-      feature_love_desc: '了解你的感情运势',
+      feature_love_desc: '了解你的感情倾向',
 
       // Result Page
-      result_title: '你的四柱八字',
+      result_title: '你的性格档案',
       result_birth_date: '出生日期',
       result_day_master: '日主',
       result_four_pillars: '四柱',
@@ -423,7 +423,7 @@ const i18n = {
       result_day_pillar: '日柱',
       result_hour_pillar: '时柱',
       result_elements: '五行平衡',
-      result_celebrity: '名人四柱匹配',
+      result_celebrity: '名人性格匹配',
       result_celebrity_desc: '与你有相似能量的名人：',
       result_personality: '性格',
       result_career: '适合职业',
@@ -433,16 +433,16 @@ const i18n = {
       result_lucky: '幸运元素',
       result_share: '📤 分享结果',
       result_compatibility: '💕 查看合婚',
-      result_new: '⭐ 重新测算',
+      result_new: '⭐ 重新分析',
 
       // Loading
       loading_text: '正在分析宇宙能量...',
-      loading_subtext: '正在解读你的四柱八字',
+      loading_subtext: '正在分析你的性格模式',
 
       // Compatibility
       compat_badge: '💕 合婚测试',
       compat_title: '你们是天生一对吗？',
-      compat_subtitle: '通过韩国四柱看合婚。请输入两人的出生日期。',
+      compat_subtitle: '请输入两人的出生日期，查看性格配对。',
       compat_person1: '👤 第一人',
       compat_person2: '👤 第二人',
       compat_submit: '💕 查看合婚',
@@ -463,9 +463,9 @@ const i18n = {
       share_desc: '分享您的爱情合婚结果！',
 
       // About Page
-      about_badge: '📚 了解四柱',
+      about_badge: '📚 服务介绍',
       about_title: 'KStar Match的艺术',
-      about_subtitle: '探索四柱（사주）的古老智慧，韩国传统的命运分析系统。',
+      about_subtitle: '探索韩国传统的性格分析系统。',
       about_cta_fortune: '⭐ 免费测试',
       about_cta_compat: '💕 查看合婚',
 
@@ -507,10 +507,10 @@ const i18n = {
       nav_about: 'Giới thiệu',
 
       // Hero Section
-      hero_badge: '✨ Tứ Trụ miễn phí · Tìm K-Star tri kỷ của bạn!',
+      hero_badge: '✨ Phân tích miễn phí · Tìm K-Star tri kỷ của bạn!',
       hero_title: 'KStar Match',
-      hero_tagline: 'Tôi sinh ra với vận mệnh K-Star?',
-      hero_subtitle: 'BTS, BLACKPINK, IU, Park Seo-joon... Xem bạn có cùng Tứ Trụ với thần tượng K-Pop và sao K-Drama yêu thích không!',
+      hero_tagline: 'K-Star nào giống tính cách tôi?',
+      hero_subtitle: 'BTS, BLACKPINK, IU, Park Seo-joon... Xem bạn có tính cách giống thần tượng K-Pop và sao K-Drama yêu thích không!',
 
       // Form
       form_title: 'Nhập thông tin ngày sinh',
@@ -528,14 +528,14 @@ const i18n = {
 
       // Features
       feature_personality: 'Phân tích Tính cách',
-      feature_personality_desc: 'Khám phá bản chất thật của bạn qua Tứ Trụ',
+      feature_personality_desc: 'Khám phá bản chất thật của bạn qua ngày sinh',
       feature_career: 'Sự nghiệp & Tài lộc',
       feature_career_desc: 'Tìm con đường đến thành công và thịnh vượng',
       feature_love: 'Tình yêu & Mối quan hệ',
-      feature_love_desc: 'Hiểu vận mệnh tình cảm của bạn',
+      feature_love_desc: 'Hiểu xu hướng tình cảm của bạn',
 
       // Result Page
-      result_title: 'Tứ Trụ của bạn',
+      result_title: 'Hồ sơ tính cách của bạn',
       result_birth_date: 'Ngày sinh',
       result_day_master: 'Nhật chủ',
       result_four_pillars: 'Tứ Trụ (四柱)',
@@ -544,7 +544,7 @@ const i18n = {
       result_day_pillar: 'Ngày',
       result_hour_pillar: 'Giờ',
       result_elements: 'Cân bằng Ngũ hành',
-      result_celebrity: 'Người nổi tiếng cùng Tứ Trụ',
+      result_celebrity: 'Người nổi tiếng cùng tính cách',
       result_celebrity_desc: 'Bạn có năng lượng tương tự với:',
       result_personality: 'Tính cách',
       result_career: 'Nghề nghiệp phù hợp',
@@ -558,12 +558,12 @@ const i18n = {
 
       // Loading
       loading_text: 'Đang phân tích năng lượng vũ trụ...',
-      loading_subtext: 'Đang đọc Tứ Trụ của bạn',
+      loading_subtext: 'Đang phân tích tính cách của bạn',
 
       // Compatibility
       compat_badge: '💕 Kiểm tra hợp tuổi',
       compat_title: 'Các bạn có duyên số không?',
-      compat_subtitle: 'Xem hợp tuổi theo Tứ Trụ Hàn Quốc. Nhập ngày sinh của cả hai.',
+      compat_subtitle: 'Nhập ngày sinh của cả hai để xem tương hợp tính cách.',
       compat_person1: '👤 Người 1',
       compat_person2: '👤 Người 2',
       compat_submit: '💕 Xem hợp tuổi',
@@ -584,9 +584,9 @@ const i18n = {
       share_desc: 'Chia sẻ kết quả hợp tuổi tình yêu của bạn!',
 
       // About Page
-      about_badge: '📚 Tìm hiểu về Tứ Trụ',
+      about_badge: '📚 Giới thiệu dịch vụ',
       about_title: 'Nghệ thuật KStar Match',
-      about_subtitle: 'Khám phá trí tuệ cổ đại của Tứ Trụ (四柱), hệ thống phân tích vận mệnh truyền thống của Hàn Quốc.',
+      about_subtitle: 'Khám phá hệ thống phân tích tính cách truyền thống của Hàn Quốc.',
       about_cta_fortune: '⭐ Xem miễn phí',
       about_cta_compat: '💕 Xem hợp tuổi',
 

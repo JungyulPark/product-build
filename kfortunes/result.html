@@ -3,9 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Your Saju Personality Analysis Result | KStar Match</title>
-  <meta name="description" content="Your personalized Korean Saju personality analysis results. Discover your Four Pillars profile, personality insights, career paths, and compatibility.">
-  <meta name="keywords" content="Saju result, personality analysis result, 사주 결과, Four Pillars reading">
+  <title>Your Personality Analysis Result | KStar Match</title>
+  <meta name="description" content="Your personalized Korean personality analysis results. Discover your Four Pillars profile, personality insights, career paths, and compatibility.">
+  <meta name="keywords" content="personality analysis result, 성격 결과, Four Pillars profile, KStar Match">
   <meta name="author" content="KStar Match">
   <meta name="robots" content="noindex, follow">
 
@@ -15,7 +15,7 @@
   <!-- Open Graph -->
   <meta property="og:type" content="website">
   <meta property="og:site_name" content="KStar Match">
-  <meta property="og:title" content="My KStar Match Saju Reading">
+  <meta property="og:title" content="My KStar Match Personality Profile">
   <meta property="og:description" content="Discover your personality with KStar Match - Korean Four Pillars personality analysis">
   <meta property="og:image" content="https://kfortunes.com/sajucharacter.webp">
   <meta property="og:image:width" content="1200">
@@ -24,8 +24,8 @@
 
   <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="My KStar Match Reading">
-  <meta name="twitter:description" content="Check out my Korean Saju personality reading!">
+  <meta name="twitter:title" content="My KStar Match Personality Profile">
+  <meta name="twitter:description" content="Check out my Korean personality analysis!">
   <meta name="twitter:image" content="https://kfortunes.com/sajucharacter.webp">
 
   <meta name="google-adsense-account" content="ca-pub-8992259838992521">
@@ -179,8 +179,8 @@
   <div class="loading-overlay" id="loading-overlay">
     <div class="loading-spinner"></div>
     <div class="loading-text">
-      Analyzing the cosmic energies...
-      <span class="highlight">Reading the stars for your destiny</span>
+      Analyzing your personality profile...
+      <span class="highlight">Building your personality profile</span>
     </div>
     <div class="loading-progress">
       <div class="loading-progress-bar"></div>
@@ -191,7 +191,7 @@
     <div class="header-content">
       <a href="/" class="logo">KStar Match</a>
       <nav>
-        <a href="index.html">New Reading</a>
+        <a href="index.html">New Analysis</a>
         <a href="compatibility.html">Compatibility</a>
         <a href="about.html">About</a>
         <button class="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme">
@@ -204,8 +204,8 @@
 
   <main>
     <section class="result-header">
-      <div class="badge">✨ Your Saju Reading</div>
-      <h1>Your <span class="gradient-text">Four Pillars</span> Revealed</h1>
+      <div class="badge">✨ Your Personality Profile</div>
+      <h1>Your <span class="gradient-text">Personality</span> Revealed</h1>
       <p class="subtitle">Birth Date: <span id="birth-info">Loading...</span></p>
       <p style="margin-top: 0.5rem; color: var(--accent-light);">
         Day Master: <span id="day-master">Loading...</span>
@@ -228,10 +228,10 @@
       </div>
     </div>
 
-    <!-- K-Star Saju Twin Section -->
+    <!-- K-Star Personality Twin Section -->
     <div class="kstar-twin-section" id="kstar-twin-section">
-      <div class="kstar-twin-badge">🌟 My K-Star Saju Twin</div>
-      <h2 class="kstar-twin-title">Which K-Star Shares Your Saju?</h2>
+      <div class="kstar-twin-badge">🌟 My K-Star Personality Twin</div>
+      <h2 class="kstar-twin-title">Which K-Star Matches Your Personality?</h2>
 
       <div class="kstar-twin-card" id="kstar-twin-card">
         <div class="twin-loading">
@@ -285,7 +285,7 @@
     <!-- Celebrity Compatibility Check -->
     <div class="section-card">
       <h3>💕 Celebrity Compatibility</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1rem;">Check your Saju compatibility with your favorite celebrity!</p>
+      <p style="color: var(--text-secondary); margin-bottom: 1rem;">Check your personality compatibility with your favorite celebrity!</p>
       <div class="celebrity-compatibility-cta">
         <button class="btn-compatibility" onclick="openCelebritySelector()">
           💘 Check Compatibility
@@ -345,7 +345,7 @@
     <div class="section-card gpt-teaser" id="gpt-teaser-section">
       <div class="gpt-teaser-badge">AI Powered</div>
       <h3>🤖 AI Deep Analysis</h3>
-      <p class="gpt-teaser-desc">Unlock personalized AI-powered insights based on your Four Pillars:</p>
+      <p class="gpt-teaser-desc">Unlock personalized AI-powered insights based on your personality profile:</p>
       <ul class="gpt-teaser-list">
         <li>🎯 In-depth Personality Profile</li>
         <li>💼 Career & Business Guidance</li>
@@ -379,7 +379,7 @@
         💕 Check Compatibility
       </a>
       <a href="index.html" class="btn-secondary">
-        ⭐ New Reading
+        ⭐ New Analysis
       </a>
     </div>
   </main>
@@ -389,7 +389,7 @@
     <div class="share-modal-content">
       <button class="share-modal-close" onclick="closeShareModal()" aria-label="Close">&times;</button>
       <h3>📤 Share Your Result</h3>
-      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Share your Saju personality reading with friends!</p>
+      <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Share your personality analysis with friends!</p>
 
       <div class="share-grid">
         <!-- Twitter/X -->
@@ -672,26 +672,49 @@
       `;
     }
 
-    // Purchase Basic AI Analysis via Polar
-    function purchaseBasicAnalysis() {
-      const checkoutLink = KStarConfig.tiers.basic.polarCheckoutLink;
-      if (!checkoutLink) {
-        alert('Payment system is being set up. Please try again soon!');
-        return;
-      }
+    // Create Polar checkout session via backend API
+    async function createCheckout(tier) {
+      const res = await fetch(KStarConfig.api.checkoutEndpoint, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          tier,
+          successUrl: window.location.href,
+          embedOrigin: window.location.origin
+        })
+      });
+      if (!res.ok) throw new Error('Failed to create checkout');
+      return res.json();
+    }
 
+    // Open Polar checkout (embed or redirect)
+    function openCheckout(checkoutUrl, tier, onConfirmed) {
       if (typeof PolarEmbedCheckout !== 'undefined') {
-        PolarEmbedCheckout.create(checkoutLink, {
+        PolarEmbedCheckout.create(checkoutUrl, {
           theme: KStarConfig.polar.theme,
-          onLoaded: () => console.log('Checkout loaded'),
         }).then(checkout => {
           checkout.addEventListener('confirmed', () => {
-            KStarConfig.storePurchase('basic');
-            loadPurchasedGPTFortune();
+            KStarConfig.storePurchase(tier);
+            if (onConfirmed) onConfirmed();
           });
-        }).catch(err => console.error('Checkout error:', err));
+        }).catch(err => {
+          console.error('Embed checkout error:', err);
+          window.open(checkoutUrl, '_blank');
+        });
       } else {
-        window.open(checkoutLink, '_blank');
+        window.open(checkoutUrl, '_blank');
+      }
+    }
+
+    // Purchase Basic AI Analysis via Polar
+    async function purchaseBasicAnalysis() {
+      try {
+        const data = await createCheckout('basic');
+        if (!data.checkoutUrl) throw new Error('No checkout URL');
+        openCheckout(data.checkoutUrl, 'basic', loadPurchasedGPTFortune);
+      } catch (err) {
+        console.error('Checkout error:', err);
+        alert('Payment system is being set up. Please try again soon!');
       }
 
       if (typeof gtag !== 'undefined') {
@@ -704,29 +727,19 @@
     }
 
     // Purchase Compatibility AI via Polar
-    function purchaseCompatibilityAnalysis() {
-      const checkoutLink = KStarConfig.tiers.compatibility.polarCheckoutLink;
-      if (!checkoutLink) {
+    async function purchaseCompatibilityAnalysis() {
+      try {
+        const data = await createCheckout('compatibility');
+        if (!data.checkoutUrl) throw new Error('No checkout URL');
+        openCheckout(data.checkoutUrl, 'compatibility', () => {
+          if (selectedCelebrity && sajuResult) {
+            const compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
+            loadGPTCompatibility(selectedCelebrity, compat);
+          }
+        });
+      } catch (err) {
+        console.error('Checkout error:', err);
         alert('Payment system is being set up. Please try again soon!');
-        return;
-      }
-
-      if (typeof PolarEmbedCheckout !== 'undefined') {
-        PolarEmbedCheckout.create(checkoutLink, {
-          theme: KStarConfig.polar.theme,
-          onLoaded: () => console.log('Checkout loaded'),
-        }).then(checkout => {
-          checkout.addEventListener('confirmed', () => {
-            KStarConfig.storePurchase('compatibility');
-            // Reload compatibility for selected celebrity
-            if (selectedCelebrity && sajuResult) {
-              const compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
-              loadGPTCompatibility(selectedCelebrity, compat);
-            }
-          });
-        }).catch(err => console.error('Checkout error:', err));
-      } else {
-        window.open(checkoutLink, '_blank');
       }
 
       if (typeof gtag !== 'undefined') {
@@ -759,7 +772,7 @@
     }
 
     // ============================================
-    // 🌟 K-Star Saju Twin Functions
+    // 🌟 K-Star Personality Twin Functions
     // ============================================
     let currentTwinMatch = null;
     let allTwinMatches = [];
@@ -910,7 +923,7 @@
       const grade = currentTwinMatch.grade;
       const url = window.location.href;
 
-      const shareText = `🔮 My K-Star Saju Twin is ${celeb.name}!\n\n⭐ Match Score: ${score}%\n${grade.emoji} ${grade.labelEn || grade.label}\n\nFind yours 👉 ${url}\n\n#KStarMatch #Saju #KStar #${celeb.name.replace(/\s/g, '')}`;
+      const shareText = `🌟 My K-Star Personality Twin is ${celeb.name}!\n\n⭐ Match Score: ${score}%\n${grade.emoji} ${grade.labelEn || grade.label}\n\nFind yours 👉 ${url}\n\n#KStarMatch #KStar #${celeb.name.replace(/\s/g, '')}`;
 
       switch(platform) {
         case 'twitter':
@@ -940,7 +953,7 @@
         default:
           if (navigator.share) {
             navigator.share({
-              title: 'KStar Match - My K-Star Saju Twin',
+              title: 'KStar Match - My K-Star Personality Twin',
               text: shareText,
               url: url
             }).catch(console.error);
@@ -1083,7 +1096,7 @@
     }
 
     /* ============================================ */
-    /* 🌟 K-Star Saju Twin Styles (바이럴 핵심) */
+    /* 🌟 K-Star Personality Twin Styles */
     /* ============================================ */
     .kstar-twin-section {
       background: linear-gradient(135deg, rgba(139, 92, 246, 0.15), rgba(236, 72, 153, 0.15));
@@ -2132,7 +2145,7 @@
       const affiliateData = {
         ko: {
           title: '🌟 K-Star 추천 아이템',
-          desc: '내 사주 스타일에 어울리는 K-Culture 아이템',
+          desc: '내 성격 스타일에 어울리는 K-Culture 아이템',
           disclaimer: '',
           products: [
             { name: '포토카드 바인더', icon: '💜', price: '', url: '#', desc: 'K-Pop 콜렉션' },

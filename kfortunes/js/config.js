@@ -1,5 +1,5 @@
 // KStar Match - Central Configuration
-// Tier pricing, models, endpoints, and Polar checkout links
+// Tier pricing, models, endpoints, and Polar product mapping
 
 const KStarConfig = {
   tiers: {
@@ -7,11 +7,11 @@ const KStarConfig = {
       name: 'Free',
       price: 0,
       features: [
-        'Four Pillars calculation',
+        'Personality profile',
         'Five Elements balance',
         'Day Master personality',
-        'K-Star Saju Twin match',
-        'Lucky elements'
+        'K-Star personality match',
+        'Compatible elements'
       ],
       endpoint: null,
       model: null
@@ -23,15 +23,14 @@ const KStarConfig = {
       features: [
         'AI personality deep dive',
         'Career & business guidance',
-        'Love & relationship forecast',
+        'Love & relationship insights',
         'Health & wellness tips',
-        'Wealth & financial outlook',
-        'Year forecast'
+        'Wealth & financial insights',
+        'Year outlook'
       ],
       endpoint: '/api/fortune',
       model: 'gpt-4o',
-      // Polar checkout link - SET AFTER CREATING PRODUCT IN POLAR DASHBOARD
-      polarCheckoutLink: null
+      polarProductId: '066396ed-5c5e-46f7-8d71-8d0ca7863b9c'
     },
     compatibility: {
       name: 'Celebrity Compatibility AI',
@@ -45,29 +44,25 @@ const KStarConfig = {
       ],
       endpoint: '/api/compatibility',
       model: 'gpt-4o',
-      // Polar checkout link - SET AFTER CREATING PRODUCT IN POLAR DASHBOARD
-      polarCheckoutLink: null
+      polarProductId: 'adc1562e-875f-4ea9-816f-12780a3305e8'
     }
   },
 
-  // Polar configuration
   polar: {
-    // Set to true when Polar checkout links are configured
-    enabled: false,
+    enabled: true,
     theme: 'dark'
   },
 
-  // Model upgrade plan
   models: {
     current: 'gpt-4o',
     next: 'gpt-5.0'
   },
 
   api: {
-    statusEndpoint: '/api/status'
+    statusEndpoint: '/api/status',
+    checkoutEndpoint: '/api/create-checkout'
   },
 
-  // Check if a tier purchase is stored
   hasPurchased(tier) {
     try {
       const purchases = JSON.parse(localStorage.getItem('kstar_purchases') || '{}');
@@ -75,7 +70,6 @@ const KStarConfig = {
     } catch { return false; }
   },
 
-  // Store a purchase
   storePurchase(tier) {
     try {
       const purchases = JSON.parse(localStorage.getItem('kstar_purchases') || '{}');
@@ -85,7 +79,6 @@ const KStarConfig = {
   }
 };
 
-// Export
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = KStarConfig;
 }
