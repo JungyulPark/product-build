@@ -334,7 +334,7 @@ function displayInterpretation(interpretation) {
   luckyInfo.innerHTML = `
     <div class="tags">
       <span class="tag" style="background: ${interpretation.luckyElement.color}20; color: ${interpretation.luckyElement.color};">
-        Lucky Element: ${interpretation.luckyElement.korean}
+        Lucky Element: ${interpretation.luckyElement.element.charAt(0).toUpperCase() + interpretation.luckyElement.element.slice(1)}
       </span>
       <span class="tag">Direction: ${interpretation.luckyDirection}</span>
       <span class="tag">Numbers: ${interpretation.luckyNumbers.join(', ')}</span>

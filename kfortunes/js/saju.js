@@ -204,8 +204,8 @@ const Saju = {
       personality: personalities[element][isYin],
       career: careers[strongest],
       love: loveStyles[element],
-      strength: `Your ${this.ELEMENTS[strongest].korean} energy is strong, giving you ${this.getElementStrength(strongest)}.`,
-      weakness: `Your ${this.ELEMENTS[weakest].korean} energy needs attention. Consider ${this.getElementAdvice(weakest)}.`,
+      strength: `Your ${strongest.charAt(0).toUpperCase() + strongest.slice(1)} energy is strong, giving you ${this.getElementStrength(strongest)}.`,
+      weakness: `Your ${weakest.charAt(0).toUpperCase() + weakest.slice(1)} energy needs attention. Consider ${this.getElementAdvice(weakest)}.`,
       luckyElement: {
         element: luckyElement,
         korean: this.ELEMENTS[luckyElement].korean,

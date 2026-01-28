@@ -601,6 +601,11 @@
           if (typeof KStarConfig !== 'undefined' && KStarConfig.polar.enabled && !KStarConfig.hasPurchased('basic')) {
             document.getElementById('discover-paywall').style.display = 'flex';
           } else {
+            // Load GPT AI analysis (replaces basic local data with detailed GPT insights)
+            if (sajuResult && typeof GPTFortune !== 'undefined') {
+              loadGPTAnalysis();
+            }
+
             // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
             const focusParam = new URLSearchParams(window.location.search).get('focus');
             if (focusParam) {
@@ -631,6 +636,20 @@
         }
       }, 2000);
     });
+
+    // Load GPT AI analysis (enhances local results with GPT insights)
+    async function loadGPTAnalysis() {
+      if (!sajuResult) return;
+      try {
+        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
+        const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
+        if (fortune) {
+          GPTFortune.displayFortune(fortune);
+        }
+      } catch (err) {
+        console.log('GPT analysis skipped:', err.message);
+      }
+    }
 
     // 확장된 결과 페이지 초기화
     function initializeResultPage() {
@@ -739,6 +758,10 @@
         if (!data.checkoutUrl) throw new Error('No checkout URL');
         openCheckout(data.checkoutUrl, 'basic', () => {
           document.getElementById('discover-paywall').style.display = 'none';
+          // Load GPT analysis after payment
+          if (sajuResult && typeof GPTFortune !== 'undefined') {
+            loadGPTAnalysis();
+          }
         });
       } catch (err) {
         console.error('Checkout error:', err);
@@ -763,14 +786,21 @@
         const data = await createCheckout('compatibility');
         if (!data.checkoutUrl) throw new Error('No checkout URL');
         openCheckout(data.checkoutUrl, 'compatibility', () => {
-          if (selectedCelebrity && sajuResult) {
+          // Payment confirmed: close paywall, show result
+          closeCompatibilityPaywallOverlay();
+          if (pendingCompatibility) {
+            showCompatibilityResult(pendingCompatibility.celebrity, pendingCompatibility.compatibility);
+            loadGPTCompatibility(pendingCompatibility.celebrity, pendingCompatibility.compatibility);
+            pendingCompatibility = null;
+          } else if (selectedCelebrity && sajuResult) {
             const compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
+            showCompatibilityResult(selectedCelebrity, compat);
             loadGPTCompatibility(selectedCelebrity, compat);
           }
         });
       } catch (err) {
         console.error('Checkout error:', err);
-        alert('Payment system is being set up. Please try again soon!');
+        alert('Checkout error: ' + err.message);
       }
 
       if (typeof gtag !== 'undefined') {
@@ -1874,6 +1904,8 @@
       populateCelebrityGrid();
     }
 
+    let pendingCompatibility = null;
+
     function selectCelebrity(celebName) {
       if (!sajuResult) return;
 
@@ -1883,16 +1915,19 @@
       selectedCelebrity = celebrity;
       closeCelebritySelector();
 
-      // Calculate local compatibility first (instant)
+      // Calculate compatibility
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
-      showCompatibilityResult(celebrity, compatibility);
 
-      // GPT AI analysis: only if purchased (paywall gated by polar.enabled)
-      if (KStarConfig.hasPurchased('compatibility')) {
-        loadGPTCompatibility(celebrity, compatibility);
-      } else if (KStarConfig.polar.enabled) {
+      // Payment gate: pay first, then show result
+      if (KStarConfig.polar.enabled && !KStarConfig.hasPurchased('compatibility')) {
+        pendingCompatibility = { celebrity, compatibility };
         showCompatibilityPaywall();
+        return;
       }
+
+      // Already purchased: show result + GPT analysis
+      showCompatibilityResult(celebrity, compatibility);
+      loadGPTCompatibility(celebrity, compatibility);
 
       // GA event
       if (typeof gtag !== 'undefined') {
@@ -1993,19 +2028,40 @@
     }
 
     function showCompatibilityPaywall() {
-      const aiSection = document.getElementById('compatibility-ai-analysis');
-      if (!aiSection) return;
-      aiSection.style.display = 'block';
-      aiSection.innerHTML = `
-        <div style="border-top: 1px solid var(--border); margin-top: 1rem; padding-top: 1rem; text-align: center;">
-          <h4 style="margin-bottom: 0.5rem; color: var(--accent-light);">🔮 Want AI-Powered Deep Analysis?</h4>
-          <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">Get detailed compatibility insights: romantic chemistry, strengths, challenges, and personalized advice.</p>
-          <button class="btn-purchase" onclick="purchaseCompatibilityAnalysis()" style="margin-bottom: 0.5rem;">
-            🔓 Unlock AI Compatibility — $0.99
-          </button>
-          <p style="color: var(--text-secondary); font-size: 0.75rem;">One-time purchase</p>
-        </div>
-      `;
+      // Full-screen overlay paywall — pay first, then see result
+      let overlay = document.getElementById('celeb-compat-paywall');
+      if (!overlay) {
+        overlay = document.createElement('div');
+        overlay.id = 'celeb-compat-paywall';
+        overlay.style.cssText = 'position:fixed;inset:0;background:rgba(0,0,0,0.7);backdrop-filter:blur(5px);z-index:10000;display:flex;align-items:center;justify-content:center;';
+        overlay.innerHTML = `
+          <div class="card" style="max-width:450px;margin:1rem;text-align:center;">
+            <h2>💘 Celebrity Compatibility</h2>
+            <p style="color:var(--text-secondary);margin:1rem 0;">Unlock your celebrity compatibility analysis with AI insights.</p>
+            <ul style="text-align:left;margin:1.5rem 0;list-style:none;padding:0;">
+              <li style="margin-bottom:0.5rem;">✅ Compatibility score & match type</li>
+              <li style="margin-bottom:0.5rem;">✅ AI-powered deep analysis</li>
+              <li style="margin-bottom:0.5rem;">✅ Relationship dynamics breakdown</li>
+              <li>✅ Personalized compatibility advice</li>
+            </ul>
+            <button class="btn-primary" onclick="purchaseCompatibilityAnalysis()" id="celeb-compat-checkout-btn" style="width:100%;margin-bottom:0.5rem;">
+              💘 Unlock — $0.99 One-time
+            </button>
+            <button class="btn-secondary" onclick="closeCompatibilityPaywallOverlay()" style="width:100%;background:transparent;border:1px solid var(--border);">
+              Cancel
+            </button>
+          </div>
+        `;
+        overlay.addEventListener('click', function(e) { if (e.target === this) closeCompatibilityPaywallOverlay(); });
+        document.body.appendChild(overlay);
+      }
+      overlay.style.display = 'flex';
+    }
+
+    function closeCompatibilityPaywallOverlay() {
+      const overlay = document.getElementById('celeb-compat-paywall');
+      if (overlay) overlay.style.display = 'none';
+      pendingCompatibility = null;
     }
 
     function displayGPTCompatibility(analysis, celebrity) {
