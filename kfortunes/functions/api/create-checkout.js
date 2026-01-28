@@ -40,11 +40,10 @@ export async function onRequestPost(context) {
       : 'https://api.polar.sh';
 
     const checkoutBody = {
-      product_id: productId,
+      products: [productId],
       success_url: successUrl || `${new URL(request.url).origin}/result.html`,
     };
 
-    // If embed origin provided, include it for iframe communication
     if (embedOrigin) {
       checkoutBody.embed_origin = embedOrigin;
     }
