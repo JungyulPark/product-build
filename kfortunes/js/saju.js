@@ -375,16 +375,16 @@ const Saju = {
     const e2 = p2.dayMaster.element;
 
     if (this.ELEMENTS[e1].generates === e2) {
-      strengths.push(`Person 1's ${this.ELEMENTS[e1].korean} nurtures Person 2's ${this.ELEMENTS[e2].korean}`);
+      strengths.push(`Person 1's ${e1.charAt(0).toUpperCase() + e1.slice(1)} nurtures Person 2's ${e2.charAt(0).toUpperCase() + e2.slice(1)}`);
     }
     if (this.ELEMENTS[e2].generates === e1) {
-      strengths.push(`Person 2's ${this.ELEMENTS[e2].korean} nurtures Person 1's ${this.ELEMENTS[e1].korean}`);
+      strengths.push(`Person 2's ${e2.charAt(0).toUpperCase() + e2.slice(1)} nurtures Person 1's ${e1.charAt(0).toUpperCase() + e1.slice(1)}`);
     }
     if (p1.dayMaster.yin !== p2.dayMaster.yin) {
       strengths.push("Balanced Yin-Yang energy creates harmony");
     }
     if (e1 === e2) {
-      strengths.push(`Shared ${this.ELEMENTS[e1].korean} element creates deep understanding`);
+      strengths.push(`Shared ${e1.charAt(0).toUpperCase() + e1.slice(1)} element creates deep understanding`);
     }
 
     if (strengths.length === 0) {
@@ -400,10 +400,10 @@ const Saju = {
     const e2 = p2.dayMaster.element;
 
     if (this.ELEMENTS[e1].controls === e2) {
-      challenges.push(`Person 1's ${this.ELEMENTS[e1].korean} may overwhelm Person 2's ${this.ELEMENTS[e2].korean}`);
+      challenges.push(`Person 1's ${e1.charAt(0).toUpperCase() + e1.slice(1)} may overwhelm Person 2's ${e2.charAt(0).toUpperCase() + e2.slice(1)}`);
     }
     if (this.ELEMENTS[e2].controls === e1) {
-      challenges.push(`Person 2's ${this.ELEMENTS[e2].korean} may overwhelm Person 1's ${this.ELEMENTS[e1].korean}`);
+      challenges.push(`Person 2's ${e2.charAt(0).toUpperCase() + e2.slice(1)} may overwhelm Person 1's ${e1.charAt(0).toUpperCase() + e1.slice(1)}`);
     }
     if (p1.dayMaster.yin === p2.dayMaster.yin) {
       challenges.push("Similar Yin/Yang energy may need balance");

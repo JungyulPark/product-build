@@ -460,14 +460,6 @@ function handleCompatibilitySubmit() {
     errorDiv.style.display = 'none';
     errorDiv.innerHTML = '';
 
-    // Payment gate: check if compatibility is purchased
-    if (typeof KStarConfig !== 'undefined' && KStarConfig.polar.enabled && !KStarConfig.hasPurchased('compatibility')) {
-      if (typeof showCompatibilityPaywall === 'function') {
-        showCompatibilityPaywall();
-      }
-      return;
-    }
-
     // 로딩 표시 - 명확한 피드백
     const submitBtn = document.getElementById('compatibility-submit-btn');
     submitBtn.disabled = true;
