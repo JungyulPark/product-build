@@ -590,6 +590,10 @@
         window.history.replaceState({}, '', cleanUrl);
       }
 
+      // Auto-show compatibility result after compatibility purchase redirect
+      const pendingCeleb = sessionStorage.getItem('kstar_pending_celeb');
+      const showCompatAfterPurchase = purchasedTier === 'compatibility' && pendingCeleb;
+
       // 2초 후 로딩 완료 (애니메이션 시간)
       setTimeout(function() {
         try {
@@ -604,6 +608,20 @@
             // Load GPT AI analysis (replaces basic local data with detailed GPT insights)
             if (sajuResult && typeof GPTFortune !== 'undefined') {
               loadGPTAnalysis();
+            }
+
+            // Auto-show compatibility result after purchase redirect
+            if (showCompatAfterPurchase && sajuResult && typeof Celebrities !== 'undefined') {
+              const celeb = Celebrities.data.find(function(c) { return c.name === pendingCeleb; });
+              if (celeb) {
+                sessionStorage.removeItem('kstar_pending_celeb');
+                selectedCelebrity = celeb;
+                var compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celeb);
+                showCompatibilityResult(celeb, compat);
+                if (typeof loadGPTCompatibility === 'function') {
+                  loadGPTCompatibility(celeb, compat);
+                }
+              }
             }
 
             // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
@@ -782,6 +800,10 @@
 
     // Purchase Compatibility AI via Polar
     async function purchaseCompatibilityAnalysis() {
+      // Save selected celebrity for post-redirect restore
+      if (selectedCelebrity) {
+        sessionStorage.setItem('kstar_pending_celeb', selectedCelebrity.name);
+      }
       try {
         const data = await createCheckout('compatibility');
         if (!data.checkoutUrl) throw new Error('No checkout URL');
