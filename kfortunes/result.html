@@ -590,9 +590,8 @@
         window.history.replaceState({}, '', cleanUrl);
       }
 
-      // Auto-show compatibility result after compatibility purchase redirect
-      const pendingCeleb = sessionStorage.getItem('kstar_pending_celeb');
-      const showCompatAfterPurchase = purchasedTier === 'compatibility' && pendingCeleb;
+      // Check if returning from compatibility purchase redirect
+      const openSelectorAfterPurchase = purchasedTier === 'compatibility';
 
       // 2초 후 로딩 완료 (애니메이션 시간)
       setTimeout(function() {
@@ -610,18 +609,10 @@
               loadGPTAnalysis();
             }
 
-            // Auto-show compatibility result after purchase redirect
-            if (showCompatAfterPurchase && sajuResult && typeof Celebrities !== 'undefined') {
-              const celeb = Celebrities.data.find(function(c) { return c.name === pendingCeleb; });
-              if (celeb) {
-                sessionStorage.removeItem('kstar_pending_celeb');
-                selectedCelebrity = celeb;
-                var compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celeb);
-                showCompatibilityResult(celeb, compat);
-                if (typeof loadGPTCompatibility === 'function') {
-                  loadGPTCompatibility(celeb, compat);
-                }
-              }
+            // After compatibility purchase redirect: open celebrity selector
+            if (openSelectorAfterPurchase) {
+              sessionStorage.removeItem('kstar_pending_celeb');
+              setTimeout(function() { openCelebritySelector(); }, 500);
             }
 
             // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
@@ -800,25 +791,13 @@
 
     // Purchase Compatibility AI via Polar
     async function purchaseCompatibilityAnalysis() {
-      // Save selected celebrity for post-redirect restore
-      if (selectedCelebrity) {
-        sessionStorage.setItem('kstar_pending_celeb', selectedCelebrity.name);
-      }
       try {
         const data = await createCheckout('compatibility');
         if (!data.checkoutUrl) throw new Error('No checkout URL');
         openCheckout(data.checkoutUrl, 'compatibility', () => {
-          // Payment confirmed: close paywall, show result
+          // Payment confirmed via embed: close paywall, open celebrity selector
           closeCompatibilityPaywallOverlay();
-          if (pendingCompatibility) {
-            showCompatibilityResult(pendingCompatibility.celebrity, pendingCompatibility.compatibility);
-            loadGPTCompatibility(pendingCompatibility.celebrity, pendingCompatibility.compatibility);
-            pendingCompatibility = null;
-          } else if (selectedCelebrity && sajuResult) {
-            const compat = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, selectedCelebrity);
-            showCompatibilityResult(selectedCelebrity, compat);
-            loadGPTCompatibility(selectedCelebrity, compat);
-          }
+          openCelebritySelector();
         });
       } catch (err) {
         console.error('Checkout error:', err);
@@ -1860,6 +1839,12 @@
     let selectedCelebrity = null;
 
     function openCelebritySelector() {
+      // Payment gate: pay before browsing celebrities
+      if (typeof KStarConfig !== 'undefined' && KStarConfig.polar.enabled && !KStarConfig.hasPurchased('compatibility')) {
+        showCompatibilityPaywall();
+        return;
+      }
+
       const modal = document.getElementById('celebrity-selector-modal');
       modal.classList.add('show');
       populateCelebrityGrid();
@@ -1926,8 +1911,6 @@
       populateCelebrityGrid();
     }
 
-    let pendingCompatibility = null;
-
     function selectCelebrity(celebName) {
       if (!sajuResult) return;
 
@@ -1940,14 +1923,7 @@
       // Calculate compatibility
       const compatibility = Celebrities.calculateCelebrityCompatibility(sajuResult.dayMaster, celebrity);
 
-      // Payment gate: pay first, then show result
-      if (KStarConfig.polar.enabled && !KStarConfig.hasPurchased('compatibility')) {
-        pendingCompatibility = { celebrity, compatibility };
-        showCompatibilityPaywall();
-        return;
-      }
-
-      // Already purchased: show result + GPT analysis
+      // Show result + GPT analysis (payment already handled in openCelebritySelector)
       showCompatibilityResult(celebrity, compatibility);
       loadGPTCompatibility(celebrity, compatibility);
 
@@ -2083,7 +2059,6 @@
     function closeCompatibilityPaywallOverlay() {
       const overlay = document.getElementById('celeb-compat-paywall');
       if (overlay) overlay.style.display = 'none';
-      pendingCompatibility = null;
     }
 
     function displayGPTCompatibility(analysis, celebrity) {
