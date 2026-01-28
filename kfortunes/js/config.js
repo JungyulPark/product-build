@@ -30,7 +30,7 @@ const KStarConfig = {
       ],
       endpoint: '/api/fortune',
       model: 'gpt-4o',
-      polarProductId: '890a8668-83bc-472e-885b-30947705856e'
+      polarProductId: 'ee9f5667-ab30-4932-8c40-f4fe8e2b2eb8'
     },
     compatibility: {
       name: 'Celebrity Compatibility AI',
@@ -44,7 +44,7 @@ const KStarConfig = {
       ],
       endpoint: '/api/compatibility',
       model: 'gpt-4o',
-      polarProductId: '1d44431d-b9e5-4073-aa5c-837debe7bb9d'
+      polarProductId: '4586f3f8-02da-4e42-b81c-aa127bdf65cf'
     }
   },
 
