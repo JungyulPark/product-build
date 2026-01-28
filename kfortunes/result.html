@@ -341,27 +341,6 @@
       </div>
     </div>
 
-    <!-- GPT AI Analysis - Purchase CTA -->
-    <div class="section-card gpt-teaser" id="gpt-teaser-section">
-      <div class="gpt-teaser-badge">AI Powered</div>
-      <h3>🤖 AI Deep Analysis</h3>
-      <p class="gpt-teaser-desc">Unlock personalized AI-powered insights based on your personality profile:</p>
-      <ul class="gpt-teaser-list">
-        <li>🎯 In-depth Personality Profile</li>
-        <li>💼 Career & Business Guidance</li>
-        <li>💕 Love & Relationship Forecast</li>
-        <li>🏥 Health & Wellness Tips</li>
-        <li>💰 Wealth & Financial Outlook</li>
-        <li>📅 2025-2026 Year Forecast</li>
-      </ul>
-      <div class="gpt-teaser-cta">
-        <button class="btn-purchase" onclick="purchaseBasicAnalysis()">
-          🔓 Unlock AI Analysis — $2.99
-        </button>
-        <span class="gpt-teaser-cta-text">One-time purchase &middot; Powered by GPT-4o</span>
-      </div>
-    </div>
-
     <!-- K-Star Curated Items -->
     <div class="affiliate-banner" id="affiliate-banner" style="display: none;">
       <h4 id="affiliate-title"></h4>
@@ -559,6 +538,30 @@
     </div>
   </div>
 
+  <!-- Discover Paywall Overlay -->
+  <div id="discover-paywall" style="display: none;">
+    <div class="card" style="max-width: 480px; margin: 1rem; text-align: center;">
+      <div style="font-size: 3rem; margin-bottom: 0.5rem;">⭐</div>
+      <h2>Unlock Your Full Personality Profile</h2>
+      <p style="color: var(--text-secondary); margin: 1rem 0;">Your analysis is ready! Unlock your complete personality profile with K-Star match.</p>
+      <ul style="text-align: left; margin: 1.5rem 0; list-style: none; padding: 0;">
+        <li style="margin-bottom: 0.5rem;">✅ Four Pillars & Five Elements analysis</li>
+        <li style="margin-bottom: 0.5rem;">✅ Your K-Star Personality Twin</li>
+        <li style="margin-bottom: 0.5rem;">✅ Career, Love & Relationship insights</li>
+        <li style="margin-bottom: 0.5rem;">✅ Strengths & Growth areas</li>
+        <li style="margin-bottom: 0.5rem;">✅ Lucky Elements & Day Master details</li>
+        <li>✅ Celebrity Compatibility check</li>
+      </ul>
+      <button class="btn-primary" onclick="processDiscoverCheckout()" id="discover-checkout-btn" style="width: 100%; margin-bottom: 0.5rem;">
+        ⭐ Unlock — $2.99 One-time
+      </button>
+      <button class="btn-secondary" onclick="window.location.href='index.html'" style="width: 100%; background: transparent; border: 1px solid var(--border);">
+        Back to Home
+      </button>
+      <p style="color: var(--text-secondary); font-size: 0.8rem; margin-top: 1rem;">One-time payment. No subscription.</p>
+    </div>
+  </div>
+
   <!-- Polar Checkout Embed -->
   <script defer src="https://cdn.jsdelivr.net/npm/@polar-sh/checkout@latest/dist/embed.global.js"></script>
 
@@ -583,25 +586,26 @@
           // 로딩 오버레이 숨기기
           document.getElementById('loading-overlay').classList.add('hidden');
 
-          // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
-          const focusParam = new URLSearchParams(window.location.search).get('focus');
-          if (focusParam) {
-            const focusSection = document.getElementById('section-' + focusParam);
-            if (focusSection) {
-              setTimeout(function() {
-                focusSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                focusSection.classList.add('section-highlight');
+          // Payment gate: check if discover is purchased
+          if (typeof KStarConfig !== 'undefined' && !KStarConfig.hasPurchased('basic')) {
+            document.getElementById('discover-paywall').style.display = 'flex';
+          } else {
+            // Focus 파라미터 확인 → 해당 섹션으로 스크롤 + 하이라이트
+            const focusParam = new URLSearchParams(window.location.search).get('focus');
+            if (focusParam) {
+              const focusSection = document.getElementById('section-' + focusParam);
+              if (focusSection) {
                 setTimeout(function() {
-                  focusSection.classList.remove('section-highlight');
-                }, 2000);
-              }, 300);
+                  focusSection.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                  focusSection.classList.add('section-highlight');
+                  setTimeout(function() {
+                    focusSection.classList.remove('section-highlight');
+                  }, 2000);
+                }, 300);
+              }
             }
           }
 
-          // GPT: 결제 완료된 경우에만 자동 로드
-          if (KStarConfig.hasPurchased('basic')) {
-            loadPurchasedGPTFortune();
-          }
         } catch (error) {
           console.error('Error initializing result page:', error);
           document.getElementById('loading-overlay').innerHTML = `
@@ -706,21 +710,30 @@
       }
     }
 
-    // Purchase Basic AI Analysis via Polar
-    async function purchaseBasicAnalysis() {
+    // Purchase Discover (main analysis) via Polar
+    async function processDiscoverCheckout() {
+      const btn = document.getElementById('discover-checkout-btn');
+      btn.disabled = true;
+      btn.textContent = 'Processing...';
+
       try {
         const data = await createCheckout('basic');
         if (!data.checkoutUrl) throw new Error('No checkout URL');
-        openCheckout(data.checkoutUrl, 'basic', loadPurchasedGPTFortune);
+        openCheckout(data.checkoutUrl, 'basic', () => {
+          document.getElementById('discover-paywall').style.display = 'none';
+        });
       } catch (err) {
         console.error('Checkout error:', err);
         alert('Payment system is being set up. Please try again soon!');
       }
 
+      btn.disabled = false;
+      btn.textContent = '⭐ Unlock — $2.99 One-time';
+
       if (typeof gtag !== 'undefined') {
         gtag('event', 'begin_checkout', {
           'event_category': 'Purchase',
-          'event_label': 'basic_ai_analysis',
+          'event_label': 'discover_analysis',
           'value': 2.99
         });
       }
@@ -748,26 +761,6 @@
           'event_label': 'compatibility_ai',
           'value': 0.99
         });
-      }
-    }
-
-    // Load GPT fortune after purchase confirmed
-    async function loadPurchasedGPTFortune() {
-      if (!sajuResult) return;
-
-      const teaser = document.getElementById('gpt-teaser-section');
-      if (teaser) teaser.style.display = 'none';
-
-      GPTFortune.showLoading();
-
-      try {
-        const lang = typeof i18n !== 'undefined' ? i18n.currentLang : 'en';
-        const fortune = await GPTFortune.getDetailedFortune(sajuResult, lang);
-        if (fortune) {
-          GPTFortune.displayFortune(fortune);
-        }
-      } catch (error) {
-        console.error('GPT fortune load error:', error);
       }
     }
 

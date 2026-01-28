@@ -912,6 +912,18 @@ footer {
 }
 
 /* =============== SNS Share Modal =============== */
+/* Payment Paywall Overlays */
+#compatibility-paywall,
+#discover-paywall {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(5px);
+  z-index: 10000;
+  align-items: center;
+  justify-content: center;
+}
+
 .share-modal {
   position: fixed;
   top: 0;
