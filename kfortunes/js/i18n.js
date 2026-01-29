@@ -629,7 +629,9 @@ const i18n = {
   setLanguage(lang) {
     if (this.translations[lang]) {
       this.currentLang = lang;
-      localStorage.setItem('kfortunes-lang', lang);
+      if (typeof localStorage !== 'undefined') {
+        localStorage.setItem('kfortunes-lang', lang);
+      }
       this.updatePage();
       return true;
     }
@@ -638,9 +640,11 @@ const i18n = {
 
   // Initialize language from storage (English default)
   init() {
-    const saved = localStorage.getItem('kfortunes-lang');
-    if (saved && this.translations[saved]) {
-      this.currentLang = saved;
+    if (typeof localStorage !== 'undefined') {
+      const saved = localStorage.getItem('kfortunes-lang');
+      if (saved && this.translations[saved]) {
+        this.currentLang = saved;
+      }
     }
     // English is the default (currentLang: 'en')
     // Users can select their preferred language from the dropdown
@@ -649,6 +653,11 @@ const i18n = {
 
   // Update page content with translations
   updatePage() {
+    // Skip DOM updates if not in browser environment
+    if (typeof document === 'undefined') {
+      return;
+    }
+
     // Update all elements with data-i18n attribute
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
@@ -679,10 +688,12 @@ const i18n = {
   }
 };
 
-// Initialize on DOM ready
-document.addEventListener('DOMContentLoaded', () => {
-  i18n.init();
-});
+// Initialize on DOM ready (browser only)
+if (typeof document !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    i18n.init();
+  });
+}
 
 // Export for module usage
 if (typeof module !== 'undefined' && module.exports) {

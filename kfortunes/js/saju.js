@@ -1,7 +1,87 @@
 // Korean Saju (Four Pillars) Calculator
 // 사주팔자 계산기
 
+// Custom error class for Saju-related errors
+class SajuError extends Error {
+  constructor(message, code = 'SAJU_ERROR') {
+    super(message);
+    this.name = 'SajuError';
+    this.code = code;
+  }
+}
+
 const Saju = {
+  // Error codes
+  ERROR_CODES: {
+    INVALID_DATE: 'INVALID_DATE',
+    INVALID_YEAR: 'INVALID_YEAR',
+    INVALID_MONTH: 'INVALID_MONTH',
+    INVALID_DAY: 'INVALID_DAY',
+    INVALID_HOUR: 'INVALID_HOUR',
+    INVALID_GENDER: 'INVALID_GENDER'
+  },
+
+  // Configuration
+  CONFIG: {
+    MIN_YEAR: 1900,
+    MAX_YEAR: 2100
+  },
+
+  // Date validation
+  isValidDate(year, month, day) {
+    // Check types
+    if (!Number.isInteger(year) || !Number.isInteger(month) || !Number.isInteger(day)) {
+      return { valid: false, error: 'Year, month, and day must be integers' };
+    }
+
+    // Check year range
+    if (year < this.CONFIG.MIN_YEAR || year > this.CONFIG.MAX_YEAR) {
+      return { valid: false, error: `Year must be between ${this.CONFIG.MIN_YEAR} and ${this.CONFIG.MAX_YEAR}` };
+    }
+
+    // Check month range
+    if (month < 1 || month > 12) {
+      return { valid: false, error: 'Month must be between 1 and 12' };
+    }
+
+    // Check day range
+    const daysInMonth = new Date(year, month, 0).getDate();
+    if (day < 1 || day > daysInMonth) {
+      return { valid: false, error: `Day must be between 1 and ${daysInMonth} for ${year}/${month}` };
+    }
+
+    return { valid: true };
+  },
+
+  // Validate and throw if invalid
+  validateDate(year, month, day) {
+    const result = this.isValidDate(year, month, day);
+    if (!result.valid) {
+      throw new SajuError(result.error, this.ERROR_CODES.INVALID_DATE);
+    }
+    return true;
+  },
+
+  // Hour validation
+  isValidHour(hour) {
+    if (hour === null || hour === undefined || hour === '') {
+      return { valid: true, isEmpty: true };
+    }
+    const hourNum = parseInt(hour);
+    if (isNaN(hourNum) || hourNum < 0 || hourNum > 23) {
+      return { valid: false, error: 'Hour must be between 0 and 23' };
+    }
+    return { valid: true, isEmpty: false };
+  },
+
+  // Gender validation
+  isValidGender(gender) {
+    if (!gender || !['male', 'female'].includes(gender)) {
+      return { valid: false, error: 'Gender must be "male" or "female"' };
+    }
+    return { valid: true };
+  },
+
   // 천간 (Heavenly Stems)
   STEMS: [
     { hanja: '甲', korean: '갑', element: 'wood', yin: false },
@@ -102,6 +182,19 @@ const Saju = {
 
   // 사주팔자 계산
   calculate(year, month, day, hour, gender) {
+    // Validate inputs
+    this.validateDate(year, month, day);
+
+    const hourValidation = this.isValidHour(hour);
+    if (!hourValidation.valid) {
+      throw new SajuError(hourValidation.error, this.ERROR_CODES.INVALID_HOUR);
+    }
+
+    const genderValidation = this.isValidGender(gender);
+    if (!genderValidation.valid) {
+      throw new SajuError(genderValidation.error, this.ERROR_CODES.INVALID_GENDER);
+    }
+
     const yearPillar = this.calculateYearPillar(year);
     const monthPillar = this.calculateMonthPillar(year, month);
     const dayPillar = this.calculateDayPillar(year, month, day);
@@ -420,4 +513,5 @@ const Saju = {
 // Export for use
 if (typeof module !== 'undefined' && module.exports) {
   module.exports = Saju;
+  module.exports.SajuError = SajuError;
 }

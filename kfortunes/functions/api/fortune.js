@@ -1,16 +1,119 @@
 // Cloudflare Pages Function - GPT Fortune API
 // 사주 운세 분석 API (Free tier)
 
+// --- RATE LIMITING ---
+const rateLimiter = require('../utils/rateLimiter.js');
+
+// --- LOGGING ---
+const logger = require('../utils/logger.js');
+
 // --- CONFIG ---
 const FORTUNE_CONFIG = {
   model: 'gpt-4o-mini',     // Free tier — cost-efficient model
   maxTokens: 2000,
   temperature: 0.7,
   timeoutMs: 15000,           // 15 second API timeout
+  maxRequestSize: 10000,      // 10KB max request size
 };
+
+// --- INPUT VALIDATION ---
+const SUPPORTED_LANGUAGES = ['en', 'ko', 'ja', 'zh', 'vi'];
+
+function sanitizeString(str) {
+  if (typeof str !== 'string') return str;
+  return str
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .slice(0, 1000); // Limit string length
+}
+
+function sanitizeObject(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return typeof obj === 'string' ? sanitizeString(obj) : obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.slice(0, 100).map(sanitizeObject); // Limit array size
+  }
+  const sanitized = {};
+  for (const [key, value] of Object.entries(obj).slice(0, 50)) { // Limit object keys
+    sanitized[sanitizeString(key)] = sanitizeObject(value);
+  }
+  return sanitized;
+}
+
+function validateSajuData(sajuData) {
+  const errors = [];
+
+  if (!sajuData || typeof sajuData !== 'object') {
+    return { valid: false, errors: ['sajuData must be an object'] };
+  }
+
+  // Validate birthDate
+  const { birthDate } = sajuData;
+  if (birthDate) {
+    if (typeof birthDate !== 'object') {
+      errors.push('birthDate must be an object');
+    } else {
+      const { year, month, day } = birthDate;
+
+      if (year !== undefined) {
+        const yearNum = Number(year);
+        if (isNaN(yearNum) || yearNum < 1900 || yearNum > 2100) {
+          errors.push('birthDate.year must be between 1900 and 2100');
+        }
+      }
+
+      if (month !== undefined) {
+        const monthNum = Number(month);
+        if (isNaN(monthNum) || monthNum < 1 || monthNum > 12) {
+          errors.push('birthDate.month must be between 1 and 12');
+        }
+      }
+
+      if (day !== undefined) {
+        const dayNum = Number(day);
+        if (isNaN(dayNum) || dayNum < 1 || dayNum > 31) {
+          errors.push('birthDate.day must be between 1 and 31');
+        }
+      }
+    }
+  }
+
+  // Validate gender
+  const { gender } = sajuData;
+  if (gender !== undefined && !['male', 'female', 'unknown'].includes(gender)) {
+    errors.push('gender must be "male", "female", or "unknown"');
+  }
+
+  // Validate dayMaster if present
+  const { dayMaster } = sajuData;
+  if (dayMaster !== undefined && typeof dayMaster !== 'object') {
+    errors.push('dayMaster must be an object');
+  }
+
+  return {
+    valid: errors.length === 0,
+    errors
+  };
+}
+
+function validateLanguage(language) {
+  if (!language) return { valid: true, sanitized: 'en' };
+  if (!SUPPORTED_LANGUAGES.includes(language)) {
+    return { valid: false, error: `Language must be one of: ${SUPPORTED_LANGUAGES.join(', ')}` };
+  }
+  return { valid: true, sanitized: language };
+}
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+  const startTime = Date.now();
+
+  // --- Logging Setup ---
+  const reqLogger = logger.createRequestLogger(request);
+  reqLogger.logRequest();
 
   // CORS headers
   const corsHeaders = {
@@ -21,15 +124,74 @@ export async function onRequestPost(context) {
   };
 
   try {
-    const body = await request.json();
+    // --- Rate Limiting Check ---
+    const rateLimitResponse = await rateLimiter.rateLimitMiddleware(context, 'fortune', 'en');
+    if (rateLimitResponse) {
+      reqLogger.warn('Rate limit exceeded');
+      return rateLimitResponse;
+    }
+
+    // Check request size
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength) > FORTUNE_CONFIG.maxRequestSize) {
+      return new Response(JSON.stringify({
+        error: 'Request too large',
+        maxSize: FORTUNE_CONFIG.maxRequestSize
+      }), {
+        status: 413,
+        headers: corsHeaders
+      });
+    }
+
+    // Parse and validate request body
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      return new Response(JSON.stringify({
+        error: 'Invalid JSON in request body'
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
     const { sajuData, language = 'en' } = body;
 
+    // Validate language
+    const langValidation = validateLanguage(language);
+    if (!langValidation.valid) {
+      return new Response(JSON.stringify({
+        error: 'Validation failed',
+        details: [langValidation.error]
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // Validate sajuData
     if (!sajuData) {
       return new Response(JSON.stringify({ error: 'Missing saju data' }), {
         status: 400,
         headers: corsHeaders
       });
     }
+
+    const sajuValidation = validateSajuData(sajuData);
+    if (!sajuValidation.valid) {
+      return new Response(JSON.stringify({
+        error: 'Validation failed',
+        details: sajuValidation.errors
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // Sanitize input data
+    const sanitizedSajuData = sanitizeObject(sajuData);
+    const sanitizedLanguage = langValidation.sanitized;
 
     // MOCK_MODE: 결제 연동 전까지 샘플 데이터 반환
     const useMockMode = env.MOCK_MODE === 'true' || !env.OPENAI_API_KEY;
@@ -38,10 +200,11 @@ export async function onRequestPost(context) {
 
     if (useMockMode) {
       // Mock 데이터 반환 (API 호출 없음)
-      fortune = getMockFortuneData(sajuData, language);
+      reqLogger.info('Using mock mode', { reason: env.OPENAI_API_KEY ? 'MOCK_MODE=true' : 'No API key' });
+      fortune = getMockFortuneData(sanitizedSajuData, sanitizedLanguage);
     } else {
       const apiKey = env.OPENAI_API_KEY;
-      const prompt = buildFortunePrompt(sajuData, language);
+      const prompt = buildFortunePrompt(sanitizedSajuData, sanitizedLanguage);
 
       // API call with timeout and error handling
       const controller = new AbortController();
@@ -72,13 +235,16 @@ export async function onRequestPost(context) {
           signal: controller.signal
         });
 
+        const apiDuration = Date.now() - startTime;
         clearTimeout(timeout);
 
         // Handle rate limiting
         if (response.status === 429) {
-          console.error('OpenAI rate limit hit');
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { status: 429, error: 'rate_limit' });
+          logger.errorTracker.track('OPENAI_RATE_LIMIT', { endpoint: 'fortune' });
           fortune = getMockFortuneData(sajuData, language);
           fortune._source = 'fallback';
+          reqLogger.logResponse(200, Date.now() - startTime);
           return new Response(JSON.stringify({ success: true, fortune }), {
             status: 200,
             headers: corsHeaders
@@ -86,11 +252,13 @@ export async function onRequestPost(context) {
         }
 
         if (!response.ok) {
-          const error = await response.text();
-          console.error('OpenAI API Error:', response.status, error);
+          const errorText = await response.text();
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { status: response.status, error: errorText.substring(0, 200) });
+          logger.errorTracker.track('OPENAI_API_ERROR', { status: response.status, endpoint: 'fortune' });
           // Fallback to mock data instead of returning error
           fortune = getMockFortuneData(sajuData, language);
           fortune._source = 'fallback';
+          reqLogger.logResponse(200, Date.now() - startTime);
           return new Response(JSON.stringify({ success: true, fortune }), {
             status: 200,
             headers: corsHeaders
@@ -101,12 +269,16 @@ export async function onRequestPost(context) {
         const fortuneText = data.choices[0]?.message?.content;
         fortune = parseFortuneResponse(fortuneText);
         fortune._source = 'gpt';
+        reqLogger.logApiCall('OpenAI', true, apiDuration, { model: FORTUNE_CONFIG.model });
       } catch (fetchError) {
+        const apiDuration = Date.now() - startTime;
         clearTimeout(timeout);
         if (fetchError.name === 'AbortError') {
-          console.error('OpenAI API timeout after', FORTUNE_CONFIG.timeoutMs, 'ms');
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { error: 'timeout', timeoutMs: FORTUNE_CONFIG.timeoutMs });
+          logger.errorTracker.track('OPENAI_TIMEOUT', { endpoint: 'fortune' });
         } else {
-          console.error('OpenAI fetch error:', fetchError.message);
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { error: fetchError.message });
+          logger.errorTracker.track('OPENAI_FETCH_ERROR', { message: fetchError.message, endpoint: 'fortune' });
         }
         // Fallback to mock data on any fetch failure
         fortune = getMockFortuneData(sajuData, language);
@@ -114,13 +286,26 @@ export async function onRequestPost(context) {
       }
     }
 
-    return new Response(JSON.stringify({ success: true, fortune }), {
+    // Log success and create response
+    reqLogger.logResponse(200, Date.now() - startTime);
+    logger.performanceMonitor.record('fortune_request', Date.now() - startTime);
+
+    // Create response with rate limit headers
+    const response = new Response(JSON.stringify({ success: true, fortune }), {
       status: 200,
       headers: corsHeaders
     });
 
+    // Add rate limit headers if available
+    if (context.rateLimitResult) {
+      return rateLimiter.addRateLimitHeaders(response, context.rateLimitResult);
+    }
+
+    return response;
+
   } catch (error) {
-    console.error('Error:', error.message, error.stack);
+    reqLogger.error('Request failed', error, { duration: `${Date.now() - startTime}ms` });
+    logger.errorTracker.track('FORTUNE_REQUEST_ERROR', { message: error.message });
     return new Response(JSON.stringify({
       error: 'Internal server error',
       message: error.message

@@ -1,16 +1,86 @@
 // Cloudflare Pages Function - Celebrity Compatibility AI Analysis
 // GPT를 통한 셀럽 궁합 분석 API (Free tier)
 
+// --- RATE LIMITING ---
+const rateLimiter = require('../utils/rateLimiter.js');
+
+// --- LOGGING ---
+const logger = require('../utils/logger.js');
+
 // --- CONFIG ---
 const COMPATIBILITY_CONFIG = {
   model: 'gpt-4o-mini',     // Free tier — cost-efficient model
   maxTokens: 1500,
   temperature: 0.8,
   timeoutMs: 15000,           // 15 second API timeout
+  maxRequestSize: 15000,      // 15KB max request size
 };
+
+// --- INPUT VALIDATION ---
+const SUPPORTED_LANGUAGES = ['en', 'ko', 'ja', 'zh', 'vi'];
+
+function sanitizeString(str) {
+  if (typeof str !== 'string') return str;
+  return str
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;')
+    .slice(0, 1000);
+}
+
+function sanitizeObject(obj) {
+  if (obj === null || typeof obj !== 'object') {
+    return typeof obj === 'string' ? sanitizeString(obj) : obj;
+  }
+  if (Array.isArray(obj)) {
+    return obj.slice(0, 100).map(sanitizeObject);
+  }
+  const sanitized = {};
+  for (const [key, value] of Object.entries(obj).slice(0, 50)) {
+    sanitized[sanitizeString(key)] = sanitizeObject(value);
+  }
+  return sanitized;
+}
+
+function validateUserSajuData(data) {
+  const errors = [];
+  if (!data || typeof data !== 'object') {
+    return { valid: false, errors: ['userSajuData must be an object'] };
+  }
+  // Basic validation for dayMaster
+  if (data.dayMaster && typeof data.dayMaster !== 'object') {
+    errors.push('dayMaster must be an object');
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+function validateCelebrityData(data) {
+  const errors = [];
+  if (!data || typeof data !== 'object') {
+    return { valid: false, errors: ['celebrityData must be an object'] };
+  }
+  if (!data.name || typeof data.name !== 'string') {
+    errors.push('celebrityData.name is required and must be a string');
+  }
+  return { valid: errors.length === 0, errors };
+}
+
+function validateLanguage(language) {
+  if (!language) return { valid: true, sanitized: 'en' };
+  if (!SUPPORTED_LANGUAGES.includes(language)) {
+    return { valid: false, error: `Language must be one of: ${SUPPORTED_LANGUAGES.join(', ')}` };
+  }
+  return { valid: true, sanitized: language };
+}
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+  const startTime = Date.now();
+
+  // --- Logging Setup ---
+  const reqLogger = logger.createRequestLogger(request);
+  reqLogger.logRequest();
 
   const corsHeaders = {
     'Access-Control-Allow-Origin': '*',
@@ -20,15 +90,92 @@ export async function onRequestPost(context) {
   };
 
   try {
-    const body = await request.json();
-    const { userSajuData, celebrityData, language = 'en' } = body;
+    // --- Rate Limiting Check ---
+    const rateLimitResponse = await rateLimiter.rateLimitMiddleware(context, 'compatibility', 'en');
+    if (rateLimitResponse) {
+      reqLogger.warn('Rate limit exceeded');
+      return rateLimitResponse;
+    }
 
-    if (!userSajuData || !celebrityData) {
-      return new Response(JSON.stringify({ error: 'Missing user saju data or celebrity data' }), {
+    // Check request size
+    const contentLength = request.headers.get('content-length');
+    if (contentLength && parseInt(contentLength) > COMPATIBILITY_CONFIG.maxRequestSize) {
+      return new Response(JSON.stringify({
+        error: 'Request too large',
+        maxSize: COMPATIBILITY_CONFIG.maxRequestSize
+      }), {
+        status: 413,
+        headers: corsHeaders
+      });
+    }
+
+    // Parse request body
+    let body;
+    try {
+      body = await request.json();
+    } catch (parseError) {
+      return new Response(JSON.stringify({
+        error: 'Invalid JSON in request body'
+      }), {
         status: 400,
         headers: corsHeaders
       });
     }
+
+    const { userSajuData, celebrityData, language = 'en' } = body;
+
+    // Validate language
+    const langValidation = validateLanguage(language);
+    if (!langValidation.valid) {
+      return new Response(JSON.stringify({
+        error: 'Validation failed',
+        details: [langValidation.error]
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // Validate userSajuData
+    if (!userSajuData) {
+      return new Response(JSON.stringify({ error: 'Missing userSajuData' }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+    const userValidation = validateUserSajuData(userSajuData);
+    if (!userValidation.valid) {
+      return new Response(JSON.stringify({
+        error: 'Validation failed',
+        details: userValidation.errors
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // Validate celebrityData
+    if (!celebrityData) {
+      return new Response(JSON.stringify({ error: 'Missing celebrityData' }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+    const celebValidation = validateCelebrityData(celebrityData);
+    if (!celebValidation.valid) {
+      return new Response(JSON.stringify({
+        error: 'Validation failed',
+        details: celebValidation.errors
+      }), {
+        status: 400,
+        headers: corsHeaders
+      });
+    }
+
+    // Sanitize inputs
+    const sanitizedUserData = sanitizeObject(userSajuData);
+    const sanitizedCelebData = sanitizeObject(celebrityData);
+    const sanitizedLanguage = langValidation.sanitized;
 
     // MOCK_MODE or no API key → return local calculation only
     const useMockMode = env.MOCK_MODE === 'true' || !env.OPENAI_API_KEY;
@@ -36,10 +183,11 @@ export async function onRequestPost(context) {
     let analysis;
 
     if (useMockMode) {
-      analysis = getMockCompatibilityData(userSajuData, celebrityData, language);
+      reqLogger.info('Using mock mode', { reason: env.OPENAI_API_KEY ? 'MOCK_MODE=true' : 'No API key' });
+      analysis = getMockCompatibilityData(sanitizedUserData, sanitizedCelebData, sanitizedLanguage);
     } else {
       const apiKey = env.OPENAI_API_KEY;
-      const prompt = buildCompatibilityPrompt(userSajuData, celebrityData, language);
+      const prompt = buildCompatibilityPrompt(sanitizedUserData, sanitizedCelebData, sanitizedLanguage);
 
       const controller = new AbortController();
       const timeout = setTimeout(() => controller.abort(), COMPATIBILITY_CONFIG.timeoutMs);
@@ -69,12 +217,15 @@ export async function onRequestPost(context) {
           signal: controller.signal
         });
 
+        const apiDuration = Date.now() - startTime;
         clearTimeout(timeout);
 
         if (response.status === 429) {
-          console.error('OpenAI rate limit hit');
-          analysis = getMockCompatibilityData(userSajuData, celebrityData, language);
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { status: 429, error: 'rate_limit' });
+          logger.errorTracker.track('OPENAI_RATE_LIMIT', { endpoint: 'compatibility' });
+          analysis = getMockCompatibilityData(sanitizedUserData, sanitizedCelebData, sanitizedLanguage);
           analysis._source = 'fallback';
+          reqLogger.logResponse(200, Date.now() - startTime);
           return new Response(JSON.stringify({ success: true, analysis }), {
             status: 200,
             headers: corsHeaders
@@ -82,10 +233,12 @@ export async function onRequestPost(context) {
         }
 
         if (!response.ok) {
-          const error = await response.text();
-          console.error('OpenAI API Error:', response.status, error);
-          analysis = getMockCompatibilityData(userSajuData, celebrityData, language);
+          const errorText = await response.text();
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { status: response.status, error: errorText.substring(0, 200) });
+          logger.errorTracker.track('OPENAI_API_ERROR', { status: response.status, endpoint: 'compatibility' });
+          analysis = getMockCompatibilityData(sanitizedUserData, sanitizedCelebData, sanitizedLanguage);
           analysis._source = 'fallback';
+          reqLogger.logResponse(200, Date.now() - startTime);
           return new Response(JSON.stringify({ success: true, analysis }), {
             status: 200,
             headers: corsHeaders
@@ -96,25 +249,42 @@ export async function onRequestPost(context) {
         const analysisText = data.choices[0]?.message?.content;
         analysis = parseCompatibilityResponse(analysisText);
         analysis._source = 'gpt';
+        reqLogger.logApiCall('OpenAI', true, apiDuration, { model: COMPATIBILITY_CONFIG.model });
       } catch (fetchError) {
+        const apiDuration = Date.now() - startTime;
         clearTimeout(timeout);
         if (fetchError.name === 'AbortError') {
-          console.error('OpenAI API timeout after', COMPATIBILITY_CONFIG.timeoutMs, 'ms');
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { error: 'timeout', timeoutMs: COMPATIBILITY_CONFIG.timeoutMs });
+          logger.errorTracker.track('OPENAI_TIMEOUT', { endpoint: 'compatibility' });
         } else {
-          console.error('OpenAI fetch error:', fetchError.message);
+          reqLogger.logApiCall('OpenAI', false, apiDuration, { error: fetchError.message });
+          logger.errorTracker.track('OPENAI_FETCH_ERROR', { message: fetchError.message, endpoint: 'compatibility' });
         }
-        analysis = getMockCompatibilityData(userSajuData, celebrityData, language);
+        analysis = getMockCompatibilityData(sanitizedUserData, sanitizedCelebData, sanitizedLanguage);
         analysis._source = 'fallback';
       }
     }
 
-    return new Response(JSON.stringify({ success: true, analysis }), {
+    // Log success and create response
+    reqLogger.logResponse(200, Date.now() - startTime);
+    logger.performanceMonitor.record('compatibility_request', Date.now() - startTime);
+
+    // Create response with rate limit headers
+    const response = new Response(JSON.stringify({ success: true, analysis }), {
       status: 200,
       headers: corsHeaders
     });
 
+    // Add rate limit headers if available
+    if (context.rateLimitResult) {
+      return rateLimiter.addRateLimitHeaders(response, context.rateLimitResult);
+    }
+
+    return response;
+
   } catch (error) {
-    console.error('Error:', error.message, error.stack);
+    reqLogger.error('Request failed', error, { duration: `${Date.now() - startTime}ms` });
+    logger.errorTracker.track('COMPATIBILITY_REQUEST_ERROR', { message: error.message });
     return new Response(JSON.stringify({
       error: 'Internal server error',
       message: error.message
