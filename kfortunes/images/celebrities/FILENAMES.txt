@@ -1,0 +1,244 @@
+========================================
+Celebrity Image Filenames - 정확히 이 이름으로 저장하세요!
+========================================
+
+📁 업로드 위치: /home/user/pb-week1/kfortunes/images/celebrities/
+
+========================================
+🎯 PRIORITY 1 - K-POP (15개) ⭐⭐⭐
+========================================
+
+--- BTS (7명) ---
+kpop/bts-jungkook.webp
+kpop/bts-v.webp
+kpop/bts-jimin.webp
+kpop/bts-jin.webp
+kpop/bts-suga.webp
+kpop/bts-jhope.webp
+kpop/bts-rm.webp
+
+--- BLACKPINK (4명) ---
+kpop/blackpink-jennie.webp
+kpop/blackpink-lisa.webp
+kpop/blackpink-rose.webp
+kpop/blackpink-jisoo.webp
+
+--- Solo ---
+kpop/iu.webp
+
+--- NewJeans (4명) ---
+kpop/newjeans-minji.webp
+kpop/newjeans-hanni.webp
+kpop/newjeans-haerin.webp
+kpop/newjeans-danielle.webp
+
+--- aespa (2명) ---
+kpop/aespa-karina.webp
+kpop/aespa-winter.webp
+
+--- IVE (2명) ---
+kpop/ive-wonyoung.webp
+kpop/ive-yujin.webp
+
+--- LE SSERAFIM (2명) ---
+kpop/le-sserafim-kazuha.webp
+kpop/le-sserafim-chaewon.webp
+
+--- Red Velvet (1명) ---
+kpop/red-velvet-irene.webp
+
+--- ITZY (1명) ---
+kpop/itzy-yeji.webp
+
+--- TWICE (선택사항 - 2명만) ---
+kpop/twice-nayeon.webp
+kpop/twice-momo.webp
+
+--- EXO (2명) ---
+kpop/exo-baekhyun.webp
+kpop/exo-kai.webp
+
+--- Stray Kids (2명) ---
+kpop/stray-kids-bang-chan.webp
+kpop/stray-kids-hyunjin.webp
+
+--- NCT (2명) ---
+kpop/nct-taeyong.webp
+kpop/nct-mark.webp
+
+--- SEVENTEEN (1명) ---
+kpop/seventeen-hoshi.webp
+
+--- TXT (1명) ---
+kpop/txt-yeonjun.webp
+
+--- ATEEZ (1명) ---
+kpop/ateez-hongjoong.webp
+
+--- ENHYPEN (1명) ---
+kpop/enhypen-heeseung.webp
+
+--- ASTRO (1명) ---
+kpop/astro-cha-eun-woo.webp
+
+--- NMIXX (1명) ---
+kpop/nmixx-sullyoon.webp
+
+--- Kep1er (1명) ---
+kpop/kep1er-xiaoting.webp
+
+--- STAYC (1명) ---
+kpop/stayc-sieun.webp
+
+--- Oh My Girl (1명) ---
+kpop/oh-my-girl-yooa.webp
+
+--- TREASURE (1명) ---
+kpop/treasure-hyunsuk.webp
+
+--- 2PM (1명) ---
+kpop/2pm-junho.webp
+
+--- SHINee (1명) ---
+kpop/shinee-minho.webp
+
+--- 기타 Solo ---
+kpop/gidle-miyeon.webp
+
+
+========================================
+🎬 PRIORITY 2 - ACTORS (10개) ⭐⭐
+========================================
+
+--- Male Actors ---
+actors/gong-yoo.webp
+actors/lee-min-ho.webp
+actors/hyun-bin.webp
+actors/park-seo-joon.webp
+actors/park-bo-gum.webp
+actors/ji-chang-wook.webp
+actors/lee-jong-suk.webp
+actors/kim-soo-hyun.webp
+actors/lee-seung-gi.webp
+actors/so-ji-sub.webp
+
+--- Female Actors ---
+actors/song-hye-kyo.webp
+actors/son-ye-jin.webp
+actors/park-shin-hye.webp
+actors/suzy.webp
+actors/han-so-hee.webp
+actors/kim-tae-ri.webp
+actors/jun-ji-hyun.webp
+actors/han-hyo-joo.webp
+actors/kim-go-eun.webp
+actors/kim-tae-hee.webp
+actors/lee-sung-kyung.webp
+actors/park-min-young.webp
+actors/jeon-jong-seo.webp
+
+
+========================================
+⚽ PRIORITY 3 - ATHLETES (2개) ⭐⭐⭐
+========================================
+
+athletes/son-heung-min.webp
+athletes/kim-yuna.webp
+athletes/park-ji-sung.webp
+athletes/ryu-hyun-jin.webp
+athletes/faker.webp
+
+
+========================================
+🌍 GLOBAL CELEBRITIES (선택사항)
+========================================
+
+--- Actors ---
+actors/leonardo-dicaprio.webp
+actors/tom-holland.webp
+actors/timothee-chalamet.webp
+actors/zendaya.webp
+actors/emma-watson.webp
+actors/chris-hemsworth.webp
+actors/margot-robbie.webp
+actors/scarlett-johansson.webp
+actors/robert-downey-jr.webp
+actors/jennifer-lawrence.webp
+
+--- Musicians ---
+artists/taylor-swift.webp
+artists/ariana-grande.webp
+artists/billie-eilish.webp
+artists/beyonce.webp
+artists/lady-gaga.webp
+artists/adele.webp
+artists/rihanna.webp
+artists/selena-gomez.webp
+artists/dua-lipa.webp
+artists/ed-sheeran.webp
+artists/bruno-mars.webp
+artists/the-weeknd.webp
+artists/justin-bieber.webp
+artists/harry-styles.webp
+artists/post-malone.webp
+artists/drake.webp
+
+--- Athletes ---
+athletes/cristiano-ronaldo.webp
+athletes/lionel-messi.webp
+athletes/lebron-james.webp
+athletes/michael-jordan.webp
+athletes/roger-federer.webp
+athletes/serena-williams.webp
+athletes/naomi-osaka.webp
+athletes/simone-biles.webp
+
+--- Business ---
+business/elon-musk.webp
+business/mark-zuckerberg.webp
+business/bill-gates.webp
+business/steve-jobs.webp
+business/oprah-winfrey.webp
+
+--- Politicians ---
+politicians/barack-obama.webp
+politicians/donald-trump.webp
+politicians/joe-biden.webp
+
+--- Directors ---
+directors/bong-joon-ho.webp
+directors/park-chan-wook.webp
+
+
+========================================
+📋 파일명 규칙
+========================================
+
+✅ 소문자만 사용
+✅ 띄어쓰기는 하이픈(-)으로: "BTS V" → "bts-v"
+✅ 확장자는 .webp (또는 .jpg/.png - 나중에 변환 가능)
+✅ 카테고리/이름.webp 형식
+
+❌ 대문자 사용 금지: "BTS-V.webp" (X)
+❌ 띄어쓰기 사용 금지: "bts v.webp" (X)
+❌ 특수문자 금지: "bts_v.webp" (X) - 하이픈만 사용
+
+
+========================================
+💡 다운로드 우선순위
+========================================
+
+최소 15개만 다운로드:
+✅ BTS 7명 + BLACKPINK 4명 + IU + 손흥민 + 공유 + 이민호
+
+이것만 해도 바이럴 효과 충분합니다!
+
+
+========================================
+📥 업로드 방법
+========================================
+
+1. 위 사이트에서 이미지 다운로드
+2. 파일명을 정확히 위 리스트대로 변경
+3. /home/user/pb-week1/kfortunes/images/celebrities/ 폴더에 업로드
+4. 완료!
