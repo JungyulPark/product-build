@@ -228,6 +228,14 @@
       </div>
     </div>
 
+    <!-- Friend Challenge Banner -->
+    <div class="comparison-banner" id="comparison-banner" style="display: none;">
+      <div class="comparison-banner-title">🎯 Friend Challenge!</div>
+      <div class="comparison-banner-subtitle" id="challenge-subtitle">
+        Your friend challenged you! Let's see who gets the higher match score!
+      </div>
+    </div>
+
     <!-- K-Star Personality Twin Section -->
     <div class="kstar-twin-section" id="kstar-twin-section">
       <div class="kstar-twin-badge">🌟 My K-Star Personality Twin</div>
@@ -242,9 +250,34 @@
 
       <!-- Share Buttons -->
       <div class="kstar-share-buttons" id="kstar-share-buttons" style="display: none;">
-        <button class="btn-save-image" onclick="saveKStarTwinAsImage()">
-          📸 Save as Image
-        </button>
+        <div class="viral-share-buttons">
+          <button class="story-download-btn" onclick="downloadInstagramStory()">
+            📸 Download Story
+          </button>
+          <button class="challenge-friend-btn" onclick="challengeFriend()">
+            🎯 Challenge Friend
+          </button>
+          <button class="btn-save-image" onclick="saveKStarTwinAsImage()">
+            💾 Save Image
+          </button>
+        </div>
+
+        <!-- Hashtag Panel -->
+        <div class="hashtag-panel" id="hashtag-panel">
+          <div class="hashtag-panel-header">
+            <div class="hashtag-panel-title">
+              <span>📱</span>
+              <span>TikTok & Instagram Hashtags</span>
+            </div>
+          </div>
+          <div class="hashtag-list" id="hashtag-list">
+            <!-- Will be populated by JS -->
+          </div>
+          <button class="copy-hashtags-btn" onclick="copyHashtagsToClipboard()" id="copy-hashtags-btn">
+            📋 Copy Hashtags
+          </button>
+        </div>
+
         <p class="share-prompt">🔥 Share with your friends!</p>
         <div class="share-btn-grid">
           <button class="kstar-share-btn twitter" onclick="shareKStarTwin('twitter')">
@@ -279,6 +312,23 @@
         <button class="btn-secondary" onclick="showMoreTwins()">
           ✨ See Another K-Star
         </button>
+      </div>
+
+      <!-- Friend Comparison Results -->
+      <div class="comparison-results" id="comparison-results" style="display: none;">
+        <div class="comparison-person">
+          <div class="comparison-avatar" id="challenger-avatar">👤</div>
+          <div class="comparison-name" id="challenger-name">Friend</div>
+          <div class="comparison-twin" id="challenger-twin"></div>
+          <div class="comparison-score" id="challenger-score"></div>
+        </div>
+        <div class="comparison-vs">VS</div>
+        <div class="comparison-person">
+          <div class="comparison-avatar" id="your-avatar">👤</div>
+          <div class="comparison-name">You</div>
+          <div class="comparison-twin" id="your-twin"></div>
+          <div class="comparison-score" id="your-score"></div>
+        </div>
       </div>
     </div>
 
@@ -568,6 +618,25 @@
       // Check if returning from compatibility purchase redirect
       const openSelectorAfterPurchase = purchasedTier === 'compatibility';
 
+      // Check for friend challenge
+      const isChallenge = urlParams.get('challenge') === 'true';
+      const challengerTwin = urlParams.get('challenger_twin');
+      const challengerScore = urlParams.get('challenger_score');
+
+      if (isChallenge && challengerTwin && challengerScore) {
+        // Show challenge banner
+        const banner = document.getElementById('comparison-banner');
+        const subtitle = document.getElementById('challenge-subtitle');
+        banner.style.display = 'block';
+        subtitle.textContent = `Your friend matched with ${decodeURIComponent(challengerTwin)} (${challengerScore}%)! Can you beat that?`;
+
+        // Store challenge data for comparison
+        window.challengeData = {
+          twin: decodeURIComponent(challengerTwin),
+          score: parseInt(challengerScore)
+        };
+      }
+
       // 2초 후 로딩 완료 (애니메이션 시간)
       setTimeout(function() {
         try {
@@ -819,6 +888,14 @@
         moreTwins.style.display = 'block';
       }
 
+      // Display hashtags for viral sharing
+      displayHashtags();
+
+      // Show comparison if this is a challenge
+      if (window.challengeData) {
+        displayFriendComparison();
+      }
+
       // GA Event
       if (typeof gtag !== 'undefined') {
         gtag('event', 'kstar_twin_found', {
@@ -859,12 +936,16 @@
       // Score ring gradient
       const scoreGradient = match.score >= 80 ? '#8b5cf6, #ec4899' : match.score >= 60 ? '#f59e0b, #22c55e' : '#ef4444, #f59e0b';
 
+      // Load celebrity image
+      const imageUrl = Celebrities.getImageUrl(celeb);
+      const usesImage = celeb.image && !imageUrl.includes('ui-avatars.com');
+
       card.innerHTML = `
         <div class="twin-result" id="twin-result-capture">
           <div class="twin-avatar-wrapper">
             <div class="twin-avatar-ring" style="background: conic-gradient(#8b5cf6, #ec4899, #8b5cf6);">
-              <div class="twin-avatar" style="background: #${catColor.bg}; color: #${catColor.color};">
-                ${initials}
+              <div class="twin-avatar twin-avatar-loading" style="background: #${catColor.bg}; color: #${catColor.color};" id="twin-avatar-${Date.now()}">
+                ${usesImage ? '<div class="twin-avatar-spinner"></div>' : initials}
               </div>
             </div>
             <div class="twin-avatar-glow" style="background: #${catColor.bg};"></div>
@@ -912,6 +993,40 @@
           <div class="twin-watermark">kstarmatch.com</div>
         </div>
       `;
+
+      // Load celebrity image after rendering
+      if (usesImage) {
+        const avatarId = card.querySelector('[id^="twin-avatar-"]').id;
+        const avatarEl = document.getElementById(avatarId);
+
+        Celebrities.loadCelebrityImage(celeb,
+          // Success: image loaded
+          (url) => {
+            if (url.includes('ui-avatars.com')) {
+              // Fallback to avatar
+              avatarEl.style.backgroundImage = `url(${url})`;
+              avatarEl.textContent = '';
+            } else {
+              // Use actual photo
+              avatarEl.style.backgroundImage = `url(${url})`;
+              avatarEl.style.backgroundSize = 'cover';
+              avatarEl.style.backgroundPosition = 'center';
+              avatarEl.textContent = '';
+            }
+            avatarEl.classList.remove('twin-avatar-loading');
+          },
+          // Error: fallback to initials
+          (fallbackUrl) => {
+            if (fallbackUrl) {
+              avatarEl.style.backgroundImage = `url(${fallbackUrl})`;
+              avatarEl.textContent = '';
+            } else {
+              avatarEl.textContent = initials;
+            }
+            avatarEl.classList.remove('twin-avatar-loading');
+          }
+        );
+      }
     }
 
     let currentTwinIndex = 0;
@@ -1059,6 +1174,286 @@
         document.body.appendChild(toast);
         setTimeout(() => toast.remove(), 2000);
       }).catch(console.error);
+    }
+
+    // ============================================
+    // VIRAL SHARING FEATURES
+    // ============================================
+
+    // Instagram Story Download (1080x1920)
+    async function downloadInstagramStory() {
+      if (!currentTwinMatch) return;
+
+      const captureEl = document.getElementById('twin-result-capture');
+      if (!captureEl) return;
+
+      const btn = document.querySelector('.story-download-btn');
+      const originalText = btn.textContent;
+      btn.textContent = '⏳ Generating...';
+      btn.disabled = true;
+
+      try {
+        // Dynamically load html2canvas if not already loaded
+        if (typeof html2canvas === 'undefined') {
+          await new Promise((resolve, reject) => {
+            const script = document.createElement('script');
+            script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+            script.onload = resolve;
+            script.onerror = reject;
+            document.head.appendChild(script);
+          });
+        }
+
+        // Capture the card
+        const canvas = await html2canvas(captureEl, {
+          scale: 2,
+          useCORS: true,
+          logging: false,
+          backgroundColor: '#1a1a2e'
+        });
+
+        // Create story canvas (1080x1920)
+        const storyCanvas = document.createElement('canvas');
+        storyCanvas.width = 1080;
+        storyCanvas.height = 1920;
+        const ctx = storyCanvas.getContext('2d');
+
+        // Background gradient
+        const gradient = ctx.createLinearGradient(0, 0, 0, 1920);
+        gradient.addColorStop(0, '#1a1a2e');
+        gradient.addColorStop(1, '#16213e');
+        ctx.fillStyle = gradient;
+        ctx.fillRect(0, 0, 1080, 1920);
+
+        // Add header text
+        ctx.fillStyle = '#ffffff';
+        ctx.font = 'bold 48px Arial, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillText('🔮 K-Star Match', 540, 120);
+
+        // Calculate card dimensions to fit in story
+        const cardAspect = canvas.width / canvas.height;
+        const targetWidth = 900;
+        const targetHeight = targetWidth / cardAspect;
+        const x = (1080 - targetWidth) / 2;
+        const y = 200;
+
+        // Draw the card
+        ctx.drawImage(canvas, x, y, targetWidth, targetHeight);
+
+        // Add CTA text at bottom
+        ctx.fillStyle = '#a0aec0';
+        ctx.font = '36px Arial, sans-serif';
+        ctx.fillText('Find Your K-Star Twin', 540, 1750);
+
+        // Add website URL
+        ctx.fillStyle = '#8b5cf6';
+        ctx.font = 'bold 32px Arial, sans-serif';
+        ctx.fillText('kstarmatch.com', 540, 1820);
+
+        // Download
+        const link = document.createElement('a');
+        link.download = `kstar-story-${currentTwinMatch.celebrity.name.replace(/\s/g, '-')}.png`;
+        link.href = storyCanvas.toDataURL('image/png');
+        link.click();
+
+        // GA Event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'download_instagram_story', {
+            'event_category': 'Viral_Sharing',
+            'event_label': currentTwinMatch.celebrity.name
+          });
+        }
+
+        showToast('✅ Story downloaded! Share it on Instagram!', 'success');
+      } catch (err) {
+        console.error('Failed to generate story:', err);
+        showToast('❌ Failed to generate story. Try a screenshot instead.', 'error');
+      } finally {
+        btn.textContent = originalText;
+        btn.disabled = false;
+      }
+    }
+
+    // Challenge Friend
+    function challengeFriend() {
+      if (!currentTwinMatch) return;
+
+      const celeb = currentTwinMatch.celebrity;
+      const score = currentTwinMatch.score;
+      const url = new URL(window.location.href);
+
+      // Add challenge parameters
+      url.searchParams.set('challenge', 'true');
+      url.searchParams.set('challenger_twin', encodeURIComponent(celeb.name));
+      url.searchParams.set('challenger_score', score);
+
+      const challengeUrl = url.toString();
+
+      // Copy to clipboard
+      navigator.clipboard.writeText(challengeUrl).then(() => {
+        showToast('🎯 Challenge link copied! Send it to your friends!', 'success');
+
+        // GA Event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'create_friend_challenge', {
+            'event_category': 'Viral_Sharing',
+            'event_label': celeb.name
+          });
+        }
+      }).catch(err => {
+        // Fallback: show modal with URL
+        const modal = document.createElement('div');
+        modal.style.cssText = 'position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: var(--card-bg); padding: 2rem; border-radius: 16px; z-index: 10000; max-width: 90%; box-shadow: 0 10px 40px rgba(0,0,0,0.3);';
+        modal.innerHTML = `
+          <h3 style="margin-bottom: 1rem;">🎯 Challenge Your Friend!</h3>
+          <p style="margin-bottom: 1rem; color: var(--text-secondary);">Copy this link and send it to your friends:</p>
+          <input type="text" value="${challengeUrl}" readonly style="width: 100%; padding: 0.75rem; background: var(--bg); border: 1px solid var(--border); border-radius: 8px; font-family: monospace; font-size: 0.9rem; margin-bottom: 1rem;">
+          <button onclick="this.parentElement.remove()" style="width: 100%; padding: 0.75rem; background: var(--accent); color: white; border: none; border-radius: 8px; cursor: pointer; font-weight: 600;">Close</button>
+        `;
+        document.body.appendChild(modal);
+      });
+    }
+
+    // Copy Hashtags to Clipboard
+    function copyHashtagsToClipboard() {
+      if (!currentTwinMatch) return;
+
+      const celeb = currentTwinMatch.celebrity;
+      const hashtags = generateHashtags(celeb);
+      const hashtagText = hashtags.join(' ');
+
+      navigator.clipboard.writeText(hashtagText).then(() => {
+        const btn = document.getElementById('copy-hashtags-btn');
+        const originalText = btn.textContent;
+        btn.textContent = '✅ Copied!';
+        btn.classList.add('copied');
+
+        setTimeout(() => {
+          btn.textContent = originalText;
+          btn.classList.remove('copied');
+        }, 2000);
+
+        // GA Event
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'copy_hashtags', {
+            'event_category': 'Viral_Sharing',
+            'event_label': celeb.name
+          });
+        }
+      }).catch(err => {
+        showToast('❌ Failed to copy hashtags', 'error');
+      });
+    }
+
+    // Generate curated hashtags based on celebrity
+    function generateHashtags(celebrity) {
+      const baseHashtags = [
+        '#KStarMatch',
+        '#KStar',
+        '#KoreanPersonalityTest',
+        '#Saju',
+        '#사주',
+        '#궁합',
+        '#PersonalityTest',
+        '#MBTI',
+        '#Astrology'
+      ];
+
+      // Category-specific hashtags
+      const categoryHashtags = {
+        'K-Pop': ['#Kpop', '#KpopIdol', '#Hallyu', '#한류'],
+        'Actor': ['#Kdrama', '#KoreanActor', '#KoreanActress'],
+        'Singer': ['#Music', '#Singer', '#Vocalist'],
+        'Athlete': ['#Sports', '#Athlete', '#Champion']
+      };
+
+      // Add celebrity-specific hashtag
+      const celebHashtag = `#${celebrity.name.replace(/\s/g, '')}`;
+
+      // Combine hashtags
+      let hashtags = [
+        ...baseHashtags,
+        ...(categoryHashtags[celebrity.category] || []),
+        celebHashtag
+      ];
+
+      // Limit to 15 hashtags
+      return hashtags.slice(0, 15);
+    }
+
+    // Display hashtags in the panel
+    function displayHashtags() {
+      if (!currentTwinMatch) return;
+
+      const hashtags = generateHashtags(currentTwinMatch.celebrity);
+      const hashtagList = document.getElementById('hashtag-list');
+
+      hashtagList.innerHTML = hashtags.map(tag =>
+        `<span class="hashtag-tag">${tag}</span>`
+      ).join('');
+    }
+
+    // Helper: Show toast notification
+    function showToast(message, type = 'success') {
+      const bgColor = type === 'success' ? 'var(--success)' : 'var(--fire)';
+      const toast = document.createElement('div');
+      toast.style.cssText = `position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: ${bgColor}; color: white; padding: 1rem 2rem; border-radius: 10px; z-index: 10000; font-weight: 600; box-shadow: 0 4px 12px rgba(0,0,0,0.3);`;
+      toast.textContent = message;
+      document.body.appendChild(toast);
+      setTimeout(() => toast.remove(), 3000);
+    }
+
+    // Display Friend Comparison Results
+    function displayFriendComparison() {
+      if (!window.challengeData || !currentTwinMatch) return;
+
+      const comparisonEl = document.getElementById('comparison-results');
+      comparisonEl.style.display = 'grid';
+
+      // Challenger data
+      const challengerTwin = window.challengeData.twin;
+      const challengerScore = window.challengeData.score;
+      document.getElementById('challenger-name').textContent = 'Your Friend';
+      document.getElementById('challenger-twin').textContent = challengerTwin;
+      document.getElementById('challenger-score').innerHTML = `<strong>${challengerScore}%</strong> Match`;
+      document.getElementById('challenger-avatar').textContent = challengerTwin.split(' ').map(n => n[0]).join('').substring(0, 2);
+
+      // Your data
+      const yourTwin = currentTwinMatch.celebrity.name;
+      const yourScore = currentTwinMatch.score;
+      document.getElementById('your-twin').textContent = yourTwin;
+      document.getElementById('your-score').innerHTML = `<strong>${yourScore}%</strong> Match`;
+      document.getElementById('your-avatar').textContent = yourTwin.split(' ').map(n => n[0]).join('').substring(0, 2);
+
+      // Determine winner
+      const isWinner = yourScore > challengerScore;
+      const isTie = yourScore === challengerScore;
+
+      // Show result toast
+      setTimeout(() => {
+        if (isTie) {
+          showToast('🤝 It\'s a tie! You both have great K-Star twins!', 'success');
+        } else if (isWinner) {
+          showToast(`🎉 You win! ${yourScore}% vs ${challengerScore}%`, 'success');
+        } else {
+          showToast(`😅 Your friend wins this time! ${challengerScore}% vs ${yourScore}%`, 'error');
+        }
+      }, 1000);
+
+      // GA Event
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'complete_friend_challenge', {
+          'event_category': 'Viral_Sharing',
+          'event_label': isWinner ? 'won' : isTie ? 'tie' : 'lost',
+          'value': yourScore - challengerScore
+        });
+      }
+
+      // Scroll to comparison
+      setTimeout(() => {
+        comparisonEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 500);
     }
 
     // 유명인 매치 표시 (개선된 버전)

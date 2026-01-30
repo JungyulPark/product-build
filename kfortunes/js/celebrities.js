@@ -22,142 +22,175 @@ const Celebrities = {
     return `https://ui-avatars.com/api/?name=${encodeURIComponent(initials)}&background=${colors.bg}&color=${colors.color}&size=${size}&bold=true&rounded=true&font-size=0.4`;
   },
 
+  // Get celebrity image URL with fallback
+  getImageUrl(celebrity) {
+    if (celebrity.image) {
+      return `/images/celebrities/${celebrity.image}`;
+    }
+    // Fallback to avatar
+    return this.getAvatarUrl(celebrity.name, celebrity.category);
+  },
+
+  // Load celebrity image with error handling
+  loadCelebrityImage(celebrity, onSuccess, onError) {
+    const imageUrl = this.getImageUrl(celebrity);
+
+    // If it's an avatar URL, just return it
+    if (imageUrl.includes('ui-avatars.com')) {
+      if (onSuccess) onSuccess(imageUrl);
+      return;
+    }
+
+    // Try to preload the actual image
+    const img = new Image();
+    img.onload = () => {
+      if (onSuccess) onSuccess(imageUrl);
+    };
+    img.onerror = () => {
+      // Fallback to avatar on error
+      const fallbackUrl = this.getAvatarUrl(celebrity.name, celebrity.category);
+      if (onError) onError(fallbackUrl);
+      else if (onSuccess) onSuccess(fallbackUrl);
+    };
+    img.src = imageUrl;
+  },
+
   // 100 Celebrity Database
   data: [
     // ============================================
     // WOOD Day Masters
     // ============================================
     // 甲 (Yang Wood)
-    { name: "BTS Jungkook", korean: "정국", initials: "JK", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1997, category: "K-Pop", popularity: 100 },
-    { name: "Stray Kids Bang Chan", korean: "방찬", initials: "BC", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1997, category: "K-Pop", popularity: 92 },
-    { name: "ENHYPEN Heeseung", korean: "희승", initials: "HS", dayMaster: "wood", yin: false, stem: "甲", birthYear: 2001, category: "K-Pop", popularity: 88 },
-    { name: "NCT Taeyong", korean: "태용", initials: "TY", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1995, category: "K-Pop", popularity: 90 },
-    { name: "Leonardo DiCaprio", korean: "레오나르도 디카프리오", initials: "LD", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1974, category: "Actor", popularity: 95 },
-    { name: "Cristiano Ronaldo", korean: "크리스티아누 호날두", initials: "CR", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1985, category: "Athlete", popularity: 98 },
-    { name: "Gong Yoo", korean: "공유", initials: "GY", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1979, category: "Actor", popularity: 93 },
-    { name: "Ed Sheeran", korean: "에드 시런", initials: "ES", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1991, category: "Singer", popularity: 88 },
-    { name: "Mark Zuckerberg", korean: "마크 저커버그", initials: "MZ", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1984, category: "Tech", popularity: 85 },
-    { name: "Barack Obama", korean: "버락 오바마", initials: "BO", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1961, category: "President", popularity: 90 },
+    { name: "BTS Jungkook", korean: "정국", initials: "JK", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1997, category: "K-Pop", popularity: 100, image: "kpop/bts-jungkook.webp" },
+    { name: "Stray Kids Bang Chan", korean: "방찬", initials: "BC", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1997, category: "K-Pop", popularity: 92, image: "kpop/stray-kids-bang-chan.webp" },
+    { name: "ENHYPEN Heeseung", korean: "희승", initials: "HS", dayMaster: "wood", yin: false, stem: "甲", birthYear: 2001, category: "K-Pop", popularity: 88, image: "kpop/enhypen-heeseung.webp" },
+    { name: "NCT Taeyong", korean: "태용", initials: "TY", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1995, category: "K-Pop", popularity: 90, image: "kpop/nct-taeyong.webp" },
+    { name: "Leonardo DiCaprio", korean: "레오나르도 디카프리오", initials: "LD", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1974, category: "Actor", popularity: 95, image: "actors/leonardo-dicaprio.webp" },
+    { name: "Cristiano Ronaldo", korean: "크리스티아누 호날두", initials: "CR", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1985, category: "Athlete", popularity: 98, image: "athletes/cristiano-ronaldo.webp" },
+    { name: "Gong Yoo", korean: "공유", initials: "GY", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1979, category: "Actor", popularity: 93, image: "actors/gong-yoo.webp" },
+    { name: "Ed Sheeran", korean: "에드 시런", initials: "ES", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1991, category: "Singer", popularity: 88, image: "artists/ed-sheeran.webp" },
+    { name: "Mark Zuckerberg", korean: "마크 저커버그", initials: "MZ", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1984, category: "Tech", popularity: 85, image: "business/mark-zuckerberg.webp" },
+    { name: "Barack Obama", korean: "버락 오바마", initials: "BO", dayMaster: "wood", yin: false, stem: "甲", birthYear: 1961, category: "President", popularity: 90, image: "politicians/barack-obama.webp" },
 
     // 乙 (Yin Wood)
-    { name: "IU", korean: "아이유", initials: "IU", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1993, category: "K-Pop", popularity: 99 },
-    { name: "aespa Karina", korean: "카리나", initials: "KR", dayMaster: "wood", yin: true, stem: "乙", birthYear: 2000, category: "K-Pop", popularity: 96 },
-    { name: "TWICE Nayeon", korean: "나연", initials: "NY", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1995, category: "K-Pop", popularity: 95 },
-    { name: "TWICE Momo", korean: "모모", initials: "MM", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1996, category: "K-Pop", popularity: 91 },
-    { name: "(G)I-DLE Miyeon", korean: "미연", initials: "MY", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1997, category: "K-Pop", popularity: 87 },
-    { name: "Taylor Swift", korean: "테일러 스위프트", initials: "TS", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1989, category: "Singer", popularity: 100 },
-    { name: "Ariana Grande", korean: "아리아나 그란데", initials: "AG", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1993, category: "Singer", popularity: 95 },
-    { name: "Zendaya", korean: "젠데이아", initials: "ZD", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1996, category: "Actor", popularity: 92 },
-    { name: "Song Hye-kyo", korean: "송혜교", initials: "SH", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1981, category: "Actor", popularity: 94 },
-    { name: "Naomi Osaka", korean: "오사카 나오미", initials: "NO", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1997, category: "Athlete", popularity: 85 },
+    { name: "IU", korean: "아이유", initials: "IU", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1993, category: "K-Pop", popularity: 99, image: "kpop/iu.webp" },
+    { name: "aespa Karina", korean: "카리나", initials: "KR", dayMaster: "wood", yin: true, stem: "乙", birthYear: 2000, category: "K-Pop", popularity: 96, image: "kpop/aespa-karina.webp" },
+    { name: "TWICE Nayeon", korean: "나연", initials: "NY", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1995, category: "K-Pop", popularity: 95, image: "kpop/twice-nayeon.webp" },
+    { name: "TWICE Momo", korean: "모모", initials: "MM", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1996, category: "K-Pop", popularity: 91, image: "kpop/twice-momo.webp" },
+    { name: "(G)I-DLE Miyeon", korean: "미연", initials: "MY", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1997, category: "K-Pop", popularity: 87, image: "kpop/gidle-miyeon.webp" },
+    { name: "Taylor Swift", korean: "테일러 스위프트", initials: "TS", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1989, category: "Singer", popularity: 100, image: "artists/taylor-swift.webp" },
+    { name: "Ariana Grande", korean: "아리아나 그란데", initials: "AG", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1993, category: "Singer", popularity: 95, image: "artists/ariana-grande.webp" },
+    { name: "Zendaya", korean: "젠데이아", initials: "ZD", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1996, category: "Actor", popularity: 92, image: "actors/zendaya.webp" },
+    { name: "Song Hye-kyo", korean: "송혜교", initials: "SH", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1981, category: "Actor", popularity: 94, image: "actors/song-hye-kyo.webp" },
+    { name: "Naomi Osaka", korean: "오사카 나오미", initials: "NO", dayMaster: "wood", yin: true, stem: "乙", birthYear: 1997, category: "Athlete", popularity: 85, image: "athletes/naomi-osaka.webp" },
 
     // ============================================
     // FIRE Day Masters
     // ============================================
     // 丙 (Yang Fire)
-    { name: "BTS V", korean: "뷔", initials: "V", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1995, category: "K-Pop", popularity: 99 },
-    { name: "SEVENTEEN Hoshi", korean: "호시", initials: "HS", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1996, category: "K-Pop", popularity: 89 },
-    { name: "TXT Yeonjun", korean: "연준", initials: "YJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1999, category: "K-Pop", popularity: 91 },
-    { name: "ATEEZ Hongjoong", korean: "홍중", initials: "HJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1998, category: "K-Pop", popularity: 88 },
-    { name: "Park Seo-joon", korean: "박서준", initials: "SJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1988, category: "Actor", popularity: 93 },
-    { name: "Tom Holland", korean: "톰 홀랜드", initials: "TH", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1996, category: "Actor", popularity: 91 },
-    { name: "Drake", korean: "드레이크", initials: "DK", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1986, category: "Singer", popularity: 92 },
-    { name: "LeBron James", korean: "르브론 제임스", initials: "LJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1984, category: "Athlete", popularity: 95 },
-    { name: "Steve Jobs", korean: "스티브 잡스", initials: "SJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1955, category: "Tech", popularity: 90 },
-    { name: "Donald Trump", korean: "도널드 트럼프", initials: "DT", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1946, category: "President", popularity: 85 },
+    { name: "BTS V", korean: "뷔", initials: "V", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1995, category: "K-Pop", popularity: 99, image: "kpop/bts-v.webp" },
+    { name: "SEVENTEEN Hoshi", korean: "호시", initials: "HS", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1996, category: "K-Pop", popularity: 89, image: "kpop/seventeen-hoshi.webp" },
+    { name: "TXT Yeonjun", korean: "연준", initials: "YJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1999, category: "K-Pop", popularity: 91, image: "kpop/txt-yeonjun.webp" },
+    { name: "ATEEZ Hongjoong", korean: "홍중", initials: "HJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1998, category: "K-Pop", popularity: 88, image: "kpop/ateez-hongjoong.webp" },
+    { name: "Park Seo-joon", korean: "박서준", initials: "SJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1988, category: "Actor", popularity: 93, image: "actors/park-seo-joon.webp" },
+    { name: "Tom Holland", korean: "톰 홀랜드", initials: "TH", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1996, category: "Actor", popularity: 91, image: "actors/tom-holland.webp" },
+    { name: "Drake", korean: "드레이크", initials: "DK", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1986, category: "Singer", popularity: 92, image: "artists/drake.webp" },
+    { name: "LeBron James", korean: "르브론 제임스", initials: "LJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1984, category: "Athlete", popularity: 95, image: "athletes/lebron-james.webp" },
+    { name: "Steve Jobs", korean: "스티브 잡스", initials: "SJ", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1955, category: "Tech", popularity: 90, image: "business/steve-jobs.webp" },
+    { name: "Donald Trump", korean: "도널드 트럼프", initials: "DT", dayMaster: "fire", yin: false, stem: "丙", birthYear: 1946, category: "President", popularity: 85, image: "politicians/donald-trump.webp" },
 
     // 丁 (Yin Fire)
-    { name: "BLACKPINK Jennie", korean: "제니", initials: "JN", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1996, category: "K-Pop", popularity: 98 },
-    { name: "LE SSERAFIM Kazuha", korean: "카즈하", initials: "KZ", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2003, category: "K-Pop", popularity: 90 },
-    { name: "IVE Wonyoung", korean: "장원영", initials: "WY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2004, category: "K-Pop", popularity: 97 },
-    { name: "NMIXX Sullyoon", korean: "설윤", initials: "SY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2004, category: "K-Pop", popularity: 86 },
-    { name: "Beyonce", korean: "비욘세", initials: "BY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1981, category: "Singer", popularity: 97 },
-    { name: "Billie Eilish", korean: "빌리 아일리시", initials: "BE", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2001, category: "Singer", popularity: 93 },
-    { name: "Emma Watson", korean: "엠마 왓슨", initials: "EW", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1990, category: "Actor", popularity: 89 },
-    { name: "Han So-hee", korean: "한소희", initials: "SH", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1994, category: "Actor", popularity: 92 },
-    { name: "Serena Williams", korean: "세레나 윌리엄스", initials: "SW", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1981, category: "Athlete", popularity: 88 },
-    { name: "Jeon Jong-seo", korean: "전종서", initials: "JS", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1994, category: "Actor", popularity: 84 },
+    { name: "BLACKPINK Jennie", korean: "제니", initials: "JN", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1996, category: "K-Pop", popularity: 98, image: "kpop/blackpink-jennie.webp" },
+    { name: "LE SSERAFIM Kazuha", korean: "카즈하", initials: "KZ", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2003, category: "K-Pop", popularity: 90, image: "kpop/le-sserafim-kazuha.webp" },
+    { name: "IVE Wonyoung", korean: "장원영", initials: "WY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2004, category: "K-Pop", popularity: 97, image: "kpop/ive-wonyoung.webp" },
+    { name: "NMIXX Sullyoon", korean: "설윤", initials: "SY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2004, category: "K-Pop", popularity: 86, image: "kpop/nmixx-sullyoon.webp" },
+    { name: "Beyonce", korean: "비욘세", initials: "BY", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1981, category: "Singer", popularity: 97, image: "artists/beyonce.webp" },
+    { name: "Billie Eilish", korean: "빌리 아일리시", initials: "BE", dayMaster: "fire", yin: true, stem: "丁", birthYear: 2001, category: "Singer", popularity: 93, image: "artists/billie-eilish.webp" },
+    { name: "Emma Watson", korean: "엠마 왓슨", initials: "EW", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1990, category: "Actor", popularity: 89, image: "actors/emma-watson.webp" },
+    { name: "Han So-hee", korean: "한소희", initials: "SH", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1994, category: "Actor", popularity: 92, image: "actors/han-so-hee.webp" },
+    { name: "Serena Williams", korean: "세레나 윌리엄스", initials: "SW", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1981, category: "Athlete", popularity: 88, image: "athletes/serena-williams.webp" },
+    { name: "Jeon Jong-seo", korean: "전종서", initials: "JS", dayMaster: "fire", yin: true, stem: "丁", birthYear: 1994, category: "Actor", popularity: 84, image: "actors/jeon-jong-seo.webp" },
 
     // ============================================
     // EARTH Day Masters
     // ============================================
     // 戊 (Yang Earth)
-    { name: "BTS RM", korean: "RM", initials: "RM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1994, category: "K-Pop", popularity: 96 },
-    { name: "EXO Baekhyun", korean: "백현", initials: "BH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1992, category: "K-Pop", popularity: 94 },
-    { name: "SHINee Minho", korean: "민호", initials: "MH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1991, category: "K-Pop", popularity: 88 },
-    { name: "2PM Junho", korean: "준호", initials: "JH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1990, category: "K-Pop", popularity: 86 },
-    { name: "Lee Min-ho", korean: "이민호", initials: "MH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1987, category: "Actor", popularity: 95 },
-    { name: "Timothee Chalamet", korean: "티모시 샬라메", initials: "TC", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1995, category: "Actor", popularity: 91 },
-    { name: "Bruno Mars", korean: "브루노 마스", initials: "BM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1985, category: "Singer", popularity: 93 },
-    { name: "The Weeknd", korean: "더 위켄드", initials: "WK", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1990, category: "Singer", popularity: 92 },
-    { name: "Elon Musk", korean: "일론 머스크", initials: "EM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1971, category: "Tech", popularity: 95 },
-    { name: "Joe Biden", korean: "조 바이든", initials: "JB", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1942, category: "President", popularity: 82 },
+    { name: "BTS RM", korean: "RM", initials: "RM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1994, category: "K-Pop", popularity: 96, image: "kpop/bts-rm.webp" },
+    { name: "EXO Baekhyun", korean: "백현", initials: "BH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1992, category: "K-Pop", popularity: 94, image: "kpop/exo-baekhyun.webp" },
+    { name: "SHINee Minho", korean: "민호", initials: "MH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1991, category: "K-Pop", popularity: 88, image: "kpop/shinee-minho.webp" },
+    { name: "2PM Junho", korean: "준호", initials: "JH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1990, category: "K-Pop", popularity: 86, image: "kpop/2pm-junho.webp" },
+    { name: "Lee Min-ho", korean: "이민호", initials: "MH", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1987, category: "Actor", popularity: 95, image: "actors/lee-min-ho.webp" },
+    { name: "Timothee Chalamet", korean: "티모시 샬라메", initials: "TC", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1995, category: "Actor", popularity: 91, image: "actors/timothee-chalamet.webp" },
+    { name: "Bruno Mars", korean: "브루노 마스", initials: "BM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1985, category: "Singer", popularity: 93, image: "artists/bruno-mars.webp" },
+    { name: "The Weeknd", korean: "더 위켄드", initials: "WK", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1990, category: "Singer", popularity: 92, image: "artists/the-weeknd.webp" },
+    { name: "Elon Musk", korean: "일론 머스크", initials: "EM", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1971, category: "Tech", popularity: 95, image: "business/elon-musk.webp" },
+    { name: "Joe Biden", korean: "조 바이든", initials: "JB", dayMaster: "earth", yin: false, stem: "戊", birthYear: 1942, category: "President", popularity: 82, image: "politicians/joe-biden.webp" },
 
     // 己 (Yin Earth)
-    { name: "BLACKPINK Rose", korean: "로제", initials: "RS", dayMaster: "earth", yin: true, stem: "己", birthYear: 1997, category: "K-Pop", popularity: 97 },
-    { name: "aespa Winter", korean: "윈터", initials: "WT", dayMaster: "earth", yin: true, stem: "己", birthYear: 2001, category: "K-Pop", popularity: 93 },
-    { name: "Red Velvet Irene", korean: "아이린", initials: "IR", dayMaster: "earth", yin: true, stem: "己", birthYear: 1991, category: "K-Pop", popularity: 92 },
-    { name: "Oh My Girl YooA", korean: "유아", initials: "YA", dayMaster: "earth", yin: true, stem: "己", birthYear: 1995, category: "K-Pop", popularity: 85 },
-    { name: "Son Heung-min", korean: "손흥민", initials: "SH", dayMaster: "earth", yin: true, stem: "己", birthYear: 1992, category: "Athlete", popularity: 96 },
-    { name: "Kim Yuna", korean: "김연아", initials: "YK", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Athlete", popularity: 94 },
-    { name: "Dua Lipa", korean: "두아 리파", initials: "DL", dayMaster: "earth", yin: true, stem: "己", birthYear: 1995, category: "Singer", popularity: 91 },
-    { name: "Jennifer Lawrence", korean: "제니퍼 로렌스", initials: "JL", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Actor", popularity: 89 },
-    { name: "Kim Tae-ri", korean: "김태리", initials: "TR", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Actor", popularity: 91 },
-    { name: "Oprah Winfrey", korean: "오프라 윈프리", initials: "OW", dayMaster: "earth", yin: true, stem: "己", birthYear: 1954, category: "Media", popularity: 88 },
+    { name: "BLACKPINK Rose", korean: "로제", initials: "RS", dayMaster: "earth", yin: true, stem: "己", birthYear: 1997, category: "K-Pop", popularity: 97, image: "kpop/blackpink-rose.webp" },
+    { name: "aespa Winter", korean: "윈터", initials: "WT", dayMaster: "earth", yin: true, stem: "己", birthYear: 2001, category: "K-Pop", popularity: 93, image: "kpop/aespa-winter.webp" },
+    { name: "Red Velvet Irene", korean: "아이린", initials: "IR", dayMaster: "earth", yin: true, stem: "己", birthYear: 1991, category: "K-Pop", popularity: 92, image: "kpop/red-velvet-irene.webp" },
+    { name: "Oh My Girl YooA", korean: "유아", initials: "YA", dayMaster: "earth", yin: true, stem: "己", birthYear: 1995, category: "K-Pop", popularity: 85, image: "kpop/oh-my-girl-yooa.webp" },
+    { name: "Son Heung-min", korean: "손흥민", initials: "SH", dayMaster: "earth", yin: true, stem: "己", birthYear: 1992, category: "Athlete", popularity: 96, image: "athletes/son-heung-min.webp" },
+    { name: "Kim Yuna", korean: "김연아", initials: "YK", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Athlete", popularity: 94, image: "athletes/kim-yuna.webp" },
+    { name: "Dua Lipa", korean: "두아 리파", initials: "DL", dayMaster: "earth", yin: true, stem: "己", birthYear: 1995, category: "Singer", popularity: 91, image: "artists/dua-lipa.webp" },
+    { name: "Jennifer Lawrence", korean: "제니퍼 로렌스", initials: "JL", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Actor", popularity: 89, image: "actors/jennifer-lawrence.webp" },
+    { name: "Kim Tae-ri", korean: "김태리", initials: "TR", dayMaster: "earth", yin: true, stem: "己", birthYear: 1990, category: "Actor", popularity: 91, image: "actors/kim-tae-ri.webp" },
+    { name: "Oprah Winfrey", korean: "오프라 윈프리", initials: "OW", dayMaster: "earth", yin: true, stem: "己", birthYear: 1954, category: "Media", popularity: 88, image: "business/oprah-winfrey.webp" },
 
     // ============================================
     // METAL Day Masters
     // ============================================
     // 庚 (Yang Metal)
-    { name: "BTS Suga", korean: "슈가", initials: "SG", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1993, category: "K-Pop", popularity: 97 },
-    { name: "Stray Kids Hyunjin", korean: "현진", initials: "HJ", dayMaster: "metal", yin: false, stem: "庚", birthYear: 2000, category: "K-Pop", popularity: 94 },
-    { name: "NCT Mark", korean: "마크", initials: "MK", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1999, category: "K-Pop", popularity: 91 },
-    { name: "TREASURE Hyunsuk", korean: "현석", initials: "HS", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1999, category: "K-Pop", popularity: 84 },
-    { name: "Hyun Bin", korean: "현빈", initials: "HB", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1982, category: "Actor", popularity: 94 },
-    { name: "Chris Hemsworth", korean: "크리스 헴스워스", initials: "CH", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1983, category: "Actor", popularity: 90 },
-    { name: "Justin Bieber", korean: "저스틴 비버", initials: "JB", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1994, category: "Singer", popularity: 91 },
-    { name: "Lionel Messi", korean: "리오넬 메시", initials: "LM", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1987, category: "Athlete", popularity: 98 },
-    { name: "Roger Federer", korean: "로저 페더러", initials: "RF", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1981, category: "Athlete", popularity: 87 },
-    { name: "Bill Gates", korean: "빌 게이츠", initials: "BG", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1955, category: "Tech", popularity: 88 },
+    { name: "BTS Suga", korean: "슈가", initials: "SG", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1993, category: "K-Pop", popularity: 97, image: "kpop/bts-suga.webp" },
+    { name: "Stray Kids Hyunjin", korean: "현진", initials: "HJ", dayMaster: "metal", yin: false, stem: "庚", birthYear: 2000, category: "K-Pop", popularity: 94, image: "kpop/stray-kids-hyunjin.webp" },
+    { name: "NCT Mark", korean: "마크", initials: "MK", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1999, category: "K-Pop", popularity: 91, image: "kpop/nct-mark.webp" },
+    { name: "TREASURE Hyunsuk", korean: "현석", initials: "HS", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1999, category: "K-Pop", popularity: 84, image: "kpop/treasure-hyunsuk.webp" },
+    { name: "Hyun Bin", korean: "현빈", initials: "HB", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1982, category: "Actor", popularity: 94, image: "actors/hyun-bin.webp" },
+    { name: "Chris Hemsworth", korean: "크리스 헴스워스", initials: "CH", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1983, category: "Actor", popularity: 90, image: "actors/chris-hemsworth.webp" },
+    { name: "Justin Bieber", korean: "저스틴 비버", initials: "JB", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1994, category: "Singer", popularity: 91, image: "artists/justin-bieber.webp" },
+    { name: "Lionel Messi", korean: "리오넬 메시", initials: "LM", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1987, category: "Athlete", popularity: 98, image: "athletes/lionel-messi.webp" },
+    { name: "Roger Federer", korean: "로저 페더러", initials: "RF", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1981, category: "Athlete", popularity: 87, image: "athletes/roger-federer.webp" },
+    { name: "Bill Gates", korean: "빌 게이츠", initials: "BG", dayMaster: "metal", yin: false, stem: "庚", birthYear: 1955, category: "Tech", popularity: 88, image: "business/bill-gates.webp" },
 
     // 辛 (Yin Metal)
-    { name: "NewJeans Minji", korean: "민지", initials: "MJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2004, category: "K-Pop", popularity: 96 },
-    { name: "LE SSERAFIM Chaewon", korean: "채원", initials: "CW", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2000, category: "K-Pop", popularity: 93 },
-    { name: "ITZY Yeji", korean: "예지", initials: "YJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2000, category: "K-Pop", popularity: 91 },
-    { name: "Kep1er Xiaoting", korean: "샤오팅", initials: "XT", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1999, category: "K-Pop", popularity: 85 },
-    { name: "STAYC Sieun", korean: "시은", initials: "SE", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2001, category: "K-Pop", popularity: 84 },
-    { name: "Lady Gaga", korean: "레이디 가가", initials: "LG", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1986, category: "Singer", popularity: 92 },
-    { name: "Adele", korean: "아델", initials: "AD", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1988, category: "Singer", popularity: 91 },
-    { name: "Margot Robbie", korean: "마고 로비", initials: "MR", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1990, category: "Actor", popularity: 89 },
-    { name: "Son Ye-jin", korean: "손예진", initials: "YJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1982, category: "Actor", popularity: 93 },
-    { name: "Park Shin-hye", korean: "박신혜", initials: "SH", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1990, category: "Actor", popularity: 90 },
+    { name: "NewJeans Minji", korean: "민지", initials: "MJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2004, category: "K-Pop", popularity: 96, image: "kpop/newjeans-minji.webp" },
+    { name: "LE SSERAFIM Chaewon", korean: "채원", initials: "CW", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2000, category: "K-Pop", popularity: 93, image: "kpop/le-sserafim-chaewon.webp" },
+    { name: "ITZY Yeji", korean: "예지", initials: "YJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2000, category: "K-Pop", popularity: 91, image: "kpop/itzy-yeji.webp" },
+    { name: "Kep1er Xiaoting", korean: "샤오팅", initials: "XT", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1999, category: "K-Pop", popularity: 85, image: "kpop/kep1er-xiaoting.webp" },
+    { name: "STAYC Sieun", korean: "시은", initials: "SE", dayMaster: "metal", yin: true, stem: "辛", birthYear: 2001, category: "K-Pop", popularity: 84, image: "kpop/stayc-sieun.webp" },
+    { name: "Lady Gaga", korean: "레이디 가가", initials: "LG", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1986, category: "Singer", popularity: 92, image: "artists/lady-gaga.webp" },
+    { name: "Adele", korean: "아델", initials: "AD", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1988, category: "Singer", popularity: 91, image: "artists/adele.webp" },
+    { name: "Margot Robbie", korean: "마고 로비", initials: "MR", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1990, category: "Actor", popularity: 89, image: "actors/margot-robbie.webp" },
+    { name: "Son Ye-jin", korean: "손예진", initials: "YJ", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1982, category: "Actor", popularity: 93, image: "actors/son-ye-jin.webp" },
+    { name: "Park Shin-hye", korean: "박신혜", initials: "SH", dayMaster: "metal", yin: true, stem: "辛", birthYear: 1990, category: "Actor", popularity: 90, image: "actors/park-shin-hye.webp" },
 
     // ============================================
     // WATER Day Masters
     // ============================================
     // 壬 (Yang Water)
-    { name: "BTS Jin", korean: "진", initials: "JN", dayMaster: "water", yin: false, stem: "壬", birthYear: 1992, category: "K-Pop", popularity: 95 },
-    { name: "BTS J-Hope", korean: "제이홉", initials: "JH", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "K-Pop", popularity: 94 },
-    { name: "BTS Jimin", korean: "지민", initials: "JM", dayMaster: "water", yin: false, stem: "壬", birthYear: 1995, category: "K-Pop", popularity: 98 },
-    { name: "EXO Kai", korean: "카이", initials: "KI", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "K-Pop", popularity: 92 },
-    { name: "ASTRO Cha Eun-woo", korean: "차은우", initials: "EW", dayMaster: "water", yin: false, stem: "壬", birthYear: 1997, category: "K-Pop", popularity: 95 },
-    { name: "Park Bo-gum", korean: "박보검", initials: "BG", dayMaster: "water", yin: false, stem: "壬", birthYear: 1993, category: "Actor", popularity: 93 },
-    { name: "Robert Downey Jr.", korean: "로버트 다우니 주니어", initials: "RD", dayMaster: "water", yin: false, stem: "壬", birthYear: 1965, category: "Actor", popularity: 91 },
-    { name: "Harry Styles", korean: "해리 스타일스", initials: "HS", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "Singer", popularity: 93 },
-    { name: "Post Malone", korean: "포스트 말론", initials: "PM", dayMaster: "water", yin: false, stem: "壬", birthYear: 1995, category: "Singer", popularity: 88 },
-    { name: "Michael Jordan", korean: "마이클 조던", initials: "MJ", dayMaster: "water", yin: false, stem: "壬", birthYear: 1963, category: "Athlete", popularity: 92 },
+    { name: "BTS Jin", korean: "진", initials: "JN", dayMaster: "water", yin: false, stem: "壬", birthYear: 1992, category: "K-Pop", popularity: 95, image: "kpop/bts-jin.webp" },
+    { name: "BTS J-Hope", korean: "제이홉", initials: "JH", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "K-Pop", popularity: 94, image: "kpop/bts-jhope.webp" },
+    { name: "BTS Jimin", korean: "지민", initials: "JM", dayMaster: "water", yin: false, stem: "壬", birthYear: 1995, category: "K-Pop", popularity: 98, image: "kpop/bts-jimin.webp" },
+    { name: "EXO Kai", korean: "카이", initials: "KI", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "K-Pop", popularity: 92, image: "kpop/exo-kai.webp" },
+    { name: "ASTRO Cha Eun-woo", korean: "차은우", initials: "EW", dayMaster: "water", yin: false, stem: "壬", birthYear: 1997, category: "K-Pop", popularity: 95, image: "kpop/astro-cha-eun-woo.webp" },
+    { name: "Park Bo-gum", korean: "박보검", initials: "BG", dayMaster: "water", yin: false, stem: "壬", birthYear: 1993, category: "Actor", popularity: 93, image: "actors/park-bo-gum.webp" },
+    { name: "Robert Downey Jr.", korean: "로버트 다우니 주니어", initials: "RD", dayMaster: "water", yin: false, stem: "壬", birthYear: 1965, category: "Actor", popularity: 91, image: "actors/robert-downey-jr.webp" },
+    { name: "Harry Styles", korean: "해리 스타일스", initials: "HS", dayMaster: "water", yin: false, stem: "壬", birthYear: 1994, category: "Singer", popularity: 93, image: "artists/harry-styles.webp" },
+    { name: "Post Malone", korean: "포스트 말론", initials: "PM", dayMaster: "water", yin: false, stem: "壬", birthYear: 1995, category: "Singer", popularity: 88, image: "artists/post-malone.webp" },
+    { name: "Michael Jordan", korean: "마이클 조던", initials: "MJ", dayMaster: "water", yin: false, stem: "壬", birthYear: 1963, category: "Athlete", popularity: 92, image: "athletes/michael-jordan.webp" },
 
     // 癸 (Yin Water)
-    { name: "BLACKPINK Lisa", korean: "리사", initials: "LS", dayMaster: "water", yin: true, stem: "癸", birthYear: 1997, category: "K-Pop", popularity: 98 },
-    { name: "NewJeans Hanni", korean: "하니", initials: "HN", dayMaster: "water", yin: true, stem: "癸", birthYear: 2004, category: "K-Pop", popularity: 95 },
-    { name: "IVE Yujin", korean: "안유진", initials: "YJ", dayMaster: "water", yin: true, stem: "癸", birthYear: 2003, category: "K-Pop", popularity: 94 },
-    { name: "NewJeans Haerin", korean: "해린", initials: "HR", dayMaster: "water", yin: true, stem: "癸", birthYear: 2006, category: "K-Pop", popularity: 93 },
-    { name: "NewJeans Danielle", korean: "다니엘", initials: "DN", dayMaster: "water", yin: true, stem: "癸", birthYear: 2005, category: "K-Pop", popularity: 92 },
-    { name: "Rihanna", korean: "리한나", initials: "RH", dayMaster: "water", yin: true, stem: "癸", birthYear: 1988, category: "Singer", popularity: 94 },
-    { name: "Selena Gomez", korean: "셀레나 고메즈", initials: "SG", dayMaster: "water", yin: true, stem: "癸", birthYear: 1992, category: "Singer", popularity: 91 },
-    { name: "Scarlett Johansson", korean: "스칼렛 요한슨", initials: "SJ", dayMaster: "water", yin: true, stem: "癸", birthYear: 1984, category: "Actor", popularity: 90 },
-    { name: "Suzy", korean: "수지", initials: "SZ", dayMaster: "water", yin: true, stem: "癸", birthYear: 1994, category: "Actor", popularity: 94 },
-    { name: "Simone Biles", korean: "시몬 바일스", initials: "SB", dayMaster: "water", yin: true, stem: "癸", birthYear: 1997, category: "Athlete", popularity: 87 },
+    { name: "BLACKPINK Lisa", korean: "리사", initials: "LS", dayMaster: "water", yin: true, stem: "癸", birthYear: 1997, category: "K-Pop", popularity: 98, image: "kpop/blackpink-lisa.webp" },
+    { name: "NewJeans Hanni", korean: "하니", initials: "HN", dayMaster: "water", yin: true, stem: "癸", birthYear: 2004, category: "K-Pop", popularity: 95, image: "kpop/newjeans-hanni.webp" },
+    { name: "IVE Yujin", korean: "안유진", initials: "YJ", dayMaster: "water", yin: true, stem: "癸", birthYear: 2003, category: "K-Pop", popularity: 94, image: "kpop/ive-yujin.webp" },
+    { name: "NewJeans Haerin", korean: "해린", initials: "HR", dayMaster: "water", yin: true, stem: "癸", birthYear: 2006, category: "K-Pop", popularity: 93, image: "kpop/newjeans-haerin.webp" },
+    { name: "NewJeans Danielle", korean: "다니엘", initials: "DN", dayMaster: "water", yin: true, stem: "癸", birthYear: 2005, category: "K-Pop", popularity: 92, image: "kpop/newjeans-danielle.webp" },
+    { name: "Rihanna", korean: "리한나", initials: "RH", dayMaster: "water", yin: true, stem: "癸", birthYear: 1988, category: "Singer", popularity: 94, image: "artists/rihanna.webp" },
+    { name: "Selena Gomez", korean: "셀레나 고메즈", initials: "SG", dayMaster: "water", yin: true, stem: "癸", birthYear: 1992, category: "Singer", popularity: 91, image: "artists/selena-gomez.webp" },
+    { name: "Scarlett Johansson", korean: "스칼렛 요한슨", initials: "SJ", dayMaster: "water", yin: true, stem: "癸", birthYear: 1984, category: "Actor", popularity: 90, image: "actors/scarlett-johansson.webp" },
+    { name: "Suzy", korean: "수지", initials: "SZ", dayMaster: "water", yin: true, stem: "癸", birthYear: 1994, category: "Actor", popularity: 94, image: "actors/suzy.webp" },
+    { name: "Simone Biles", korean: "시몬 바일스", initials: "SB", dayMaster: "water", yin: true, stem: "癸", birthYear: 1997, category: "Athlete", popularity: 87, image: "athletes/simone-biles.webp" },
   ],
 
   // 천간 정보
