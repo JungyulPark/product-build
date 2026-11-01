@@ -27,4 +27,4 @@
 
 ## 이전 내용
 
-KStar Match 사이트 코드(`kfortunes/`)는 태그 `archive/kstarmatch-2026-01`에 있습니다. 제품 근거 코드를 읽을 때 `git show archive/kstarmatch-2026-01:kfortunes/<path>`로 봅니다.
+KStar Match 사이트 코드(`kfortunes/`)는 브랜치 `archive/kstarmatch-2026-01`(커밋 `2526a60`)에 있습니다. 제품 근거 코드는 `git fetch origin archive/kstarmatch-2026-01` 후 `git show origin/archive/kstarmatch-2026-01:kfortunes/<path>`로 봅니다.

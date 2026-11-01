@@ -59,10 +59,11 @@ python3 -m http.server                     # http://localhost:8000 에서 갤러
 ## 이전 내용
 
 이 저장소는 원래 KStar Match(kstarmatch.com) 사이트의 배포 저장소였습니다(`kfortunes/`).
-그 코드는 태그 **`archive/kstarmatch-2026-01`**에 그대로 남아 있습니다:
+그 코드는 브랜치 **`archive/kstarmatch-2026-01`**에 그대로 남아 있습니다(마지막 배포 커밋 `2526a60`):
 
 ```sh
-git checkout archive/kstarmatch-2026-01 -- kfortunes TECHNICAL_ANALYSIS.md   # 필요하면 복원
+git fetch origin archive/kstarmatch-2026-01
+git checkout origin/archive/kstarmatch-2026-01 -- kfortunes TECHNICAL_ANALYSIS.md   # 필요하면 복원
 ```
 
 ## 라이선스

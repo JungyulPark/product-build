@@ -4,7 +4,7 @@
 
 - 그림: [`kstarmatch-light.html`](kstarmatch-light.html) · [`kstarmatch.html`](kstarmatch.html) (다크)
 - 제품: https://kstarmatch.com
-- 근거 코드: 이 저장소의 태그 `archive/kstarmatch-2026-01`의 `kfortunes/` (2026년 1월, Cloudflare Pages 배포본).
+- 근거 코드: 이 저장소의 브랜치 `archive/kstarmatch-2026-01`(커밋 `2526a60`)의 `kfortunes/` (2026년 1월, Cloudflare Pages 배포본).
   이후 `JungyulPark/kstarmatch` 저장소에서 바뀐 부분은 아직 반영하지 않았습니다.
 
 ## 한 문장
