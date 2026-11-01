@@ -1,5 +1,13 @@
 [
   {
+    "slug": "lens",
+    "name": "수정체",
+    "en": "Crystalline lens",
+    "status": "drawn",
+    "structures": "수정체낭, 상피, 피질, 성인·태아·배아핵, 섬모소대, 모양체",
+    "idea": "모양체근이 수축하면 소대가 풀리고 수정체가 두꺼워진다 — 60세에서는 근육은 같은데 수정체가 따라가지 못한다(노안)"
+  },
+  {
     "slug": "upper-eyelid",
     "name": "상안검 단면과 거근 기전",
     "en": "Upper eyelid and levator mechanism",
