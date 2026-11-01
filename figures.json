@@ -1,0 +1,42 @@
+[
+  {
+    "slug": "lens",
+    "name": "수정체",
+    "en": "Crystalline lens",
+    "status": "drawn",
+    "structures": "수정체낭, 상피, 피질, 성인·태아·배아핵, 섬모소대, 모양체",
+    "idea": "모양체근이 수축하면 소대가 풀리고 수정체가 두꺼워진다 — 60세에서는 근육은 같은데 수정체가 따라가지 못한다(노안)"
+  },
+  {
+    "slug": "upper-eyelid",
+    "name": "상안검",
+    "en": "Upper eyelid",
+    "status": "drawn",
+    "structures": "피부, 안륜근, 안와격막, 건막 앞 지방, 거근·건막, Whitnall 인대, 뮐러근, 검판·마이봄샘, 결막, MRD1",
+    "idea": "시선을 올리면 거근이 Whitnall 아래에서 꺾인 건막·뮐러근으로 검판을 끌어올린다 — 쌍꺼풀·홑꺼풀·건막성 안검하수 비교"
+  },
+  {
+    "slug": "lacrimal-drainage",
+    "name": "눈물길",
+    "en": "Lacrimal drainage system",
+    "status": "planned",
+    "structures": "눈물점, 눈물소관, 총눈물소관, 눈물주머니, 코눈물관, Hasner 판막, 하비도",
+    "idea": "눈 깜빡임마다 눈물이 관을 따라 코 안으로 흘러가는 배관"
+  },
+  {
+    "slug": "orbit-eom",
+    "name": "안와와 외안근",
+    "en": "Orbit and extraocular muscles",
+    "status": "planned",
+    "structures": "안와 골벽, Zinn 고리, 직근 4·사근 2, 도르래, 시신경, 안구",
+    "idea": "근육이 수축하면 안구가 돌고, 부착 위치(Tillaux 나선)가 회전축을 정한다"
+  },
+  {
+    "slug": "thyroid-eye-disease",
+    "name": "갑상선눈병증의 안구돌출",
+    "en": "Proptosis in thyroid eye disease",
+    "status": "planned",
+    "structures": "외안근 비대, 안와지방 증가, 안와 용적, 안구 위치(Hertel)",
+    "idea": "닫힌 원뿔 안에서 늘어난 부피가 안구를 앞으로 밀어내는 양"
+  }
+]
