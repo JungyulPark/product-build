@@ -1,0 +1,34 @@
+[
+  {
+    "slug": "upper-eyelid",
+    "name": "상안검 단면과 거근 기전",
+    "en": "Upper eyelid and levator mechanism",
+    "status": "planned",
+    "structures": "피부·안륜근, 안와격막, 안와지방, 상안검거근·건막, Whitnall 인대, 뮐러근, 검판, 결막",
+    "idea": "거근을 당기면 Whitnall 인대를 지렛목 삼아 눈꺼풀이 올라가고 MRD1·거근 기능(mm)이 읽힌다"
+  },
+  {
+    "slug": "lacrimal-drainage",
+    "name": "눈물길",
+    "en": "Lacrimal drainage system",
+    "status": "planned",
+    "structures": "눈물점, 눈물소관, 총눈물소관, 눈물주머니, 코눈물관, Hasner 판막, 하비도",
+    "idea": "눈 깜빡임마다 눈물이 관을 따라 코 안으로 흘러가는 배관"
+  },
+  {
+    "slug": "orbit-eom",
+    "name": "안와와 외안근",
+    "en": "Orbit and extraocular muscles",
+    "status": "planned",
+    "structures": "안와 골벽, Zinn 고리, 직근 4·사근 2, 도르래, 시신경, 안구",
+    "idea": "근육이 수축하면 안구가 돌고, 부착 위치(Tillaux 나선)가 회전축을 정한다"
+  },
+  {
+    "slug": "thyroid-eye-disease",
+    "name": "갑상선눈병증의 안구돌출",
+    "en": "Proptosis in thyroid eye disease",
+    "status": "planned",
+    "structures": "외안근 비대, 안와지방 증가, 안와 용적, 안구 위치(Hertel)",
+    "idea": "닫힌 원뿔 안에서 늘어난 부피가 안구를 앞으로 밀어내는 양"
+  }
+]
